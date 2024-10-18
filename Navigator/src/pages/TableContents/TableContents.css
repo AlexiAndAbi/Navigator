@@ -1,0 +1,9 @@
+.gradient_background {
+    background: linear-gradient(90deg, #B1DFFF, #3830CC);
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+    display: flex; /* Use flexbox to center content */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: flex-start; /* Start from the top */
+  }

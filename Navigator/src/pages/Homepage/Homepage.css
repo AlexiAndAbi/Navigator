@@ -1,0 +1,52 @@
+
+.gradient_background {
+    background: linear-gradient(180deg, #B1DFFF, #3830CC);
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+    display: flex; /* Use flexbox to center content */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: flex-start; /* Start from the top */
+  }
+  
+  .card {
+    padding: 2em;
+  }
+  
+  .title {
+    font-family: 'Consolas', monospace;
+    color: white;
+    font-size: 70px; /* Made it much bigger */
+    text-align: center; /* Centered the text */
+    font-weight: 100; /* Change to a proper weight */
+    margin: 0; /* Remove top margin */
+    padding-top: 10%; /* Adjust this for spacing from the top */
+   
+  }
+  
+  .description {
+    font-family: 'Consolas', monospace;
+    color: white;
+    font-size: 20px; /* Made it smaller */
+    font-weight: 100; /* Change to a proper weight */
+    margin: 0; /* Remove any default margin to get it closer */
+  }
+  
+  
+  .start-button {
+    font-family: 'Consolas', monospace; /* Use the same font */
+    color: white; /* Text color */
+    background-color: transparent; /* Transparent background */
+    border: 2px solid white; /* White outline */
+    padding: 10px 20px; /* Add some padding */
+    font-size: 20px; /* Font size for the button */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    border-radius: 5px; /* Slightly rounded corners */
+    margin-top: 20px; /* Space above the button */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+  }
+  
+  .start-button:hover {
+    background-color: white; /* Change background on hover */
+    color: #3830CC; /* Change text color on hover */
+  }

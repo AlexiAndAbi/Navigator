@@ -1,42 +1,61 @@
+/* Reset body margin */
+body {
+  margin: 0; /* Removes default body margin */
+}
+
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.gradient_background {
+  background: linear-gradient(180deg, #B1DFFF, #3830CC);
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+  display: flex; /* Use flexbox to center content */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: flex-start; /* Start from the top */
 }
 
 .card {
   padding: 2em;
 }
 
-.read-the-docs {
-  color: #888;
+.title {
+  font-family: 'Consolas', monospace;
+  color: white;
+  font-size: 70px; /* Made it much bigger */
+  text-align: center; /* Centered the text */
+  font-weight: 100; /* Change to a proper weight */
+  margin: 0; /* Remove top margin */
+  padding-top: 10%; /* Adjust this for spacing from the top */
+ 
+}
+
+.description {
+  font-family: 'Consolas', monospace;
+  color: white;
+  font-size: 20px; /* Made it smaller */
+  font-weight: 100; /* Change to a proper weight */
+  margin: 0; /* Remove any default margin to get it closer */
+}
+
+
+.start-button {
+  font-family: 'Consolas', monospace; /* Use the same font */
+  color: white; /* Text color */
+  background-color: transparent; /* Transparent background */
+  border: 2px solid white; /* White outline */
+  padding: 10px 20px; /* Add some padding */
+  font-size: 20px; /* Font size for the button */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  border-radius: 5px; /* Slightly rounded corners */
+  margin-top: 20px; /* Space above the button */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+}
+
+.start-button:hover {
+  background-color: white; /* Change background on hover */
+  color: #3830CC; /* Change text color on hover */
 }
