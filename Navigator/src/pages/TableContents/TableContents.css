@@ -1,9 +1,48 @@
 .gradient_background {
-    background: linear-gradient(90deg, #B1DFFF, #3830CC);
+    background: linear-gradient(90deg, #3830CC, #B1DFFF);
     height: 100vh; /* Full viewport height */
     width: 100vw; /* Full viewport width */
     display: flex; /* Use flexbox to center content */
     flex-direction: column; /* Stack children vertically */
-    align-items: center; /* Center items horizontally */
+    align-items: left; /* Center items horizontally */
     justify-content: flex-start; /* Start from the top */
   }
+
+  .command-output {
+    text-align: left; /* Ensures left alignment for both commands and responses */
+    margin-bottom: 5px; /* Adds space between each command and response */
+}
+
+  .shell-container {
+ 
+    color: white;
+    padding: 20px;
+    height: 400px;
+    width: 900px;
+    overflow-y: auto;
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 8px;
+    margin: 20px auto;
+  }
+  
+  .output {
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+    font-weight: 200;
+  }
+  
+  form {
+    display: flex;
+    align-items: baseline; /* Aligns input field with the baseline of the text */
+  }
+  
+  input {
+    font-weight: 200;
+    background: none;
+    border: none;
+    color: white;
+    outline: none;
+    width: 100%;
+    font-size: 1rem;
+  }
+  

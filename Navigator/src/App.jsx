@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} /> {/* Set the Home component for the root path */}
         <Route path="/Table-Of-Contents" element={<TableContents />} /> {/* Set the Home component for the root path */}
-
+      
       </Routes>
     </Router>
   )
