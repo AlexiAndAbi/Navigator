@@ -83,7 +83,7 @@ const TableContents = () => {
         result = `Command not found: ${cmd}`;
     }
 
-    updateOutput(`>> ${command}`, result);
+    updateOutput(`${currentPath} >> ${command}`, result);
     setCommand("");
   };
 
@@ -110,7 +110,6 @@ const TableContents = () => {
           onChange={(e) => setCommand(e.target.value)}
           autoFocus
         />
-        <div className="blinking-cursor" /> {/* This will create the custom cursor */}
       </form>
       </div>
     </div>
