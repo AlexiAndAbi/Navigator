@@ -60,7 +60,7 @@ const TableContents = () => {
       }
     }
     setCurrentPath(`/${parts.join("/")}` || "/");
-    return `Moved to ${currentPath}`;
+    return ;
   };
 
   const handleSubmit = (e) => {
@@ -103,13 +103,14 @@ const TableContents = () => {
         ))}
       </div>
       <form onSubmit={handleSubmit}>
-        <span>{`${currentPath} >> `}</span>
+        <span>{`${currentPath} >>   `}</span>
         <input
           type="text"
           value={command}
           onChange={(e) => setCommand(e.target.value)}
           autoFocus
         />
+        <div className="blinking-cursor" /> {/* This will create the custom cursor */}
       </form>
       </div>
     </div>
