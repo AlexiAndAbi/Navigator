@@ -43,22 +43,35 @@ const getCurrentDir = () => {
   return current;
 };
 
-const handleLs = (fileName) => {
-  const dir = getCurrentDir();
+const handleLs = (target = null) => {
+  let dir = getCurrentDir();
 
-  console.log(fileName);
-  if (fileName) {
-    // Check if the file exists in the current directory
-    if (dir.children[fileName]) {
-      return fileName;
+  if (target) {
+    // Check if the target exists in the current directory
+    const targetItem = dir.children[target];
+
+    if (targetItem) {
+      // If it's a file, just return the file name
+      if (targetItem.type === "file") {
+        return target;
+      }
+      // If it's a directory, list the contents of that directory
+      if (targetItem.type === "directory") {
+        const contents = Object.keys(targetItem.children).join("  ");
+        return contents || "";
+      }
     } else {
-      return "No such file or directory";
+      return `ls: ${target}: No such file or directory`;
     }
   }
 
-  // If no specific file is requested, list all contents
-  const contents = Object.keys(dir.children).join("  ");
-  return contents || "Directory is empty.";
+  // If no target is provided, list the contents of the current directory
+  if (dir.type === "directory") {
+    const contents = Object.keys(dir.children).join("  ");
+    return contents || "Directory is empty.";
+  }
+  
+  return "Not a directory.";
 };
 
   const handleCd = (path) => {
@@ -95,16 +108,16 @@ const handleLs = (fileName) => {
     switch (cmd) {
       case "ls":
         if (args.length) {
-          result = handleLs(args[0]); // Pass the file name if provided
+          result = handleLs(args[0]); // Pass the target name (file or directory)
         } else {
-          result = handleLs(); // No file name, list all contents
+          result = handleLs(); // No target, list contents of the current directory
         }
         break;
       case "cd":
         if (args.length) {
           result = handleCd(args[0]);
         } else {
-          result = "";
+          result = "Please specify a directory.";
         }
         break;
       default:
