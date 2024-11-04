@@ -68,22 +68,51 @@ const TableContents = () => {
   };
 
   const handleCd = (path) => {
+    console.log("current path =", currentPath);
+
     if (path === "~") {
       setCurrentPath("~");
       return;
     }
-  
-    const parts = path.split("/").filter(Boolean);
+    
+    let found = 0;
+    const parts = currentPath.split("/").filter(Boolean);
+    const partswithoutfirst = parts.slice(1);
+    console.log("partswithoutfirst = ", partswithoutfirst);
     let current = fileSystem["~"];
     let newPath = "~";
+
+
+    if (partswithoutfirst.length === 0){
+      if (current.type === "directory" && current.children[path]) {
+        current = current.children[path];
+        found = 1;
+        newPath += `/${path}`;
+        setCurrentPath(newPath);
+        return;
+      }
+      else{
+        return `cd: no such file or directory: ${path}`;
+      }
+    }
   
-    for (const part of parts) {
+    for (const part of partswithoutfirst){
+      console.log("part: ", part)
       if (current.type === "directory" && current.children[part]) {
         current = current.children[part];
         newPath += `/${part}`;
-      } else {
-        return `cd: no such file or directory: ${path}`;
       }
+    }
+    if (current.type === "directory" && current.children[path]) {
+      current = current.children[path];
+      found = 1;
+      newPath += `/${path}`;
+      setCurrentPath(newPath);
+      return;
+    }
+
+    if (found === 0){
+      return `cd: no such file or directory: ${path}`;
     }
   
     setCurrentPath(newPath);
@@ -94,7 +123,7 @@ const TableContents = () => {
     e.preventDefault();
     const [cmd, ...args] = command.split(" ");
     let result;
-
+  
     switch (cmd) {
       case "ls":
         result = args.length ? handleLs(args[0]) : handleLs();
@@ -102,6 +131,9 @@ const TableContents = () => {
       case "cd":
         result = args.length ? handleCd(args[0]) : "Please specify a directory.";
         break;
+      case "clear":
+        handleClear();
+        return; // Exit the function early to avoid adding an output for clear
       default:
         result = `command not found: ${cmd}`;
     }
@@ -109,6 +141,12 @@ const TableContents = () => {
     updateOutput(`${currentDirectory} >> ${command}`, result);
     setCommand("");
   };
+  
+  // Function to clear the output and the input
+  const handleClear = () => {
+    setOutput([]);      // Clear the output
+    setCommand("");     // Clear the command input
+  };  
 
   const updateOutput = (commandEcho, message) => {
     setOutput((prev) => [...prev, { commandEcho, message }]);
