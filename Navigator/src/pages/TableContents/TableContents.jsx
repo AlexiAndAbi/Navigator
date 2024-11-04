@@ -4,7 +4,7 @@ import "./TableContents.css";
 const TableContents = () => {
   // Initial file system structure
   const [fileSystem] = useState({
-    "/": { 
+    "~": { 
       type: "directory",
       children: {
         "directory1": { 
@@ -26,41 +26,65 @@ const TableContents = () => {
 
   const [prompts] = ["ls", "cd", "ls"]
   const [currentPrompt, setCurrentPrompt] = useState(prompts[0]) 
-  const [currentPath, setCurrentPath] = useState("/");
+  const [currentPath, setCurrentPath] = useState("~");
+  const [currentDirectory, setCurrentDirectory] = useState("~");
   const [command, setCommand] = useState("");
   const [output, setOutput] = useState([]);
 
-  const getCurrentDir = () => {
-    const pathParts = currentPath.split("/").filter(Boolean);
-    let current = fileSystem["/"];
-    for (const part of pathParts) {
-      current = current.children[part];
-    }
-    return current;
-  };
+const getCurrentDir = () => {
+  const pathParts = currentPath.split("~").filter(Boolean).map(part => part.replace(/\//g, ""));
+  let current = fileSystem["~"];
+  
+  for (const part of pathParts) {
+    current = current.children[part];
+  }
+  
+  setCurrentDirectory(pathParts[pathParts.length - 1])
+  return current;
+};
 
-  const handleLs = () => {
-    const dir = getCurrentDir();
-    if (dir.type === "directory") {
-      const contents = Object.keys(dir.children).join("  ");
-      return contents || "Directory is empty.";
+const handleLs = (fileName) => {
+  const dir = getCurrentDir();
+
+  console.log(fileName);
+  if (fileName) {
+    // Check if the file exists in the current directory
+    if (dir.children[fileName]) {
+      return fileName;
+    } else {
+      return "No such file or directory";
     }
-    return "Not a directory.";
-  };
+  }
+
+  // If no specific file is requested, list all contents
+  const contents = Object.keys(dir.children).join("  ");
+  return contents || "Directory is empty.";
+};
 
   const handleCd = (path) => {
+    console.log(path);
+    if (path === "~") {
+      // If the user wants to go to the root
+      setCurrentPath("~");
+      return;
+    }
+  
     const parts = path.split("/").filter(Boolean);
-    let current = fileSystem["/"];
-
+    let current = fileSystem["~"];
+    let newPath = "~";
+  
     for (const part of parts) {
-      if (current.children[part]) {
+      if (current.type === "directory" && current.children[part]) {
         current = current.children[part];
+        newPath += `/${part}`; // Append to the new path
       } else {
-        return `No such directory: ${path}`;
+        return `no such file or directory: ${path}`;
       }
     }
-    setCurrentPath(`/${parts.join("/")}` || "/");
-    return ;
+  
+    setCurrentPath(newPath); // Update to the new path
+    console.log(newPath)
+    return;
   };
 
   const handleSubmit = (e) => {
@@ -70,18 +94,23 @@ const TableContents = () => {
 
     switch (cmd) {
       case "ls":
-        result = handleLs();
+        if (args.length) {
+          result = handleLs(args[0]); // Pass the file name if provided
+        } else {
+          result = handleLs(); // No file name, list all contents
+        }
         break;
       case "cd":
         if (args.length) {
           result = handleCd(args[0]);
         } else {
-          result = "Please specify a directory.";
+          result = "";
         }
         break;
       default:
         result = `Command not found: ${cmd}`;
     }
+  
 
     updateOutput(`${currentPath} >> ${command}`, result);
     setCommand("");
