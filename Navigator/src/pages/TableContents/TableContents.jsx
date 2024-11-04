@@ -129,7 +129,7 @@ const TableContents = () => {
         result = args.length ? handleLs(args[0]) : handleLs();
         break;
       case "cd":
-        result = args.length ? handleCd(args[0]) : "Please specify a directory.";
+        result = args.length ? handleCd(args[0]) : "";
         break;
       case "clear":
         handleClear();
