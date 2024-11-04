@@ -29,6 +29,17 @@ const TableContents = () => {
   const [currentPath, setCurrentPath] = useState("~");
   const [command, setCommand] = useState("");
   const [output, setOutput] = useState([]);
+  const [questionIndex, setQuestionIndex] = useState(0); // New state for question index
+
+  // Array of questions
+  const questions = [
+    "Can you display the current directory contents?",
+    "Can you move into the child directory?",
+    "Can you move into the child directory again?",
+    "Can you move up to the parent directory?",
+    "Can you display the current directory contents?",
+    // Add more questions as needed
+  ];
 
   const getCurrentDir = () => {
     const pathParts = currentPath.split("/").filter(Boolean).map(part => part.replace(/\//g, ""));
@@ -156,9 +167,16 @@ const TableContents = () => {
       default:
         result = `command not found: ${cmd}`;
     }
-  
+
+    updateOutput(questions[questionIndex]);
     updateOutput(`${currentDirectory} >> ${command}`, result);
     setCommand("");
+    
+    // Update the question index
+    setQuestionIndex((prevIndex) => {
+      const newIndex = prevIndex + 1;
+      return newIndex < questions.length ? newIndex : 0; // Loop back to the start if needed
+    });
   };
   
   // Function to clear the output and the input
@@ -185,6 +203,8 @@ const TableContents = () => {
             </div>
           ))}
         </div>
+        {/* Display the current question */}
+        <div className="question">{questions[questionIndex]}</div>
         <form onSubmit={handleSubmit}>
           <span>{`${currentDirectory} >> `}</span>
           <input
