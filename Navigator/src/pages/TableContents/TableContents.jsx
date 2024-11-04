@@ -69,40 +69,57 @@ const TableContents = () => {
 
   const handleCd = (path) => {
     console.log("current path =", currentPath);
-
+  
+    // Handle going to the root directory
     if (path === "~") {
       setCurrentPath("~");
       return;
     }
-    
+  
+    // Handle moving to the parent directory
+    if (path === "..") {
+      const parts = currentPath.split("/").filter(Boolean);
+      if (parts.length > 1) {
+        // Remove the last part to go to the parent
+        const newPath = parts.slice(0, parts.length - 1).join("/");
+        setCurrentPath(`/${newPath}`);
+      } else {
+        // If already at the root, do not change the path
+        setCurrentPath("~");
+      }
+      return;
+    }
+  
     let found = 0;
     const parts = currentPath.split("/").filter(Boolean);
-    const partswithoutfirst = parts.slice(1);
+    const partswithoutfirst = parts.slice(1); // Exclude root for navigation
     console.log("partswithoutfirst = ", partswithoutfirst);
     let current = fileSystem["~"];
     let newPath = "~";
-
-
-    if (partswithoutfirst.length === 0){
+  
+    // If in root directory
+    if (partswithoutfirst.length === 0) {
       if (current.type === "directory" && current.children[path]) {
         current = current.children[path];
         found = 1;
         newPath += `/${path}`;
         setCurrentPath(newPath);
         return;
-      }
-      else{
+      } else {
         return `cd: no such file or directory: ${path}`;
       }
     }
   
-    for (const part of partswithoutfirst){
-      console.log("part: ", part)
+    // Navigate through the current path
+    for (const part of partswithoutfirst) {
+      console.log("part: ", part);
       if (current.type === "directory" && current.children[part]) {
         current = current.children[part];
         newPath += `/${part}`;
       }
     }
+    
+    // Navigate to the specified directory
     if (current.type === "directory" && current.children[path]) {
       current = current.children[path];
       found = 1;
@@ -110,14 +127,16 @@ const TableContents = () => {
       setCurrentPath(newPath);
       return;
     }
-
-    if (found === 0){
+  
+    // If no valid directory found
+    if (found === 0) {
       return `cd: no such file or directory: ${path}`;
     }
   
     setCurrentPath(newPath);
     return;
   };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
