@@ -2,78 +2,41 @@
   background: linear-gradient(90deg, #3830CC, #B1DFFF);
   height: 100vh; /* Full viewport height */
   width: 100vw; /* Full viewport width */
-  display: flex; /* Use flexbox to center content */
-  flex-direction: column; /* Stack children vertically */
-  align-items: left; /* Align items to the left */
-  justify-content: flex-start; /* Start from the top */
-  position: relative; /* Ensure the gradient is positioned correctly */
-}
-
-.command-output {
-  text-align: left; /* Ensures left alignment for both commands and responses */
-  margin-bottom: 5px; /* Adds space between each command and response */
-}
-
-.shell-container {
-  color: white;
-  padding: 10px; /* Adjust top, right, bottom padding */
-  padding-left: 40px; /* Add more space on the left */
-  height: 100%; /* Take the full height of the parent */
-  width: 100%; /* Take the full width of the parent */
-  overflow-y: auto; /* Allows scrolling if content overflows */
-  font-family: 'Consolas', monospace;
-  border-radius: 8px;
-  margin: 0; /* Remove margin to ensure full size */
-}
-
-.output {
-  margin-bottom: 10px;
-  white-space: pre-wrap;
-  font-weight: 200;
-}
-
-form {
   display: flex;
-  align-items: baseline; /* Aligns input field with the baseline of the text */
-  position: relative; /* Position form relative for absolute positioning of cursor */
+  flex-direction: column; /* Stack items vertically */
+  align-items: flex-start; /* Align content to the left */
+  font-family: 'Consolas', monospace;
 }
 
-input {
-  font-family: 'Consolas', monospace; /* Change the font here */
-  font-weight: 200;
-  background: none;
-  border: none;
-  color: white;
-  outline: none;
-  width: auto; /* Change width to auto */
-  min-width: 150px; /* Set a minimum width */
-  font-size: 1rem;
-  padding-right: 1rem; /* Add padding for blinking cursor */
-  margin-left: 7px; /* Add margin for buffer space */
+
+.unit-row {
+  display: flex;
+  align-items: center; /* Center-align button and h3 vertically */
+  margin-bottom: 40px;
 }
 
-/* Styles for the blinking cursor */
-.blinking-cursor {
-  position: absolute;
-  width: 10px; /* Width of the blinking cursor */
-  height: 1.5em; /* Height of the cursor (matches the input line height) */
-  background-color: white; /* Color of the cursor */
-  animation: blink 1s step-end infinite; /* Blinking animation */
-  right: 10px; /* Position the cursor to the right */
-  top: 50%; /* Center vertically */
-  transform: translateY(-50%); /* Adjust vertical alignment */
+.unit-row button {
+  font-size: 24px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: transparent; /* Transparent background */
+  color: white; /* White text */
+ 
+
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Keyframes for blinking effect */
-@keyframes blink {
-  50% {
-    opacity: 0; /* Blink effect */
-  }
+/* Hover effect */
+.unit-row button:hover {
+  background-color: #a259ff; /* Fill with purple on hover */
+  color: white; /* Keep text white */
 }
 
-.question {
-  text-align: left; /* Align text to the left */
-  margin: 0;       /* Remove default margin */
-  padding: 4px 0;  /* Add some vertical spacing */
-  color: #ffffff;  /* Change the text color to white or your desired color */
+
+.unit-row h3 {
+  font-size: 20px;
+  color: #f1f1f1;
+  margin-left: 15px; /* Space between button and h3 */
+  font-weight: normal;
 }

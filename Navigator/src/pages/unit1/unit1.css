@@ -1,32 +1,37 @@
 .gradient_background {
-    background: linear-gradient(135deg, #0e6eb8, #74c0fc);
-    min-height: 100vh;
-    padding: 40px;
-    color: white;
+    background: linear-gradient(90deg, #6058D5, #7AD6D3);
+    height: 100vh;
+    width: 100vw;
     display: flex;
-    flex-direction: column; /* Change to column to stack items vertically */
-    align-items: flex-start; /* Align items to the start (left) */
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
     font-family: 'Consolas', monospace;
 }
 
-.intro-box {
 
-    width: 20%;
-    padding: 1px 40px 1px; /* Adjust padding: top, left/right, bottom */
-    border: 4px solid white; /* Thick white border */
-    border-radius: 35px; /* Rounded corners */
-    text-align: center; /* Center text inside the box */
-    margin-top: 20px; /* Space from the top */
-    margin-bottom: 20px;
-}
 
-.description1 {
-    font-family: 'Consolas', monospace;
+.intro-button {
+    font-size: 40px;
+    border: 2px solid white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: transparent;
     color: white;
-    font-size: 20px; /* Font size */
-    font-weight: 100; /* Font weight */
-    margin: 0; /* Remove any default margin */
-    width: 60%;
-    line-height: 1.6; /* Line height */
-    text-align: justify; /* Justify text for better readability */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.content {
+    margin-left: 20px;
+    width: 800px;
+}
+
+.content p {
+    font-size: 24px;
+    color: white;
+    text-align: left;
+    
 }

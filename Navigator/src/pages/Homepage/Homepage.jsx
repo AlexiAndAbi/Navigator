@@ -8,7 +8,7 @@ const Homepage = () => {
   
   // Function to handle the click event
   const handleStartClick = () => {
-    navigate("/Unit1-Level1"); // Now this is called when the button is clicked
+    navigate("/Table-Of-Contents"); // Now this is called when the button is clicked
   };
 
   return (
