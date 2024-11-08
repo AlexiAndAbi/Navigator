@@ -70,3 +70,10 @@ input {
     opacity: 0; /* Blink effect */
   }
 }
+
+.question {
+  text-align: left; /* Align text to the left */
+  margin: 0;       /* Remove default margin */
+  padding: 4px 0;  /* Add some vertical spacing */
+  color: #ffffff;  /* Change the text color to white or your desired color */
+}

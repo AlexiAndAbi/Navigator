@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import "./TableContents.css";
+import "./Testing.css";
 
-const TableContents = () => {
+const Testing = () => {
   const [fileSystem] = useState({
     "~": { 
       type: "directory",
@@ -29,17 +29,6 @@ const TableContents = () => {
   const [currentPath, setCurrentPath] = useState("~");
   const [command, setCommand] = useState("");
   const [output, setOutput] = useState([]);
-  const [questionIndex, setQuestionIndex] = useState(0); // New state for question index
-
-  // Array of questions
-  const questions = [
-    "Can you display the current directory contents?",
-    "Can you move into the child directory?",
-    "Can you move into the child directory again?",
-    "Can you move up to the parent directory?",
-    "Can you display the current directory contents?",
-    // Add more questions as needed
-  ];
 
   const getCurrentDir = () => {
     const pathParts = currentPath.split("/").filter(Boolean).map(part => part.replace(/\//g, ""));
@@ -72,7 +61,7 @@ const TableContents = () => {
 
     if (dir.type === "directory") {
       const contents = Object.keys(dir.children).join("  ");
-      return contents || "Directory is empty.";
+      return contents || "";
     }
     
     return "something is terribly wrong.";
@@ -147,7 +136,46 @@ const TableContents = () => {
     setCurrentPath(newPath);
     return;
   };
+
+  const handleMkdir = (dirName) => {
+    console.log("directory name = ", dirName)
+    if (!dirName) return "usage: mkdir missing directory_name ...";
   
+    const currentDir = getCurrentDir();
+    
+    // Check if the directory already exists
+    if (currentDir.children[dirName]) {
+      return `mkdir: ${dirName}: File exists`;
+    }
+  
+    // Create a new directory
+    currentDir.children[dirName] = {
+      type: "directory",
+      children: {}
+    };
+  
+    return ""; // No error message to return
+  };
+
+  const handleTouch = (fileName) => {
+    console.log("file name = ", fileName)
+    if (!fileName) return "usage: touch missing file_name ...";
+  
+    const currentDir = getCurrentDir();
+  
+    // Check if the file or directory already exists
+    if (currentDir.children[fileName]) {
+      return `touch: ${fileName}: Timestamp updated`;
+    }
+  
+    // Create a new empty file
+    currentDir.children[fileName] = {
+      type: "file",
+      content: ""
+    };
+  
+    return ""; // No error message to return
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -161,23 +189,23 @@ const TableContents = () => {
       case "cd":
         result = args.length ? handleCd(args[0]) : "";
         break;
+      case "mkdir":
+        result = args.length ? handleMkdir(args[0]) : "usage: mkdir missing directory_name ...";
+        break;
+      case "touch":
+        result = args.length ? handleTouch(args[0]) : "usage: touch missing file_name ...";
+        break;
       case "clear":
         handleClear();
         return; // Exit the function early to avoid adding an output for clear
       default:
         result = `command not found: ${cmd}`;
     }
-
-    updateOutput(questions[questionIndex]);
+  
     updateOutput(`${currentDirectory} >> ${command}`, result);
     setCommand("");
-    
-    // Update the question index
-    setQuestionIndex((prevIndex) => {
-      const newIndex = prevIndex + 1;
-      return newIndex < questions.length ? newIndex : 0; // Loop back to the start if needed
-    });
   };
+  
   
   // Function to clear the output and the input
   const handleClear = () => {
@@ -204,7 +232,6 @@ const TableContents = () => {
           ))}
         </div>
         {/* Display the current question */}
-        <div className="question">{questions[questionIndex]}</div>
         <form onSubmit={handleSubmit}>
           <span>{`${currentDirectory} >> `}</span>
           <input
@@ -219,4 +246,4 @@ const TableContents = () => {
   );
 };
 
-export default TableContents;
+export default Testing;
