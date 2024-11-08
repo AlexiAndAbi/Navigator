@@ -29,12 +29,14 @@ const Testing = () => {
   const [currentPath, setCurrentPath] = useState("~");
   const [command, setCommand] = useState("");
   const [output, setOutput] = useState([]);
+  const [commandHistory, setCommandHistory] = useState([]);
+  const [historyIndex, setHistoryIndex] = useState(-1);
 
   const getCurrentDir = () => {
     const pathParts = currentPath.split("/").filter(Boolean).map(part => part.replace(/\//g, ""));
     let current = fileSystem["~"];
   
-    for (const part of pathParts.slice(1)) { // Skip the "~"
+    for (const part of pathParts.slice(1)) {
       current = current.children[part];
     }
     return current;
@@ -68,23 +70,17 @@ const Testing = () => {
   };
 
   const handleCd = (path) => {
-    console.log("current path =", currentPath);
-  
-    // Handle going to the root directory
     if (path === "~") {
       setCurrentPath("~");
       return;
     }
   
-    // Handle moving to the parent directory
     if (path === "..") {
       const parts = currentPath.split("/").filter(Boolean);
       if (parts.length > 1) {
-        // Remove the last part to go to the parent
         const newPath = parts.slice(0, parts.length - 1).join("/");
         setCurrentPath(`/${newPath}`);
       } else {
-        // If already at the root, do not change the path
         setCurrentPath("~");
       }
       return;
@@ -92,12 +88,10 @@ const Testing = () => {
   
     let found = 0;
     const parts = currentPath.split("/").filter(Boolean);
-    const partswithoutfirst = parts.slice(1); // Exclude root for navigation
-    console.log("partswithoutfirst = ", partswithoutfirst);
+    const partswithoutfirst = parts.slice(1);
     let current = fileSystem["~"];
     let newPath = "~";
   
-    // If in root directory
     if (partswithoutfirst.length === 0) {
       if (current.type === "directory" && current.children[path]) {
         current = current.children[path];
@@ -110,16 +104,13 @@ const Testing = () => {
       }
     }
   
-    // Navigate through the current path
     for (const part of partswithoutfirst) {
-      console.log("part: ", part);
       if (current.type === "directory" && current.children[part]) {
         current = current.children[part];
         newPath += `/${part}`;
       }
     }
     
-    // Navigate to the specified directory
     if (current.type === "directory" && current.children[path]) {
       current = current.children[path];
       found = 1;
@@ -128,7 +119,6 @@ const Testing = () => {
       return;
     }
   
-    // If no valid directory found
     if (found === 0) {
       return `cd: no such file or directory: ${path}`;
     }
@@ -138,43 +128,37 @@ const Testing = () => {
   };
 
   const handleMkdir = (dirName) => {
-    console.log("directory name = ", dirName)
     if (!dirName) return "usage: mkdir missing directory_name ...";
   
     const currentDir = getCurrentDir();
     
-    // Check if the directory already exists
     if (currentDir.children[dirName]) {
       return `mkdir: ${dirName}: File exists`;
     }
   
-    // Create a new directory
     currentDir.children[dirName] = {
       type: "directory",
       children: {}
     };
   
-    return ""; // No error message to return
+    return ""; 
   };
 
   const handleTouch = (fileName) => {
-    console.log("file name = ", fileName)
     if (!fileName) return "usage: touch missing file_name ...";
   
     const currentDir = getCurrentDir();
   
-    // Check if the file or directory already exists
     if (currentDir.children[fileName]) {
       return `touch: ${fileName}: Timestamp updated`;
     }
   
-    // Create a new empty file
     currentDir.children[fileName] = {
       type: "file",
       content: ""
     };
   
-    return ""; // No error message to return
+    return ""; 
   };
 
   const handleSubmit = (e) => {
@@ -196,28 +180,59 @@ const Testing = () => {
         result = args.length ? handleTouch(args[0]) : "usage: touch missing file_name ...";
         break;
       case "clear":
+        result = "";
         handleClear();
-        return; // Exit the function early to avoid adding an output for clear
+        break;
       default:
         result = `command not found: ${cmd}`;
     }
   
-    updateOutput(`${currentDirectory} >> ${command}`, result);
+    if (cmd !== "clear") {
+      updateOutput(`${currentDirectory} >> ${command}`, result);
+    }
+
+    setCommandHistory((prevHistory) => {
+      const newHistory = [...prevHistory.slice(-99), command]; 
+      setHistoryIndex(-1);
+      return newHistory;
+    });
+
     setCommand("");
   };
-  
-  
-  // Function to clear the output and the input
+
+  const handleKeyDown = (e) => {
+    if (e.ctrlKey && e.key === "l") {
+      e.preventDefault();
+      handleClear();
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      if (historyIndex < commandHistory.length - 1) {
+        const newIndex = historyIndex + 1;
+        setHistoryIndex(newIndex);
+        setCommand(commandHistory[commandHistory.length - 1 - newIndex]);
+      }
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      if (historyIndex > 0) {
+        const newIndex = historyIndex - 1;
+        setHistoryIndex(newIndex);
+        setCommand(commandHistory[commandHistory.length - 1 - newIndex]);
+      } else if (historyIndex === 0) {
+        setHistoryIndex(-1);
+        setCommand("");
+      }
+    }
+  };
+
   const handleClear = () => {
-    setOutput([]);      // Clear the output
-    setCommand("");     // Clear the command input
-  };  
+    setOutput([]);
+    setCommand("");
+  };
 
   const updateOutput = (commandEcho, message) => {
     setOutput((prev) => [...prev, { commandEcho, message }]);
   };
 
-  // Extract only the current directory name for display
   const currentDirectory = currentPath.split("/").filter(Boolean).pop() || "~";
 
   return (
@@ -231,13 +246,13 @@ const Testing = () => {
             </div>
           ))}
         </div>
-        {/* Display the current question */}
         <form onSubmit={handleSubmit}>
           <span>{`${currentDirectory} >> `}</span>
           <input
             type="text"
             value={command}
             onChange={(e) => setCommand(e.target.value)}
+            onKeyDown={handleKeyDown}
             autoFocus
           />
         </form>
