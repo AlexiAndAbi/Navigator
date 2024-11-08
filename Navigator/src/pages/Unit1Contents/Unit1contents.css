@@ -1,0 +1,74 @@
+.gradient_background {
+    background: linear-gradient(90deg, #6058D5, #7AD6D3);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    font-family: 'Consolas', monospace;
+}
+
+/* Header row for Discover and Explore buttons */
+.header-row {
+    display: flex;
+    width: 100%; /* Full width to align Explore to the far right */
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.discover-button {
+    font-size: 40px;
+    border: 2px solid white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.explore-button {
+    font-size: 40px;
+    border: 2px solid white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    margin-right: 50px;
+    margin-left: auto; /* Pushes Explore button to the far right */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Level rows */
+.unit-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.unit-row button {
+    font-size: 24px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effect */
+.unit-row button:hover,
+.discover-button:hover,
+.explore-button:hover {
+    background-color: #a259ff;
+    color: white;
+}
+
+.unit-row h3 {
+    font-size: 20px;
+    color: #f1f1f1;
+    margin-left: 15px;
+    font-weight: normal;
+}
