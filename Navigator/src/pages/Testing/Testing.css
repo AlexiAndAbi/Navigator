@@ -32,11 +32,21 @@
     font-weight: 200;
   }
   
-  form {
-    display: flex;
-    align-items: baseline; /* Aligns input field with the baseline of the text */
-    position: relative; /* Position form relative for absolute positioning of cursor */
-  }
+/* Make sure the form uses column layout */
+form {
+  display: flex;
+  flex-direction: column; /* Stack form elements vertically */
+}
+
+/* Style for the suggestions */
+.command-output.suggestions {
+  color: white;            /* Ensure the text is visible */
+  background-color: none;  /* Set a background for the suggestions */
+  margin-top: 0.5rem;      /* Space between input and suggestions */
+  font-family: 'Consolas', monospace;
+  white-space: pre-wrap;   /* Make sure long suggestions wrap correctly */
+  word-wrap: break-word;
+}
   
   input {
     font-family: 'Consolas', monospace; /* Change the font here */
@@ -46,29 +56,10 @@
     color: white;
     outline: none;
     width: auto; /* Change width to auto */
-    min-width: 150px; /* Set a minimum width */
+    min-width: 500px; /* Set a minimum width */
     font-size: 1rem;
     padding-right: 1rem; /* Add padding for blinking cursor */
     margin-left: 7px; /* Add margin for buffer space */
-  }
-  
-  /* Styles for the blinking cursor */
-  .blinking-cursor {
-    position: absolute;
-    width: 10px; /* Width of the blinking cursor */
-    height: 1.5em; /* Height of the cursor (matches the input line height) */
-    background-color: white; /* Color of the cursor */
-    animation: blink 1s step-end infinite; /* Blinking animation */
-    right: 10px; /* Position the cursor to the right */
-    top: 50%; /* Center vertically */
-    transform: translateY(-50%); /* Adjust vertical alignment */
-  }
-  
-  /* Keyframes for blinking effect */
-  @keyframes blink {
-    50% {
-      opacity: 0; /* Blink effect */
-    }
   }
   
   .question {
