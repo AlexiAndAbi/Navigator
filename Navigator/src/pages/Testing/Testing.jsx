@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import "./Testing.css";
 
 const Testing = () => {
@@ -93,6 +93,8 @@ const Testing = () => {
     if (target && target.type === "directory") {
       setCurrentPath(`${currentPath}/${path}`);
       setSuggestions([]); // Clear suggestions after a successful command
+    } else if (target && target.type === "file"){
+      return `cd: not a directory: ${path}`
     } else {
       return `cd: no such file or directory: ${path}`;
     }
@@ -189,21 +191,34 @@ const Testing = () => {
       e.preventDefault();
       handleTab();
     } else if (e.key === "ArrowUp") {
-      if (historyIndex > 0) {
-        setHistoryIndex(historyIndex - 1);
-        setCommand(commandHistory[historyIndex - 1]);
+      // Check if there's history to navigate
+      if (commandHistory.length > 0) {
+        if (historyIndex === -1) {
+          // Start at the last command in history if not already navigating
+          setHistoryIndex(commandHistory.length - 1);
+          setCommand(commandHistory[commandHistory.length - 1]);
+        } else if (historyIndex > 0) {
+          // Move up in history if possible
+          setHistoryIndex(historyIndex - 1);
+          setCommand(commandHistory[historyIndex - 1]);
+        }
       }
     } else if (e.key === "ArrowDown") {
-      if (historyIndex < commandHistory.length - 1) {
+      if (historyIndex >= 0 && historyIndex < commandHistory.length - 1) {
+        // Move down in history if not at the end
         setHistoryIndex(historyIndex + 1);
         setCommand(commandHistory[historyIndex + 1]);
-      } else {
+      } else if (historyIndex === commandHistory.length - 1) {
+        // If at the last history command, clear the command box
         setHistoryIndex(-1);
         setCommand("");
       }
+    } else if (e.ctrlKey && e.key === "l") {
+      e.preventDefault();
+      handleClear();
     }
   };
-
+  
   const currentDirectory = currentPath.split("/").filter(Boolean).pop() || "~";
 
   return (
