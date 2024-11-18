@@ -39,7 +39,7 @@ const Prompts = () => {
     "Can you display the current directory contents?",
     "Can you move into the child directory?",
     "Can you move into the child directory again?",
-    "Can you move up to the parent directory?"
+    "Can you move up to the home directory?"
   ];
 
   // Array of answers
@@ -47,7 +47,7 @@ const Prompts = () => {
     "ls",           // For "display current directory contents"
     "cd directory1", // For "move into the child directory"
     "cd directory3", // For "move into the child directory again"
-    "cd .."         // For "move up to the parent directory"
+    "cd ~"         // For "move up to the home directory"
   ];
 
   const getCurrentDir = () => {
@@ -190,7 +190,7 @@ const handleSubmit = (e) => {
 
   // Display the current question only once
   if (!isQuestionDisplayed) {
-    updateOutput(`${questions[questionIndex]}`);
+    updateOutput(questions[questionIndex], "", true); // Mark as a question
     setIsQuestionDisplayed(true);
   }
 
@@ -222,8 +222,15 @@ const handleSubmit = (e) => {
     setCommand("");
   };
 
-  const updateOutput = (commandEcho, message) => {
-    setOutput((prev) => [...prev, { commandEcho, message }]);
+  const updateOutput = (commandEcho, message, isQuestion = false) => {
+    setOutput((prev) => [
+      ...prev,
+      {
+        commandEcho,
+        message,
+        isQuestion, // Add a flag to identify questions
+      },
+    ]);
   };
 
   const handleKeyDown = (e) => {
@@ -267,9 +274,12 @@ const handleSubmit = (e) => {
   return (
     <div className='gradient_background'>
       <div className="shell-container">
-        <div className="output">
+      <div className="output">
           {output.map((entry, index) => (
-            <div key={index} className="command-output">
+            <div
+              key={index}
+              className={`command-output ${entry.isQuestion ? "question-output" : ""}`}
+            >
               <div>{entry.commandEcho}</div>
               <div>{entry.message}</div>
             </div>

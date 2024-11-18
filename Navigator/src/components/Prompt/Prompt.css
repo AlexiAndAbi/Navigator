@@ -65,3 +65,11 @@
     align-items: center;
     margin-left: 2rem; /* Indent this block relative to the question */
   }
+
+  .question-output {
+    text-align: left; /* Align text to the left */
+    margin: 0;       /* Remove default margin */
+    padding: 4px 0;  /* Add some vertical spacing */
+    color: #ffffff;  /* Change the text color to white or your desired color */
+    font-family: 'OpenSans-Regular', monospace;
+  }
