@@ -28,7 +28,7 @@
   
   .output {
     margin-bottom: 10px;
-    white-space: pre-wrap;
+    font-family: 'Consolas', monospace; /* Change the font here */
     font-weight: 200;
   }
   
@@ -52,28 +52,16 @@
     margin-left: 7px; /* Add margin for buffer space */
   }
   
-  /* Styles for the blinking cursor */
-  .blinking-cursor {
-    position: absolute;
-    width: 10px; /* Width of the blinking cursor */
-    height: 1.5em; /* Height of the cursor (matches the input line height) */
-    background-color: white; /* Color of the cursor */
-    animation: blink 1s step-end infinite; /* Blinking animation */
-    right: 10px; /* Position the cursor to the right */
-    top: 50%; /* Center vertically */
-    transform: translateY(-50%); /* Adjust vertical alignment */
-  }
-  
-  /* Keyframes for blinking effect */
-  @keyframes blink {
-    50% {
-      opacity: 0; /* Blink effect */
-    }
-  }
-  
   .question {
     text-align: left; /* Align text to the left */
     margin: 0;       /* Remove default margin */
     padding: 4px 0;  /* Add some vertical spacing */
     color: #ffffff;  /* Change the text color to white or your desired color */
+    font-family: 'OpenSans-Regular', monospace;
+  }
+
+  .command-line {
+    display: flex; /* Align input and directory on the same row */
+    align-items: center;
+    margin-left: 2rem; /* Indent this block relative to the question */
   }

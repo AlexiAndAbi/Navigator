@@ -39,9 +39,15 @@ const Prompts = () => {
     "Can you display the current directory contents?",
     "Can you move into the child directory?",
     "Can you move into the child directory again?",
-    "Can you move up to the parent directory?",
-    "Can you display the current directory contents?",
-    // Add more questions as needed
+    "Can you move up to the parent directory?"
+  ];
+
+  // Array of answers
+  const expectedAnswers = [
+    "ls",           // For "display current directory contents"
+    "cd directory1", // For "move into the child directory"
+    "cd directory3", // For "move into the child directory again"
+    "cd .."         // For "move up to the parent directory"
   ];
 
   const getCurrentDir = () => {
@@ -154,44 +160,61 @@ const Prompts = () => {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const [cmd, ...args] = command.split(" ");
-    let result;
+// Add state for whether the question has been displayed
+const [isQuestionDisplayed, setIsQuestionDisplayed] = useState(false);
 
-    switch (cmd) {
-      case "ls":
-        result = args.length ? handleLs(args[0]) : handleLs();
-        break;
-      case "cd":
-        result = args.length ? handleCd(args[0]) : "";
-        break;
-      case "mkdir":
-        result = args.length ? handleMkdir(args[0]) : "usage: mkdir missing directory_name ...";
-        break;
-      case "touch":
-        result = args.length ? handleTouch(args[0]) : "usage: touch missing file_name ...";
-        break;
-      case "clear":
-        handleClear();
-        return;
-      default:
-        result = `command not found: ${cmd}`;
-    }
+const handleSubmit = (e) => {
+  e.preventDefault();
+  const [cmd, ...args] = command.split(" ");
+  let result;
 
-    updateOutput(questions[questionIndex]);
-    updateOutput(`${currentDirectory} >> ${command}`, result);
-    setCommandHistory((prev) => [...prev.slice(-99), command]);
-    setHistoryIndex(-1);
-    setCommand("");
-    setSuggestions([]); // Clear suggestions after command submission
-    
-    // Update the question index
+  switch (cmd) {
+    case "ls":
+      result = args.length ? handleLs(args[0]) : handleLs();
+      break;
+    case "cd":
+      result = args.length ? handleCd(args[0]) : "";
+      break;
+    case "mkdir":
+      result = args.length ? handleMkdir(args[0]) : "usage: mkdir missing directory_name ...";
+      break;
+    case "touch":
+      result = args.length ? handleTouch(args[0]) : "usage: touch missing file_name ...";
+      break;
+    case "clear":
+      handleClear();
+      return;
+    default:
+      result = `command not found: ${cmd}`;
+  }
+
+  // Display the current question only once
+  if (!isQuestionDisplayed) {
+    updateOutput(`${questions[questionIndex]}`);
+    setIsQuestionDisplayed(true);
+  }
+
+  // Check if the answer is correct for the current question
+  const expectedAnswer = expectedAnswers[questionIndex];
+  if (command.trim() === expectedAnswer) {
+    // If correct, show confirmation and proceed to the next question
     setQuestionIndex((prevIndex) => {
       const newIndex = prevIndex + 1;
       return newIndex < questions.length ? newIndex : 0; // Loop back to the start if needed
     });
-  };
+    setIsQuestionDisplayed(false); // Reset for the next question
+  } else {
+    // If incorrect, do not proceed to the next question
+  }
+
+  // Always update the output for the executed command
+  updateOutput(`${currentDirectory} >> ${command}`, result);
+  setCommandHistory((prev) => [...prev.slice(-99), command]);
+  setHistoryIndex(-1);
+  setCommand("");
+  setSuggestions([]); // Clear suggestions after command submission
+};
+
   
   // Function to clear the output and the input
   const handleClear = () => {
@@ -253,15 +276,18 @@ const Prompts = () => {
           ))}
         </div>
         <form onSubmit={handleSubmit}>
-          <div className="question">{questions[questionIndex]}</div>
+          {/* Only display the question in the input area if it hasn't been displayed in the output */}
+          {!isQuestionDisplayed && (
+            <div className="question">{questions[questionIndex]}</div>
+          )}
           <span>{`${currentDirectory} >> `}
-          <input
-            type="text"
-            value={command}
-            onChange={(e) => setCommand(e.target.value)}
-            onKeyDown={handleKeyDown}
-            autoFocus
-          />
+            <input
+              type="text"
+              value={command}
+              onChange={(e) => setCommand(e.target.value)}
+              onKeyDown={handleKeyDown}
+              autoFocus
+            />
           </span>
 
           {/* Display autocomplete suggestions, if any */}
