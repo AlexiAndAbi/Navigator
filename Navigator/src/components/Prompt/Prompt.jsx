@@ -272,33 +272,48 @@ const handleSubmit = (e) => {
   const currentDirectory = currentPath.split("/").filter(Boolean).pop() || "~";
 
   return (
-    <div className='gradient_background'>
+    <div className="gradient_background">
       <div className="shell-container">
       <div className="output">
-          {output.map((entry, index) => (
-            <div
-              key={index}
-              className={`command-output ${entry.isQuestion ? "question-output" : ""}`}
-            >
-              <div>{entry.commandEcho}</div>
-              <div>{entry.message}</div>
-            </div>
-          ))}
-        </div>
+        {output.map((entry, index) => (
+          <div
+            key={index}
+            className={`command-output ${entry.isQuestion ? "question-output" : ""}`}
+          >
+            {entry.isQuestion ? (
+              // Display question with question styles (reuse the same styles)
+              <div className="question">{entry.commandEcho}</div>
+            ) : (
+              <>
+                {/* Indented command line with reused styles */}
+                <div className="command-line">
+                  <span>{entry.commandEcho}</span>
+                </div>
+                {/* Display command result (reuse input styles for result indentation) */}
+                <div className="command-output result">{entry.message}</div>
+              </>
+            )}
+          </div>
+        ))}
+      </div>
+
         <form onSubmit={handleSubmit}>
-          {/* Only display the question in the input area if it hasn't been displayed in the output */}
-          {!isQuestionDisplayed && (
-            <div className="question">{questions[questionIndex]}</div>
-          )}
-          <span>{`${currentDirectory} >> `}
-            <input
-              type="text"
-              value={command}
-              onChange={(e) => setCommand(e.target.value)}
-              onKeyDown={handleKeyDown}
-              autoFocus
-            />
-          </span>
+          {/* Question section */}
+          <div className="question-container">
+            {!isQuestionDisplayed && (
+              <div className="question">{questions[questionIndex]}</div>
+            )}
+            <div className="command-line">
+              <span className="directory-prompt">{`${currentDirectory} >>`}</span>
+              <input
+                type="text"
+                value={command}
+                onChange={(e) => setCommand(e.target.value)}
+                onKeyDown={handleKeyDown}
+                autoFocus
+              />
+            </div>
+          </div>
 
           {/* Display autocomplete suggestions, if any */}
           {suggestions.length > 0 && (
