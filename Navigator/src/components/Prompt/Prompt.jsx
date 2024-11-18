@@ -29,6 +29,9 @@ const Prompts = () => {
   const [currentPath, setCurrentPath] = useState("~");
   const [command, setCommand] = useState("");
   const [output, setOutput] = useState([]);
+  const [commandHistory, setCommandHistory] = useState([]);
+  const [historyIndex, setHistoryIndex] = useState(-1);
+  const [suggestions, setSuggestions] = useState([]);
   const [questionIndex, setQuestionIndex] = useState(0); // New state for question index
 
   // Array of questions
@@ -44,7 +47,7 @@ const Prompts = () => {
   const getCurrentDir = () => {
     const pathParts = currentPath.split("/").filter(Boolean).map(part => part.replace(/\//g, ""));
     let current = fileSystem["~"];
-  
+
     for (const part of pathParts.slice(1)) { // Skip the "~"
       current = current.children[part];
     }
@@ -56,7 +59,6 @@ const Prompts = () => {
 
     if (target) {
       const targetItem = dir.children[target];
-
       if (targetItem) {
         if (targetItem.type === "file") {
           return target;
@@ -72,88 +74,91 @@ const Prompts = () => {
 
     if (dir.type === "directory") {
       const contents = Object.keys(dir.children).join("  ");
-      return contents || "Directory is empty.";
+      return contents || "";
     }
-    
+
     return "something is terribly wrong.";
   };
 
   const handleCd = (path) => {
-    console.log("current path =", currentPath);
-  
-    // Handle going to the root directory
     if (path === "~") {
       setCurrentPath("~");
+      setSuggestions([]);
       return;
     }
-  
-    // Handle moving to the parent directory
+
     if (path === "..") {
       const parts = currentPath.split("/").filter(Boolean);
       if (parts.length > 1) {
-        // Remove the last part to go to the parent
         const newPath = parts.slice(0, parts.length - 1).join("/");
         setCurrentPath(`/${newPath}`);
       } else {
-        // If already at the root, do not change the path
         setCurrentPath("~");
       }
+      setSuggestions([]);
       return;
     }
-  
-    let found = 0;
-    const parts = currentPath.split("/").filter(Boolean);
-    const partswithoutfirst = parts.slice(1); // Exclude root for navigation
-    console.log("partswithoutfirst = ", partswithoutfirst);
-    let current = fileSystem["~"];
-    let newPath = "~";
-  
-    // If in root directory
-    if (partswithoutfirst.length === 0) {
-      if (current.type === "directory" && current.children[path]) {
-        current = current.children[path];
-        found = 1;
-        newPath += `/${path}`;
-        setCurrentPath(newPath);
-        return;
-      } else {
-        return `cd: no such file or directory: ${path}`;
-      }
-    }
-  
-    // Navigate through the current path
-    for (const part of partswithoutfirst) {
-      console.log("part: ", part);
-      if (current.type === "directory" && current.children[part]) {
-        current = current.children[part];
-        newPath += `/${part}`;
-      }
-    }
-    
-    // Navigate to the specified directory
-    if (current.type === "directory" && current.children[path]) {
-      current = current.children[path];
-      found = 1;
-      newPath += `/${path}`;
-      setCurrentPath(newPath);
-      return;
-    }
-  
-    // If no valid directory found
-    if (found === 0) {
+
+    const currentDir = getCurrentDir();
+    const target = currentDir.children[path];
+    if (target && target.type === "directory") {
+      setCurrentPath(`${currentPath}/${path}`);
+      setSuggestions([]); // Clear suggestions after a successful command
+    } else if (target && target.type === "file"){
+      return `cd: not a directory: ${path}`
+    } else {
       return `cd: no such file or directory: ${path}`;
     }
-  
-    setCurrentPath(newPath);
-    return;
   };
   
+  const handleMkdir = (dirName) => {
+    const currentDir = getCurrentDir();
+    if (currentDir.children[dirName]) {
+      return `mkdir: ${dirName}: File exists`;
+    }
+
+    currentDir.children[dirName] = {
+      type: "directory",
+      children: {}
+    };
+
+    return "";
+  };
+
+  const handleTouch = (fileName) => {
+    const currentDir = getCurrentDir();
+    if (currentDir.children[fileName]) {
+      return `touch: ${fileName}: Timestamp updated`;
+    }
+
+    currentDir.children[fileName] = {
+      type: "file",
+      content: ""
+    };
+
+    return "";
+  };
+
+  const handleTab = () => {
+    const [cmd, partialName] = command.split(" ");
+    if (!["ls", "cd"].includes(cmd) || !partialName) return;
+
+    const currentDir = getCurrentDir();
+    const matches = Object.keys(currentDir.children).filter(name => name.startsWith(partialName));
+
+    if (matches.length === 1) {
+      setCommand(`${cmd} ${matches[0]}`);
+      setSuggestions([]); // Clear suggestions if one match is autofilled
+    } else if (matches.length > 1) {
+      setSuggestions(matches); // Show suggestions if multiple matches
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const [cmd, ...args] = command.split(" ");
     let result;
-  
+
     switch (cmd) {
       case "ls":
         result = args.length ? handleLs(args[0]) : handleLs();
@@ -161,16 +166,25 @@ const Prompts = () => {
       case "cd":
         result = args.length ? handleCd(args[0]) : "";
         break;
+      case "mkdir":
+        result = args.length ? handleMkdir(args[0]) : "usage: mkdir missing directory_name ...";
+        break;
+      case "touch":
+        result = args.length ? handleTouch(args[0]) : "usage: touch missing file_name ...";
+        break;
       case "clear":
         handleClear();
-        return; // Exit the function early to avoid adding an output for clear
+        return;
       default:
         result = `command not found: ${cmd}`;
     }
 
     updateOutput(questions[questionIndex]);
     updateOutput(`${currentDirectory} >> ${command}`, result);
+    setCommandHistory((prev) => [...prev.slice(-99), command]);
+    setHistoryIndex(-1);
     setCommand("");
+    setSuggestions([]); // Clear suggestions after command submission
     
     // Update the question index
     setQuestionIndex((prevIndex) => {
@@ -181,12 +195,47 @@ const Prompts = () => {
   
   // Function to clear the output and the input
   const handleClear = () => {
-    setOutput([]);      // Clear the output
-    setCommand("");     // Clear the command input
-  };  
+    setOutput([]);
+    setCommand("");
+  };
 
   const updateOutput = (commandEcho, message) => {
     setOutput((prev) => [...prev, { commandEcho, message }]);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit(e);
+    } else if (e.key === "Tab") {
+      e.preventDefault();
+      handleTab();
+    } else if (e.key === "ArrowUp") {
+      // Check if there's history to navigate
+      if (commandHistory.length > 0) {
+        if (historyIndex === -1) {
+          // Start at the last command in history if not already navigating
+          setHistoryIndex(commandHistory.length - 1);
+          setCommand(commandHistory[commandHistory.length - 1]);
+        } else if (historyIndex > 0) {
+          // Move up in history if possible
+          setHistoryIndex(historyIndex - 1);
+          setCommand(commandHistory[historyIndex - 1]);
+        }
+      }
+    } else if (e.key === "ArrowDown") {
+      if (historyIndex >= 0 && historyIndex < commandHistory.length - 1) {
+        // Move down in history if not at the end
+        setHistoryIndex(historyIndex + 1);
+        setCommand(commandHistory[historyIndex + 1]);
+      } else if (historyIndex === commandHistory.length - 1) {
+        // If at the last history command, clear the command box
+        setHistoryIndex(-1);
+        setCommand("");
+      }
+    } else if (e.ctrlKey && e.key === "l") {
+      e.preventDefault();
+      handleClear();
+    }
   };
 
   // Extract only the current directory name for display
@@ -203,16 +252,24 @@ const Prompts = () => {
             </div>
           ))}
         </div>
-        {/* Display the current question */}
-        <div className="question">{questions[questionIndex]}</div>
         <form onSubmit={handleSubmit}>
-          <span>{`${currentDirectory} >> `}</span>
+          <div className="question">{questions[questionIndex]}</div>
+          <span>{`${currentDirectory} >> `}
           <input
             type="text"
             value={command}
             onChange={(e) => setCommand(e.target.value)}
+            onKeyDown={handleKeyDown}
             autoFocus
           />
+          </span>
+
+          {/* Display autocomplete suggestions, if any */}
+          {suggestions.length > 0 && (
+            <div className="command-output suggestions">
+              {suggestions.join("  ")}
+            </div>
+          )}
         </form>
       </div>
     </div>
