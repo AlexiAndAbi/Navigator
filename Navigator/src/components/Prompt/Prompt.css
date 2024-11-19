@@ -80,21 +80,21 @@ input {
 }
 
 .directory-prompt {
-  font-family: monospace;
+  font-family: 'Consolas', monospace;
   margin-right: 0.5rem; /* Space between prompt and input */
 }
 
 input[type="text"] {
   flex-grow: 1; /* Allow the input to take up remaining space */
-  font-family: monospace;
+  font-family: 'Consolas', monospace;
   font-size: 1rem;
   border: none;
   outline: none;
 }
 
 /* Output section inherits the same styles as the input command prompt */
-  .command-output {
-  font-family: monospace;
+.command-output {
+  font-family: 'Consolas', monospace;
   color: #ffffff;
   margin-bottom: 0.5rem;
 }
