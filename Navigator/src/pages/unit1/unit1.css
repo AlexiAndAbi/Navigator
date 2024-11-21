@@ -1,15 +1,13 @@
 .gradient_background {
-    background: linear-gradient(90deg, #6058D5, #7AD6D3);
+    background: linear-gradient(90deg, #1F2F98, #49A699);
     height: 100vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: 20px;
-    font-family: 'Consolas', monospace;
+    font-family: 'OpenSans-Regular', monospace;
 }
-
-
 
 .intro-button {
     font-size: 40px;
@@ -24,14 +22,73 @@
     margin-top: 10px;
 }
 
+.intro-button:hover {
+  background-color: #7AD6D3; /* Fill with purple on hover */
+  color: white; /* Keep text white */
+}
+
 .content {
     margin-left: 20px;
     width: 800px;
 }
 
 .content p {
-    font-size: 24px;
+    font-size: 20px;
     color: white;
     text-align: left;
     
+}
+
+.navigate-button {
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: transparent; /* Transparent background */
+    color: white; /* White text */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navigate-button:hover {
+    background-color: #7AD6D3; /* Fill with purple on hover */
+    color: white; /* Keep text white */
+}
+
+.command-line {
+    display: flex;
+    align-items: center; /* Align text and input vertically */
+    font-family: 'Consolas', monospace;
+    margin-left: 2rem; /* Indent the command line relative to the question */
+}
+
+.directory-prompt {
+    font-family: 'Consolas', monospace;
+    font-size: 20px;
+    color: #FFFFFF;
+    margin-right: 0.5rem; /* Space between prompt and input */
+}
+
+.input-box {
+    font-size: 40px;
+    padding: 5px;
+    width: 70%;
+    border: none;
+    border-bottom: 2px solid white;
+    background-color: transparent;
+    color: white;
+    outline: none;
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

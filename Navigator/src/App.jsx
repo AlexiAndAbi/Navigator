@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Unit1 from "./pages/unit1/unit1";
+import Level2 from "./pages/unit1/Level2";
 import  Homepage  from "./pages/Homepage/Homepage";
 import TableContents from "./pages/TableContents/TableContents";
 import Testing from "./pages/Testing/Testing";
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Homepage />} /> {/* Set the Home component for the root path */}
         <Route path="/Table-Of-Contents" element={<TableContents />} /> {/* Set the Home component for the root path */}
         <Route path="/Unit1-Level1" element= {<Unit1 />} />
+        <Route path="/Unit1-Level2" element={<Level2 />} />
         <Route path="/Testing" element= {<Testing />} />
         <Route path="/Prompts" element= {<Prompts />} />
         <Route path="/Unit1-Contents" element= {<Unit1contents />} />
