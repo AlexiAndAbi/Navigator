@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './unit1.css';
 import { useNavigate } from 'react-router-dom';
 
-function Level2() {
+function Page2() {
   const navigate = useNavigate();
   const [userInput, setUserInput] = useState(''); // State to store user input
   const [showContinue, setShowContinue] = useState(false); // State to manage the visibility of the Continue button
@@ -17,8 +17,12 @@ function Level2() {
     navigate('/Unit1-Level1');
   };
 
+  const handleNavigation2 = () => {
+    navigate('/Unit1-Level1-page3');
+  };
+
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' || e.key === 'Tab') {
       checkAnswer(); // Check answer when Enter is pressed
     }
   };
@@ -46,7 +50,7 @@ function Level2() {
                 type="text"
                 style={{
                   fontSize: "20px",
-                  color: "white"
+                  color: "white",
                 }}
                 className="input-box"
                 value={userInput}
@@ -57,7 +61,7 @@ function Level2() {
         {/* Feedback displayed below */}
         {/* Show the Continue button if the answer is correct */}
         {showContinue && (
-          <button className="navigate-button fade-in" style={{ border: '2px solid white' }}>
+          <button className="navigate-button fade-in" onClick={handleNavigation2} style={{ border: '2px solid white' }}>
             continue
           </button>
         )}
@@ -66,4 +70,4 @@ function Level2() {
   );
 }
 
-export default Level2;
+export default Page2;
