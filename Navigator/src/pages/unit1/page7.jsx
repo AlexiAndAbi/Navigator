@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 function Page7() {
   const navigate = useNavigate();
   const [answers, setAnswers] = useState({ question1: "", question2: "" }); // State for both questions
+  const [responses, setResponses] = useState({ question1: "", question2: "" });
   const [correctAnswers, setCorrectAnswers] = useState({
     question1: false,
     question2: false,
@@ -23,15 +24,43 @@ function Page7() {
     }
   };
 
-  const checkAnswer = (questionKey, acceptableAnswers) => {
-    if (
-      acceptableAnswers.some(
-        (answer) => answers[questionKey].toLowerCase().trim() === answer
-      )
-    ) {
-      setCorrectAnswers({ ...correctAnswers, [questionKey]: true }); // Mark the question as correct
-    } else {
-      setAnswers({ ...answers, [questionKey]: "" }); // Clear the input field for incorrect answers
+  const checkAnswer = (questionKey) => {
+    const userInput = answers[questionKey].toLowerCase().trim();
+
+    // Example of manual matching for question1
+    if (questionKey === "question1") {
+      if (userInput === "ls" || userInput === "list" || userInput === "ls -l") {
+        setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
+        setResponses({
+          ...responses,
+          [questionKey]: "directory1  file1.txt  file2.txt",
+        });
+      } else {
+        setAnswers({ ...answers, [questionKey]: "" });
+        setResponses({
+          ...responses,
+          [questionKey]: `command not found: ${userInput}`,
+        });
+      }
+      return;
+    }
+
+    // Example of manual matching for question2
+    if (questionKey === "question2") {
+      if (userInput === "3" || userInput === "three") {
+        setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
+        setResponses({
+          ...responses,
+          [questionKey]: "",
+        });
+      } else {
+        setAnswers({ ...answers, [questionKey]: "" });
+        setResponses({
+          ...responses,
+          [questionKey]: "",
+        });
+      }
+      return;
     }
   };
 
@@ -56,24 +85,14 @@ function Page7() {
       </button>
       <div className="content">
         <p>
-          Before you begin learning commands, we need to briefly discuss
-          computer structure.
+          List Directory Contents! <br />
+          Abbreviated ls, this command displays the contents of the current
+          directory you are in. This command displays files as well as
+          directories.
         </p>
-        <p>
-          At its core, every computer is a collection of files that are
-          organized into a structure known as the file system. A file system is
-          constructed from two main elements:
-        </p>
-        <p>
-          &emsp;&emsp;1. Files = a single entity (like a photo, video, text
-          document, etc.)
-          <br />
-          &emsp;&emsp;2. Directories = also known as a folder, directories can
-          hold files, &emsp;&emsp;other directories, or a combination of both
-        </p>
-        <p>What is a single piece of data called?</p>
+        <p>List the contents of the current directory</p>
         <div className="command-line">
-          <span className="directory-prompt">??</span>
+          <span className="directory-prompt">{">>"}</span>
           <input
             type="text"
             style={{
@@ -89,8 +108,9 @@ function Page7() {
             disabled={correctAnswers.question1} // Disable if answered correctly
           />
         </div>
+        <p className="fade-in">{responses.question1}</p>
 
-        <p>What is a folder that contains files or other folders called?</p>
+        <p>How many entries appeared?</p>
         <div className="command-line">
           <span className="directory-prompt">??</span>
           <input
@@ -108,8 +128,8 @@ function Page7() {
             disabled={correctAnswers.question2} // Disable if answered correctly
           />
         </div>
+        <p className="fade-in">{responses.question2}</p>
 
-        {/* Show the Continue button if all answers are correct */}
         {allCorrect && (
           <button
             className="navigate-button fade-in"
