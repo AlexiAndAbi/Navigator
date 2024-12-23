@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./unit1.css";
 import { useNavigate } from "react-router-dom";
 
-function Page3() {
+function Page7() {
   const navigate = useNavigate();
   const [answers, setAnswers] = useState({ question1: "", question2: "" }); // State for both questions
   const [correctAnswers, setCorrectAnswers] = useState({
@@ -10,8 +10,8 @@ function Page3() {
     question2: false,
   }); // Track correctness of each question
 
-  const acceptableAnswersQ1 = ["file"]; // Acceptable answers for Question 1
-  const acceptableAnswersQ2 = ["directory", "folder"]; // Acceptable answers for Question 2
+  const acceptableAnswersQ1 = ["ls"]; // Acceptable answers for Question 1
+  const acceptableAnswersQ2 = ["3", "three"]; // Acceptable answers for Question 2
 
   const handleInputChange = (e, questionKey) => {
     setAnswers({ ...answers, [questionKey]: e.target.value }); // Update the state for the specific question
@@ -36,11 +36,11 @@ function Page3() {
   };
 
   const handleNavigation = () => {
-    navigate("/Unit1-Level1-page2");
+    navigate("/Unit1-Level1-page6");
   };
 
   const handleNavigation2 = () => {
-    navigate("/Unit1-Level1-page4");
+    navigate("/Unit1-Level1-page8");
   };
 
   const allCorrect = Object.values(correctAnswers).every(Boolean); // Check if all questions are correct
@@ -124,4 +124,4 @@ function Page3() {
   );
 }
 
-export default Page3;
+export default Page7;
