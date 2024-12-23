@@ -48,7 +48,7 @@ function Page4() {
         <p>1. The Root<br/>&emsp;&emsp;The file system starts with a directory called the “root directory”. The root directory is denoted by the / symbol. This is where all files and directories originate from. We say that the root is at the “top” of the file system and everything else is “under” or “within” the root directory.</p>
         <p>What symbol represents the root directory?</p>
         <div className="command-line">
-          <span className="directory-prompt">{`>>`}</span>
+          <span className="directory-prompt">??</span>
           <input
             type="text"
             style={{
@@ -65,7 +65,7 @@ function Page4() {
         <p>2. The Home Directory<br/>&emsp;&emsp;Somewhere under the root directory there is your “home directory”.  The home directory is denoted by the ~ symbol. When you open the terminal on your computer, the command line automatically starts at the home directory. In this game we will assume all commands are given starting at the home directory.</p>
         <p>What symbol represents the home directory?</p>
         <div className="command-line">
-          <span className="directory-prompt">{`>>`}</span>
+          <span className="directory-prompt">??</span>
           <input
             type="text"
             style={{

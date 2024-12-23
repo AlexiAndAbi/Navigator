@@ -42,10 +42,10 @@ function Page2() {
       <div className="content">
         <p>On every computer, there is an application that allows users to interact with the terminal. The terminal is important because it allows you to give your computer instructions on a foundational level. On mac it looks like:</p>
         <p>The start page of this application looks like:<br/>&emsp;&emsp;&emsp;Last login: [date and time] on [location] <br/>&emsp;&emsp;&emsp;[username]@[device name] ~ %</p>
-        <p>The second line is known as the command line. This is where you can enter instructions. Navigator will use the symbols {'>>'} (instead of %) to indicate the command line.</p>
+        <p>The second line is known as the command line. This is where you can enter instructions. Navigator will use the symbols {'>>'} (instead of %) to indicate the command line. For general questions the symbols ?? will be used.</p>
         <p>Are you ready to start learning about the command line? (type y or n below)</p>
         <div className="command-line">
-              <span className="directory-prompt">{`>>`}</span>
+              <span className="directory-prompt">??</span>
               <input
                 type="text"
                 style={{

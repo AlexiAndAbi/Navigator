@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import './unit1.css';
 import { useNavigate } from 'react-router-dom';
 
-function Page3() {
+function Page6() {
   const navigate = useNavigate();
-  const [answers, setAnswers] = useState({ question1: '', question2: '' }); // State for both questions
-  const [correctAnswers, setCorrectAnswers] = useState({ question1: false, question2: false }); // Track correctness of each question
+  const [answers, setAnswers] = useState({ question1: '', question2: '', question3: '', quesion4: ''}); // State for both questions
+  const [correctAnswers, setCorrectAnswers] = useState({ question1: false, question2: false, question3: false, question4: false }); // Track correctness of each question
 
-  const acceptableAnswersQ1 = ["file"]; // Acceptable answers for Question 1
-  const acceptableAnswersQ2 = ["directory", "folder"]; // Acceptable answers for Question 2
+  const acceptableAnswersQ1 = ["1", "one"]; // Acceptable answers for Question 1
+  const acceptableAnswersQ2 = ["2", "two"]; // Acceptable answers for Question 2
+  const acceptableAnswersQ3 = ["6", "six"]; // Acceptable answers for Question 3
+  const acceptableAnswersQ4 = ["y", "yes"]; // Acceptable answers for Question 4
 
   const handleInputChange = (e, questionKey) => {
     setAnswers({ ...answers, [questionKey]: e.target.value }); // Update the state for the specific question
@@ -29,11 +31,11 @@ function Page3() {
   };
 
   const handleNavigation = () => {
-    navigate('/Unit1-Level1-page2');
+    navigate('/Unit1-Level1-page5');
   };
 
     const handleNavigation2 = () => {
-        navigate('/Unit1-Level1-page4');
+        navigate('/Unit1-Level1-page7');
     };
 
   const allCorrect = Object.values(correctAnswers).every(Boolean); // Check if all questions are correct
@@ -44,13 +46,14 @@ function Page3() {
         back
       </button>
       <div className="content">
-        <p>Before you begin learning commands, we need to briefly discuss computer structure.</p>
-        <p>At its core, every computer is a collection of files that are organized into a structure known as the file system. A file system is constructed from two main elements:</p>
-        <p>
-          &emsp;&emsp;1. Files = a single entity (like a photo, video, text document, etc.)<br/>
-          &emsp;&emsp;2. Directories = also known as a folder, directories can hold files, &emsp;&emsp;other directories, or a combination of both
-        </p>
-        <p>What is a single piece of data called?</p>
+        <p>We can visualize the filesystem of a computer like the roots of a tree (or like an upside-down piece of coral).</p>
+        <p>To help you visualize the filesystem we will provide you with these diagrams → 
+            <br/>&emsp;&emsp;- Your current position will always be marked in bright blue.
+            <br/>&emsp;&emsp;- Directories will be represented by large circles.
+            <br/>&emsp;&emsp;- Files will be represented by small circles.
+            <br/>&emsp;&emsp;- The home directory will always be at the top.
+            </p>
+        <p>How many directories are in the home directory? (1, 2, 6, y)</p>
         <div className="command-line">
           <span className="directory-prompt">??</span>
           <input
@@ -66,8 +69,7 @@ function Page3() {
             disabled={correctAnswers.question1} // Disable if answered correctly
           />
         </div>
-
-        <p>What is a folder that contains files or other folders called?</p>
+        <p>How many files are in the home directory?</p>
         <div className="command-line">
           <span className="directory-prompt">??</span>
           <input
@@ -83,6 +85,39 @@ function Page3() {
             disabled={correctAnswers.question2} // Disable if answered correctly
           />
         </div>
+        <p>How many total files are there in this filesystem?</p>
+        <div className="command-line">
+          <span className="directory-prompt">??</span>
+          <input
+            type="text"
+            style={{
+                fontSize: "20px",
+                color: "white",
+              }}
+            className="input-box"
+            value={answers.question3}
+            onChange={(e) => handleInputChange(e, 'question3')}
+            onKeyDown={(e) => handleKeyPress(e, 'question3', acceptableAnswersQ3)}
+            disabled={correctAnswers.question3} // Disable if answered correctly
+          />
+        </div>
+        <p>Are you ready to learn your first command?</p>
+        <div className="command-line">
+          <span className="directory-prompt">??</span>
+          <input
+            type="text"
+            style={{
+                fontSize: "20px",
+                color: "white",
+              }}
+            className="input-box"
+            value={answers.question4}
+            onChange={(e) => handleInputChange(e, 'question4')}
+            onKeyDown={(e) => handleKeyPress(e, 'question4', acceptableAnswersQ4)}
+            disabled={correctAnswers.question4} // Disable if answered correctly
+          />
+        </div>
+        
 
         {/* Show the Continue button if all answers are correct */}
         {allCorrect && (
@@ -95,4 +130,4 @@ function Page3() {
   );
 }
 
-export default Page3;
+export default Page6;

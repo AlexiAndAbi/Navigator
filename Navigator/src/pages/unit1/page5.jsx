@@ -43,7 +43,7 @@ function Page5() {
         <p>3. The Parent and Children:<br/>&emsp;&emsp;In the file system we say that directories and files can have parent/child relationships. For example, if a directory has two files in it, it is their parent, and they are its children.  The parent directory is one level “outside” or “above” the files and directories in it.  The children are “under” or “within” the parent.</p>
         <p>A parent directory has two files and two directories within it. How many children does it have?</p>
         <div className="command-line">
-              <span className="directory-prompt">{`>>`}</span>
+              <span className="directory-prompt">??</span>
               <input
                 type="text"
                 style={{
