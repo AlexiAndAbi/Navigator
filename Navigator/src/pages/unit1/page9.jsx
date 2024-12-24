@@ -127,7 +127,7 @@ function Page9() {
       if (userInput === "clear") {
         setTerminalCleared(true);
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
-        setResponses({ ...responses, [questionKey]: "Terminal cleared!" });
+        setResponses({ ...responses, [questionKey]: "" });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
         setResponses({
