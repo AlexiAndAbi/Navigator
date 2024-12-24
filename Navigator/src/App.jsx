@@ -9,6 +9,7 @@ import Page5 from "./pages/unit1/page5";
 import Page6 from "./pages/unit1/page6";
 import Page7 from "./pages/unit1/page7";
 import Page8 from "./pages/unit1/page8";
+import Page9 from "./pages/unit1/page9";
 import Homepage from "./pages/Homepage/Homepage";
 import TableContents from "./pages/TableContents/TableContents";
 import Testing from "./pages/Testing/Testing";
@@ -32,6 +33,7 @@ function App() {
         <Route path="/Unit1-Level1-Page6" element={<Page6 />} />
         <Route path="/Unit1-Level1-Page7" element={<Page7 />} />
         <Route path="/Unit1-Level1-Page8" element={<Page8 />} />
+        <Route path="/Unit1-Level1-Page9" element={<Page9 />} />
         <Route path="/Testing" element={<Testing />} />
         <Route path="/Prompts" element={<Prompts />} />
         <Route path="/Unit1-Contents" element={<Unit1contents />} />
