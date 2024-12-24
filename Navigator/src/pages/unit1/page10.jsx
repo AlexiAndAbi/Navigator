@@ -52,7 +52,7 @@ function Page10() {
   const acceptableAnswersQ6 = ["clear"];
   const acceptableAnswersQ7 = ["ls"];
   const acceptableAnswersQ8 = ["cd directory3"];
-  const acceptableAnswersQ9 = ["cd ~"];
+  const acceptableAnswersQ9 = ["cd .."];
 
   // Refs for scrolling
   const questionRefs = {
@@ -238,7 +238,7 @@ function Page10() {
     }
 
     if (questionKey === "question9") {
-      if (userInput === "cd ~") {
+      if (userInput === "cd ..") {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -320,7 +320,7 @@ function Page10() {
             <div ref={questionRefs.question1}>
               <p>Ready to start?</p>
               <div className="command-line">
-                <span className="directory-prompt">{">>"}</span>
+                <span className="directory-prompt">??</span>
                 <input
                   type="text"
                   style={{ fontSize: "20px", color: "white" }}
@@ -339,7 +339,7 @@ function Page10() {
               <div ref={questionRefs.question2}>
                 <p>List the contents of the current directory.</p>
                 <div className="command-line">
-                  <span className="directory-prompt">{">>"}</span>
+                  <span className="directory-prompt">~ {">>"}</span>
                   <input
                     type="text"
                     style={{ fontSize: "20px", color: "white" }}
@@ -359,7 +359,7 @@ function Page10() {
               <div ref={questionRefs.question3}>
                 <p>Move into the subdirectory.</p>
                 <div className="command-line">
-                  <span className="directory-prompt">{">>"}</span>
+                  <span className="directory-prompt">~ {">>"}</span>
                   <input
                     type="text"
                     style={{ fontSize: "20px", color: "white" }}
@@ -379,7 +379,7 @@ function Page10() {
               <div ref={questionRefs.question4}>
                 <p>List the contents of the current directory.</p>
                 <div className="command-line">
-                  <span className="directory-prompt">{">>"}</span>
+                  <span className="directory-prompt">directory1 {">>"}</span>
                   <input
                     type="text"
                     style={{ fontSize: "20px", color: "white" }}
@@ -419,7 +419,7 @@ function Page10() {
               <div ref={questionRefs.question6}>
                 <p>Clear the terminal.</p>
                 <div className="command-line">
-                  <span className="directory-prompt">{">>"}</span>
+                  <span className="directory-prompt">directory1 {">>"}</span>
                   <input
                     type="text"
                     style={{ fontSize: "20px", color: "white" }}
@@ -441,7 +441,7 @@ function Page10() {
           <div ref={questionRefs.question7}>
             <p>List the contents of the current directory.</p>
             <div className="command-line">
-              <span className="directory-prompt">{">>"}</span>
+              <span className="directory-prompt">directory1 {">>"}</span>
               <input
                 type="text"
                 style={{ fontSize: "20px", color: "white" }}
@@ -461,7 +461,7 @@ function Page10() {
           <div ref={questionRefs.question8}>
             <p>Move into the subdirectory.</p>
             <div className="command-line">
-              <span className="directory-prompt">{">>"}</span>
+              <span className="directory-prompt">directory1 {">>"}</span>
               <input
                 type="text"
                 style={{ fontSize: "20px", color: "white" }}
@@ -479,9 +479,9 @@ function Page10() {
         {/* Question 9 */}
         {correctAnswers.question8 && (
           <div ref={questionRefs.question9}>
-            <p>Return to the home directory.</p>
+            <p>Return to the parent directory.</p>
             <div className="command-line">
-              <span className="directory-prompt">{">>"}</span>
+              <span className="directory-prompt">directory3 {">>"}</span>
               <input
                 type="text"
                 style={{ fontSize: "20px", color: "white" }}

@@ -92,7 +92,7 @@ function Page7() {
         </p>
         <p>List the contents of the current directory</p>
         <div className="command-line">
-          <span className="directory-prompt">{">>"}</span>
+          <span className="directory-prompt">~ {">>"}</span>
           <input
             type="text"
             style={{

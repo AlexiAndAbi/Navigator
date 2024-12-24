@@ -209,7 +209,7 @@ function Page8() {
         <div ref={questionRefs.question1}>
           <p>List the contents of the current directory.</p>
           <div className="command-line">
-            <span className="directory-prompt">{">>"}</span>
+            <span className="directory-prompt">~ {">>"}</span>
             <input
               type="text"
               style={{ fontSize: "20px", color: "white" }}
@@ -229,7 +229,7 @@ function Page8() {
             <>
               <p>Move into the subdirectory.</p>
               <div className="command-line">
-                <span className="directory-prompt">{">>"}</span>
+                <span className="directory-prompt">~ {">>"}</span>
                 <input
                   type="text"
                   style={{ fontSize: "20px", color: "white" }}
@@ -251,7 +251,7 @@ function Page8() {
             <>
               <p>List the contents of the current directory.</p>
               <div className="command-line">
-                <span className="directory-prompt">{">>"}</span>
+                <span className="directory-prompt">directory1 {">>"}</span>
                 <input
                   type="text"
                   style={{ fontSize: "20px", color: "white" }}
@@ -273,7 +273,7 @@ function Page8() {
             <>
               <p>Return to the home directory.</p>
               <div className="command-line">
-                <span className="directory-prompt">{">>"}</span>
+                <span className="directory-prompt">directory1 {">>"}</span>
                 <input
                   type="text"
                   style={{ fontSize: "20px", color: "white" }}
@@ -295,7 +295,7 @@ function Page8() {
             <>
               <p>Are you ready to learn the last command of this level?</p>
               <div className="command-line">
-                <span className="directory-prompt">{">>"}</span>
+                <span className="directory-prompt">??</span>
                 <input
                   type="text"
                   style={{ fontSize: "20px", color: "white" }}

@@ -183,7 +183,7 @@ function Page9() {
             <div ref={questionRefs.question1}>
               <p>List the contents of the current directory.</p>
               <div className="command-line">
-                <span className="directory-prompt">{">>"}</span>
+                <span className="directory-prompt">~ {">>"}</span>
                 <input
                   type="text"
                   style={{ fontSize: "20px", color: "white" }}
@@ -203,7 +203,7 @@ function Page9() {
                 <>
                   <p>Move into the subdirectory.</p>
                   <div className="command-line">
-                    <span className="directory-prompt">{">>"}</span>
+                    <span className="directory-prompt">~ {">>"}</span>
                     <input
                       type="text"
                       style={{ fontSize: "20px", color: "white" }}
@@ -225,7 +225,7 @@ function Page9() {
                 <>
                   <p>List the contents of the current directory.</p>
                   <div className="command-line">
-                    <span className="directory-prompt">{">>"}</span>
+                    <span className="directory-prompt">directory1 {">>"}</span>
                     <input
                       type="text"
                       style={{ fontSize: "20px", color: "white" }}
@@ -240,30 +240,30 @@ function Page9() {
                 </>
               )}
             </div>
+
+            {/* Question 4 */}
+            <div ref={questionRefs.question4}>
+              {correctAnswers.question3 && (
+                <>
+                  <p>Clear the terminal.</p>
+                  <div className="command-line">
+                    <span className="directory-prompt">directory1 {">>"}</span>
+                    <input
+                      type="text"
+                      style={{ fontSize: "20px", color: "white" }}
+                      className="input-box"
+                      value={answers.question4}
+                      onChange={(e) => handleInputChange(e, "question4")}
+                      onKeyDown={(e) => handleKeyPress(e, "question4")}
+                      disabled={correctAnswers.question4}
+                    />
+                  </div>
+                  <p className="fade-in">{responses.question4}</p>
+                </>
+              )}
+            </div>
           </>
         )}
-
-        {/* Question 4 */}
-        <div ref={questionRefs.question4}>
-          {correctAnswers.question3 && (
-            <>
-              <p>Clear the terminal.</p>
-              <div className="command-line">
-                <span className="directory-prompt">{">>"}</span>
-                <input
-                  type="text"
-                  style={{ fontSize: "20px", color: "white" }}
-                  className="input-box"
-                  value={answers.question4}
-                  onChange={(e) => handleInputChange(e, "question4")}
-                  onKeyDown={(e) => handleKeyPress(e, "question4")}
-                  disabled={correctAnswers.question4}
-                />
-              </div>
-              <p className="fade-in">{responses.question4}</p>
-            </>
-          )}
-        </div>
 
         {/* Continue button */}
         {allCorrect && (

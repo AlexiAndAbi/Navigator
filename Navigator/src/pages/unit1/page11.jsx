@@ -6,13 +6,21 @@ function Page11() {
   const navigate = useNavigate();
 
   const handleNavigation = () => {
+    navigate("/Unit1-Level1-page9");
+  };
+
+  const handleNavigation2 = () => {
     navigate("/Unit1-Contents");
   };
 
   return (
     <div className="gradient_background">
-      <button className="intro-button" style={{ border: "2px solid white" }}>
-        Level 1
+      <button
+        className="navigate-button"
+        onClick={handleNavigation}
+        style={{ border: "2px solid white" }}
+      >
+        back
       </button>
       <div className="content">
         <p>
@@ -27,7 +35,7 @@ function Page11() {
         <p>You are now prepared to start level 2!</p>
         <button
           className="navigate-button"
-          onClick={handleNavigation}
+          onClick={handleNavigation2}
           style={{ border: "2px solid white" }}
         >
           Sail On!
