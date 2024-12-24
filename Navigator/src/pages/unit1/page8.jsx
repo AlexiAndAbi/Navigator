@@ -107,7 +107,7 @@ function Page8() {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: "directory1  file1.txt  file2.txt",
+          [questionKey]: "file3.txt  file4.txt  directory3",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
