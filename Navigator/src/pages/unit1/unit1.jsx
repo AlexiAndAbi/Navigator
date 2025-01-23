@@ -47,6 +47,10 @@ function Unit1() {
         >
           Anchors Away!
         </button>
+
+        {/* Add the pixel art animation */}
+        <div className="pixel-art"></div>
+        <div className="pixel-art2"></div>
       </div>
     </div>
   );

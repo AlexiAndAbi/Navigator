@@ -33,7 +33,6 @@
   width: 60vw; /* 65% of the viewport width */
 }
 
-
 .content p {
   font-size: 20px;
   color: white;
@@ -93,5 +92,42 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+.pixel-art {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  z-index: 10;
+  width: 450px; /* Adjust to the size of your images */
+  height: 450px; /* Match the sprite dimensions */
+  background-size: cover;
+  background-image: url("/images/wave0.png"); /* First frame */
+  animation: spriteAnimation 1s steps(1) infinite;
+}
+
+.pixel-art2 {
+  position: absolute;
+  bottom: 0px;
+  right: 450px;
+  z-index: 10;
+  width: 450px; /* Adjust to the size of your images */
+  height: 450px; /* Match the sprite dimensions */
+  background-size: cover;
+  background-image: url("/images/wave0.png"); /* First frame */
+  animation: spriteAnimation 1s steps(1) infinite;
+}
+
+/* Define keyframes to change the background image */
+@keyframes spriteAnimation {
+  0% {
+    background-image: url("/images/wave0.png");
+  }
+  50% {
+    background-image: url("/images/wave1.png");
+  }
+  100% {
+    background-image: url("/images/wave0.png");
   }
 }
