@@ -1,5 +1,3 @@
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import Unit1 from "./pages/unit1/unit1";
 import Page2 from "./pages/unit1/page2";
