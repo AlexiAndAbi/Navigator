@@ -1,37 +1,39 @@
 .gradient_background {
-    background: linear-gradient(90deg, #3830CC, #B1DFFF);
-    height: 100vh; /* Full viewport height */
-    width: 100vw; /* Full viewport width */
-    display: flex; /* Use flexbox to center content */
-    flex-direction: column; /* Stack children vertically */
-    align-items: left; /* Align items to the left */
-    justify-content: flex-start; /* Start from the top */
-    position: relative; /* Ensure the gradient is positioned correctly */
-  }
-  
-  .command-output {
-    text-align: left; /* Ensures left alignment for both commands and responses */
-    margin-bottom: 5px; /* Adds space between each command and response */
-  }
-  
-  .shell-container {
-    color: white;
-    padding: 10px; /* Adjust top, right, bottom padding */
-    padding-left: 40px; /* Add more space on the left */
-    height: 100%; /* Take the full height of the parent */
-    width: 100%; /* Take the full width of the parent */
-    overflow-y: auto; /* Allows scrolling if content overflows */
-    font-family: 'Consolas', monospace;
-    border-radius: 8px;
-    margin: 0; /* Remove margin to ensure full size */
-  }
-  
-  .output {
-    margin-bottom: 10px;
-    white-space: pre-wrap;
-    font-weight: 200;
-  }
-  
+  background: linear-gradient(90deg, #3830cc, #b1dfff);
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+  display: flex; /* Use flexbox to center content */
+  flex-direction: column; /* Stack children vertically */
+  align-items: left; /* Align items to the left */
+  justify-content: flex-start; /* Start from the top */
+  position: relative; /* Ensure the gradient is positioned correctly */
+}
+
+.command-output {
+  text-align: left; /* Ensures left alignment for both commands and responses */
+  min-width: 500px; /* Set a minimum width */
+  max-width: 800px;
+  margin-bottom: 5px; /* Adds space between each command and response */
+}
+
+.shell-container {
+  color: white;
+  padding: 10px; /* Adjust top, right, bottom padding */
+  padding-left: 40px; /* Add more space on the left */
+  height: 100%; /* Take the full height of the parent */
+  width: 100%; /* Take the full width of the parent */
+  overflow-y: auto; /* Allows scrolling if content overflows */
+  font-family: "Consolas", monospace;
+  border-radius: 8px;
+  margin: 0; /* Remove margin to ensure full size */
+}
+
+.output {
+  margin-bottom: 10px;
+  white-space: pre-wrap;
+  font-weight: 200;
+}
+
 /* Make sure the form uses column layout */
 form {
   display: flex;
@@ -40,31 +42,31 @@ form {
 
 /* Style for the suggestions */
 .command-output.suggestions {
-  color: white;            /* Ensure the text is visible */
-  background-color: none;  /* Set a background for the suggestions */
-  margin-top: 0.5rem;      /* Space between input and suggestions */
-  font-family: 'Consolas', monospace;
-  white-space: pre-wrap;   /* Make sure long suggestions wrap correctly */
+  color: white; /* Ensure the text is visible */
+  background-color: none; /* Set a background for the suggestions */
+  margin-top: 0.5rem; /* Space between input and suggestions */
+  font-family: "Consolas", monospace;
+  white-space: pre-wrap; /* Make sure long suggestions wrap correctly */
   word-wrap: break-word;
 }
-  
-  input {
-    font-family: 'Consolas', monospace; /* Change the font here */
-    font-weight: 200;
-    background: none;
-    border: none;
-    color: white;
-    outline: none;
-    width: auto; /* Change width to auto */
-    min-width: 500px; /* Set a minimum width */
-    font-size: 1rem;
-    padding-right: 1rem; /* Add padding for blinking cursor */
-    margin-left: 7px; /* Add margin for buffer space */
-  }
-  
-  .question {
-    text-align: left; /* Align text to the left */
-    margin: 0;       /* Remove default margin */
-    padding: 4px 0;  /* Add some vertical spacing */
-    color: #ffffff;  /* Change the text color to white or your desired color */
-  }
+
+input {
+  font-family: "Consolas", monospace; /* Change the font here */
+  font-weight: 200;
+  background: none;
+  border: none;
+  color: white;
+  outline: none;
+  width: auto; /* Change width to auto */
+  min-width: 500px; /* Set a minimum width */
+  font-size: 1rem;
+  padding-right: 1rem; /* Add padding for blinking cursor */
+  margin-left: 7px; /* Add margin for buffer space */
+}
+
+.question {
+  text-align: left; /* Align text to the left */
+  margin: 0; /* Remove default margin */
+  padding: 4px 0; /* Add some vertical spacing */
+  color: #ffffff; /* Change the text color to white or your desired color */
+}

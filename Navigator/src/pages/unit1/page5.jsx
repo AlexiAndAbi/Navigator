@@ -49,6 +49,19 @@ function Page5() {
       >
         back
       </button>
+
+      <div
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "20px",
+          fontSize: "16px",
+          color: "white",
+        }}
+      >
+        <p>[#####------] 5/11</p>
+      </div>
+
       <div className="content">
         <p>
           3. The Parent and Children:

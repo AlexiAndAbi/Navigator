@@ -302,6 +302,19 @@ function Page10() {
       >
         back
       </button>
+
+      <div
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "20px",
+          fontSize: "16px",
+          color: "white",
+        }}
+      >
+        <p>[##########-] 10/11</p>
+      </div>
+
       <div className="content">
         <p>
           You have 60 seconds to complete the following minigame! <br />

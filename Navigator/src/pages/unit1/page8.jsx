@@ -190,6 +190,19 @@ function Page8() {
       >
         back
       </button>
+
+      <div
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "20px",
+          fontSize: "16px",
+          color: "white",
+        }}
+      >
+        <p>[########---] 8/11</p>
+      </div>
+
       <div className="content">
         <p>
           Change Directory! <br /> Abbreviated cd, this command helps you move

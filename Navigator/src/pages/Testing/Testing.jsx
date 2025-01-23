@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef } from "react";
 import "./Testing.css";
 
 const Testing = () => {
@@ -6,24 +6,28 @@ const Testing = () => {
     "~": {
       type: "directory",
       children: {
-        "directory1": {
+        directory1: {
           type: "directory",
           children: {
             "file3.txt": { type: "file", content: "Hello, Kitten!" },
             "file4.txt": { type: "file", content: "Hello, Kitten!" },
-            "directory3": {
+            directory3: {
               type: "directory",
               children: {
                 "file5.txt": { type: "file", content: "Hello, Kitten!" },
-                "file6.txt": { type: "file", content: "Hello, Kitten!" }
-              }
-            }
-          }
+                "file6.txt": { type: "file", content: "Hello, Kitten!" },
+              },
+            },
+          },
         },
-        "file1.txt": { type: "file", content: "Hello, Daddy!" },
-        "file2.txt": { type: "file", content: "Hello, Daddy!" }
-      }
-    }
+        "file1.txt": {
+          type: "file",
+          content:
+            "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then        ",
+        },
+        "file2.txt": { type: "file", content: "Nowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoIcan'trelatetodesperationMygive-a-fucksareonvacationAndIgotthisoneboyandhewon'tstopcallin'Whentheyactthisway,IknowIgot'emToobadyourexdon'tdoitforyaWalkedinanddream-came-trueditforyaSoftskinandIperfumeditforya(Yes)IknowIMountainDewitforya(Yes)thatmorningcoffee,breweditforya(Yes)onetouchandIbrand-neweditforya(oh)Nowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoHolyshitIsitthatsweet?IguesssoI'mworkinglate,'causeI'masingerOh,helookssocutewrapped'roundmyfingerMytwistedhumormakehimlaughsooftenMyhoneybee,comeandgetthispollenToobadyourexdon'tdoitforyaWalkedinanddream-came-trueditforyaSoftskinandIperfumeditforya(Yes)IknowIMountainDewitforya(Yes)thatmorningcoffee,breweditforya(Yes)onetouchandIbrand-neweditforya(stupid)Nowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoThinkin''boutmeeverynight,ohIsitthatsweet?Iguessso(yes)Sayyoucan'tsleep,baby,IknowThat'sthatmeespresso(yes)Moveitup,down,left,right,ohSwitchituplikeNintendo(yes)Sayyoucan'tsleep,baby,IknowThat'sthatmeespressoIsitthatsweet?Iguessso,uhThat'sthatmeespressoNowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoIcan'trelatetodesperationMygive-a-fucksareonvacationAndIgotthisoneboyandhewon'tstopcallin'Whentheyactthisway,IknowIgot'emToobadyourexdon'tdoitforyaWalkedinanddream-came-trueditforyaSoftskinandIperfumeditforya(Yes)IknowIMountainDewitforya(Yes)thatmorningcoffee,breweditforya(Yes)onetouchandIbrand-neweditforya(oh)Nowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoHolyshitIsitthatsweet?IguesssoI'mworkinglate,'causeI'masingerOh,helookssocutewrapped'roundmyfingerMytwistedhumormakehimlaughsooftenMyhoneybee,comeandgetthispollenToobadyourexdon'tdoitforyaWalkedinanddream-came-trueditforyaSoftskinandIperfumeditforya(Yes)IknowIMountainDewitforya(Yes)thatmorningcoffee,breweditforya(Yes)onetouchandIbrand-neweditforya(stupid)Nowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoThinkin''boutmeeverynight,ohIsitthatsweet?Iguessso(yes)Sayyoucan'tsleep,baby,IknowThat'sthatmeespresso(yes)Moveitup,down,left,right,ohSwitchituplikeNintendo(yes)Sayyoucan'tsleep,baby,IknowThat'sthatmeespressoIsitthatsweet?Iguessso,uhThat'sthatmeespressoNowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoIcan'trelatetodesperationMygive-a-fucksareonvacationAndIgotthisoneboyandhewon'tstopcallin'Whentheyactthisway,IknowIgot'emToobadyourexdon'tdoitforyaWalkedinanddream-came-trueditforyaSoftskinandIperfumeditforya(Yes)IknowIMountainDewitforya(Yes)thatmorningcoffee,breweditforya(Yes)onetouchandIbrand-neweditforya(oh)Nowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoHolyshitIsitthatsweet?IguesssoI'mworkinglate,'causeI'masingerOh,helookssocutewrapped'roundmyfingerMytwistedhumormakehimlaughsooftenMyhoneybee,comeandgetthispollenToobadyourexdon'tdoitforyaWalkedinanddream-came-trueditforyaSoftskinandIperfumeditforya(Yes)IknowIMountainDewitforya(Yes)thatmorningcoffee,breweditforya(Yes)onetouchandIbrand-neweditforya(stupid)Nowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoThinkin''boutmeeverynight,ohIsitthatsweet?Iguessso(yes)Sayyoucan'tsleep,baby,IknowThat'sthatmeespresso(yes)Moveitup,down,left,right,ohSwitchituplikeNintendo(yes)Sayyoucan'tsleep,baby,IknowThat'sthatmeespressoIsitthatsweet?Iguessso,uhThat'sthatmeespresso" },
+      },
+    },
   });
 
   const [currentPath, setCurrentPath] = useState("~");
@@ -34,10 +38,14 @@ const Testing = () => {
   const [suggestions, setSuggestions] = useState([]);
 
   const getCurrentDir = () => {
-    const pathParts = currentPath.split("/").filter(Boolean).map(part => part.replace(/\//g, ""));
+    const pathParts = currentPath
+      .split("/")
+      .filter(Boolean)
+      .map((part) => part.replace(/\//g, ""));
     let current = fileSystem["~"];
 
-    for (const part of pathParts.slice(1)) { // Skip the "~"
+    for (const part of pathParts.slice(1)) {
+      // Skip the "~"
       current = current.children[part];
     }
     return current;
@@ -93,8 +101,8 @@ const Testing = () => {
     if (target && target.type === "directory") {
       setCurrentPath(`${currentPath}/${path}`);
       setSuggestions([]); // Clear suggestions after a successful command
-    } else if (target && target.type === "file"){
-      return `cd: not a directory: ${path}`
+    } else if (target && target.type === "file") {
+      return `cd: not a directory: ${path}`;
     } else {
       return `cd: no such file or directory: ${path}`;
     }
@@ -108,7 +116,7 @@ const Testing = () => {
 
     currentDir.children[dirName] = {
       type: "directory",
-      children: {}
+      children: {},
     };
 
     return "";
@@ -122,7 +130,7 @@ const Testing = () => {
 
     currentDir.children[fileName] = {
       type: "file",
-      content: ""
+      content: "",
     };
 
     return "";
@@ -133,13 +141,28 @@ const Testing = () => {
     if (!["ls", "cd"].includes(cmd) || !partialName) return;
 
     const currentDir = getCurrentDir();
-    const matches = Object.keys(currentDir.children).filter(name => name.startsWith(partialName));
+    const matches = Object.keys(currentDir.children).filter((name) =>
+      name.startsWith(partialName)
+    );
 
     if (matches.length === 1) {
       setCommand(`${cmd} ${matches[0]}`);
       setSuggestions([]); // Clear suggestions if one match is autofilled
     } else if (matches.length > 1) {
       setSuggestions(matches); // Show suggestions if multiple matches
+    }
+  };
+
+  const handleCat = (fileName) => {
+    const currentDir = getCurrentDir();
+
+    const target = currentDir.children[fileName];
+    if (target && target.type === "file") {
+      return target.content; // Return file content
+    } else if (target && target.type === "directory") {
+      return `cat: ${fileName}: Is a directory`;
+    } else {
+      return `cat: ${fileName}: No such file or directory`;
     }
   };
 
@@ -156,14 +179,23 @@ const Testing = () => {
         result = args.length ? handleCd(args[0]) : "";
         break;
       case "mkdir":
-        result = args.length ? handleMkdir(args[0]) : "usage: mkdir missing directory_name ...";
+        result = args.length
+          ? handleMkdir(args[0])
+          : "usage: mkdir missing directory_name ...";
         break;
       case "touch":
-        result = args.length ? handleTouch(args[0]) : "usage: touch missing file_name ...";
+        result = args.length
+          ? handleTouch(args[0])
+          : "usage: touch missing file_name ...";
         break;
       case "clear":
         handleClear();
         return;
+      case "cat":
+        result = args.length
+          ? handleCat(args[0])
+          : "usage: cat missing file_name ...";
+        break;
       default:
         result = `command not found: ${cmd}`;
     }
@@ -218,11 +250,11 @@ const Testing = () => {
       handleClear();
     }
   };
-  
+
   const currentDirectory = currentPath.split("/").filter(Boolean).pop() || "~";
 
   return (
-    <div className='gradient_background'>
+    <div className="gradient_background">
       <div className="shell-container">
         <div className="output">
           {output.map((entry, index) => (
@@ -233,14 +265,15 @@ const Testing = () => {
           ))}
         </div>
         <form onSubmit={handleSubmit}>
-          <span>{`${currentDirectory} >> `}
-          <input
-            type="text"
-            value={command}
-            onChange={(e) => setCommand(e.target.value)}
-            onKeyDown={handleKeyDown}
-            autoFocus
-          />
+          <span>
+            {`${currentDirectory} >> `}
+            <input
+              type="text"
+              value={command}
+              onChange={(e) => setCommand(e.target.value)}
+              onKeyDown={handleKeyDown}
+              autoFocus
+            />
           </span>
 
           {/* Display autocomplete suggestions, if any */}

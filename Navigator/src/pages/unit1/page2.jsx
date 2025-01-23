@@ -41,7 +41,21 @@ function Page2() {
   };
 
   return (
-    <div className="gradient_background">
+    <div className="gradient_background" style={{ position: "relative" }}>
+      {/* Top-Right Progress Display */}
+      <div
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "20px",
+          fontSize: "16px",
+          color: "white",
+        }}
+      >
+        <p>[##---------] 2/11</p>
+      </div>
+
+      {/* Back Button */}
       <button
         className="navigate-button"
         onClick={handleNavigation}
@@ -49,6 +63,8 @@ function Page2() {
       >
         back
       </button>
+
+      {/* Main Content */}
       <div className="content">
         <p>
           On every computer, there is an application that allows users to

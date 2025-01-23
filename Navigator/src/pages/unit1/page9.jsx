@@ -169,6 +169,19 @@ function Page9() {
       >
         back
       </button>
+
+      <div
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "20px",
+          fontSize: "16px",
+          color: "white",
+        }}
+      >
+        <p>[#########--] 9/11</p>
+      </div>
+
       <div className="content">
         <p>
           Clear the Terminal <br /> Typing clear removes the contents displayed

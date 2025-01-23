@@ -54,6 +54,19 @@ function Page4() {
       >
         back
       </button>
+
+      <div
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "20px",
+          fontSize: "16px",
+          color: "white",
+        }}
+      >
+        <p>[####-------] 4/11</p>
+      </div>
+
       <div className="content">
         <p>Here are some important terms you will need to know. </p>
         <p>

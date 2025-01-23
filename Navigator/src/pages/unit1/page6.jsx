@@ -63,6 +63,19 @@ function Page6() {
       >
         back
       </button>
+
+      <div
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "20px",
+          fontSize: "16px",
+          color: "white",
+        }}
+      >
+        <p>[######-----] 6/11</p>
+      </div>
+
       <div className="content">
         <p>
           We can visualize the filesystem of a computer like the roots of a tree
