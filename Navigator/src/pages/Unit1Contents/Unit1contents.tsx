@@ -11,6 +11,9 @@ function Unit1contents() {
     const goToLevel1 = () => {
         navigate("/Unit1-Level1"); // Now this is called when the button is clicked
     };
+    const goToLevel2 = () => {
+        navigate("/Unit1-Level2"); // Now this is called when the button is clicked
+    };
     const goToContents = () => {
         navigate("/Table-Of-Contents"); // Now this is called when the button is clicked
     };
@@ -28,7 +31,7 @@ function Unit1contents() {
                 <h3>Filesystem Structure (cd, ls, clear)</h3>
             </div>
             <div className='unit-row'>
-                <button style={{ border: '2px solid #D2CAFF' }}>Level 2</button>
+                <button style={{ border: '2px solid #D2CAFF' }} onClick={goToLevel2}>Level 2</button>
                 <h3>Creating and viewing (mkdir, touch, cat)</h3>
             </div>
             <div className='unit-row'>

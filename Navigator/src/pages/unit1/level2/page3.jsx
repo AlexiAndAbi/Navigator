@@ -2,47 +2,42 @@ import React, { useState, useEffect, useRef } from "react";
 import "./unit1.css";
 import { useNavigate } from "react-router-dom";
 
-function Page9() {
+function Page3() {
   const navigate = useNavigate();
   const [answers, setAnswers] = useState({
     question1: "",
     question2: "",
     question3: "",
-    question4: "",
   });
   const [responses, setResponses] = useState({
     question1: "",
     question2: "",
     question3: "",
-    question4: "",
   });
   const [correctAnswers, setCorrectAnswers] = useState({
     question1: false,
     question2: false,
     question3: false,
-    question4: false,
   });
 
   const [terminalCleared, setTerminalCleared] = useState(false); // Tracks if the terminal is cleared
 
   const acceptableAnswersQ1 = ["ls"];
-  const acceptableAnswersQ2 = ["cd directory1"];
-  const acceptableAnswersQ3 = ["ls"];
-  const acceptableAnswersQ5 = ["clear"];
+  const acceptableAnswersQ2 = ["cat file3.txt", "cat file4.txt"];
+  const acceptableAnswersQ3 = ["clear"];
 
   const questionRefs = {
     question1: useRef(null),
     question2: useRef(null),
     question3: useRef(null),
-    question4: useRef(null),
   };
 
   const handleNavigation = () => {
-    navigate("/Unit1-Level1-page8");
+    navigate("/Unit1-Level2-page2");
   };
 
   const handleNavigation2 = () => {
-    navigate("/Unit1-Level1-page10");
+    navigate("/Unit1-Level2-page4");
   };
 
   const handleInputChange = (e, questionKey) => {
@@ -51,7 +46,7 @@ function Page9() {
 
   const handleKeyPress = (e, questionKey) => {
     // Handle Ctrl + L for question 4
-    if (questionKey === "question4" && e.key === "l" && e.ctrlKey) {
+    if (questionKey === "question3" && e.key === "l" && e.ctrlKey) {
       setTerminalCleared(true);
       setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
       setResponses({ ...responses, [questionKey]: "" });
@@ -71,7 +66,7 @@ function Page9() {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: "directory1  file1.txt  file2.txt",
+          [questionKey]: "file3.txt file4.txt",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -84,17 +79,27 @@ function Page9() {
     }
 
     if (questionKey === "question2") {
-      if (userInput === "cd directory1") {
+      if (userInput === "cat file3.txt") {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: "",
+          [questionKey]:
+            "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek.",
         });
-      } else if (userInput === "cd [directory1]") {
+      } else if (
+        userInput === "cd [file3.txt]" ||
+        userInput === "cd [file4.txt]"
+      ) {
         setAnswers({ ...answers, [questionKey]: "" });
         setResponses({
           ...responses,
           [questionKey]: "Remove the brackets and you will be correct!",
+        });
+      } else if (userInput === "cat file4.txt") {
+        setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
+        setResponses({
+          ...responses,
+          [questionKey]: "After an interval of some months or years, and at Phlius, a town of Peloponnesus, the tale of the last hours of Socrates is narrated to Echecrates and other Phliasians by Phaedo the 'beloved disciple.' The Dialogue necessarily takes the form of a narrative, because Socrates has to be described acting as well as speaking. The minutest particulars of the event are interesting to distant friends, and the narrator has an equal interest in them. During the voyage of the sacred ship to and from Delos, which has occupied thirty days, the execution of Socrates has been deferred. (Compare Xen. Mem.) The time has been passed by him in conversation with a select company of disciples. But now the holy season is over, and the disciples meet earlier than usual in order that they may converse with Socrates for the last time. Those who were present, and those who might have been expected to be present, are mentioned by name. There are Simmias and Cebes (Crito), two disciples of Philolaus whom Socrates 'by his enchantments has attracted from Thebes' (Mem.), Crito the aged friend, the attendant of the prison, who is as good as a friend—these take part in the conversation. There are present also, Hermogenes, from whom Xenophon derived his information about the trial of Socrates (Mem.), the 'madman' Apollodorus (Symp.), Euclid and Terpsion from Megara (compare Theaet.), Ctesippus, Antisthenes, Menexenus, and some other less-known members of the Socratic circle, all of whom are silent auditors. Aristippus, Cleombrotus, and Plato are noted as absent. Almost as soon as the friends of Socrates enter the prison Xanthippe and her children are sent home in the care of one of Crito's servants. Socrates himself has just been released from chains, and is led by this circumstance to make the natural remark that 'pleasure follows pain.' (Observe that Plato is preparing the way for his doctrine of the alternation of opposites.) 'Aesop would have represented them in a fable as a two-headed creature of the gods.' The mention of Aesop reminds Cebes of a question which had been asked by Evenus the poet (compare Apol.): 'Why Socrates, who was not a poet, while in prison had been putting Aesop into verse?'—'Because several times in his life he had been warned in dreams that he should practise music; and as he was about to die and was not certain of what was meant, he wished to fulfil the admonition in the letter as well as in the spirit, by writing verses as well as by cultivating philosophy. Tell this to Evenus; and say that I would have him follow me in death.' 'He is not at all the sort of man to comply with your request, Socrates.' 'Why, is he not a philosopher?' 'Yes.' 'Then he will be willing to die, although he will not take his own life, for that is held to be unlawful.'",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -107,23 +112,6 @@ function Page9() {
     }
 
     if (questionKey === "question3") {
-      if (userInput === "ls") {
-        setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
-        setResponses({
-          ...responses,
-          [questionKey]: "file3.txt  file4.txt  directory3",
-        });
-      } else {
-        setAnswers({ ...answers, [questionKey]: "" });
-        setResponses({
-          ...responses,
-          [questionKey]: `command not found: ${userInput}`,
-        });
-      }
-      return;
-    }
-
-    if (questionKey === "question4") {
       if (userInput === "clear") {
         setTerminalCleared(true);
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
@@ -149,11 +137,6 @@ function Page9() {
       });
     } else if (correctAnswers.question2 && questionRefs.question3.current) {
       questionRefs.question3.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    } else if (correctAnswers.question3 && questionRefs.question4.current) {
-      questionRefs.question4.current.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
@@ -184,9 +167,13 @@ function Page9() {
 
       <div className="content">
         <p>
-          Clear the Terminal! <br /> Typing clear removes the contents displayed
-          on the terminal. You can also type control + l to clear the terminal.
-          (In the future, control will be abbreviated ctrl.)
+          Concatenate and Print Files! <br /> Abbreviated cat, this command
+          displays the contents of a file. The content within the file will be
+          displayed in its entirety right below the command line.
+          <br />
+          If you want to move into a directory within the current directory you
+          can type: <br /> cat [file name] &emsp;&emsp;&emsp;&emsp; (ex: cat
+          file1.txt) <br />
         </p>
 
         {/* Hide questions 1-3 if the terminal is cleared */}
@@ -214,7 +201,7 @@ function Page9() {
             <div ref={questionRefs.question2}>
               {correctAnswers.question1 && (
                 <>
-                  <p>Move into the subdirectory.</p>
+                  <p>Print the contents of any file.</p>
                   <div className="command-line">
                     <span className="directory-prompt">~ {">>"}</span>
                     <input
@@ -232,11 +219,11 @@ function Page9() {
               )}
             </div>
 
-            {/* Question 3 */}
+            {/* Question 4 */}
             <div ref={questionRefs.question3}>
               {correctAnswers.question2 && (
                 <>
-                  <p>List the contents of the current directory.</p>
+                  <p>Clear the terminal.</p>
                   <div className="command-line">
                     <span className="directory-prompt">directory1 {">>"}</span>
                     <input
@@ -250,28 +237,6 @@ function Page9() {
                     />
                   </div>
                   <p className="fade-in">{responses.question3}</p>
-                </>
-              )}
-            </div>
-
-            {/* Question 4 */}
-            <div ref={questionRefs.question4}>
-              {correctAnswers.question3 && (
-                <>
-                  <p>Clear the terminal.</p>
-                  <div className="command-line">
-                    <span className="directory-prompt">directory1 {">>"}</span>
-                    <input
-                      type="text"
-                      style={{ fontSize: "20px", color: "white" }}
-                      className="input-box"
-                      value={answers.question4}
-                      onChange={(e) => handleInputChange(e, "question4")}
-                      onKeyDown={(e) => handleKeyPress(e, "question4")}
-                      disabled={correctAnswers.question4}
-                    />
-                  </div>
-                  <p className="fade-in">{responses.question4}</p>
                 </>
               )}
             </div>
@@ -293,4 +258,4 @@ function Page9() {
   );
 }
 
-export default Page9;
+export default Page3;
