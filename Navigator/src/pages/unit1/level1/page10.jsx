@@ -44,16 +44,6 @@ function Page10() {
 
   const [terminalCleared, setTerminalCleared] = useState(false); // Tracks if the terminal is cleared
 
-  const acceptableAnswersQ1 = ["y", "yes"];
-  const acceptableAnswersQ2 = ["ls"];
-  const acceptableAnswersQ3 = ["cd directory1"];
-  const acceptableAnswersQ4 = ["ls"];
-  const acceptableAnswersQ5 = ["2"];
-  const acceptableAnswersQ6 = ["clear"];
-  const acceptableAnswersQ7 = ["ls"];
-  const acceptableAnswersQ8 = ["cd directory3"];
-  const acceptableAnswersQ9 = ["cd .."];
-
   // Refs for scrolling
   const questionRefs = {
     question1: useRef(null),
