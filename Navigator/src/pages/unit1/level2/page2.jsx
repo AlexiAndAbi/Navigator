@@ -32,7 +32,7 @@ function Page1() {
           color: "white",
         }}
       >
-        <p>[-IN-PROGRESS-] ??/??</p>
+        <p>[##-----] 2/7</p>
       </div>
 
       <div className="content">

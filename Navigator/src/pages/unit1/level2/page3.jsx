@@ -162,7 +162,7 @@ function Page3() {
           color: "white",
         }}
       >
-        <p>[#########--] 9/11</p>
+        <p>[###----] 3/7</p>
       </div>
 
       <div className="content">
