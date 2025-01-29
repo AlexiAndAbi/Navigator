@@ -2,16 +2,17 @@ import React, { useState } from "react";
 import "./unit1.css";
 import { useNavigate } from "react-router-dom";
 
-function Page4() {
+function Page7() {
   const navigate = useNavigate();
   const [answers, setAnswers] = useState({ question1: "", question2: "" }); // State for both questions
+  const [responses, setResponses] = useState({ question1: "", question2: "" });
   const [correctAnswers, setCorrectAnswers] = useState({
     question1: false,
     question2: false,
   }); // Track correctness of each question
 
-  const acceptableAnswersQ1 = ["/"]; // Acceptable answers for Question 1
-  const acceptableAnswersQ2 = ["~"]; // Acceptable answers for Question 2
+  const acceptableAnswersQ1 = ["ls"]; // Acceptable answers for Question 1
+  const acceptableAnswersQ2 = ["3", "three"]; // Acceptable answers for Question 2
 
   const handleInputChange = (e, questionKey) => {
     setAnswers({ ...answers, [questionKey]: e.target.value }); // Update the state for the specific question
@@ -23,24 +24,52 @@ function Page4() {
     }
   };
 
-  const checkAnswer = (questionKey, acceptableAnswers) => {
-    if (
-      acceptableAnswers.some(
-        (answer) => answers[questionKey].toLowerCase().trim() === answer
-      )
-    ) {
-      setCorrectAnswers({ ...correctAnswers, [questionKey]: true }); // Mark the question as correct
-    } else {
-      setAnswers({ ...answers, [questionKey]: "" }); // Clear the input field for incorrect answers
+  const checkAnswer = (questionKey) => {
+    const userInput = answers[questionKey].toLowerCase().trim();
+
+    // Example of manual matching for question1
+    if (questionKey === "question1") {
+      if (userInput === "ls" || userInput === "list" || userInput === "ls -l") {
+        setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
+        setResponses({
+          ...responses,
+          [questionKey]: "directory1  file1.txt  file2.txt",
+        });
+      } else {
+        setAnswers({ ...answers, [questionKey]: "" });
+        setResponses({
+          ...responses,
+          [questionKey]: `command not found: ${userInput}`,
+        });
+      }
+      return;
+    }
+
+    // Example of manual matching for question2
+    if (questionKey === "question2") {
+      if (userInput === "3" || userInput === "three") {
+        setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
+        setResponses({
+          ...responses,
+          [questionKey]: "",
+        });
+      } else {
+        setAnswers({ ...answers, [questionKey]: "" });
+        setResponses({
+          ...responses,
+          [questionKey]: "",
+        });
+      }
+      return;
     }
   };
 
   const handleNavigation = () => {
-    navigate("/Unit1-Level1-page3");
+    navigate("/Unit1-Level1-page6");
   };
 
   const handleNavigation2 = () => {
-    navigate("/Unit1-Level1-page5");
+    navigate("/Unit1-Level1-page8");
   };
 
   const allCorrect = Object.values(correctAnswers).every(Boolean); // Check if all questions are correct
@@ -54,20 +83,29 @@ function Page4() {
       >
         back
       </button>
+
+      <div
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "20px",
+          fontSize: "16px",
+          color: "white",
+        }}
+      >
+        <p>[#######----] 7/11</p>
+      </div>
+
       <div className="content">
-        <p>Here are some important terms you will need to know. </p>
         <p>
-          1. The Root
-          <br />
-          &emsp;&emsp;The file system starts with a directory called the “root
-          directory”. The root directory is denoted by the / symbol. This is
-          where all files and directories originate from. We say that the root
-          is at the “top” of the file system and everything else is “under” or
-          “within” the root directory.
+          List Directory Contents! <br />
+          Abbreviated ls, this command displays the contents of the current
+          directory you are in. This command displays files as well as
+          directories.
         </p>
-        <p>What symbol represents the root directory?</p>
+        <p>List the contents of the current directory</p>
         <div className="command-line">
-          <span className="directory-prompt">??</span>
+          <span className="directory-prompt">~ {">>"}</span>
           <input
             type="text"
             style={{
@@ -83,16 +121,9 @@ function Page4() {
             disabled={correctAnswers.question1} // Disable if answered correctly
           />
         </div>
-        <p>
-          2. The Home Directory
-          <br />
-          &emsp;&emsp;Somewhere under the root directory there is your “home
-          directory”. The home directory is denoted by the ~ symbol. When you
-          open the terminal on your computer, the command line automatically
-          starts at the home directory. In this game we will assume all commands
-          are given starting at the home directory.
-        </p>
-        <p>What symbol represents the home directory?</p>
+        <p className="fade-in">{responses.question1}</p>
+
+        <p>How many entries appeared?</p>
         <div className="command-line">
           <span className="directory-prompt">??</span>
           <input
@@ -110,8 +141,8 @@ function Page4() {
             disabled={correctAnswers.question2} // Disable if answered correctly
           />
         </div>
+        <p className="fade-in">{responses.question2}</p>
 
-        {/* Show the Continue button if all answers are correct */}
         {allCorrect && (
           <button
             className="navigate-button fade-in"
@@ -126,4 +157,4 @@ function Page4() {
   );
 }
 
-export default Page4;
+export default Page7;

@@ -5,13 +5,14 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 20px;
     font-family: 'Consolas', monospace;
 }
 
 /* Header row for Discover and Explore buttons */
 .header-row {
     display: flex;
+    margin-left: 40px;
+    margin-top: 20px;
     width: 100%; /* Full width to align Explore to the far right */
     align-items: center;
     margin-bottom: 30px;
@@ -36,7 +37,6 @@
     background-color: transparent;
     color: white;
     cursor: pointer;
-    margin-right: 50px;
     margin-left: auto; /* Pushes Explore button to the far right */
     transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -51,6 +51,7 @@
 .unit-row button {
     font-size: 24px;
     padding: 10px 20px;
+    margin-left: 40px;
     border-radius: 10px;
     background-color: transparent;
     color: white;

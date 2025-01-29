@@ -54,6 +54,19 @@ function Page3() {
       >
         back
       </button>
+
+      <div
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "20px",
+          fontSize: "16px",
+          color: "white",
+        }}
+      >
+        <p>[###--------] 3/11</p>
+      </div>
+
       <div className="content">
         <p>
           Before you begin learning commands, we need to briefly discuss

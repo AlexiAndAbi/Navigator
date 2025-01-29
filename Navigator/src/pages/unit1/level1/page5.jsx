@@ -2,23 +2,23 @@ import React, { useState } from "react";
 import "./unit1.css";
 import { useNavigate } from "react-router-dom";
 
-function Page2() {
+function Page5() {
   const navigate = useNavigate();
   const [userInput, setUserInput] = useState(""); // State to store user input
   const [showContinue, setShowContinue] = useState(false); // State to manage the visibility of the Continue button
 
-  const acceptableAnswers = ["y", "yes"]; // Array of acceptable answers
+  const acceptableAnswers = ["4", "four"]; // Array of acceptable answers
 
   const handleInputChange = (e) => {
     setUserInput(e.target.value); // Update state with user's input
   };
 
   const handleNavigation = () => {
-    navigate("/Unit1-Level1");
+    navigate("/Unit1-Level1-page4");
   };
 
   const handleNavigation2 = () => {
-    navigate("/Unit1-Level1-page3");
+    navigate("/Unit1-Level1-page6");
   };
 
   const handleKeyPress = (e) => {
@@ -49,28 +49,32 @@ function Page2() {
       >
         back
       </button>
+
+      <div
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "20px",
+          fontSize: "16px",
+          color: "white",
+        }}
+      >
+        <p>[#####------] 5/11</p>
+      </div>
+
       <div className="content">
         <p>
-          On every computer, there is an application that allows users to
-          interact with the terminal. The terminal is important because it
-          allows you to give your computer instructions on a foundational level.
-          On mac it looks like:
-        </p>
-        <p>
-          The start page of this application looks like:
+          3. The Parent and Children:
           <br />
-          &emsp;&emsp;&emsp;Last login: [date and time] on [location] <br />
-          &emsp;&emsp;&emsp;[username]@[device name] ~ %
+          &emsp;&emsp;In the file system we say that directories and files can
+          have parent/child relationships. For example, if a directory has two
+          files in it, it is their parent, and they are its children. The parent
+          directory is one level “outside” or “above” the files and directories
+          in it. The children are “under” or “within” the parent.
         </p>
         <p>
-          The second line is known as the command line. This is where you can
-          enter instructions. Navigator will use the symbols {">>"} (instead of
-          %) to indicate the command line. For general questions the symbols ??
-          will be used.
-        </p>
-        <p>
-          Are you ready to start learning about the command line? (type y or n
-          below)
+          A parent directory has two files and two directories within it. How
+          many children does it have?
         </p>
         <div className="command-line">
           <span className="directory-prompt">??</span>
@@ -102,4 +106,4 @@ function Page2() {
   );
 }
 
-export default Page2;
+export default Page5;

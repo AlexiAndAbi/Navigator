@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./unit1.css";
 import { useNavigate } from "react-router-dom";
 
-function Page10() {
+function Page6() {
   const navigate = useNavigate();
   const [answers, setAnswers] = useState({
     question1: "",
@@ -42,18 +42,6 @@ function Page10() {
   const [gameOver, setGameOver] = useState(false); // Tracks if the timer runs out
   const [timerStarted, setTimerStarted] = useState(false); // Tracks if the timer has started
 
-  const [terminalCleared, setTerminalCleared] = useState(false); // Tracks if the terminal is cleared
-
-  const acceptableAnswersQ1 = ["y", "yes"];
-  const acceptableAnswersQ2 = ["ls"];
-  const acceptableAnswersQ3 = ["cd directory1"];
-  const acceptableAnswersQ4 = ["ls"];
-  const acceptableAnswersQ5 = ["2"];
-  const acceptableAnswersQ6 = ["clear"];
-  const acceptableAnswersQ7 = ["ls"];
-  const acceptableAnswersQ8 = ["cd directory3"];
-  const acceptableAnswersQ9 = ["cd .."];
-
   // Refs for scrolling
   const questionRefs = {
     question1: useRef(null),
@@ -67,12 +55,15 @@ function Page10() {
     question9: useRef(null),
   };
 
+  const [directoryName, setDirectoryName] = useState(""); // To store the created directory name
+  const [fileName, setfileName] = useState(""); // To store the created file name
+
   const handleNavigation = () => {
-    navigate("/Unit1-Level1-page9");
+    navigate("/Unit1-Level2-page5");
   };
 
   const handleNavigation2 = () => {
-    navigate("/Unit1-Level1-page11");
+    navigate("/Unit1-Level2-page7");
   };
 
   const handleInputChange = (e, questionKey) => {
@@ -80,14 +71,6 @@ function Page10() {
   };
 
   const handleKeyPress = (e, questionKey) => {
-    // Handle Ctrl + L for question 4
-    if (questionKey === "question6" && e.key === "l" && e.ctrlKey) {
-      setTerminalCleared(true);
-      setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
-      setResponses({ ...responses, [questionKey]: "" });
-      return;
-    }
-
     if (e.key === "Enter" || e.key === "Tab") {
       checkAnswer(questionKey);
     }
@@ -125,7 +108,7 @@ function Page10() {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: "directory1  file1.txt  file2.txt",
+          [questionKey]: "directory1  hello.txt",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -138,7 +121,30 @@ function Page10() {
     }
 
     if (questionKey === "question3") {
-      if (userInput === "cd directory1") {
+      if (userInput === "cat hello.txt") {
+        setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
+        setResponses({
+          ...responses,
+          [questionKey]:
+            "Hello! It is so wonderful to meet you. I hope you are enjoying Navigator so far. Keep going... you've got this!",
+        });
+      } else {
+        setAnswers({ ...answers, [questionKey]: "" });
+        setResponses({
+          ...responses,
+          [questionKey]: `command not found: ${userInput}`,
+        });
+      }
+      return;
+    }
+
+    if (questionKey === "question4") {
+      const mkdirRegex = /^mkdir\s+(\w+)$/; // Matches 'mkdir <directory-name>'
+      const match = mkdirRegex.exec(userInput);
+
+      if (match) {
+        const dirName = match[1]; // Extract the directory name
+        setDirectoryName(dirName); // Store the directory name
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -154,29 +160,12 @@ function Page10() {
       return;
     }
 
-    if (questionKey === "question4") {
+    if (questionKey === "question5") {
       if (userInput === "ls") {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: "file3.txt  file4.txt  directory3",
-        });
-      } else {
-        setAnswers({ ...answers, [questionKey]: "" });
-        setResponses({
-          ...responses,
-          [questionKey]: "",
-        });
-      }
-      return;
-    }
-
-    if (questionKey === "question5") {
-      if (userInput === "2" || userInput === "two") {
-        setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
-        setResponses({
-          ...responses,
-          [questionKey]: "",
+          [questionKey]: `directory1 hello.txt ${directoryName}`,
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -189,8 +178,7 @@ function Page10() {
     }
 
     if (questionKey === "question6") {
-      if (userInput === "clear") {
-        setTerminalCleared(true);
+      if (userInput === `cd ${directoryName}`) {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({ ...responses, [questionKey]: "" });
       } else {
@@ -204,24 +192,12 @@ function Page10() {
     }
 
     if (questionKey === "question7") {
-      if (userInput === "ls") {
-        setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
-        setResponses({
-          ...responses,
-          [questionKey]: "file3.txt  file4.txt  directory3",
-        });
-      } else {
-        setAnswers({ ...answers, [questionKey]: "" });
-        setResponses({
-          ...responses,
-          [questionKey]: "",
-        });
-      }
-      return;
-    }
+      const mkdirRegex = /^touch\s+(\w+)$/; // Matches 'touch <file-name>'
+      const match = mkdirRegex.exec(userInput);
 
-    if (questionKey === "question8") {
-      if (userInput === "cd directory3") {
+      if (match) {
+        const fName = match[1]; // Extract the file name
+        setfileName(fName); // Store the file name
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -237,8 +213,25 @@ function Page10() {
       return;
     }
 
+    if (questionKey === "question8") {
+      if (userInput === "ls") {
+        setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
+        setResponses({
+          ...responses,
+          [questionKey]: `${directoryName}`,
+        });
+      } else {
+        setAnswers({ ...answers, [questionKey]: "" });
+        setResponses({
+          ...responses,
+          [questionKey]: `command not found: ${userInput}`,
+        });
+      }
+      return;
+    }
+
     if (questionKey === "question9") {
-      if (userInput === "cd ..") {
+      if (userInput === "cd .." || userInput === "cd ~") {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -270,28 +263,15 @@ function Page10() {
 
   // Scroll to the next question when it's visible
   useEffect(() => {
-    if (correctAnswers.question1 && questionRefs.question2.current) {
-      questionRefs.question2.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    } else if (correctAnswers.question2 && questionRefs.question3.current) {
-      questionRefs.question3.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    } else if (correctAnswers.question3 && questionRefs.question4.current) {
-      questionRefs.question4.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    } else if (correctAnswers.question4 && questionRefs.question5.current) {
-      questionRefs.question5.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  }, [correctAnswers]);
+    Object.keys(questionRefs).forEach((questionKey, index) => {
+      if (correctAnswers[questionKey] && questionRefs[questionKey]?.current) {
+        questionRefs[questionKey].current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    });
+  }, [correctAnswers, directoryName, fileName]);
 
   return (
     <div className="gradient_background">
@@ -302,6 +282,19 @@ function Page10() {
       >
         back
       </button>
+
+      <div
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "20px",
+          fontSize: "16px",
+          color: "white",
+        }}
+      >
+        <p>[######-] 6/7</p>
+      </div>
+
       <div className="content">
         <p>
           You have 60 seconds to complete the following minigame! <br />
@@ -314,134 +307,134 @@ function Page10() {
           </p>
         )}
 
-        {!terminalCleared && (
-          <>
-            {/* Question 1 */}
-            <div ref={questionRefs.question1}>
-              <p>Ready to start?</p>
+        <>
+          {/* Question 1 */}
+          <div ref={questionRefs.question1}>
+            <p>Ready to start?</p>
+            <div className="command-line">
+              <span className="directory-prompt">??</span>
+              <input
+                type="text"
+                style={{ fontSize: "20px", color: "white" }}
+                className="input-box"
+                value={answers.question1}
+                onChange={(e) => handleInputChange(e, "question1")}
+                onKeyDown={(e) => handleKeyPress(e, "question1")}
+                disabled={correctAnswers.question1}
+              />
+            </div>
+            <p className="fade-in">{responses.question1}</p>
+          </div>
+
+          {/* Question 2 */}
+          {correctAnswers.question1 && (
+            <div ref={questionRefs.question2}>
+              <p>List the contents of the current directory.</p>
               <div className="command-line">
-                <span className="directory-prompt">??</span>
+                <span className="directory-prompt">~ {">>"}</span>
                 <input
                   type="text"
                   style={{ fontSize: "20px", color: "white" }}
                   className="input-box"
-                  value={answers.question1}
-                  onChange={(e) => handleInputChange(e, "question1")}
-                  onKeyDown={(e) => handleKeyPress(e, "question1")}
-                  disabled={correctAnswers.question1}
+                  value={answers.question2}
+                  onChange={(e) => handleInputChange(e, "question2")}
+                  onKeyDown={(e) => handleKeyPress(e, "question2")}
+                  disabled={correctAnswers.question2}
                 />
               </div>
-              <p className="fade-in">{responses.question1}</p>
+              <p className="fade-in">{responses.question2}</p>
             </div>
+          )}
 
-            {/* Question 2 */}
-            {correctAnswers.question1 && (
-              <div ref={questionRefs.question2}>
-                <p>List the contents of the current directory.</p>
-                <div className="command-line">
-                  <span className="directory-prompt">~ {">>"}</span>
-                  <input
-                    type="text"
-                    style={{ fontSize: "20px", color: "white" }}
-                    className="input-box"
-                    value={answers.question2}
-                    onChange={(e) => handleInputChange(e, "question2")}
-                    onKeyDown={(e) => handleKeyPress(e, "question2")}
-                    disabled={correctAnswers.question2}
-                  />
-                </div>
-                <p className="fade-in">{responses.question2}</p>
+          {/* Question 3 */}
+          {correctAnswers.question2 && (
+            <div ref={questionRefs.question3}>
+              <p>Display the contents of the file.</p>
+              <div className="command-line">
+                <span className="directory-prompt">~ {">>"}</span>
+                <input
+                  type="text"
+                  style={{ fontSize: "20px", color: "white" }}
+                  className="input-box"
+                  value={answers.question3}
+                  onChange={(e) => handleInputChange(e, "question3")}
+                  onKeyDown={(e) => handleKeyPress(e, "question3")}
+                  disabled={correctAnswers.question3}
+                />
               </div>
-            )}
+              <p className="fade-in">{responses.question3}</p>
+            </div>
+          )}
 
-            {/* Question 3 */}
-            {correctAnswers.question2 && (
-              <div ref={questionRefs.question3}>
-                <p>Move into the subdirectory.</p>
-                <div className="command-line">
-                  <span className="directory-prompt">~ {">>"}</span>
-                  <input
-                    type="text"
-                    style={{ fontSize: "20px", color: "white" }}
-                    className="input-box"
-                    value={answers.question3}
-                    onChange={(e) => handleInputChange(e, "question3")}
-                    onKeyDown={(e) => handleKeyPress(e, "question3")}
-                    disabled={correctAnswers.question3}
-                  />
-                </div>
-                <p className="fade-in">{responses.question3}</p>
+          {/* Question 4 */}
+          {correctAnswers.question3 && (
+            <div ref={questionRefs.question4}>
+              <p>Create a new directory.</p>
+              <div className="command-line">
+                <span className="directory-prompt">~ {">>"}</span>
+                <input
+                  type="text"
+                  style={{ fontSize: "20px", color: "white" }}
+                  className="input-box"
+                  value={answers.question4}
+                  onChange={(e) => handleInputChange(e, "question4")}
+                  onKeyDown={(e) => handleKeyPress(e, "question4")}
+                  disabled={correctAnswers.question4}
+                />
               </div>
-            )}
+              <p className="fade-in">{responses.question4}</p>
+            </div>
+          )}
 
-            {/* Question 4 */}
-            {correctAnswers.question3 && (
-              <div ref={questionRefs.question4}>
-                <p>List the contents of the current directory.</p>
-                <div className="command-line">
-                  <span className="directory-prompt">directory1 {">>"}</span>
-                  <input
-                    type="text"
-                    style={{ fontSize: "20px", color: "white" }}
-                    className="input-box"
-                    value={answers.question4}
-                    onChange={(e) => handleInputChange(e, "question4")}
-                    onKeyDown={(e) => handleKeyPress(e, "question4")}
-                    disabled={correctAnswers.question4}
-                  />
-                </div>
-                <p className="fade-in">{responses.question4}</p>
+          {/* Question 5 */}
+          {correctAnswers.question4 && (
+            <div ref={questionRefs.question5}>
+              <p>List the contents of the current directory.</p>
+              <div className="command-line">
+                <span className="directory-prompt">~ {">>"}</span>
+                <input
+                  type="text"
+                  style={{ fontSize: "20px", color: "white" }}
+                  className="input-box"
+                  value={answers.question5}
+                  onChange={(e) => handleInputChange(e, "question5")}
+                  onKeyDown={(e) => handleKeyPress(e, "question5")}
+                  disabled={correctAnswers.question5}
+                />
               </div>
-            )}
+              <p className="fade-in">{responses.question5}</p>
+            </div>
+          )}
 
-            {/* Question 5 */}
-            {correctAnswers.question4 && (
-              <div ref={questionRefs.question5}>
-                <p>How many files are in this directory?</p>
-                <div className="command-line">
-                  <span className="directory-prompt">??</span>
-                  <input
-                    type="text"
-                    style={{ fontSize: "20px", color: "white" }}
-                    className="input-box"
-                    value={answers.question5}
-                    onChange={(e) => handleInputChange(e, "question5")}
-                    onKeyDown={(e) => handleKeyPress(e, "question5")}
-                    disabled={correctAnswers.question5}
-                  />
-                </div>
-                <p className="fade-in">{responses.question5}</p>
+          {/* Question 6 */}
+          {correctAnswers.question5 && (
+            <div ref={questionRefs.question6}>
+              <p>Move into the directory you just created.</p>
+              <div className="command-line">
+                <span className="directory-prompt">~ {">>"}</span>
+                <input
+                  type="text"
+                  style={{ fontSize: "20px", color: "white" }}
+                  className="input-box"
+                  value={answers.question6}
+                  onChange={(e) => handleInputChange(e, "question6")}
+                  onKeyDown={(e) => handleKeyPress(e, "question6")}
+                  disabled={correctAnswers.question6}
+                />
               </div>
-            )}
-
-            {/* Question 6 */}
-            {correctAnswers.question5 && (
-              <div ref={questionRefs.question6}>
-                <p>Clear the terminal.</p>
-                <div className="command-line">
-                  <span className="directory-prompt">directory1 {">>"}</span>
-                  <input
-                    type="text"
-                    style={{ fontSize: "20px", color: "white" }}
-                    className="input-box"
-                    value={answers.question6}
-                    onChange={(e) => handleInputChange(e, "question6")}
-                    onKeyDown={(e) => handleKeyPress(e, "question6")}
-                    disabled={correctAnswers.question6}
-                  />
-                </div>
-                <p className="fade-in">{responses.question6}</p>
-              </div>
-            )}
-          </>
-        )}
+              <p className="fade-in">{responses.question6}</p>
+            </div>
+          )}
+        </>
 
         {/* Question 7 */}
         {correctAnswers.question6 && (
           <div ref={questionRefs.question7}>
-            <p>List the contents of the current directory.</p>
+            <p>Create a file.</p>
             <div className="command-line">
-              <span className="directory-prompt">directory1 {">>"}</span>
+              <span className="directory-prompt">
+                {directoryName || ""} {">>"}
+              </span>
               <input
                 type="text"
                 style={{ fontSize: "20px", color: "white" }}
@@ -459,9 +452,11 @@ function Page10() {
         {/* Question 8 */}
         {correctAnswers.question7 && (
           <div ref={questionRefs.question8}>
-            <p>Move into the subdirectory.</p>
+            <p>List the contents of the current directory.</p>
             <div className="command-line">
-              <span className="directory-prompt">directory1 {">>"}</span>
+              <span className="directory-prompt">
+                {directoryName || ""} {">>"}
+              </span>
               <input
                 type="text"
                 style={{ fontSize: "20px", color: "white" }}
@@ -479,9 +474,11 @@ function Page10() {
         {/* Question 9 */}
         {correctAnswers.question8 && (
           <div ref={questionRefs.question9}>
-            <p>Return to the parent directory.</p>
+            <p>Move to the home directory.</p>
             <div className="command-line">
-              <span className="directory-prompt">directory3 {">>"}</span>
+              <span className="directory-prompt">
+                {directoryName || ""} {">>"}
+              </span>
               <input
                 type="text"
                 style={{ fontSize: "20px", color: "white" }}
@@ -501,7 +498,11 @@ function Page10() {
           <button
             className="navigate-button fade-in"
             onClick={handleNavigation2}
-            style={{ border: "2px solid white", marginTop: "20px" }}
+            style={{
+              border: "2px solid white",
+              marginTop: "20px",
+              marginBottom: "40px",
+            }}
           >
             continue
           </button>
@@ -511,4 +512,4 @@ function Page10() {
   );
 }
 
-export default Page10;
+export default Page6;

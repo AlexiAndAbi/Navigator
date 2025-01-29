@@ -2,25 +2,16 @@ import React, { useState } from "react";
 import "./unit1.css";
 import { useNavigate } from "react-router-dom";
 
-function Page6() {
+function Page4() {
   const navigate = useNavigate();
-  const [answers, setAnswers] = useState({
-    question1: "",
-    question2: "",
-    question3: "",
-    quesion4: "",
-  }); // State for both questions
+  const [answers, setAnswers] = useState({ question1: "", question2: "" }); // State for both questions
   const [correctAnswers, setCorrectAnswers] = useState({
     question1: false,
     question2: false,
-    question3: false,
-    question4: false,
   }); // Track correctness of each question
 
-  const acceptableAnswersQ1 = ["1", "one"]; // Acceptable answers for Question 1
-  const acceptableAnswersQ2 = ["2", "two"]; // Acceptable answers for Question 2
-  const acceptableAnswersQ3 = ["6", "six"]; // Acceptable answers for Question 3
-  const acceptableAnswersQ4 = ["y", "yes"]; // Acceptable answers for Question 4
+  const acceptableAnswersQ1 = ["/"]; // Acceptable answers for Question 1
+  const acceptableAnswersQ2 = ["~"]; // Acceptable answers for Question 2
 
   const handleInputChange = (e, questionKey) => {
     setAnswers({ ...answers, [questionKey]: e.target.value }); // Update the state for the specific question
@@ -45,11 +36,11 @@ function Page6() {
   };
 
   const handleNavigation = () => {
-    navigate("/Unit1-Level1-page5");
+    navigate("/Unit1-Level1-page3");
   };
 
   const handleNavigation2 = () => {
-    navigate("/Unit1-Level1-page7");
+    navigate("/Unit1-Level1-page5");
   };
 
   const allCorrect = Object.values(correctAnswers).every(Boolean); // Check if all questions are correct
@@ -63,25 +54,31 @@ function Page6() {
       >
         back
       </button>
+
+      <div
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "20px",
+          fontSize: "16px",
+          color: "white",
+        }}
+      >
+        <p>[####-------] 4/11</p>
+      </div>
+
       <div className="content">
+        <p>Here are some important terms you will need to know. </p>
         <p>
-          We can visualize the filesystem of a computer like the roots of a tree
-          (or like an upside-down piece of coral).
+          1. The Root
+          <br />
+          &emsp;&emsp;The file system starts with a directory called the “root
+          directory”. The root directory is denoted by the / symbol. This is
+          where all files and directories originate from. We say that the root
+          is at the “top” of the file system and everything else is “under” or
+          “within” the root directory.
         </p>
-        <p>
-          To help you visualize the filesystem we will provide you with these
-          diagrams →
-          <br />
-          &emsp;&emsp;- Your current position will always be marked in bright
-          blue.
-          <br />
-          &emsp;&emsp;- Directories will be represented by large circles.
-          <br />
-          &emsp;&emsp;- Files will be represented by small circles.
-          <br />
-          &emsp;&emsp;- The home directory will always be at the top.
-        </p>
-        <p>How many directories are in the home directory? (1, 2, 6, y)</p>
+        <p>What symbol represents the root directory?</p>
         <div className="command-line">
           <span className="directory-prompt">??</span>
           <input
@@ -99,7 +96,16 @@ function Page6() {
             disabled={correctAnswers.question1} // Disable if answered correctly
           />
         </div>
-        <p>How many files are in the home directory?</p>
+        <p>
+          2. The Home Directory
+          <br />
+          &emsp;&emsp;Somewhere under the root directory there is your “home
+          directory”. The home directory is denoted by the ~ symbol. When you
+          open the terminal on your computer, the command line automatically
+          starts at the home directory. In this game we will assume all commands
+          are given starting at the home directory.
+        </p>
+        <p>What symbol represents the home directory?</p>
         <div className="command-line">
           <span className="directory-prompt">??</span>
           <input
@@ -115,42 +121,6 @@ function Page6() {
               handleKeyPress(e, "question2", acceptableAnswersQ2)
             }
             disabled={correctAnswers.question2} // Disable if answered correctly
-          />
-        </div>
-        <p>How many total files are there in this filesystem?</p>
-        <div className="command-line">
-          <span className="directory-prompt">??</span>
-          <input
-            type="text"
-            style={{
-              fontSize: "20px",
-              color: "white",
-            }}
-            className="input-box"
-            value={answers.question3}
-            onChange={(e) => handleInputChange(e, "question3")}
-            onKeyDown={(e) =>
-              handleKeyPress(e, "question3", acceptableAnswersQ3)
-            }
-            disabled={correctAnswers.question3} // Disable if answered correctly
-          />
-        </div>
-        <p>Are you ready to learn your first command?</p>
-        <div className="command-line">
-          <span className="directory-prompt">??</span>
-          <input
-            type="text"
-            style={{
-              fontSize: "20px",
-              color: "white",
-            }}
-            className="input-box"
-            value={answers.question4}
-            onChange={(e) => handleInputChange(e, "question4")}
-            onKeyDown={(e) =>
-              handleKeyPress(e, "question4", acceptableAnswersQ4)
-            }
-            disabled={correctAnswers.question4} // Disable if answered correctly
           />
         </div>
 
@@ -169,4 +139,4 @@ function Page6() {
   );
 }
 
-export default Page6;
+export default Page4;

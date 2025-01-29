@@ -9,11 +9,18 @@ function Unit1() {
     navigate("/Unit1-Level1-page2");
   };
 
+  const handleNavigation2 = () => {
+    navigate("/Unit1-Contents");
+  };
+
   return (
     <div className="gradient_background">
-      <button className="intro-button" style={{ border: "2px solid white" }}>
+      <button className="intro-button" onClick={handleNavigation2} style={{ border: "2px solid white"}}>
         Level 1
       </button>
+      <div style={{ position: "absolute", top: "10px", right: "20px", fontSize: "16px", color: "white" }}>
+        <p>[#----------]  1/11</p>
+      </div>
       <div className="content">
         <p>
           Welcome to Navigator, a sea themed, text-based adventure game designed
@@ -40,6 +47,10 @@ function Unit1() {
         >
           Anchors Away!
         </button>
+
+        {/* Add the pixel art animation */}
+        <div className="pixel-art"></div>
+        <div className="pixel-art2"></div>
       </div>
     </div>
   );

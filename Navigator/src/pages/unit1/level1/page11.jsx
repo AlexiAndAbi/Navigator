@@ -22,6 +22,19 @@ function Page11() {
       >
         back
       </button>
+
+      <div
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "20px",
+          fontSize: "16px",
+          color: "white",
+        }}
+      >
+        <p>[###########] 11/11</p>
+      </div>
+
       <div className="content">
         <p>
           Congratulations! You have completed the first level of Navigator and
