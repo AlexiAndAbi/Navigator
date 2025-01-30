@@ -95,7 +95,7 @@
     }
   }
   
-  .pixel-art {
+  .pixel-art3 {
     position: absolute;
     bottom: 0px;
     right: 0px;
@@ -103,11 +103,11 @@
     width: 450px; /* Adjust to the size of your images */
     height: 450px; /* Match the sprite dimensions */
     background-size: cover;
-    background-image: url("/images/wave0.png"); /* First frame */
-    animation: spriteAnimation 1s steps(1) infinite;
+    background-image: url("/images/kelp0.png"); /* First frame */
+    animation: kelpAnimation 2s steps(1) infinite;
   }
   
-  .pixel-art2 {
+  .pixel-art4 {
     position: absolute;
     bottom: 0px;
     right: 450px;
@@ -115,20 +115,20 @@
     width: 450px; /* Adjust to the size of your images */
     height: 450px; /* Match the sprite dimensions */
     background-size: cover;
-    background-image: url("/images/wave0.png"); /* First frame */
-    animation: spriteAnimation 1s steps(1) infinite;
+    background-image: url("/images/kelp0.png"); /* First frame */
+    animation: kelpAnimation 2s steps(1) infinite;
   }
   
   /* Define keyframes to change the background image */
-  @keyframes spriteAnimation {
+  @keyframes kelpAnimation {
     0% {
-      background-image: url("/images/wave0.png");
+      background-image: url("/images/kelp0.png");
     }
     50% {
-      background-image: url("/images/wave1.png");
+      background-image: url("/images/kelp1.png");
     }
     100% {
-      background-image: url("/images/wave0.png");
+      background-image: url("/images/kelp0.png");
     }
   }
   

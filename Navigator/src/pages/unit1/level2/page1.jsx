@@ -49,6 +49,9 @@ function Page1() {
         >
           Sail On!
         </button>
+
+        <div className="pixel-art3"></div>
+        <div className="pixel-art4"></div>
       </div>
     </div>
   );

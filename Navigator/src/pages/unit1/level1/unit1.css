@@ -124,8 +124,17 @@
   0% {
     background-image: url("/images/wave0.png");
   }
-  50% {
+  20% {
     background-image: url("/images/wave1.png");
+  }
+  40% {
+    background-image: url("/images/wave2.png");
+  }
+  60% {
+    background-image: url("/images/wave3.png");
+  }
+  80% {
+    background-image: url("/images/wave4.png");
   }
   100% {
     background-image: url("/images/wave0.png");
