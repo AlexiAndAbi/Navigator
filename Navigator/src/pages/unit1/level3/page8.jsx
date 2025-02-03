@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./unit1.css";
 import { useNavigate } from "react-router-dom";
 
-function Page7() {
+function Page8() {
   const navigate = useNavigate();
   const [answers, setAnswers] = useState({
     question1: "",
@@ -10,7 +10,6 @@ function Page7() {
     question3: "",
     question4: "",
     question5: "",
-    question6: "",
   });
   const [responses, setResponses] = useState({
     question1: "",
@@ -18,7 +17,6 @@ function Page7() {
     question3: "",
     question4: "",
     question5: "",
-    question6: "",
   });
   const [correctAnswers, setCorrectAnswers] = useState({
     question1: false,
@@ -26,7 +24,6 @@ function Page7() {
     question3: false,
     question4: false,
     question5: false,
-    question6: false,
   });
 
   const questionRefs = {
@@ -35,15 +32,14 @@ function Page7() {
     question3: useRef(null),
     question4: useRef(null),
     question5: useRef(null),
-    question6: useRef(null),
   };
 
   const handleNavigation = () => {
-    navigate("/Unit1-Level3-page6");
+    navigate("/Unit1-Level3-page7");
   };
 
   const handleNavigation2 = () => {
-    navigate("/Unit1-Level3-page8");
+    navigate("/Unit1-Level3-page9");
   };
 
   const handleInputChange = (e, questionKey) => {
@@ -64,7 +60,7 @@ function Page7() {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: "unit1 unit2 unit3 level1.jsx",
+          [questionKey]: "sample a.txt b.txt",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -77,7 +73,7 @@ function Page7() {
     }
 
     if (questionKey === "question2") {
-      if (userInput === "cd unit1") {
+      if (userInput === "cp a.txt b.txt ./sample" || userInput === "cp b.txt a.txt ./sample") {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -87,16 +83,16 @@ function Page7() {
         setAnswers({ ...answers, [questionKey]: "" });
         setResponses({
           ...responses,
-          [questionKey]: `command not found: ${userInput}`,
+          [questionKey]: "",
         });
       }
       return;
     }
 
     if (questionKey === "question3") {
-      if (userInput === "pwd") {
+      if (userInput === "ls") {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
-        setResponses({ ...responses, [questionKey]: "/User/username/Game/unit1" });
+        setResponses({ ...responses, [questionKey]: "sample a.txt b.txt" });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
         setResponses({
@@ -108,7 +104,7 @@ function Page7() {
     }
 
     if (questionKey === "question4") {
-      if (userInput === "cd ..") {
+      if (userInput === "cd sample") {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -118,18 +114,18 @@ function Page7() {
         setAnswers({ ...answers, [questionKey]: "" });
         setResponses({
           ...responses,
-          [questionKey]: `command not found: ${userInput}`,
+          [questionKey]: "",
         });
       }
       return;
     }
 
     if (questionKey === "question5") {
-      if (userInput === "mv level1.jsx /User/username/Game/unit1") {
+      if (userInput === "ls") {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: "",
+          [questionKey]: "a.txt b.txt",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -140,23 +136,6 @@ function Page7() {
       }
       return;
     }
-
-    if (questionKey === "question6") {
-        if (userInput === "ls") {
-          setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
-          setResponses({
-            ...responses,
-            [questionKey]: "unit1 unit2 unit3",
-          });
-        } else {
-          setAnswers({ ...answers, [questionKey]: "" });
-          setResponses({
-            ...responses,
-            [questionKey]: "",
-          });
-        }
-        return;
-      }
   };
 
   const allCorrect = Object.values(correctAnswers).every(Boolean);
@@ -208,14 +187,37 @@ function Page7() {
       </div>
 
       <div className="content">
-        <p>Now lets practice with absolute pathing.</p>
+        <p>
+          Copy files! <br /> Abbreviated cp, this command copies files within
+          and between directories.
+          <br />
+          <br />
+          To copy a file within the current directory and give it a new name,
+          type:
+          <br /> cp [file] [new file name] &emsp;&emsp;&emsp;&emsp; (ex: cp
+          a.txt b.txt)
+          <br />
+          <br />
+          To copy a file to a different directory type:
+          <br /> cp [file] [destination] &emsp;&emsp;&emsp;&emsp; (ex: cp
+          a.txt /User/username/sample/group1)
+          <br />
+          <br />
+          To copy multiple files to a different directory type:
+          <br /> cp [file0] [file1] [destination] &emsp;&emsp;&emsp;&emsp; (ex: cp
+          a.txt b.txt ./group1)
+          <br />
+        </p>
+        <p>
+        For the destination, you can use either the relative or absolute path of that directory. 
+        </p>
 
         <>
           {/* Question 1 */}
           <div ref={questionRefs.question1}>
             <p>Display the contents of the current directory.</p>
             <div className="command-line">
-              <span className="directory-prompt">Game {">>"}</span>
+              <span className="directory-prompt">Group1 {">>"}</span>
               <input
                 type="text"
                 style={{ fontSize: "20px", color: "white" }}
@@ -234,10 +236,11 @@ function Page7() {
             {correctAnswers.question1 && (
               <>
                 <p>
-                Move into the subdirectory unit1.
+                  Copy both files into the directory sample using a relative
+                  path.
                 </p>
                 <div className="command-line">
-                  <span className="directory-prompt">Game {">>"}</span>
+                  <span className="directory-prompt">Group1 {">>"}</span>
                   <input
                     type="text"
                     style={{ fontSize: "20px", color: "white" }}
@@ -257,9 +260,9 @@ function Page7() {
           <div ref={questionRefs.question3}>
             {correctAnswers.question2 && (
               <>
-                <p>Display the current absolute path.</p>
+                <p>Display the contents of the current directory.</p>
                 <div className="command-line">
-                  <span className="directory-prompt">unit1 {">>"}</span>
+                  <span className="directory-prompt">Group1 {">>"}</span>
                   <input
                     type="text"
                     style={{ fontSize: "20px", color: "white" }}
@@ -279,9 +282,9 @@ function Page7() {
           <div ref={questionRefs.question4}>
             {correctAnswers.question3 && (
               <>
-                <p>Move into the parent directory.</p>
+                <p>Move into the subdirectory.</p>
                 <div className="command-line">
-                  <span className="directory-prompt">unit1 {">>"}</span>
+                  <span className="directory-prompt">Group1 {">>"}</span>
                   <input
                     type="text"
                     style={{ fontSize: "20px", color: "white" }}
@@ -301,9 +304,9 @@ function Page7() {
           <div ref={questionRefs.question5}>
             {correctAnswers.question4 && (
               <>
-                <p>Move level1.jsx into the directory unit1 using an absolute path.</p>
+                <p>Display the contents of the current directory.</p>
                 <div className="command-line">
-                  <span className="directory-prompt">Game {">>"}</span>
+                  <span className="directory-prompt">sample {">>"}</span>
                   <input
                     type="text"
                     style={{ fontSize: "20px", color: "white" }}
@@ -315,28 +318,6 @@ function Page7() {
                   />
                 </div>
                 <p className="fade-in">{responses.question5}</p>
-              </>
-            )}
-          </div>
-
-          {/* Question 6 */}
-          <div ref={questionRefs.question6}>
-            {correctAnswers.question5 && (
-              <>
-                <p>Display the contents of the current directory.</p>
-                <div className="command-line">
-                  <span className="directory-prompt">Game {">>"}</span>
-                  <input
-                    type="text"
-                    style={{ fontSize: "20px", color: "white" }}
-                    className="input-box"
-                    value={answers.question6}
-                    onChange={(e) => handleInputChange(e, "question6")}
-                    onKeyDown={(e) => handleKeyPress(e, "question6")}
-                    disabled={correctAnswers.question6}
-                  />
-                </div>
-                <p className="fade-in">{responses.question6}</p>
               </>
             )}
           </div>
@@ -361,4 +342,4 @@ function Page7() {
   );
 }
 
-export default Page7;
+export default Page8;

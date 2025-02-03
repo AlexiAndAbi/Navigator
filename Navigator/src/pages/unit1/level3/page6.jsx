@@ -194,7 +194,7 @@ function Page6() {
           <br />
           To move a file from one directory to another you can type:
           <br /> mv [file] [destination] &emsp;&emsp;&emsp;&emsp; (ex: mv
-          welcome.txt unit1)
+          welcome.txt ./unit1)
           <br />
         </p>
 
