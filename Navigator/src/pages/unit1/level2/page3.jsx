@@ -21,11 +21,7 @@ function Page3() {
   });
 
   const [terminalCleared, setTerminalCleared] = useState(false); // Tracks if the terminal is cleared
-
-  const acceptableAnswersQ1 = ["ls"];
-  const acceptableAnswersQ2 = ["cat file3.txt", "cat file4.txt"];
-  const acceptableAnswersQ3 = ["clear"];
-
+  
   const questionRefs = {
     question1: useRef(null),
     question2: useRef(null),

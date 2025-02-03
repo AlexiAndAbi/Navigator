@@ -1,4 +1,5 @@
 import "./App.css";
+{/*Level 1*/}
 import Unit1 from "./pages/unit1/level1/unit1";
 import Page2 from "./pages/unit1/level1/page2";
 import Page3 from "./pages/unit1/level1/page3";
@@ -10,6 +11,7 @@ import Page8 from "./pages/unit1/level1/page8";
 import Page9 from "./pages/unit1/level1/page9";
 import Page10 from "./pages/unit1/level1/page10";
 import Page11 from "./pages/unit1/level1/page11";
+{/*Level 2*/}
 import Page1Level2 from "./pages/unit1/level2/page1";
 import Page2Level2 from "./pages/unit1/level2/page2";
 import Page3Level2 from "./pages/unit1/level2/page3";
@@ -17,8 +19,14 @@ import Page4Level2 from "./pages/unit1/level2/page4";
 import Page5Level2 from "./pages/unit1/level2/page5";
 import Page6Level2 from "./pages/unit1/level2/page6";
 import Page7Level2 from "./pages/unit1/level2/page7";
+{/*Level 3*/}
 import Page1Level3 from "./pages/unit1/level3/page1";
 import Page2Level3 from "./pages/unit1/level3/page2";
+import Page3Level3 from "./pages/unit1/level3/page3";
+import Page4Level3 from "./pages/unit1/level3/page4";
+import Page5Level3 from "./pages/unit1/level3/page5";
+
+
 import Homepage from "./pages/Homepage/Homepage";
 import TableContents from "./pages/TableContents/TableContents";
 import Testing from "./pages/Testing/Testing";
@@ -34,6 +42,7 @@ function App() {
         {/* Set the Home component for the root path */}
         <Route path="/Table-Of-Contents" element={<TableContents />} />{" "}
         {/* Set the Home component for the root path */}
+        {/*Level 1*/}
         <Route path="/Unit1-Level1" element={<Unit1 />} />
         <Route path="/Unit1-Level1-Page2" element={<Page2 />} />
         <Route path="/Unit1-Level1-Page3" element={<Page3 />} />
@@ -45,6 +54,7 @@ function App() {
         <Route path="/Unit1-Level1-Page9" element={<Page9 />} />
         <Route path="/Unit1-Level1-Page10" element={<Page10 />} />
         <Route path="/Unit1-Level1-Page11" element={<Page11 />} />
+        {/*Level 2*/}
         <Route path="/Unit1-Level2" element={<Page1Level2 />} />
         <Route path="/Unit1-Level2-page2" element={<Page2Level2 />} />
         <Route path="/Unit1-Level2-page3" element={<Page3Level2 />} />
@@ -52,8 +62,13 @@ function App() {
         <Route path="/Unit1-Level2-page5" element={<Page5Level2 />} />
         <Route path="/Unit1-Level2-page6" element={<Page6Level2 />} />
         <Route path="/Unit1-Level2-page7" element={<Page7Level2 />} />
+        {/*Level 3*/}
         <Route path="/Unit1-Level3" element={<Page1Level3 />} />
         <Route path="/Unit1-Level3-page2" element={<Page2Level3 />} />
+        <Route path="/Unit1-Level3-page3" element={<Page3Level3 />} />
+        <Route path="/Unit1-Level3-page4" element={<Page4Level3 />} />
+        <Route path="/Unit1-Level3-page5" element={<Page5Level3 />} />
+        {/*Extras*/}
         <Route path="/Testing" element={<Testing />} />
         <Route path="/Prompts" element={<Prompts />} />
         <Route path="/Unit1-Contents" element={<Unit1contents />} />

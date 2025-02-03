@@ -2,23 +2,23 @@ import React, { useState } from "react";
 import "./unit1.css";
 import { useNavigate } from "react-router-dom";
 
-function Page2() {
+function Page3() {
   const navigate = useNavigate();
   const [userInput, setUserInput] = useState(""); // State to store user input
   const [showContinue, setShowContinue] = useState(false); // State to manage the visibility of the Continue button
 
-  const acceptableAnswers = ["Postman"]; // Array of acceptable answers
+  const acceptableAnswers = ["./instructions/help.txt"]; // Array of acceptable answers
 
   const handleInputChange = (e) => {
     setUserInput(e.target.value); // Update state with user's input
   };
 
   const handleNavigation = () => {
-    navigate("/Unit1-Level3");
+    navigate("/Unit1-Level3-page2");
   };
 
   const handleNavigation2 = () => {
-    navigate("/Unit1-Level3-page3");
+    navigate("/Unit1-Level3-page4");
   };
 
   const handleKeyPress = (e) => {
@@ -63,26 +63,29 @@ function Page2() {
       {/* Main Content */}
       <div className="content">
         <p>
-          Before we can move, copy, or remove files we need to understand more
-          specifically each file is located. We call where a file is as the
-          “path” to that file. Paths can be (1) relative or (2) absolute. <br />
-        </p>
-        <p>
-          (1) Relative Path = the location of a file in relation to where the
-          user is currently viewing the file system.
-          <br />
-          <br />
-          Your current position in the file system will always be to the left of
-          the command line. For example the command line ~ {">>"} means you are
-          currently viewing the home directory. directory1 {">>"} means you are
-          currently viewing directory1.
-        </p>
-        <p>
-          Take this example directory:
+          Take this example directory again:
           <br /> Postman {">>"} ls <br />
           README.txt instructions content
+          <br />
         </p>
-        <p>What directory are you currently viewing the file system from?</p>
+        <p>
+          Suppose that there is a file within content that is called c.txt. The
+          relative path of c.txt from the Postman directory is ./content/c.txt.
+          <br />
+          <br />
+          The “./” characters are used to represent the current directory. You
+          can be located in any directory, but the start of any relative path
+          will always be “./”. After the current directory, the “/” character is used
+          to show that c.txt is within the content folder.
+          <br />
+          <br />
+          The relative path of content from the Postman directory would just be
+          ./content
+        </p>
+        <p>
+          If there is a file named help.txt within the instructions directory, what
+          is the relative path of help.txt from the Postman directory?
+        </p>
         <div className="command-line">
           <span className="directory-prompt">??</span>
           <input
@@ -113,4 +116,4 @@ function Page2() {
   );
 }
 
-export default Page2;
+export default Page3;
