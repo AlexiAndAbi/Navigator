@@ -2,11 +2,11 @@ import React from "react";
 import "./unit1.css";
 import { useNavigate } from "react-router-dom";
 
-function Page7() {
+function Page12() {
   const navigate = useNavigate();
 
   const handleNavigation = () => {
-    navigate("/Unit1-Level2-page6");
+    navigate("/Unit1-Level3-page11");
   };
 
   const handleNavigation2 = () => {
@@ -32,20 +32,21 @@ function Page7() {
           color: "white",
         }}
       >
-        <p>[#######] 7/7</p>
+        <p>[############] 12/12</p>
       </div>
 
       <div className="content">
         <p>
-          Congratulations! You have completed the second level of Navigator and
-          have learned the following terminal commands:
+          Congratulations! You have completed the third level of Navigator and
+          have learned the following terminal commands.
         </p>
         <p>
-        cat
-          <br /> mkdir
-          <br /> touch
+          pwd
+          <br /> mv
+          <br /> cp
+          <br /> rm
         </p>
-        <p>You are now prepared to start level 3!</p>
+        <p>You are now prepared to start level 4!</p>
         <button
           className="navigate-button"
           onClick={handleNavigation2}
@@ -58,4 +59,4 @@ function Page7() {
   );
 }
 
-export default Page7;
+export default Page12;

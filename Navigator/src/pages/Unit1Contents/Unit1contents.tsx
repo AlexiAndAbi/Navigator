@@ -39,7 +39,7 @@ function Unit1contents() {
             </div>
             <div className='unit-row'>
                 <button style={{ border: '2px solid #B0A3FF' }} onClick={goToLevel3}>Level 3</button>
-                <h3>Moving and removing (mv, cp, rm)</h3>
+                <h3>Moving and removing (pwd, mv, cp, rm)</h3>
             </div>
             <div className='unit-row'>
                 <button style={{ border: '2px solid #907CFF' }}>Level 4</button>
