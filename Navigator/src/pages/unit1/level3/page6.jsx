@@ -183,12 +183,12 @@ function Page6() {
           color: "white",
         }}
       >
-        <p>[###----] 3/7</p>
+        <p>[######------] 6/12</p>
       </div>
 
       <div className="content">
         <p>
-          Move files! <br /> Abbreviated mv, this command moves files between
+          Move files! <br /> Abbreviated <span class="highlight">mv</span>, this command moves files between
           directories. This command is also used to rename files.
           <br />
           <br />

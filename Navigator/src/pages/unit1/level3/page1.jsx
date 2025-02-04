@@ -32,7 +32,7 @@ function Page1() {
           color: "white",
         }}
       >
-        <p>[#------] 1/7</p>
+        <p>[#-----------] 1/12</p>
       </div>
 
       <div className="content">

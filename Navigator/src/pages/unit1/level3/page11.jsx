@@ -55,15 +55,12 @@ function Page11() {
     question9: useRef(null),
   };
 
-  const [directoryName, setDirectoryName] = useState(""); // To store the created directory name
-  const [fileName, setfileName] = useState(""); // To store the created file name
-
   const handleNavigation = () => {
-    navigate("/Unit1-Level2-page5");
+    navigate("/Unit1-Level3-page10");
   };
 
   const handleNavigation2 = () => {
-    navigate("/Unit1-Level2-page7");
+    navigate("/Unit1-Level3-page12");
   };
 
   const handleInputChange = (e, questionKey) => {
@@ -79,7 +76,7 @@ function Page11() {
   const checkAnswer = (questionKey) => {
     if (gameOver) return; // Disable input if the timer has run out
 
-    const userInput = answers[questionKey].toLowerCase().trim();
+    const userInput = answers[questionKey].trim();
 
     if (questionKey === "question1") {
       if (userInput === "y" || userInput === "yes") {
@@ -108,7 +105,7 @@ function Page11() {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: "directory1  hello.txt",
+          [questionKey]: "sample  a.txt b.txt",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -121,30 +118,24 @@ function Page11() {
     }
 
     if (questionKey === "question3") {
-      if (userInput === "cat hello.txt") {
+      if (userInput === "cp a.txt b.txt ./sample") {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]:
-            "Hello! It is so wonderful to meet you. I hope you are enjoying Navigator so far. Keep going... you've got this!",
+          [questionKey]: "",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
         setResponses({
           ...responses,
-          [questionKey]: `command not found: ${userInput}`,
+          [questionKey]: "",
         });
       }
       return;
     }
 
     if (questionKey === "question4") {
-      const mkdirRegex = /^mkdir\s+(\w+)$/; // Matches 'mkdir <directory-name>'
-      const match = mkdirRegex.exec(userInput);
-
-      if (match) {
-        const dirName = match[1]; // Extract the directory name
-        setDirectoryName(dirName); // Store the directory name
+      if (userInput === "rm b.txt") {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -161,47 +152,11 @@ function Page11() {
     }
 
     if (questionKey === "question5") {
-      if (userInput === "ls") {
+      if (userInput === "pwd") {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: `directory1 hello.txt ${directoryName}`,
-        });
-      } else {
-        setAnswers({ ...answers, [questionKey]: "" });
-        setResponses({
-          ...responses,
-          [questionKey]: "",
-        });
-      }
-      return;
-    }
-
-    if (questionKey === "question6") {
-      if (userInput === `cd ${directoryName}`) {
-        setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
-        setResponses({ ...responses, [questionKey]: "" });
-      } else {
-        setAnswers({ ...answers, [questionKey]: "" });
-        setResponses({
-          ...responses,
-          [questionKey]: "",
-        });
-      }
-      return;
-    }
-
-    if (questionKey === "question7") {
-      const mkdirRegex = /^touch\s+(\w+)$/; // Matches 'touch <file-name>'
-      const match = mkdirRegex.exec(userInput);
-
-      if (match) {
-        const fName = match[1]; // Extract the file name
-        setfileName(fName); // Store the file name
-        setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
-        setResponses({
-          ...responses,
-          [questionKey]: "",
+          [questionKey]: "/User/username",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -213,8 +168,36 @@ function Page11() {
       return;
     }
 
-    if (questionKey === "question8") {
+    if (questionKey === "question6") {
+      if (userInput === "cd sample") {
+        setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
+        setResponses({ ...responses, [questionKey]: "" });
+      } else {
+        setAnswers({ ...answers, [questionKey]: "" });
+        setResponses({
+          ...responses,
+          [questionKey]: `command not found: ${userInput}`,
+        });
+      }
+      return;
+    }
+
+    if (questionKey === "question7") {
       if (userInput === "ls") {
+        setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
+        setResponses({ ...responses, [questionKey]: "c.txt a.txt b.txt" });
+      } else {
+        setAnswers({ ...answers, [questionKey]: "" });
+        setResponses({
+          ...responses,
+          [questionKey]: `command not found: ${userInput}`,
+        });
+      }
+      return;
+    }
+
+    if (questionKey === "question8") {
+      if (userInput === "mv c.txt /User/username") {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -231,11 +214,11 @@ function Page11() {
     }
 
     if (questionKey === "question9") {
-      if (userInput === "cd .." || userInput === "cd ~") {
+      if (userInput === "ls") {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: "",
+          [questionKey]: "a.txt b.txt",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -292,7 +275,7 @@ function Page11() {
           color: "white",
         }}
       >
-        <p>[######-] 6/7</p>
+        <p>[###########-] 11/12</p>
       </div>
 
       <div className="content">
@@ -349,7 +332,10 @@ function Page11() {
           {/* Question 3 */}
           {correctAnswers.question2 && (
             <div ref={questionRefs.question3}>
-              <p>Display the contents of the file.</p>
+              <p>
+                Copy both files into the directory sample using relative
+                pathing.
+              </p>
               <div className="command-line">
                 <span className="directory-prompt">~ {">>"}</span>
                 <input
@@ -369,7 +355,7 @@ function Page11() {
           {/* Question 4 */}
           {correctAnswers.question3 && (
             <div ref={questionRefs.question4}>
-              <p>Create a new directory.</p>
+              <p>Remove the file b.txt.</p>
               <div className="command-line">
                 <span className="directory-prompt">~ {">>"}</span>
                 <input
@@ -389,7 +375,7 @@ function Page11() {
           {/* Question 5 */}
           {correctAnswers.question4 && (
             <div ref={questionRefs.question5}>
-              <p>List the contents of the current directory.</p>
+              <p>Display the current absolute path.</p>
               <div className="command-line">
                 <span className="directory-prompt">~ {">>"}</span>
                 <input
@@ -409,7 +395,7 @@ function Page11() {
           {/* Question 6 */}
           {correctAnswers.question5 && (
             <div ref={questionRefs.question6}>
-              <p>Move into the directory you just created.</p>
+              <p>Move into the subdirectory.</p>
               <div className="command-line">
                 <span className="directory-prompt">~ {">>"}</span>
                 <input
@@ -430,11 +416,9 @@ function Page11() {
         {/* Question 7 */}
         {correctAnswers.question6 && (
           <div ref={questionRefs.question7}>
-            <p>Create a file.</p>
+            <p>List the contents of the current directory.</p>
             <div className="command-line">
-              <span className="directory-prompt">
-                {directoryName || ""} {">>"}
-              </span>
+              <span className="directory-prompt">sample {">>"}</span>
               <input
                 type="text"
                 style={{ fontSize: "20px", color: "white" }}
@@ -452,11 +436,9 @@ function Page11() {
         {/* Question 8 */}
         {correctAnswers.question7 && (
           <div ref={questionRefs.question8}>
-            <p>List the contents of the current directory.</p>
+            <p>Move c.txt to its parent directory using absolute pathing.</p>
             <div className="command-line">
-              <span className="directory-prompt">
-                {directoryName || ""} {">>"}
-              </span>
+              <span className="directory-prompt">sample {">>"}</span>
               <input
                 type="text"
                 style={{ fontSize: "20px", color: "white" }}
@@ -474,11 +456,9 @@ function Page11() {
         {/* Question 9 */}
         {correctAnswers.question8 && (
           <div ref={questionRefs.question9}>
-            <p>Move to the home directory.</p>
+            <p>List the contents of the current directory.</p>
             <div className="command-line">
-              <span className="directory-prompt">
-                {directoryName || ""} {">>"}
-              </span>
+              <span className="directory-prompt">sample {">>"}</span>
               <input
                 type="text"
                 style={{ fontSize: "20px", color: "white" }}

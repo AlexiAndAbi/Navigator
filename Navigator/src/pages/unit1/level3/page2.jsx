@@ -48,7 +48,7 @@ function Page2() {
           color: "white",
         }}
       >
-        <p>[##---------] 2/11</p>
+        <p>[##----------] 2/12</p>
       </div>
 
       {/* Back Button */}

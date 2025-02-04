@@ -183,12 +183,12 @@ function Page8() {
           color: "white",
         }}
       >
-        <p>[###----] 3/7</p>
+        <p>[########----] 8/12</p>
       </div>
 
       <div className="content">
         <p>
-          Copy files! <br /> Abbreviated cp, this command copies files within
+          Copy files! <br /> Abbreviated <span class="highlight">cp</span>, this command copies files within
           and between directories.
           <br />
           <br />

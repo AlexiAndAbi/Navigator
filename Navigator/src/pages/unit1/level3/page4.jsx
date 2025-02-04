@@ -64,7 +64,7 @@ function Page4() {
           color: "white",
         }}
       >
-        <p>[###--------] 3/11</p>
+        <p>[####--------] 4/12</p>
       </div>
 
       <div className="content">

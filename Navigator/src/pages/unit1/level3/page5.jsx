@@ -157,12 +157,12 @@ function Page5() {
           color: "white",
         }}
       >
-        <p>[###----] 3/7</p>
+        <p>[#####-------] 5/12</p>
       </div>
 
       <div className="content">
         <p>
-          Return working directory name! <br /> Abbreviated pwd, this command
+          Return working directory name! <br /> Abbreviated <span class="highlight">pwd</span>, this command
           displays the absolute path to the current directory the user is
           viewing.
           <br />

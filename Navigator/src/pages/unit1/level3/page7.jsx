@@ -204,7 +204,7 @@ function Page7() {
           color: "white",
         }}
       >
-        <p>[###----] 3/7</p>
+        <p>[#######-----] 7/12</p>
       </div>
 
       <div className="content">

@@ -194,7 +194,7 @@ function Page10() {
           color: "white",
         }}
       >
-        <p>[#########--] 9/11</p>
+        <p>[##########--] 10/12</p>
       </div>
 
       <div className="content">
