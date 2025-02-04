@@ -99,9 +99,9 @@ function Page7() {
       <div className="content">
         <p>
           List Directory Contents! <br />
-          Abbreviated <span class="highlight">ls</span>, this command displays the contents of the current
-          directory you are in. This command displays files as well as
-          directories.
+          Abbreviated <span class="highlight">ls</span>, this command displays
+          the contents of the current directory you are in. This command
+          displays files as well as directories.
         </p>
         <p>List the contents of the current directory</p>
         <div className="command-line">
@@ -147,7 +147,11 @@ function Page7() {
           <button
             className="navigate-button fade-in"
             onClick={handleNavigation2}
-            style={{ border: "2px solid white", marginTop: "20px" }}
+            style={{
+              border: "2px solid white",
+              marginTop: "20px",
+              marginBottom: "40px",
+            }}
           >
             continue
           </button>

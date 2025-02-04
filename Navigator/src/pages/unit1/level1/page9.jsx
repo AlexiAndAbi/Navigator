@@ -184,9 +184,10 @@ function Page9() {
 
       <div className="content">
         <p>
-          Clear the Terminal! <br /> Typing <span class="highlight">clear</span> removes the contents displayed
-          on the terminal. You can also type control + l to clear the terminal.
-          (In the future, control will be abbreviated ctrl.)
+          Clear the Terminal! <br /> Typing <span class="highlight">clear</span>{" "}
+          removes the contents displayed on the terminal. You can also type
+          control + l to clear the terminal. (In the future, control will be
+          abbreviated ctrl.)
         </p>
 
         {/* Hide questions 1-3 if the terminal is cleared */}
@@ -283,7 +284,11 @@ function Page9() {
           <button
             className="navigate-button fade-in"
             onClick={handleNavigation2}
-            style={{ border: "2px solid white", marginTop: "20px" }}
+            style={{
+              border: "2px solid white",
+              marginTop: "20px",
+              marginBottom: "40px",
+            }}
           >
             continue
           </button>

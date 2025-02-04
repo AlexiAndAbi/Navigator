@@ -46,7 +46,7 @@ function Page5() {
 
     // Example of manual matching for question1
     if (questionKey === "question1") {
-      const mkdirRegex = /^touch\s+(\w+)$/; // Matches 'touch <file-name>'
+      const mkdirRegex = /^touch\s+(\w+\.txt)$/; // Matches 'touch <file-name>.txt'
       const match = mkdirRegex.exec(userInput);
 
       if (match) {
@@ -138,9 +138,9 @@ function Page5() {
       <div className="content">
         <p>
           Make a file! <br />
-          The command <span class="highlight">touch</span> creates an empty file. This command also offers no
-          output when successful, however, you can type a quick ls to ensure the
-          file has been created.
+          The command <span class="highlight">touch</span> creates an empty
+          file. This command also offers no output when successful, however, you
+          can type a quick ls to ensure the file has been created.
           <br />
           To make a new file you can type: <br /> cat [file name]
           &emsp;&emsp;&emsp;&emsp; (ex: cat hello.txt) <br />

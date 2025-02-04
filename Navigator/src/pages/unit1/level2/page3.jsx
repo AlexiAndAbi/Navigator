@@ -221,7 +221,7 @@ function Page3() {
                 <>
                   <p>Clear the terminal.</p>
                   <div className="command-line">
-                    <span className="directory-prompt">directory1 {">>"}</span>
+                    <span className="directory-prompt">~ {">>"}</span>
                     <input
                       type="text"
                       style={{ fontSize: "20px", color: "white" }}

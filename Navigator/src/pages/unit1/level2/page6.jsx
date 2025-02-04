@@ -218,7 +218,7 @@ function Page6() {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: `${directoryName}`,
+          [questionKey]: `${fileName}`,
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });

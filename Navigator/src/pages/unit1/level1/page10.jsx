@@ -504,7 +504,11 @@ function Page10() {
           <button
             className="navigate-button fade-in"
             onClick={handleNavigation2}
-            style={{ border: "2px solid white", marginTop: "20px" }}
+            style={{
+              border: "2px solid white",
+              marginTop: "20px",
+              marginBottom: "40px",
+            }}
           >
             continue
           </button>

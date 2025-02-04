@@ -205,8 +205,8 @@ function Page8() {
 
       <div className="content">
         <p>
-          Change Directory! <br /> Abbreviated <span class="highlight">cd</span>, this command helps you move
-          between directories. <br />
+          Change Directory! <br /> Abbreviated <span class="highlight">cd</span>
+          , this command helps you move between directories. <br />
           <br />
           If you want to move into a directory within the current directory you
           can type cd [directory name] <br />
@@ -329,7 +329,11 @@ function Page8() {
           <button
             className="navigate-button fade-in"
             onClick={handleNavigation2}
-            style={{ border: "2px solid white", marginTop: "20px" }}
+            style={{
+              border: "2px solid white",
+              marginTop: "20px",
+              marginBottom: "40px",
+            }}
           >
             continue
           </button>

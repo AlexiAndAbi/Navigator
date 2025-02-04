@@ -127,12 +127,12 @@ function Page4() {
         {/* Show the Continue button if all answers are correct */}
         {allCorrect && (
           <button
-            className="navigate-button fade-in"
-            onClick={handleNavigation2}
-            style={{ border: "2px solid white", marginTop: "20px" }}
-          >
-            continue
-          </button>
+          className="navigate-button fade-in"
+          onClick={handleNavigation2}
+          style={{ border: "2px solid white", marginTop: "20px", marginBottom: "40px" }}
+        >
+          continue
+        </button>
         )}
       </div>
     </div>
