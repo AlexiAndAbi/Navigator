@@ -163,7 +163,7 @@ function Page3() {
 
       <div className="content">
         <p>
-          Concatenate and Print Files! <br /> Abbreviated cat, this command
+          Concatenate and Print Files! <br /> Abbreviated <span class="highlight">cat</span>, this command
           displays the contents of a file. The content within the file will be
           displayed in its entirety right below the command line.
           <br />

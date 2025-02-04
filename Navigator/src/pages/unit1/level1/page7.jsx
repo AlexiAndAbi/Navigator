@@ -99,7 +99,7 @@ function Page7() {
       <div className="content">
         <p>
           List Directory Contents! <br />
-          Abbreviated ls, this command displays the contents of the current
+          Abbreviated <span class="highlight">ls</span>, this command displays the contents of the current
           directory you are in. This command displays files as well as
           directories.
         </p>

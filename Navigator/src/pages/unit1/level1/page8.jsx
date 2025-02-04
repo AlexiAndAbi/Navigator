@@ -205,7 +205,7 @@ function Page8() {
 
       <div className="content">
         <p>
-          Change Directory! <br /> Abbreviated cd, this command helps you move
+          Change Directory! <br /> Abbreviated <span class="highlight">cd</span>, this command helps you move
           between directories. <br />
           <br />
           If you want to move into a directory within the current directory you

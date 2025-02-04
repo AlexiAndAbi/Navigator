@@ -138,7 +138,7 @@ function Page5() {
       <div className="content">
         <p>
           Make a file! <br />
-          The command touch creates an empty file. This command also offers no
+          The command <span class="highlight">touch</span> creates an empty file. This command also offers no
           output when successful, however, you can type a quick ls to ensure the
           file has been created.
           <br />

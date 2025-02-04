@@ -81,6 +81,13 @@
   outline: none;
 }
 
+.highlight {
+  background-color: #cfe2f3; /* Light blue */
+  color: #1f2f98; /* Adjust text color for readability */
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
 .fade-in {
   opacity: 0;
   animation: fadeIn 1s forwards;

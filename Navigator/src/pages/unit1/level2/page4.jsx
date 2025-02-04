@@ -157,7 +157,7 @@ function Page4() {
       <div className="content">
         <p>
           Make directories! <br />
-          Abbreviated mkdir, this command creates an empty directory. This
+          Abbreviated <span class="highlight">mkdir</span>, this command creates an empty directory. This
           command offers no output when successful, however, you can type a
           quick ls to ensure the directory has been created.
           <br />

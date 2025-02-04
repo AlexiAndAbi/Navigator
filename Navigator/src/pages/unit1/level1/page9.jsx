@@ -184,7 +184,7 @@ function Page9() {
 
       <div className="content">
         <p>
-          Clear the Terminal! <br /> Typing clear removes the contents displayed
+          Clear the Terminal! <br /> Typing <span class="highlight">clear</span> removes the contents displayed
           on the terminal. You can also type control + l to clear the terminal.
           (In the future, control will be abbreviated ctrl.)
         </p>
