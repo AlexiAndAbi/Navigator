@@ -4,6 +4,19 @@ import { useNavigate } from "react-router-dom";
 
 function Page10() {
   const navigate = useNavigate();
+  const [currentDirectory, setCurrentDirectory] = useState("home"); // Track the directory
+  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree1.png"); // Track the image
+
+  const updateImage = (newDirectory) => {
+    if (newDirectory === "directory1") {
+      setImageSrc("/unit1filetrees/FileTree2.png");
+    } else if (newDirectory === "directory3") {
+      setImageSrc("/unit1filetrees/FileTree3.png");
+    } else {
+      setImageSrc("/unit1filetrees/FileTree1.png");
+    }
+  };
+  
   const [answers, setAnswers] = useState({
     question1: "",
     question2: "",
@@ -129,6 +142,8 @@ function Page10() {
 
     if (questionKey === "question3") {
       if (userInput === "cd directory1") {
+        setCurrentDirectory("directory1");
+        updateImage("directory1");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -212,6 +227,8 @@ function Page10() {
 
     if (questionKey === "question8") {
       if (userInput === "cd directory3") {
+        setCurrentDirectory("directory3");
+        updateImage("directory3");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -229,6 +246,8 @@ function Page10() {
 
     if (questionKey === "question9") {
       if (userInput === "cd ..") {
+        setCurrentDirectory("directory1");
+        updateImage("directory1");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -303,6 +322,16 @@ function Page10() {
         }}
       >
         <p>[##########-] 10/11</p>
+      </div>
+
+      <div
+        style={{
+          position: "absolute",
+          top: "85px",
+          right: "125px",
+        }}
+      >
+        <img src={imageSrc} alt="Progress Icon" width="300" height="300" />
       </div>
 
       <div className="content">

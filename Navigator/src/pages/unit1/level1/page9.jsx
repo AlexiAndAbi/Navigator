@@ -4,6 +4,17 @@ import { useNavigate } from "react-router-dom";
 
 function Page9() {
   const navigate = useNavigate();
+  const [currentDirectory, setCurrentDirectory] = useState("home"); // Track the directory
+  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree1.png"); // Track the image
+
+  const updateImage = (newDirectory) => {
+    if (newDirectory === "directory1") {
+      setImageSrc("/unit1filetrees/FileTree2.png");
+    } else {
+      setImageSrc("/unit1filetrees/FileTree1.png");
+    }
+  };
+
   const [answers, setAnswers] = useState({
     question1: "",
     question2: "",
@@ -24,11 +35,6 @@ function Page9() {
   });
 
   const [terminalCleared, setTerminalCleared] = useState(false); // Tracks if the terminal is cleared
-
-  const acceptableAnswersQ1 = ["ls"];
-  const acceptableAnswersQ2 = ["cd directory1"];
-  const acceptableAnswersQ3 = ["ls"];
-  const acceptableAnswersQ5 = ["clear"];
 
   const questionRefs = {
     question1: useRef(null),
@@ -85,6 +91,8 @@ function Page9() {
 
     if (questionKey === "question2") {
       if (userInput === "cd directory1") {
+        setCurrentDirectory("directory1");
+        updateImage("directory1");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -180,6 +188,16 @@ function Page9() {
         }}
       >
         <p>[#########--] 9/11</p>
+      </div>
+
+      <div
+        style={{
+          position: "absolute",
+          top: "85px",
+          right: "125px",
+        }}
+      >
+        <img src={imageSrc} alt="Progress Icon" width="300" height="300" />
       </div>
 
       <div className="content">

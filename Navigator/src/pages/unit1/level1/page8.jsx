@@ -4,6 +4,17 @@ import { useNavigate } from "react-router-dom";
 
 function Page8() {
   const navigate = useNavigate();
+  const [currentDirectory, setCurrentDirectory] = useState("home"); // Track the directory
+  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree1.png"); // Track the image
+
+  const updateImage = (newDirectory) => {
+    if (newDirectory === "directory1") {
+      setImageSrc("/unit1filetrees/FileTree2.png");
+    } else {
+      setImageSrc("/unit1filetrees/FileTree1.png");
+    }
+  };
+
   const [answers, setAnswers] = useState({
     question1: "",
     question2: "",
@@ -25,12 +36,6 @@ function Page8() {
     question4: false,
     question5: false,
   });
-
-  const acceptableAnswersQ1 = ["ls"];
-  const acceptableAnswersQ2 = ["cd directory1"];
-  const acceptableAnswersQ3 = ["ls"];
-  const acceptableAnswersQ4 = ["cd ..", "cd ~"];
-  const acceptableAnswersQ5 = ["y", "yes"];
 
   // Refs for scrolling
   const questionRefs = {
@@ -81,6 +86,8 @@ function Page8() {
 
     if (questionKey === "question2") {
       if (userInput === "cd directory1") {
+        setCurrentDirectory("directory1");
+        updateImage("directory1");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -121,6 +128,8 @@ function Page8() {
 
     if (questionKey === "question4") {
       if (userInput === "cd .." || userInput === "cd ~") {
+        setCurrentDirectory("home");
+        updateImage("home");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -201,6 +210,16 @@ function Page8() {
         }}
       >
         <p>[########---] 8/11</p>
+      </div>
+
+      <div
+        style={{
+          position: "absolute",
+          top: "85px",
+          right: "125px",
+        }}
+      >
+        <img src={imageSrc} alt="Progress Icon" width="300" height="300" />
       </div>
 
       <div className="content">

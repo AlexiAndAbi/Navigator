@@ -96,6 +96,21 @@ function Page7() {
         <p>[#######----] 7/11</p>
       </div>
 
+      <div
+        style={{
+          position: "absolute",
+          top: "85px",
+          right: "125px",
+        }}
+      >
+        <img
+          src="/unit1filetrees/FileTree1.png"
+          alt="Progress Icon"
+          width="300"
+          height="300"
+        />
+      </div>
+
       <div className="content">
         <p>
           List Directory Contents! <br />
