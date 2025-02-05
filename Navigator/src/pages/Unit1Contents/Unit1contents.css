@@ -82,5 +82,5 @@
     width: 400px; /* Adjust to the size of your images */
     height: 400px; /* Match the sprite dimensions */
     background-size: cover;
-    background-image: url("/images/smallcompass-1.png");
+    background-image: url("/images/CompassAgain-1.png");
   }

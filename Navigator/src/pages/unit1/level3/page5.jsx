@@ -162,7 +162,7 @@ function Page5() {
 
       <div className="content">
         <p>
-          Return working directory name! <br /> Abbreviated <span class="highlight">pwd</span>, this command
+          Return working directory name! <br /> Abbreviated <span class="highlight3">pwd</span>, this command
           displays the absolute path to the current directory the user is
           viewing.
           <br />
