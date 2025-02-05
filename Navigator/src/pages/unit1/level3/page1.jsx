@@ -55,8 +55,8 @@ function Page1() {
           Sail On!
         </button>
 
-        { /* <div className="pixel-art3"></div>
-        <div className="pixel-art4"></div> */ }
+        <div className="pixel-art5"></div>
+        <div className="pixel-art6"></div>
       </div>
     </div>
   );

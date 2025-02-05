@@ -13,7 +13,7 @@
     display: flex;
     margin-left: 40px;
     margin-top: 20px;
-    width: 100%; /* Full width to align Explore to the far right */
+    width: 95%; /* Full width to align Explore to the far right */
     align-items: center;
     margin-bottom: 30px;
 }
@@ -73,3 +73,14 @@
     margin-left: 15px;
     font-weight: normal;
 }
+
+.content-art {
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    z-index: 10;
+    width: 400px; /* Adjust to the size of your images */
+    height: 400px; /* Match the sprite dimensions */
+    background-size: cover;
+    background-image: url("/images/smallcompass-1.png");
+  }

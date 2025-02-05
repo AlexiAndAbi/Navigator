@@ -49,6 +49,7 @@ function Unit1contents() {
                 <button style={{ border: '2px solid #4F30FF' }}>Play</button>
                 <h3>Combine skills from levels 1-4</h3>
             </div>
+            <div className="content-art"></div>
         </div>
     );
 }

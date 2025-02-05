@@ -111,7 +111,7 @@
     height: 450px; /* Match the sprite dimensions */
     background-size: cover;
     background-image: url("/images/kelp0.png"); /* First frame */
-    animation: kelpAnimation 0.3s steps(1) infinite;
+    animation: kelpAnimation 1s steps(1) infinite;
   }
   
   .pixel-art4 {
@@ -123,7 +123,7 @@
     height: 450px; /* Match the sprite dimensions */
     background-size: cover;
     background-image: url("/images/kelp0.png"); /* First frame */
-    animation: kelpAnimation 0.3s steps(1) infinite;
+    animation: kelpAnimation 1s steps(1) infinite;
   }
   
   /* Define keyframes to change the background image */
