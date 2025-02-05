@@ -1,5 +1,5 @@
-.gradient_background {
-    background: linear-gradient(90deg, #1f2f98, #49a699);
+.gradient_background3 {
+    background: linear-gradient(90deg, #2359aa, #d289e6);
     min-height: 100vh; /* Ensure it covers at least the viewport height */
     width: 100vw; /* Full width of the viewport */
     height: auto; /* Allow it to expand with content */
@@ -81,9 +81,9 @@
     outline: none;
   }
 
-  .highlight {
+  .highlight3 {
     background-color: #cfe2f3; /* Light blue */
-    color: #1f2f98; /* Adjust text color for readability */
+    color: #1c4c94; /* Adjust text color for readability */
     padding: 2px 5px;
     border-radius: 3px;
   }

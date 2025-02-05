@@ -257,7 +257,7 @@ function Page11() {
   }, [correctAnswers, directoryName, fileName]);
 
   return (
-    <div className="gradient_background">
+    <div className="gradient_background3">
       <button
         className="navigate-button"
         onClick={handleNavigation}

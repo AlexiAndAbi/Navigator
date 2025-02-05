@@ -165,7 +165,7 @@ function Page8() {
   }, [correctAnswers]);
 
   return (
-    <div className="gradient_background">
+    <div className="gradient_background3">
       <button
         className="navigate-button"
         onClick={handleNavigation}
@@ -188,7 +188,7 @@ function Page8() {
 
       <div className="content">
         <p>
-          Copy files! <br /> Abbreviated <span class="highlight">cp</span>, this command copies files within
+          Copy files! <br /> Abbreviated <span class="highlight3">cp</span>, this command copies files within
           and between directories.
           <br />
           <br />

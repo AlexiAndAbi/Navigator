@@ -139,7 +139,7 @@ function Page5() {
   }, [correctAnswers]);
 
   return (
-    <div className="gradient_background">
+    <div className="gradient_background3">
       <button
         className="navigate-button"
         onClick={handleNavigation}

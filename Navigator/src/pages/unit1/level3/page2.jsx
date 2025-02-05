@@ -37,7 +37,7 @@ function Page2() {
   };
 
   return (
-    <div className="gradient_background" style={{ position: "relative" }}>
+    <div className="gradient_background3" style={{ position: "relative" }}>
       {/* Top-Right Progress Display */}
       <div
         style={{

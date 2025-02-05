@@ -165,7 +165,7 @@ function Page6() {
   }, [correctAnswers]);
 
   return (
-    <div className="gradient_background">
+    <div className="gradient_background3">
       <button
         className="navigate-button"
         onClick={handleNavigation}
@@ -188,7 +188,7 @@ function Page6() {
 
       <div className="content">
         <p>
-          Move files! <br /> Abbreviated <span class="highlight">mv</span>, this command moves files between
+          Move files! <br /> Abbreviated <span class="highlight3">mv</span>, this command moves files between
           directories. This command is also used to rename files.
           <br />
           <br />

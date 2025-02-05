@@ -176,7 +176,7 @@ function Page10() {
   }, [correctAnswers]);
 
   return (
-    <div className="gradient_background">
+    <div className="gradient_background3">
       <button
         className="navigate-button"
         onClick={handleNavigation}
@@ -199,7 +199,7 @@ function Page10() {
 
       <div className="content">
         <p>
-          Remove! <br /> Abbreviated <span class="highlight">rm</span>, this command removes files and empty
+          Remove! <br /> Abbreviated <span class="highlight3">rm</span>, this command removes files and empty
           directories.
           <br />
           <br />
