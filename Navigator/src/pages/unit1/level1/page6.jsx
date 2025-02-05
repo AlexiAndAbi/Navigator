@@ -76,6 +76,21 @@ function Page6() {
         <p>[######-----] 6/11</p>
       </div>
 
+      <div
+        style={{
+          position: "absolute",
+          top: "85px",
+          right: "125px",
+        }}
+      >
+        <img
+          src="/unit1filetrees/FileTree1.png"
+          alt="Progress Icon"
+          width="300"
+          height="300"
+        />
+      </div>
+
       <div className="content">
         <p>
           We can visualize the filesystem of a computer like the roots of a tree
@@ -85,7 +100,7 @@ function Page6() {
           To help you visualize the filesystem we will provide you with these
           diagrams →
           <br />
-          &emsp;&emsp;- Your current position will always be marked in bright
+          &emsp;&emsp;- Your current position will always be marked in dark
           blue.
           <br />
           &emsp;&emsp;- Directories will be represented by large circles.
@@ -94,7 +109,7 @@ function Page6() {
           <br />
           &emsp;&emsp;- The home directory will always be at the top.
         </p>
-        <p>How many directories are in the home directory? (1, 2, 6, y)</p>
+        <p>How many directories are in the home directory?</p>
         <div className="command-line">
           <span className="directory-prompt">??</span>
           <input
