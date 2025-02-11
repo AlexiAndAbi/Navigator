@@ -23,11 +23,11 @@ function Page5() {
   };
 
   const handleNavigation = () => {
-    navigate("/Unit1-Level4-page3");
+    navigate("/Unit1-Level4-page4");
   };
 
   const handleNavigation2 = () => {
-    navigate("/Unit1-Level4-page5");
+    navigate("/Unit1-Level4-page6");
   };
 
   const handleInputChange = (e, questionKey) => {
@@ -48,7 +48,7 @@ function Page5() {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: "page0.txt \u00A0\u00A0\u00A0 page1.txt",
+          [questionKey]: "file.txt",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -61,14 +61,11 @@ function Page5() {
     }
 
     if (questionKey === "question2") {
-      if (
-        userInput === "cat page0.txt page1.txt > start.txt" ||
-        userInput === "cat page1.txt page0.txt > start.txt"
-      ) {
+      if (userInput === "cat -n file.txt") {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: "",
+          [questionKey]: "\t1\t Hello,\n\t2\t It is wonderful to have you here.\n\t3\t I'm so proud of how far you have come.",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -119,15 +116,10 @@ function Page5() {
           Concatenate!
           <br />
           <br />
-          As the name suggests, <span class="highlight4">cat</span> can do more
-          than just print files. You can concatenate files using this command as
-          well. <br />
-          <br /> To concatenate the contents of file2 onto the end of file1 and
-          place it in a file named file3 type: <br /> cat file1 file2 {">"}{" "}
-          file3 <br />
+          This command also has the -n flag.
           <br />
-          This command makes use of the redirect symbol "{">"}". In this case,
-          if file3 does not already exist, it is created.
+          <br /> -n <br /> This flag shows the line number for each line of text
+          in a file.
         </p>
 
         <>
@@ -153,10 +145,7 @@ function Page5() {
           <div ref={questionRefs.question2}>
             {correctAnswers.question1 && (
               <>
-                <p>
-                  Concatenate page0.txt and page1.txt to a file called
-                  start.txt.
-                </p>
+                <p>Display the file with line numbers showing.</p>
                 <div className="command-line">
                   <span className="directory-prompt">~ {">>"}</span>
                   <input
