@@ -112,48 +112,63 @@
   }
 }
 
-.pixel-art {
+.pixel-art7 {
   position: absolute;
   bottom: 0px;
-  right: 0px;
+  right: 20px;
   z-index: 10;
-  width: 450px; /* Adjust to the size of your images */
-  height: 450px; /* Match the sprite dimensions */
+  width: 350px; /* Adjust to the size of your images */
+  height: 350px; /* Match the sprite dimensions */
   background-size: cover;
-  background-image: url("/images/wave0.png"); /* First frame */
-  animation: spriteAnimation 1s steps(1) infinite;
+  background-image: url("/images/Fish0.png"); /* First frame */
+  animation: fishAnimation 2s steps(1) infinite;
 }
 
-.pixel-art2 {
+.pixel-art8 {
   position: absolute;
   bottom: 0px;
-  right: 450px;
+  right: 325px;
   z-index: 10;
-  width: 450px; /* Adjust to the size of your images */
-  height: 450px; /* Match the sprite dimensions */
+  width: 350px; /* Adjust to the size of your images */
+  height: 350px; /* Match the sprite dimensions */
   background-size: cover;
-  background-image: url("/images/wave0.png"); /* First frame */
-  animation: spriteAnimation 1s steps(1) infinite;
+  background-image: url("/images/bubble0.png"); /* First frame */
+  animation: bubbleAnimation 2s steps(1) infinite;
 }
 
 /* Define keyframes to change the background image */
-@keyframes spriteAnimation {
+@keyframes bubbleAnimation {
   0% {
-    background-image: url("/images/wave0.png");
+    background-image: url("/images/bubble0.png");
   }
-  20% {
-    background-image: url("/images/wave1.png");
+  33% {
+    background-image: url("/images/bubble1.png");
   }
-  40% {
-    background-image: url("/images/wave2.png");
-  }
-  60% {
-    background-image: url("/images/wave3.png");
-  }
-  80% {
-    background-image: url("/images/wave4.png");
+  66% {
+    background-image: url("/images/bubble2.png");
   }
   100% {
-    background-image: url("/images/wave0.png");
+    background-image: url("/images/bubble0.png");
+  }
+}
+
+@keyframes fishAnimation {
+  0% {
+    background-image: url("/images/Fish0.png");
+  }
+  20% {
+    background-image: url("/images/Fish1.png");
+  }
+  40% {
+    background-image: url("/images/Fish2.png");
+  }
+  60% {
+    background-image: url("/images/Fish3.png");
+  }
+  80% {
+    background-image: url("/images/Fish4.png");
+  }
+  100% {
+    background-image: url("/images/Fish0.png");
   }
 }

@@ -170,7 +170,7 @@ function Page9() {
           color: "white",
         }}
       >
-        <p>[#####------] 5/11</p>
+        <p>[#########--] 9/11</p>
       </div>
 
       <div className="content">

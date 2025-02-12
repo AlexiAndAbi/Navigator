@@ -32,7 +32,7 @@ function Page1() {
           color: "white",
         }}
       >
-        <p>[#-----------] 1/12</p>
+        <p>[#----------] 1/11</p>
       </div>
 
       <div className="content">
@@ -50,8 +50,8 @@ function Page1() {
           Sail On!
         </button>
 
-        <div className="pixel-art5"></div>
-        <div className="pixel-art6"></div>
+        <div className="pixel-art7"></div>
+        <div className="pixel-art8"></div>
       </div>
     </div>
   );

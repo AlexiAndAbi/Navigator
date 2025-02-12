@@ -111,7 +111,7 @@ function Page4() {
           color: "white",
         }}
       >
-        <p>[#####-----] 4/11</p>
+        <p>[####-------] 4/11</p>
       </div>
 
       <div className="content">

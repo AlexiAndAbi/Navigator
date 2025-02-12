@@ -110,7 +110,7 @@ function Page3() {
           color: "white",
         }}
       >
-        <p>[#####-------] 5/12</p>
+        <p>[###--------] 3/11</p>
       </div>
 
       <div className="content">

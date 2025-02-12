@@ -146,7 +146,7 @@ function Page7() {
           color: "white",
         }}
       >
-        <p>[#####------] 5/11</p>
+        <p>[#######----] 7/11</p>
       </div>
 
       <div className="content">

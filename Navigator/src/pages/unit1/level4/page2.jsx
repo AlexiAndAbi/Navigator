@@ -110,7 +110,7 @@ function Page2() {
           color: "white",
         }}
       >
-        <p>[#####-------] 5/12</p>
+        <p>[##---------] 2/11</p>
       </div>
 
       <div className="content">
