@@ -2,8 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import "./unit1.css";
 import { useNavigate } from "react-router-dom";
 
-function Page5() {
+function Page7() {
   const navigate = useNavigate();
+  const [isToggled, setIsToggled] = useState(false);
+
   const [answers, setAnswers] = useState({
     question1: "",
     question2: "",
@@ -16,18 +18,21 @@ function Page5() {
     question1: false,
     question2: false,
   });
+  const [showPrompt, setShowPrompt] = useState(false);
+  const [overwriteResponse, setOverwriteResponse] = useState("");
 
   const questionRefs = {
     question1: useRef(null),
     question2: useRef(null),
+    overwrite: useRef(null),
   };
 
   const handleNavigation = () => {
-    navigate("/Unit1-Level4-page4");
+    navigate("/Unit1-Level4-page6");
   };
 
   const handleNavigation2 = () => {
-    navigate("/Unit1-Level4-page6");
+    navigate("/Unit1-Level4-page8");
   };
 
   const handleInputChange = (e, questionKey) => {
@@ -48,7 +53,7 @@ function Page5() {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: "file.txt",
+          [questionKey]: "lyrics.txt intro.mp3 newTrack",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -61,12 +66,12 @@ function Page5() {
     }
 
     if (questionKey === "question2") {
-      if (userInput === "cat -n file.txt") {
-        setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
-        setResponses({
-          ...responses,
-          [questionKey]: "\t1\t Hello,\n\t2\t It is wonderful to have you here.\n\t3\t I'm so proud of how far you have come.",
-        });
+      if (
+        userInput === "mv -i -v intro.mp3 ./newTrack" ||
+        userInput === "mv -v -i intro.mp3 ./newTrack"
+      ) {
+        setShowPrompt(true);
+        setTimeout(() => questionRefs.overwrite.current?.focus(), 100);
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
         setResponses({
@@ -75,6 +80,28 @@ function Page5() {
         });
       }
       return;
+    }
+  };
+
+  const handleOverwriteResponse = (e) => {
+    if (e.key === "Enter") {
+      let responseText = "not overwritten\n";
+      if (
+        overwriteResponse.toLowerCase() === "y" ||
+        overwriteResponse.toLowerCase() === "yes"
+      ) {
+        responseText = "intro.mp3 -> ./newTrack/intro.mp3";
+        setCorrectAnswers({ ...correctAnswers, question2: true });
+      }
+      setResponses({
+        ...responses,
+        question2: `overwrite ./newTrack/intro.mp3? (y/n [n]) ${overwriteResponse}\n${responseText}`,
+      });
+      setIsToggled((prev) => {
+        return !prev;
+      });
+      setShowPrompt(false);
+      setOverwriteResponse("");
     }
   };
 
@@ -112,61 +139,64 @@ function Page5() {
       </div>
 
       <div className="content">
-        <p>
-          Concatenate!
-          <br />
-          This command also has the -n flag.
-          <br />
-          <br /> -n <br /> This flag shows the line number for each line of text
-          in a file.
-        </p>
+        <p>The move command!</p>
+        <p>...</p>
 
-        <>
-          {/* Question 1 */}
-          <div ref={questionRefs.question1}>
-            <p>List directory contents.</p>
+        <div ref={questionRefs.question1}>
+          <p>List directory contents.</p>
+          <div className="command-line">
+            <span className="directory-prompt">~ {">>"}</span>
+            <input
+              type="text"
+              style={{ fontSize: "20px", color: "white" }}
+              className="input-box"
+              value={answers.question1}
+              onChange={(e) => handleInputChange(e, "question1")}
+              onKeyDown={(e) => handleKeyPress(e, "question1")}
+              disabled={correctAnswers.question1}
+            />
+          </div>
+          <p className="fade-in">{responses.question1}</p>
+        </div>
+
+        {correctAnswers.question1 && (
+          <div ref={questionRefs.question2}>
+            <p>
+              Move intro.mp3 into newTrack using the interactive and verbose
+              option.
+            </p>
             <div className="command-line">
               <span className="directory-prompt">~ {">>"}</span>
               <input
                 type="text"
                 style={{ fontSize: "20px", color: "white" }}
                 className="input-box"
-                value={answers.question1}
-                onChange={(e) => handleInputChange(e, "question1")}
-                onKeyDown={(e) => handleKeyPress(e, "question1")}
-                disabled={correctAnswers.question1}
+                value={answers.question2}
+                onChange={(e) => handleInputChange(e, "question2")}
+                onKeyDown={(e) => handleKeyPress(e, "question2")}
+                disabled={correctAnswers.question2 || showPrompt}
               />
             </div>
-            <p className="fade-in">{responses.question1}</p>
-          </div>
-
-          {/* Question 2 */}
-          <div ref={questionRefs.question2}>
-            {correctAnswers.question1 && (
-              <>
-                <p>Display the file with line numbers showing.</p>
-                <div className="command-line">
-                  <span className="directory-prompt">~ {">>"}</span>
-                  <input
-                    type="text"
-                    style={{ fontSize: "20px", color: "white" }}
-                    className="input-box"
-                    value={answers.question2}
-                    onChange={(e) => handleInputChange(e, "question2")}
-                    onKeyDown={(e) => handleKeyPress(e, "question2")}
-                    disabled={correctAnswers.question2}
-                  />
-                </div>
-                <p className="fade-in">
-                  <pre>{responses.question2}</pre>
-                </p>
-              </>
+            <p className="fade-in">
+              <pre>{responses.question2}</pre>
+            </p>
+            {showPrompt && (
+              <p className="inline-p">
+              overwrite ./newTrack/intro.mp3? (y/n [n])
+              <input
+                ref={questionRefs.overwrite}
+                type="text"
+                style={{ fontSize: "20px", color: "white" }}
+                value={overwriteResponse}
+                onChange={(e) => setOverwriteResponse(e.target.value)}
+                onKeyDown={handleOverwriteResponse}
+              />
+            </p>            
             )}
           </div>
-        </>
+        )}
 
-        {/* Continue button */}
-        {allCorrect && (
+        {isToggled && (
           <button
             className="navigate-button fade-in"
             onClick={handleNavigation2}
@@ -184,4 +214,4 @@ function Page5() {
   );
 }
 
-export default Page5;
+export default Page7;
