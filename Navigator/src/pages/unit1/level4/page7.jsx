@@ -27,6 +27,17 @@ function Page7() {
     overwrite: useRef(null),
   };
 
+  const continueButtonRef = useRef(null);
+
+  useEffect(() => {
+    if (isToggled && continueButtonRef.current) {
+      continueButtonRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [isToggled]);
+
   const handleNavigation = () => {
     navigate("/Unit1-Level4-page6");
   };
@@ -139,8 +150,32 @@ function Page7() {
       </div>
 
       <div className="content">
-        <p>The move command!</p>
-        <p>...</p>
+        <p>
+          The move command!
+          <br />
+          The <span className="highlight4">mv</span> command can be modified
+          with the -i and -v flags. Flags are included after the command and
+          before any additional arguments.
+          <br />
+          <br /> ex:
+          <br /> mv &emsp;-i -v c.txt ./sample
+          <br />
+          ^-^ ^---^ ^------------^
+          <br />
+          cmd flags &emsp;&emsp;arguments
+          <br />
+          <br /> -i
+          <br /> The -i flag, standing for interactive, prompts the user before
+          overwriting files. This can be helpful if you are moving files to
+          directories where you are unsure of the contents. The user can type y
+          or yes to move the file or or n or no to not move the file.
+          <br />
+          <br /> -i
+          <br /> The -i flag, standing for interactive, prompts the user before
+          overwriting files. This can be helpful if you are moving files to
+          directories where you are unsure of the contents. The user can type y
+          or yes to move the file or or n or no to not move the file.
+        </p>
 
         <div ref={questionRefs.question1}>
           <p>List directory contents.</p>
@@ -182,22 +217,23 @@ function Page7() {
             </p>
             {showPrompt && (
               <p className="inline-p">
-              overwrite ./newTrack/intro.mp3? (y/n [n])
-              <input
-                ref={questionRefs.overwrite}
-                type="text"
-                style={{ fontSize: "20px", color: "white" }}
-                value={overwriteResponse}
-                onChange={(e) => setOverwriteResponse(e.target.value)}
-                onKeyDown={handleOverwriteResponse}
-              />
-            </p>            
+                overwrite ./newTrack/intro.mp3? (y/n [n])
+                <input
+                  ref={questionRefs.overwrite}
+                  type="text"
+                  style={{ fontSize: "20px", color: "white" }}
+                  value={overwriteResponse}
+                  onChange={(e) => setOverwriteResponse(e.target.value)}
+                  onKeyDown={handleOverwriteResponse}
+                />
+              </p>
             )}
           </div>
         )}
 
         {isToggled && (
           <button
+            ref={continueButtonRef} // Add ref here
             className="navigate-button fade-in"
             onClick={handleNavigation2}
             style={{
