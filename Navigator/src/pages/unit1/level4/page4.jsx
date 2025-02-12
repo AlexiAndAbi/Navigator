@@ -118,16 +118,15 @@ function Page4() {
         <p>
           Concatenate!
           <br />
-          <br />
           As the name suggests, <span class="highlight4">cat</span> can do more
-          than just print files. You can concatenate files using this command as
-          well. <br />
-          <br /> To concatenate the contents of file2 onto the end of file1 and
-          place it in a file named file3 type: <br /> cat file1 file2 {">"}{" "}
-          file3 <br />
+          than just print files. You can concatenate files using this command
+          too. <br />
+          <br /> To concatenate the contents of file2 onto the end of file1,
+          type: <br /> cat file1 file2 {">"} file3 <br />
           <br />
           This command makes use of the redirect symbol "{">"}". In this case,
-          if file3 does not already exist, it is created.
+          the concatinated contents is placed into a file called file3. If file3
+          does not already exist, it is created.
         </p>
 
         <>

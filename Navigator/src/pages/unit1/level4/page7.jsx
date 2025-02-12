@@ -162,19 +162,17 @@ function Page7() {
           <br />
           ^-^ ^---^ ^------------^
           <br />
-          cmd flags &emsp;&emsp;arguments
+          cmd flags &emsp;&emsp;argument(s)
           <br />
           <br /> -i
           <br /> The -i flag, standing for interactive, prompts the user before
           overwriting files. This can be helpful if you are moving files to
-          directories where you are unsure of the contents. The user can type y
-          or yes to move the file or or n or no to not move the file.
+          directories where you are unsure of the contents. The user can type
+          "y" to overwrite the file and "n" to not overwrite the file.
           <br />
-          <br /> -i
-          <br /> The -i flag, standing for interactive, prompts the user before
-          overwriting files. This can be helpful if you are moving files to
-          directories where you are unsure of the contents. The user can type y
-          or yes to move the file or or n or no to not move the file.
+          <br /> -v
+          <br /> The -v flag, standing for verbose, will show in greater detail
+          what was moved and where it was moved to.
         </p>
 
         <div ref={questionRefs.question1}>

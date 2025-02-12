@@ -67,7 +67,7 @@ function Page2() {
         setResponses({
           ...responses,
           [questionKey]:
-            ".\t..\tmilestone1.txt\tmilestone2.txt\tprogressReports \n\n ./progressReports: \n pr0.txt\tpr1.txt",
+            ".\t..\tmilestone1.txt\tmilestone2.txt\tprogressReports \n\n ./progressReports: \n .\t..\tpr0.txt\tpr1.txt",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });

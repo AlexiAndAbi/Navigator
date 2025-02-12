@@ -109,19 +109,17 @@ function Page6() {
         <p>
           Show more!
           <br />
-          While technically its own unique command,{" "}
-          <span className="highlight4">more</span> is a better alternative for
-          cat when viewing large files.
+          The <span className="highlight4">more</span> command is a better alternative
+          for cat when viewing large files.
           <br />
           <br />
-          The more command displays the contents of a file one “page” at a time.
+          This command displays the contents of a file one “page” at a time.
           Pressing the space bar moves to the next page, and pressing q returns
           you to the command line.
           <br />
           <br />
-          To use more command, you can type:
-          <br /> more [filename] &emsp;&emsp;&emsp;&emsp; (ex: more
-          README.txt)
+          To use the more command, you can type:
+          <br /> more [filename] &emsp;&emsp;&emsp;&emsp; (ex: more README.txt)
           <br />
         </p>
 

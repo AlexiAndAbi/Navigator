@@ -119,19 +119,19 @@ function Page3() {
           <br />
           <br />
           -l <br /> This flag displays more information about each file in the
-          following format: <br />
-          -rw-r--r-- 1 username group 0 Jan 9 15:50 b.txt <br />
-          The fields are as follows: <br />
+          following format: -rw-r--r-- 1 username group 0 Jan 9 15:50 b.txt <br />
+          <br />
+          The response includes the following information: <br />
           &emsp;&emsp;&emsp;&emsp;1. Permissions <br />
-          &emsp;&emsp;&emsp;&emsp;2. Number of hard links to files <br />
+          &emsp;&emsp;&emsp;&emsp;2. Number of hard links to the file <br />
           &emsp;&emsp;&emsp;&emsp;3. File owner <br />
-          &emsp;&emsp;&emsp;&emsp;4. Group <br />
+          &emsp;&emsp;&emsp;&emsp;4. Group owner <br />
           &emsp;&emsp;&emsp;&emsp;5. Size in bytes <br />
           &emsp;&emsp;&emsp;&emsp;6. Last modification date and time <br />
           &emsp;&emsp;&emsp;&emsp;7. File name <br />
           <br />
           You don’t have to worry about a lot of these categories for now, just
-          know that this is a quick way to get more info about each file.
+          know that this is a quick way to get more information about a file.
         </p>
 
         <>

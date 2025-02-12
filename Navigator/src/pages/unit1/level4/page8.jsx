@@ -23,11 +23,11 @@ function Page8() {
   };
 
   const handleNavigation = () => {
-    navigate("/Unit1-Level4");
+    navigate("/Unit1-Level7");
   };
 
   const handleNavigation2 = () => {
-    navigate("/Unit1-Level4-page3");
+    navigate("/Unit1-Level4-page9");
   };
 
   const handleInputChange = (e, questionKey) => {
@@ -48,8 +48,7 @@ function Page8() {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]:
-            "milestone1.txt \u00A0\u00A0\u00A0 milestone2.txt \u00A0\u00A0\u00A0 progressReports",
+          [questionKey]: "sample newFolder screenshot.png",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -62,12 +61,17 @@ function Page8() {
     }
 
     if (questionKey === "question2") {
-      if (userInput === "ls -a -R" || userInput === "ls -R -a") {
+      if (
+        userInput === "cp -r -v sample ./newFolder" ||
+        userInput === "cp -v -r sample ./newFolder" ||
+        userInput === "cp -v -r sample /User/username/newFolder" ||
+        userInput === "cp -r -v sample /User/username/newFolder"
+      ) {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
           [questionKey]:
-            ".\t..\tmilestone1.txt\tmilestone2.txt\tprogressReports \n\n ./progressReports: \n pr0.txt\tpr1.txt",
+            "sample -> fun/sample\nsample/c.txt -> fun/sample/c.txt\nsample/b.txt -> fun/sample/b.txt\nsample/a.txt -> fun/sample/a.txt\nsample/sample -> fun/sample/sample",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -90,7 +94,7 @@ function Page8() {
       });
     }
   }, [correctAnswers]);
-
+  //IM HERE
   return (
     <div className="gradient_background4">
       <button
