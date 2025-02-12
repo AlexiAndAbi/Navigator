@@ -71,7 +71,7 @@ function Page8() {
         setResponses({
           ...responses,
           [questionKey]:
-            "sample -> fun/sample\nsample/c.txt -> fun/sample/c.txt\nsample/b.txt -> fun/sample/b.txt\nsample/a.txt -> fun/sample/a.txt\nsample/sample -> fun/sample/sample",
+            "sample -> newFolder/sample\nsample/c.txt -> newFolder/sample/c.txt\nsample/b.txt -> newFolder/sample/b.txt\nsample/a.txt -> newFolder/sample/a.txt",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -119,21 +119,20 @@ function Page8() {
 
       <div className="content">
         <p>
-          List directory contents! <br /> The <span class="highlight4">ls</span>{" "}
-          command can be modified with the -a, -R, and -l flags. Flags are
-          included after the command and are separated from each other by a
-          space. (ex: ls -a -l)
+          Copy files! <br /> The <span class="highlight4">cp</span> command can
+          be modified with the -r, -i, and -v flags.
           <br />
           <br />
-          -a <br /> This flag displays all files in the current directory
-          including ones that may be hidden. When you type ls -a it includes
-          itself (.) and parent directory (..) because there is a reference to
-          either stored in every directory, they are just normally hidden. Tip:
-          think of -a like “a” for all!
+          -r <br /> If you are copying directories, use the -r flag to
+          recursively copy all of the files within the directory as well.
           <br />
           <br />
-          -R <br /> The -R flag lists the files within the current directory and
-          all subdirectories as well.
+          -i <br /> The -i flag, standing for interactive, prompts the user
+          before overwriting files.
+          <br />
+          <br />
+          -v <br /> The -v flag, standing for verbose, will show in greater
+          detail what has been copied and where it was copied to.
         </p>
 
         <>
@@ -160,8 +159,8 @@ function Page8() {
             {correctAnswers.question1 && (
               <>
                 <p>
-                  List directory and subdirectory contents including hidden
-                  files.
+                  Copy the directory sample into newFolder using the recursive
+                  and verbose option.
                 </p>
                 <div className="command-line">
                   <span className="directory-prompt">~ {">>"}</span>
