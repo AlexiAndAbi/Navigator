@@ -84,11 +84,12 @@
 .inline-p {
   display: inline-flex;
   align-items: center;
-  margin-left: 10px; /* Add space from the left */
-  margin-top: 5px; /* Optional: Adjust vertical positioning if needed */
-  justify-content: flex-start; /* Align to the left */
-  text-align: left; /* Make sure text aligns to the left */
+  margin-left: 20px; /* Ensure it stays 20px from the left */
+  margin-top: 5px;
+  justify-content: flex-start;
+  text-align: left;
 }
+
 
 .highlight4 {
   background-color: #cfe2f3; /* Light blue */
