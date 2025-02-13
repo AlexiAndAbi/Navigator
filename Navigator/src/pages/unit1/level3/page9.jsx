@@ -376,7 +376,7 @@ function Page9() {
 
           {/* Question 7 */}
           <div ref={questionRefs.question7}>
-            {correctAnswers.question5 && (
+            {correctAnswers.question6 && (
               <>
                 <p>Display the contents of the current directory.</p>
                 <div className="command-line">

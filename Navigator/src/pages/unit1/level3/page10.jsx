@@ -100,7 +100,7 @@ function Page10() {
     }
 
     if (questionKey === "question3") {
-      if (userInput === "rm sample") {
+      if (userInput === "rmdir sample") {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -199,7 +199,7 @@ function Page10() {
 
       <div className="content">
         <p>
-          Remove! <br /> Abbreviated <span class="highlight3">rm</span>, this command removes files and empty
+          Remove! <br /> Abbreviated <span class="highlight3">rm</span> and <span class="highlight3">rmdir</span>, these commands remove files and empty
           directories.
           <br />
           <br />
@@ -207,7 +207,7 @@ function Page10() {
           <br /> rm [file] &emsp;&emsp;&emsp;&emsp; (ex: rm cat.jpeg)
           <br />
           To remove an empty directory, type:
-          <br /> rm [directory] &emsp;&emsp;&emsp;&emsp; (ex: rm example)
+          <br /> rmdir [directory] &emsp;&emsp;&emsp;&emsp; (ex: rmdir example)
           <br />
         </p>
 

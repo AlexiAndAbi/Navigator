@@ -314,7 +314,7 @@ function Page10() {
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",
@@ -326,7 +326,7 @@ function Page10() {
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "85px",
           right: "125px",
         }}

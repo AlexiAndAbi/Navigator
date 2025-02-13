@@ -18,7 +18,7 @@ function Unit1() {
       <button className="intro-button" onClick={handleNavigation2} style={{ border: "2px solid white"}}>
         Level 1
       </button>
-      <div style={{ position: "absolute", top: "10px", right: "20px", fontSize: "16px", color: "white" }}>
+      <div style={{ position: "fixed", top: "10px", right: "20px", fontSize: "16px", color: "white" }}>
         <p>[#----------]  1/11</p>
       </div>
       <div className="content">
