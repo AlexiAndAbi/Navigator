@@ -21,7 +21,7 @@ function Page3() {
   });
 
   const [terminalCleared, setTerminalCleared] = useState(false); // Tracks if the terminal is cleared
-  
+
   const questionRefs = {
     question1: useRef(null),
     question2: useRef(null),
@@ -95,7 +95,8 @@ function Page3() {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: "After an interval of some months or years, and at Phlius, a town of Peloponnesus, the tale of the last hours of Socrates is narrated to Echecrates and other Phliasians by Phaedo the 'beloved disciple.' The Dialogue necessarily takes the form of a narrative, because Socrates has to be described acting as well as speaking. The minutest particulars of the event are interesting to distant friends, and the narrator has an equal interest in them. During the voyage of the sacred ship to and from Delos, which has occupied thirty days, the execution of Socrates has been deferred. (Compare Xen. Mem.) The time has been passed by him in conversation with a select company of disciples. But now the holy season is over, and the disciples meet earlier than usual in order that they may converse with Socrates for the last time. Those who were present, and those who might have been expected to be present, are mentioned by name. There are Simmias and Cebes (Crito), two disciples of Philolaus whom Socrates 'by his enchantments has attracted from Thebes' (Mem.), Crito the aged friend, the attendant of the prison, who is as good as a friend—these take part in the conversation. There are present also, Hermogenes, from whom Xenophon derived his information about the trial of Socrates (Mem.), the 'madman' Apollodorus (Symp.), Euclid and Terpsion from Megara (compare Theaet.), Ctesippus, Antisthenes, Menexenus, and some other less-known members of the Socratic circle, all of whom are silent auditors. Aristippus, Cleombrotus, and Plato are noted as absent. Almost as soon as the friends of Socrates enter the prison Xanthippe and her children are sent home in the care of one of Crito's servants. Socrates himself has just been released from chains, and is led by this circumstance to make the natural remark that 'pleasure follows pain.' (Observe that Plato is preparing the way for his doctrine of the alternation of opposites.) 'Aesop would have represented them in a fable as a two-headed creature of the gods.' The mention of Aesop reminds Cebes of a question which had been asked by Evenus the poet (compare Apol.): 'Why Socrates, who was not a poet, while in prison had been putting Aesop into verse?'—'Because several times in his life he had been warned in dreams that he should practise music; and as he was about to die and was not certain of what was meant, he wished to fulfil the admonition in the letter as well as in the spirit, by writing verses as well as by cultivating philosophy. Tell this to Evenus; and say that I would have him follow me in death.' 'He is not at all the sort of man to comply with your request, Socrates.' 'Why, is he not a philosopher?' 'Yes.' 'Then he will be willing to die, although he will not take his own life, for that is held to be unlawful.'",
+          [questionKey]:
+            "After an interval of some months or years, and at Phlius, a town of Peloponnesus, the tale of the last hours of Socrates is narrated to Echecrates and other Phliasians by Phaedo the 'beloved disciple.' The Dialogue necessarily takes the form of a narrative, because Socrates has to be described acting as well as speaking. The minutest particulars of the event are interesting to distant friends, and the narrator has an equal interest in them. During the voyage of the sacred ship to and from Delos, which has occupied thirty days, the execution of Socrates has been deferred. (Compare Xen. Mem.) The time has been passed by him in conversation with a select company of disciples. But now the holy season is over, and the disciples meet earlier than usual in order that they may converse with Socrates for the last time. Those who were present, and those who might have been expected to be present, are mentioned by name. There are Simmias and Cebes (Crito), two disciples of Philolaus whom Socrates 'by his enchantments has attracted from Thebes' (Mem.), Crito the aged friend, the attendant of the prison, who is as good as a friend—these take part in the conversation. There are present also, Hermogenes, from whom Xenophon derived his information about the trial of Socrates (Mem.), the 'madman' Apollodorus (Symp.), Euclid and Terpsion from Megara (compare Theaet.), Ctesippus, Antisthenes, Menexenus, and some other less-known members of the Socratic circle, all of whom are silent auditors. Aristippus, Cleombrotus, and Plato are noted as absent. Almost as soon as the friends of Socrates enter the prison Xanthippe and her children are sent home in the care of one of Crito's servants. Socrates himself has just been released from chains, and is led by this circumstance to make the natural remark that 'pleasure follows pain.' (Observe that Plato is preparing the way for his doctrine of the alternation of opposites.) 'Aesop would have represented them in a fable as a two-headed creature of the gods.' The mention of Aesop reminds Cebes of a question which had been asked by Evenus the poet (compare Apol.): 'Why Socrates, who was not a poet, while in prison had been putting Aesop into verse?'—'Because several times in his life he had been warned in dreams that he should practise music; and as he was about to die and was not certain of what was meant, he wished to fulfil the admonition in the letter as well as in the spirit, by writing verses as well as by cultivating philosophy. Tell this to Evenus; and say that I would have him follow me in death.' 'He is not at all the sort of man to comply with your request, Socrates.' 'Why, is he not a philosopher?' 'Yes.' 'Then he will be willing to die, although he will not take his own life, for that is held to be unlawful.'",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -161,11 +162,30 @@ function Page3() {
         <p>[###----] 3/7</p>
       </div>
 
+      <div
+        style={{
+          position: "fixed",
+          top: "85px",
+          right: "125px",
+          zIndex: 0,
+        }}
+      >
+        <img
+          src="/unit1filetrees/FileTree4.png"
+          alt="Progress Icon"
+          style={{
+            transform: "scale(0.15)", // Adjust to desired percentage (e.g., 50% size)
+            transformOrigin: "top right", // Ensures scaling happens from the top-right
+          }}
+        />
+      </div>
+
       <div className="content">
         <p>
-          Concatenate and Print Files! <br /> Abbreviated <span class="highlight2">cat</span>, this command
-          displays the contents of a file. The content within the file will be
-          displayed in its entirety right below the command line.
+          Concatenate and Print Files! <br /> Abbreviated{" "}
+          <span class="highlight2">cat</span>, this command displays the
+          contents of a file. The content within the file will be displayed in
+          its entirety right below the command line.
           <br />
           If you want to move into a directory within the current directory you
           can type: <br /> cat [file name] &emsp;&emsp;&emsp;&emsp; (ex: cat

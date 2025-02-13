@@ -45,7 +45,8 @@ function Page1() {
         <p>
           An abbreviated list of file type extensions:
           <br /> &emsp;&emsp;.doc = microsoft word document
-          <br /> &emsp;&emsp;.js = java script code
+          <br /> &emsp;&emsp;.jsx = java script code
+          <br /> &emsp;&emsp;.mp3 = audio file
           <br /> &emsp;&emsp;.pdf = portable document format
           <br /> &emsp;&emsp;.png = portable network graphic
           <br /> &emsp;&emsp;.py = python code

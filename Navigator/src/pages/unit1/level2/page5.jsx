@@ -6,6 +6,16 @@ function Page5() {
   const navigate = useNavigate();
 
   const [fileName, setfileName] = useState(""); // To store the created file name
+  const [currentDirectory, setCurrentDirectory] = useState("home"); // Track the directory
+  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree8.png"); // Track the image
+
+  const updateImage = (newDirectory) => {
+    if (newDirectory === "fileAdded") {
+      setImageSrc("/unit1filetrees/FileTree9.png");
+    } else {
+      setImageSrc("/unit1filetrees/FileTree8.png");
+    }
+  };
 
   const [answers, setAnswers] = useState({
     question1: "",
@@ -50,6 +60,8 @@ function Page5() {
       const match = mkdirRegex.exec(userInput);
 
       if (match) {
+        setCurrentDirectory("fileAdded");
+        updateImage("fileAdded");
         const fName = match[1]; // Extract the file name
         setfileName(fName); // Store the file name
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
@@ -133,6 +145,16 @@ function Page5() {
         }}
       >
         <p>[#####--] 5/7</p>
+      </div>
+
+      <div
+        style={{
+          position: "fixed",
+          top: "85px",
+          right: "125px",
+        }}
+      >
+        <img src={imageSrc} alt="Progress Icon" width="375" height="500" />
       </div>
 
       <div className="content">

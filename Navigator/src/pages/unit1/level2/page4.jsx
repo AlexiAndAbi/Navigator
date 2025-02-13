@@ -75,7 +75,7 @@ function Page4() {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: `file1.txt folder5 ${directoryName}`,
+          [questionKey]: `a.txt abi5 ${directoryName}`,
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
