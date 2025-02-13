@@ -6,6 +6,18 @@ function Page4() {
   const navigate = useNavigate();
 
   const [directoryName, setDirectoryName] = useState(""); // To store the created directory name
+  const [currentDirectory, setCurrentDirectory] = useState("home"); // Track the directory
+  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree5.png"); // Track the image
+
+  const updateImage = (newDirectory) => {
+    if (newDirectory === "directoryAdded") {
+      setImageSrc("/unit1filetrees/FileTree6.png");
+    } else if (newDirectory === "goDown") {
+      setImageSrc("/unit1filetrees/FileTree7.png");
+    } else {
+      setImageSrc("/unit1filetrees/FileTree5.png");
+    }
+  };
 
   const [answers, setAnswers] = useState({
     question1: "",
@@ -52,6 +64,8 @@ function Page4() {
       const match = mkdirRegex.exec(userInput);
 
       if (match) {
+        setCurrentDirectory("directoryAdded");
+        updateImage("directoryAdded");
         const dirName = match[1]; // Extract the directory name
         setDirectoryName(dirName); // Store the directory name
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
@@ -89,6 +103,8 @@ function Page4() {
 
     if (questionKey === "question3") {
       if (userInput === `cd ${directoryName}`) {
+        setCurrentDirectory("goDown");
+        updateImage("goDown");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -144,7 +160,7 @@ function Page4() {
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",
@@ -154,12 +170,23 @@ function Page4() {
         <p>[####---] 4/7</p>
       </div>
 
+      <div
+        style={{
+          position: "fixed",
+          top: "85px",
+          right: "20px",
+        }}
+      >
+        <img src={imageSrc} alt="Progress Icon" width="450" height="600" />
+      </div>
+
       <div className="content">
         <p>
           Make directories! <br />
-          Abbreviated <span class="highlight2">mkdir</span>, this command creates an empty directory. This
-          command offers no output when successful, however, you can type a
-          quick ls to ensure the directory has been created.
+          Abbreviated <span class="highlight2">mkdir</span>, this command
+          creates an empty directory. This command offers no output when
+          successful, however, you can type a quick ls to ensure the directory
+          has been created.
           <br />
           To make a new directory you can type: <br /> mkdir [directory name]
           &emsp;&emsp;&emsp;&emsp; (ex: mkdir RoadtripPhotos) <br />
@@ -256,7 +283,11 @@ function Page4() {
           <button
             className="navigate-button fade-in"
             onClick={handleNavigation2}
-            style={{ border: "2px solid white", marginTop: "20px", marginBottom: "40px" }}
+            style={{
+              border: "2px solid white",
+              marginTop: "20px",
+              marginBottom: "40px",
+            }}
           >
             continue
           </button>

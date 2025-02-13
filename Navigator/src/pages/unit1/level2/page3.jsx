@@ -152,7 +152,7 @@ function Page3() {
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",
@@ -166,17 +166,14 @@ function Page3() {
         style={{
           position: "fixed",
           top: "85px",
-          right: "125px",
-          zIndex: 0,
+          right: "20px",
         }}
       >
         <img
-          src="/unit1filetrees/FileTree4.png"
+          src={"/unit1filetrees/FileTree4.png"}
           alt="Progress Icon"
-          style={{
-            transform: "scale(0.15)", // Adjust to desired percentage (e.g., 50% size)
-            transformOrigin: "top right", // Ensures scaling happens from the top-right
-          }}
+          width="450"
+          height="600"
         />
       </div>
 

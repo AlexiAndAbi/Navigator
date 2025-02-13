@@ -137,7 +137,7 @@ function Page5() {
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",
@@ -151,10 +151,10 @@ function Page5() {
         style={{
           position: "fixed",
           top: "85px",
-          right: "125px",
+          right: "20px",
         }}
       >
-        <img src={imageSrc} alt="Progress Icon" width="375" height="500" />
+        <img src={imageSrc} alt="Progress Icon" width="450" height="600" />
       </div>
 
       <div className="content">
@@ -164,8 +164,8 @@ function Page5() {
           file. This command also offers no output when successful, however, you
           can type a quick ls to ensure the file has been created.
           <br />
-          To make a new file you can type: <br /> cat [file name]
-          &emsp;&emsp;&emsp;&emsp; (ex: cat hello.txt) <br />
+          To make a new file you can type: <br /> touch [file name]
+          &emsp;&emsp;&emsp;&emsp; (ex: touch hello.txt) <br />
         </p>
         <div ref={questionRefs.question1}>
           <p>
