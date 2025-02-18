@@ -4,6 +4,17 @@ import { useNavigate } from "react-router-dom";
 
 function Page5() {
   const navigate = useNavigate();
+  const [currentDirectory, setCurrentDirectory] = useState("home"); // Track the directory
+  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree16.png"); // Track the image
+
+  const updateImage = (newDirectory) => {
+    if (newDirectory === "moveDown") {
+      setImageSrc("/unit1filetrees/FileTree17.png");
+    } else {
+      setImageSrc("/unit1filetrees/FileTree16.png");
+    }
+  };
+
   const [answers, setAnswers] = useState({
     question1: "",
     question2: "",
@@ -87,6 +98,8 @@ function Page5() {
 
     if (questionKey === "question3") {
       if (userInput === "cd newFolder") {
+        setCurrentDirectory("moveDown");
+        updateImage("moveDown");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({ ...responses, [questionKey]: "" });
       } else {
@@ -150,7 +163,7 @@ function Page5() {
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",
@@ -158,6 +171,16 @@ function Page5() {
         }}
       >
         <p>[#####-------] 5/12</p>
+      </div>
+
+      <div
+        style={{
+          position: "fixed",
+          top: "85px",
+          right: "20px",
+        }}
+      >
+        <img src={imageSrc} alt="Progress Icon" width="450" height="600" />
       </div>
 
       <div className="content">

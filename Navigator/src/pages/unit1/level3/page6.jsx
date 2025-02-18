@@ -4,6 +4,19 @@ import { useNavigate } from "react-router-dom";
 
 function Page6() {
   const navigate = useNavigate();
+  const [currentDirectory, setCurrentDirectory] = useState("home"); // Track the directory
+  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree18.png"); // Track the image
+
+  const updateImage = (newDirectory) => {
+    if (newDirectory === "move") {
+      setImageSrc("/unit1filetrees/FileTree19.png");
+    } else if (newDirectory === "down") {
+      setImageSrc("/unit1filetrees/FileTree20.png");
+    } else {
+      setImageSrc("/unit1filetrees/FileTree18.png");
+    }
+  };
+
   const [answers, setAnswers] = useState({
     question1: "",
     question2: "",
@@ -74,6 +87,8 @@ function Page6() {
 
     if (questionKey === "question2") {
       if (userInput === "mv level1.jsx ./unit1") {
+        setCurrentDirectory("move");
+        updateImage("move");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -91,6 +106,8 @@ function Page6() {
 
     if (questionKey === "question3") {
       if (userInput === "cd unit1") {
+        setCurrentDirectory("down");
+        updateImage("down");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({ ...responses, [questionKey]: "" });
       } else {
@@ -176,7 +193,7 @@ function Page6() {
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",
@@ -184,6 +201,16 @@ function Page6() {
         }}
       >
         <p>[######------] 6/12</p>
+      </div>
+
+      <div
+        style={{
+          position: "fixed",
+          top: "85px",
+          right: "20px",
+        }}
+      >
+        <img src={imageSrc} alt="Progress Icon" width="450" height="600" />
       </div>
 
       <div className="content">

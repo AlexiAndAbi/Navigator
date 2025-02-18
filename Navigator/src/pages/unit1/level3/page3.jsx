@@ -41,7 +41,7 @@ function Page3() {
       {/* Top-Right Progress Display */}
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",
@@ -49,6 +49,21 @@ function Page3() {
         }}
       >
         <p>[###---------] 3/12</p>
+      </div>
+
+      <div
+        style={{
+          position: "fixed",
+          top: "85px",
+          right: "20px",
+        }}
+      >
+        <img
+          src={"/unit1filetrees/FileTree15.png"}
+          alt="Progress Icon"
+          width="450"
+          height="600"
+        />
       </div>
 
       {/* Back Button */}

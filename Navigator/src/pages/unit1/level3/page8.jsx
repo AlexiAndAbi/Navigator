@@ -4,6 +4,19 @@ import { useNavigate } from "react-router-dom";
 
 function Page8() {
   const navigate = useNavigate();
+  const [currentDirectory, setCurrentDirectory] = useState("home"); // Track the directory
+  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree22.png"); // Track the image
+
+  const updateImage = (newDirectory) => {
+    if (newDirectory === "copy") {
+      setImageSrc("/unit1filetrees/FileTree23.png");
+    } else if (newDirectory === "down") {
+      setImageSrc("/unit1filetrees/FileTree24.png");
+    } else {
+      setImageSrc("/unit1filetrees/FileTree22.png");
+    }
+  };
+
   const [answers, setAnswers] = useState({
     question1: "",
     question2: "",
@@ -74,6 +87,8 @@ function Page8() {
 
     if (questionKey === "question2") {
       if (userInput === "cp a.txt b.txt ./sample" || userInput === "cp b.txt a.txt ./sample") {
+        setCurrentDirectory("copy");
+        updateImage("copy");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -105,6 +120,8 @@ function Page8() {
 
     if (questionKey === "question4") {
       if (userInput === "cd sample") {
+        setCurrentDirectory("down");
+        updateImage("down");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -176,7 +193,7 @@ function Page8() {
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",
@@ -184,6 +201,16 @@ function Page8() {
         }}
       >
         <p>[########----] 8/12</p>
+      </div>
+
+      <div
+        style={{
+          position: "fixed",
+          top: "85px",
+          right: "20px",
+        }}
+      >
+        <img src={imageSrc} alt="Progress Icon" width="450" height="600" />
       </div>
 
       <div className="content">
@@ -209,7 +236,7 @@ function Page8() {
           <br />
         </p>
         <p>
-        For the destination, you can use either the relative or absolute path of that directory. 
+        For the destination, you can use either the relative or fixed path of that directory. 
         </p>
 
         <>

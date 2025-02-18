@@ -41,7 +41,7 @@ function Page2() {
       {/* Top-Right Progress Display */}
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",
@@ -49,6 +49,21 @@ function Page2() {
         }}
       >
         <p>[##----------] 2/12</p>
+      </div>
+
+      <div
+        style={{
+          position: "fixed",
+          top: "85px",
+          right: "20px",
+        }}
+      >
+        <img
+          src={"/unit1filetrees/FileTree15.png"}
+          alt="Progress Icon"
+          width="450"
+          height="600"
+        />
       </div>
 
       {/* Back Button */}
@@ -80,7 +95,7 @@ function Page2() {
         <p>
           Take this example directory:
           <br /> Postman {">>"} ls <br />
-          README.txt instructions content
+          README.txt content instructions
         </p>
         <p>What directory are you currently viewing the file system from?</p>
         <div className="command-line">

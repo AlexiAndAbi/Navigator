@@ -4,6 +4,19 @@ import { useNavigate } from "react-router-dom";
 
 function Page7() {
   const navigate = useNavigate();
+  const [currentDirectory, setCurrentDirectory] = useState("home"); // Track the directory
+  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree18.png"); // Track the image
+
+  const updateImage = (newDirectory) => {
+    if (newDirectory === "down") {
+      setImageSrc("/unit1filetrees/FileTree21.png");
+    } else if (newDirectory === "moveFile") {
+      setImageSrc("/unit1filetrees/FileTree19.png");
+    } else {
+      setImageSrc("/unit1filetrees/FileTree18.png");
+    }
+  };
+
   const [answers, setAnswers] = useState({
     question1: "",
     question2: "",
@@ -78,6 +91,8 @@ function Page7() {
 
     if (questionKey === "question2") {
       if (userInput === "cd unit1") {
+        setCurrentDirectory("down");
+        updateImage("down");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -109,6 +124,8 @@ function Page7() {
 
     if (questionKey === "question4") {
       if (userInput === "cd ..") {
+        setCurrentDirectory("home");
+        updateImage("home");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -126,6 +143,8 @@ function Page7() {
 
     if (questionKey === "question5") {
       if (userInput === "mv level1.jsx /User/username/Game/unit1") {
+        setCurrentDirectory("moveFile");
+        updateImage("moveFile");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -197,7 +216,7 @@ function Page7() {
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",
@@ -207,8 +226,18 @@ function Page7() {
         <p>[#######-----] 7/12</p>
       </div>
 
+      <div
+        style={{
+          position: "fixed",
+          top: "85px",
+          right: "20px",
+        }}
+      >
+        <img src={imageSrc} alt="Progress Icon" width="450" height="600" />
+      </div>
+
       <div className="content">
-        <p>Now lets practice with absolute pathing.</p>
+        <p>Now lets practice moving files with absolute pathing.</p>
 
         <>
           {/* Question 1 */}

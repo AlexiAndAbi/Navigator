@@ -57,7 +57,7 @@ function Page4() {
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",
@@ -65,6 +65,21 @@ function Page4() {
         }}
       >
         <p>[####--------] 4/12</p>
+      </div>
+
+      <div
+        style={{
+          position: "fixed",
+          top: "85px",
+          right: "20px",
+        }}
+      >
+        <img
+          src={"/unit1filetrees/FileTree16.png"}
+          alt="Progress Icon"
+          width="450"
+          height="600"
+        />
       </div>
 
       <div className="content">

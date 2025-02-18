@@ -4,6 +4,21 @@ import { useNavigate } from "react-router-dom";
 
 function Page9() {
   const navigate = useNavigate();
+  const [currentDirectory, setCurrentDirectory] = useState("home"); // Track the directory
+  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree25.png"); // Track the image
+
+  const updateImage = (newDirectory) => {
+    if (newDirectory === "down") {
+      setImageSrc("/unit1filetrees/FileTree26.png");
+    } else if (newDirectory === "copy") {
+      setImageSrc("/unit1filetrees/FileTree27.png");
+    } /*else if (newDirectory === "up") {
+      setImageSrc("/unit1filetrees/FileTree27.png");
+    } */else {
+      setImageSrc("/unit1filetrees/FileTree25.png");
+    }
+  };
+
   const [answers, setAnswers] = useState({
     question1: "",
     question2: "",
@@ -99,6 +114,8 @@ function Page9() {
 
     if (questionKey === "question3") {
       if (userInput === "cd sample") {
+        setCurrentDirectory("down");
+        updateImage("down");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({ ...responses, [questionKey]: "" });
       } else {
@@ -130,6 +147,8 @@ function Page9() {
 
     if (questionKey === "question5") {
       if (userInput === "cp otter.jpeg /User/username/project") {
+        setCurrentDirectory("copy");
+        updateImage("copy");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -230,7 +249,7 @@ function Page9() {
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",
@@ -238,6 +257,16 @@ function Page9() {
         }}
       >
         <p>[#########---] 9/12</p>
+      </div>
+
+      <div
+        style={{
+          position: "fixed",
+          top: "85px",
+          right: "20px",
+        }}
+      >
+        <img src={imageSrc} alt="Progress Icon" width="450" height="600" />
       </div>
 
       <div className="content">

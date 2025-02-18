@@ -4,6 +4,19 @@ import { useNavigate } from "react-router-dom";
 
 function Page10() {
   const navigate = useNavigate();
+  const [currentDirectory, setCurrentDirectory] = useState("home"); // Track the directory
+  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree28.png"); // Track the image
+
+  const updateImage = (newDirectory) => {
+    if (newDirectory === "file") {
+      setImageSrc("/unit1filetrees/FileTree29.png");
+    } else if (newDirectory === "directory") {
+      setImageSrc("/unit1filetrees/FileTree30.png");
+    } else {
+      setImageSrc("/unit1filetrees/FileTree28.png");
+    }
+  };
+
   const [answers, setAnswers] = useState({
     question1: "",
     question2: "",
@@ -84,6 +97,8 @@ function Page10() {
 
     if (questionKey === "question2") {
       if (userInput === "rm a.txt") {
+        setCurrentDirectory("file");
+        updateImage("file");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -101,6 +116,8 @@ function Page10() {
 
     if (questionKey === "question3") {
       if (userInput === "rmdir sample") {
+        setCurrentDirectory("directory");
+        updateImage("directory");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -187,7 +204,7 @@ function Page10() {
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",
@@ -195,6 +212,16 @@ function Page10() {
         }}
       >
         <p>[##########--] 10/12</p>
+      </div>
+
+      <div
+        style={{
+          position: "fixed",
+          top: "85px",
+          right: "20px",
+        }}
+      >
+        <img src={imageSrc} alt="Progress Icon" width="450" height="600" />
       </div>
 
       <div className="content">
