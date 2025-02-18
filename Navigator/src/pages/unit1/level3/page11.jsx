@@ -201,7 +201,7 @@ function Page11() {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: `${directoryName}`,
+          [questionKey]: '',
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -254,7 +254,7 @@ function Page11() {
         });
       }
     });
-  }, [correctAnswers, directoryName, fileName]);
+  }, [correctAnswers]);
 
   return (
     <div className="gradient_background3">
