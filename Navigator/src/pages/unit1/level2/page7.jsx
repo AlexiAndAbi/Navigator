@@ -6,7 +6,7 @@ function Page7() {
   const navigate = useNavigate();
 
   const handleNavigation = () => {
-    navigate("/Unit1-Level1-page6");
+    navigate("/Unit1-Level2-page6");
   };
 
   const handleNavigation2 = () => {
@@ -14,7 +14,7 @@ function Page7() {
   };
 
   return (
-    <div className="gradient_background">
+    <div className="gradient_background2">
       <button
         className="navigate-button"
         onClick={handleNavigation}
@@ -25,7 +25,7 @@ function Page7() {
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",

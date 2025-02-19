@@ -41,6 +41,21 @@ function Page6() {
   const [timeLeft, setTimeLeft] = useState(60); // Timer state
   const [gameOver, setGameOver] = useState(false); // Tracks if the timer runs out
   const [timerStarted, setTimerStarted] = useState(false); // Tracks if the timer has started
+  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree10.png"); // Track the image
+
+  const updateImage = (imageTag) => {
+    if (imageTag === "directoryAdded") {
+      setImageSrc("/unit1filetrees/FileTree11.png");
+    } else if (imageTag === "goDown") {
+      setImageSrc("/unit1filetrees/FileTree12.png");
+    } else if (imageTag === "addFile") {
+      setImageSrc("/unit1filetrees/FileTree13.png");
+    } else if (imageTag === "goUp") {
+      setImageSrc("/unit1filetrees/FileTree14.png");
+    } else {
+      setImageSrc("/unit1filetrees/FileTree10.png");
+    }
+  };
 
   // Refs for scrolling
   const questionRefs = {
@@ -143,6 +158,7 @@ function Page6() {
       const match = mkdirRegex.exec(userInput);
 
       if (match) {
+        updateImage("directoryAdded");
         const dirName = match[1]; // Extract the directory name
         setDirectoryName(dirName); // Store the directory name
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
@@ -179,6 +195,7 @@ function Page6() {
 
     if (questionKey === "question6") {
       if (userInput === `cd ${directoryName}`) {
+        updateImage("goDown");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({ ...responses, [questionKey]: "" });
       } else {
@@ -192,10 +209,11 @@ function Page6() {
     }
 
     if (questionKey === "question7") {
-      const mkdirRegex = /^touch\s+(\w+)$/; // Matches 'touch <file-name>'
+      const mkdirRegex = /^touch\s+(\w+\.txt)$/; // Matches 'touch <file-name>'
       const match = mkdirRegex.exec(userInput);
 
       if (match) {
+        updateImage("addFile");
         const fName = match[1]; // Extract the file name
         setfileName(fName); // Store the file name
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
@@ -218,7 +236,7 @@ function Page6() {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: `${directoryName}`,
+          [questionKey]: `${fileName}`,
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -232,6 +250,7 @@ function Page6() {
 
     if (questionKey === "question9") {
       if (userInput === "cd .." || userInput === "cd ~") {
+        updateImage("goUp");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -274,7 +293,7 @@ function Page6() {
   }, [correctAnswers, directoryName, fileName]);
 
   return (
-    <div className="gradient_background">
+    <div className="gradient_background2">
       <button
         className="navigate-button"
         onClick={handleNavigation}
@@ -285,7 +304,7 @@ function Page6() {
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",
@@ -293,6 +312,16 @@ function Page6() {
         }}
       >
         <p>[######-] 6/7</p>
+      </div>
+
+      <div
+        style={{
+          position: "fixed",
+          top: "85px",
+          right: "20px",
+        }}
+      >
+        <img src={imageSrc} alt="Progress Icon" width="450" height="600" />
       </div>
 
       <div className="content">

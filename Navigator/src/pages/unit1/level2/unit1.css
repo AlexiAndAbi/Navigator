@@ -1,5 +1,5 @@
-.gradient_background {
-    background: linear-gradient(90deg, #1f2f98, #49a699);
+.gradient_background2 {
+    background: linear-gradient(90deg, #6b5cc1, #6ed3bb);
     min-height: 100vh; /* Ensure it covers at least the viewport height */
     width: 100vw; /* Full width of the viewport */
     height: auto; /* Allow it to expand with content */
@@ -80,6 +80,13 @@
     color: white;
     outline: none;
   }
+
+  .highlight2 {
+    background-color: #cfe2f3; /* Light blue */
+    color: #4f4391; /* Adjust text color for readability */
+    padding: 2px 5px;
+    border-radius: 3px;
+  }
   
   .fade-in {
     opacity: 0;
@@ -95,7 +102,7 @@
     }
   }
   
-  .pixel-art {
+  .pixel-art3 {
     position: absolute;
     bottom: 0px;
     right: 0px;
@@ -103,11 +110,12 @@
     width: 450px; /* Adjust to the size of your images */
     height: 450px; /* Match the sprite dimensions */
     background-size: cover;
-    background-image: url("/images/wave0.png"); /* First frame */
-    animation: spriteAnimation 1s steps(1) infinite;
+    background-image: url("/images/kelp0.png"); /* First frame */
+    animation: kelpAnimation 1s steps(1) infinite;
+    will-change: background-image;
   }
   
-  .pixel-art2 {
+  .pixel-art4 {
     position: absolute;
     bottom: 0px;
     right: 450px;
@@ -115,20 +123,21 @@
     width: 450px; /* Adjust to the size of your images */
     height: 450px; /* Match the sprite dimensions */
     background-size: cover;
-    background-image: url("/images/wave0.png"); /* First frame */
-    animation: spriteAnimation 1s steps(1) infinite;
+    background-image: url("/images/kelp0.png"); /* First frame */
+    animation: kelpAnimation 1s steps(1) infinite;
+    will-change: background-image;
   }
   
   /* Define keyframes to change the background image */
-  @keyframes spriteAnimation {
+  @keyframes kelpAnimation {
     0% {
-      background-image: url("/images/wave0.png");
+      background-image: url("/images/kelp0.png");
     }
     50% {
-      background-image: url("/images/wave1.png");
+      background-image: url("/images/kelp1.png");
     }
     100% {
-      background-image: url("/images/wave0.png");
+      background-image: url("/images/kelp0.png");
     }
   }
   

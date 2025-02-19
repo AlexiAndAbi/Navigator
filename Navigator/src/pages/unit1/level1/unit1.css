@@ -1,5 +1,5 @@
-.gradient_background {
-  background: linear-gradient(90deg, #1f2f98, #49a699);
+.gradient_background1 {
+  background: linear-gradient(90deg, #6058D5, #7AD6D3);
   min-height: 100vh; /* Ensure it covers at least the viewport height */
   width: 100vw; /* Full width of the viewport */
   height: auto; /* Allow it to expand with content */
@@ -81,6 +81,13 @@
   outline: none;
 }
 
+.highlight {
+  background-color: #cfe2f3; /* Light blue */
+  color: #1f2f98; /* Adjust text color for readability */
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
 .fade-in {
   opacity: 0;
   animation: fadeIn 1s forwards;
@@ -105,6 +112,7 @@
   background-size: cover;
   background-image: url("/images/wave0.png"); /* First frame */
   animation: spriteAnimation 1s steps(1) infinite;
+  will-change: background-image;
 }
 
 .pixel-art2 {
@@ -117,6 +125,7 @@
   background-size: cover;
   background-image: url("/images/wave0.png"); /* First frame */
   animation: spriteAnimation 1s steps(1) infinite;
+  will-change: background-image;
 }
 
 /* Define keyframes to change the background image */
@@ -124,8 +133,17 @@
   0% {
     background-image: url("/images/wave0.png");
   }
-  50% {
+  20% {
     background-image: url("/images/wave1.png");
+  }
+  40% {
+    background-image: url("/images/wave2.png");
+  }
+  60% {
+    background-image: url("/images/wave3.png");
+  }
+  80% {
+    background-image: url("/images/wave4.png");
   }
   100% {
     background-image: url("/images/wave0.png");

@@ -41,11 +41,11 @@ function Page2() {
   };
 
   return (
-    <div className="gradient_background" style={{ position: "relative" }}>
+    <div className="gradient_background1" style={{ position: "relative" }}>
       {/* Top-Right Progress Display */}
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",
@@ -108,7 +108,11 @@ function Page2() {
           <button
             className="navigate-button fade-in"
             onClick={handleNavigation2}
-            style={{ border: "2px solid white" }}
+            style={{
+              border: "2px solid white",
+              marginTop: "20px",
+              marginBottom: "40px",
+            }}
           >
             continue
           </button>

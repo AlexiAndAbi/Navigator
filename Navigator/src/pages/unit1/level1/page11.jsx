@@ -14,7 +14,7 @@ function Page11() {
   };
 
   return (
-    <div className="gradient_background">
+    <div className="gradient_background1">
       <button
         className="navigate-button"
         onClick={handleNavigation}
@@ -25,7 +25,7 @@ function Page11() {
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",

@@ -75,7 +75,7 @@ function Page7() {
   const allCorrect = Object.values(correctAnswers).every(Boolean); // Check if all questions are correct
 
   return (
-    <div className="gradient_background">
+    <div className="gradient_background1">
       <button
         className="navigate-button"
         onClick={handleNavigation}
@@ -86,7 +86,7 @@ function Page7() {
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",
@@ -96,12 +96,27 @@ function Page7() {
         <p>[#######----] 7/11</p>
       </div>
 
+      <div
+        style={{
+          position: "fixed",
+          top: "85px",
+          right: "125px",
+        }}
+      >
+        <img
+          src="/unit1filetrees/FileTree1.png"
+          alt="Progress Icon"
+          width="300"
+          height="300"
+        />
+      </div>
+
       <div className="content">
         <p>
           List Directory Contents! <br />
-          Abbreviated ls, this command displays the contents of the current
-          directory you are in. This command displays files as well as
-          directories.
+          Abbreviated <span class="highlight">ls</span>, this command displays
+          the contents of the current directory you are in. This command
+          displays files as well as directories.
         </p>
         <p>List the contents of the current directory</p>
         <div className="command-line">
@@ -147,7 +162,11 @@ function Page7() {
           <button
             className="navigate-button fade-in"
             onClick={handleNavigation2}
-            style={{ border: "2px solid white", marginTop: "20px" }}
+            style={{
+              border: "2px solid white",
+              marginTop: "20px",
+              marginBottom: "40px",
+            }}
           >
             continue
           </button>

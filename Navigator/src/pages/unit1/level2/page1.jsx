@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react"; // Import useEffect here
 import "./unit1.css";
 import { useNavigate } from "react-router-dom";
 
@@ -13,15 +13,33 @@ function Page1() {
     navigate("/Unit1-Level2-page2");
   };
 
+  // Preload images for the animations
+  useEffect(() => {
+    const preloadImages = (srcArray) => {
+      srcArray.forEach((src) => {
+        const img = new Image();
+        img.src = src;
+      });
+    };
+
+    const kelpImages = [
+      "/images/kelp0.png",
+      "/images/kelp1.png",
+      "/images/kelp2.png",
+    ];
+    // Preload both sets of images
+    preloadImages(kelpImages);
+  }, []);
+
   return (
-    <div className="gradient_background">
-      <button className="intro-button" onClick={handleNavigation} style={{ border: "2px solid white"}}>
+    <div className="gradient_background2">
+      <button className="intro-button" onClick={handleNavigation} style={{ border: "2px solid white" }}>
         Level 2
       </button>
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",
@@ -38,7 +56,7 @@ function Page1() {
           create and view files and directories:
         </p>
         <p>
-        cat
+          cat
           <br /> mkdir
           <br /> touch
         </p>
@@ -49,6 +67,9 @@ function Page1() {
         >
           Sail On!
         </button>
+
+        <div className="pixel-art3"></div>
+        <div className="pixel-art4"></div>
       </div>
     </div>
   );

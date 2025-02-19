@@ -6,6 +6,16 @@ function Page5() {
   const navigate = useNavigate();
 
   const [fileName, setfileName] = useState(""); // To store the created file name
+  const [currentDirectory, setCurrentDirectory] = useState("home"); // Track the directory
+  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree8.png"); // Track the image
+
+  const updateImage = (newDirectory) => {
+    if (newDirectory === "fileAdded") {
+      setImageSrc("/unit1filetrees/FileTree9.png");
+    } else {
+      setImageSrc("/unit1filetrees/FileTree8.png");
+    }
+  };
 
   const [answers, setAnswers] = useState({
     question1: "",
@@ -46,10 +56,12 @@ function Page5() {
 
     // Example of manual matching for question1
     if (questionKey === "question1") {
-      const mkdirRegex = /^touch\s+(\w+)$/; // Matches 'touch <file-name>'
+      const mkdirRegex = /^touch\s+(\w+\.txt)$/; // Matches 'touch <file-name>.txt'
       const match = mkdirRegex.exec(userInput);
 
       if (match) {
+        setCurrentDirectory("fileAdded");
+        updateImage("fileAdded");
         const fName = match[1]; // Extract the file name
         setfileName(fName); // Store the file name
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
@@ -114,7 +126,7 @@ function Page5() {
   const allCorrect = Object.values(correctAnswers).every(Boolean); // Check if all questions are correct
 
   return (
-    <div className="gradient_background">
+    <div className="gradient_background2">
       <button
         className="navigate-button"
         onClick={handleNavigation}
@@ -125,7 +137,7 @@ function Page5() {
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",
@@ -135,15 +147,25 @@ function Page5() {
         <p>[#####--] 5/7</p>
       </div>
 
+      <div
+        style={{
+          position: "fixed",
+          top: "85px",
+          right: "20px",
+        }}
+      >
+        <img src={imageSrc} alt="Progress Icon" width="450" height="600" />
+      </div>
+
       <div className="content">
         <p>
           Make a file! <br />
-          The command touch creates an empty file. This command also offers no
-          output when successful, however, you can type a quick ls to ensure the
-          file has been created.
+          The command <span class="highlight2">touch</span> creates an empty
+          file. This command also offers no output when successful, however, you
+          can type a quick ls to ensure the file has been created.
           <br />
-          To make a new file you can type: <br /> cat [file name]
-          &emsp;&emsp;&emsp;&emsp; (ex: cat hello.txt) <br />
+          To make a new file you can type: <br /> touch [file name]
+          &emsp;&emsp;&emsp;&emsp; (ex: touch hello.txt) <br />
         </p>
         <div ref={questionRefs.question1}>
           <p>

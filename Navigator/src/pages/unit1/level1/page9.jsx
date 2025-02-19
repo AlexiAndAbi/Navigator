@@ -4,6 +4,17 @@ import { useNavigate } from "react-router-dom";
 
 function Page9() {
   const navigate = useNavigate();
+  const [currentDirectory, setCurrentDirectory] = useState("home"); // Track the directory
+  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree1.png"); // Track the image
+
+  const updateImage = (newDirectory) => {
+    if (newDirectory === "directory1") {
+      setImageSrc("/unit1filetrees/FileTree2.png");
+    } else {
+      setImageSrc("/unit1filetrees/FileTree1.png");
+    }
+  };
+
   const [answers, setAnswers] = useState({
     question1: "",
     question2: "",
@@ -24,11 +35,6 @@ function Page9() {
   });
 
   const [terminalCleared, setTerminalCleared] = useState(false); // Tracks if the terminal is cleared
-
-  const acceptableAnswersQ1 = ["ls"];
-  const acceptableAnswersQ2 = ["cd directory1"];
-  const acceptableAnswersQ3 = ["ls"];
-  const acceptableAnswersQ5 = ["clear"];
 
   const questionRefs = {
     question1: useRef(null),
@@ -85,6 +91,8 @@ function Page9() {
 
     if (questionKey === "question2") {
       if (userInput === "cd directory1") {
+        setCurrentDirectory("directory1");
+        updateImage("directory1");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -161,7 +169,7 @@ function Page9() {
   }, [correctAnswers]);
 
   return (
-    <div className="gradient_background">
+    <div className="gradient_background1">
       <button
         className="navigate-button"
         onClick={handleNavigation}
@@ -172,7 +180,7 @@ function Page9() {
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",
@@ -182,11 +190,22 @@ function Page9() {
         <p>[#########--] 9/11</p>
       </div>
 
+      <div
+        style={{
+          position: "fixed",
+          top: "85px",
+          right: "125px",
+        }}
+      >
+        <img src={imageSrc} alt="Progress Icon" width="300" height="300" />
+      </div>
+
       <div className="content">
         <p>
-          Clear the Terminal! <br /> Typing clear removes the contents displayed
-          on the terminal. You can also type control + l to clear the terminal.
-          (In the future, control will be abbreviated ctrl.)
+          Clear the Terminal! <br /> Typing <span class="highlight">clear</span>{" "}
+          removes the contents displayed on the terminal. You can also type
+          control + l to clear the terminal. (In the future, control will be
+          abbreviated ctrl.)
         </p>
 
         {/* Hide questions 1-3 if the terminal is cleared */}
@@ -283,7 +302,11 @@ function Page9() {
           <button
             className="navigate-button fade-in"
             onClick={handleNavigation2}
-            style={{ border: "2px solid white", marginTop: "20px" }}
+            style={{
+              border: "2px solid white",
+              marginTop: "20px",
+              marginBottom: "40px",
+            }}
           >
             continue
           </button>

@@ -1,52 +1,135 @@
+.gradient_backgroundHomepage {
+  background: linear-gradient(270deg, #b1dfff, #3830cc);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Centers content */
+  text-align: center;
+}
 
-.gradient_background {
-    background: linear-gradient(180deg, #B1DFFF, #3830CC);
-    height: 100vh; /* Full viewport height */
-    width: 100vw; /* Full viewport width */
-    display: flex; /* Use flexbox to center content */
-    flex-direction: column; /* Stack children vertically */
-    align-items: center; /* Center items horizontally */
-    justify-content: flex-start; /* Start from the top */
-  }
-  
-  .card {
-    padding: 2em;
-  }
-  
-  .title {
-    font-family: 'Consolas', monospace;
-    color: white;
-    font-size: 70px; /* Made it much bigger */
-    text-align: center; /* Centered the text */
-    font-weight: 100; /* Change to a proper weight */
-    margin: 0; /* Remove top margin */
-    padding-top: 10%; /* Adjust this for spacing from the top */
-   
-  }
-  
-  .description {
-    font-family: 'Consolas', monospace;
-    color: white;
-    font-size: 20px; /* Made it smaller */
-    font-weight: 100; /* Change to a proper weight */
-    margin: 0; /* Remove any default margin to get it closer */
-  }
-  
-  
-  .start-button {
-    font-family: 'Consolas', monospace; /* Use the same font */
-    color: white; /* Text color */
-    background-color: transparent; /* Transparent background */
-    border: 2px solid white; /* White outline */
-    padding: 10px 20px; /* Add some padding */
-    font-size: 20px; /* Font size for the button */
-    cursor: pointer; /* Change cursor to pointer on hover */
-    border-radius: 5px; /* Slightly rounded corners */
-    margin-top: 20px; /* Space above the button */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
-  }
-  
-  .start-button:hover {
-    background-color: white; /* Change background on hover */
-    color: #3830CC; /* Change text color on hover */
-  }
+.card {
+  padding: 2em;
+}
+
+.title {
+  font-family: "Consolas", monospace;
+  color: white;
+  font-size: 70px; /* Made it much bigger */
+  text-align: center; /* Centered the text */
+  font-weight: 100; /* Change to a proper weight */
+  margin: 0; /* Remove top margin */
+  padding-top: 10%; /* Adjust this for spacing from the top */
+}
+
+.center-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transform: translateY(-40%);
+}
+
+.footer {
+  position: absolute;
+  bottom: 20px; /* Adjust for spacing */
+  width: 100%;
+  text-align: center;
+}
+
+.footer-link {
+  font-family: "Consolas", monospace;
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none; /* No underline initially */
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.footer-link:hover {
+  font-family: "Consolas", monospace;
+  color: #fff;
+  font-size: 14px;
+  text-decoration: underline; /* Add underline on hover */
+  opacity: 1; /* Make it fully visible */
+}
+
+.description {
+  font-family: "Consolas", monospace;
+  color: #fff;
+  font-size: 20px; /* Made it smaller */
+  font-weight: 100; /* Change to a proper weight */
+  margin: 0; /* Remove any default margin to get it closer */
+}
+
+.start-button {
+  font-family: "Consolas", monospace; /* Use the same font */
+  color: white; /* Text color */
+  background-color: transparent; /* Transparent background */
+  border: 2px solid white; /* White outline */
+  padding: 10px 20px; /* Add some padding */
+  font-size: 20px; /* Font size for the button */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  border-radius: 5px; /* Slightly rounded corners */
+  margin-top: 20px; /* Space above the button */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+}
+
+.back-button {
+  font-family: "Consolas", monospace; /* Use the same font */
+  color: white; /* Text color */
+  background-color: transparent; /* Transparent background */
+  border: 2px solid white; /* White outline */
+  padding: 10px 20px; /* Add some padding */
+  font-size: 20px; /* Font size for the button */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  border-radius: 5px; /* Slightly rounded corners */
+  margin-top: 40px; /* Space above the button */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+}
+
+.start-button:hover {
+  background-color: white; /* Change background on hover */
+  color: #3830cc; /* Change text color on hover */
+}
+
+.about-title {
+  font-family: "Consolas", monospace;
+  color: white;
+  font-size: 50px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.about-container {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  gap: 30px; /* Space between cards */
+  width: 80%;
+  max-width: 400px; /* Adjust width for better readability */
+}
+
+.about-card {
+  background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+  padding: 0px 20px 20px 20px;
+  border-radius: 10px;
+  width: 100%;
+  text-align: center;
+  backdrop-filter: blur(50px); /* Frosted glass effect */
+}
+
+.name {
+  font-family: "Consolas", monospace;
+  color: white;
+  font-size: 24px;
+  margin-bottom: 0px;
+}
+
+.blurb {
+  font-family: "Consolas", monospace;
+  color: white;
+  font-size: 16px;
+  font-weight: 100;
+}

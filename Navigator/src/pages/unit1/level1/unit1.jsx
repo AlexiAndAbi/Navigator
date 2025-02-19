@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./unit1.css";
 import { useNavigate } from "react-router-dom";
 
@@ -13,12 +13,32 @@ function Unit1() {
     navigate("/Unit1-Contents");
   };
 
+  // Preload images for the animation
+  useEffect(() => {
+    const preloadImages = (srcArray) => {
+      srcArray.forEach((src) => {
+        const img = new Image();
+        img.src = src;
+      });
+    };
+
+    const images = [
+      "/images/wave0.png",
+      "/images/wave1.png",
+      "/images/wave2.png",
+      "/images/wave3.png",
+      "/images/wave4.png"
+    ];
+
+    preloadImages(images);
+  }, []);
+
   return (
-    <div className="gradient_background">
+    <div className="gradient_background1">
       <button className="intro-button" onClick={handleNavigation2} style={{ border: "2px solid white"}}>
         Level 1
       </button>
-      <div style={{ position: "absolute", top: "10px", right: "20px", fontSize: "16px", color: "white" }}>
+      <div style={{ position: "fixed", top: "10px", right: "20px", fontSize: "16px", color: "white" }}>
         <p>[#----------]  1/11</p>
       </div>
       <div className="content">
