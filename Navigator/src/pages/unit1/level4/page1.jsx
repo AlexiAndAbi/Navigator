@@ -29,11 +29,11 @@ function Page1() {
     ];
 
     const fishImages = [
-      "/images/fish0.png",
-      "/images/fish1.png",
-      "/images/fish2.png",
-      "/images/fish3.png",
-      "/images/fish4.png",
+      "/images/Fish0.png",
+      "/images/Fish1.png",
+      "/images/Fish2.png",
+      "/images/Fish3.png",
+      "/images/Fish4.png",
     ];
 
     // Preload both sets of images
@@ -53,7 +53,7 @@ function Page1() {
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",

@@ -95,7 +95,7 @@ function Page6() {
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",
@@ -105,12 +105,27 @@ function Page6() {
         <p>[######-----] 6/11</p>
       </div>
 
+      <div
+        style={{
+          position: "fixed",
+          top: "85px",
+          right: "20px",
+        }}
+      >
+        <img
+          src={"/unit1filetrees/FileTree35.png"}
+          alt="Progress Icon"
+          width="450"
+          height="600"
+        />
+      </div>
+
       <div className="content">
         <p>
           Show more!
           <br />
-          The <span className="highlight4">more</span> command is a better alternative
-          for cat when viewing large files.
+          The <span className="highlight4">more</span> command is a better
+          alternative for cat when viewing large files.
           <br />
           <br />
           This command displays the contents of a file one “page” at a time.

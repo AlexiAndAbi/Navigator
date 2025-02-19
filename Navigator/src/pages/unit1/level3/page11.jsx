@@ -41,6 +41,21 @@ function Page11() {
   const [timeLeft, setTimeLeft] = useState(60); // Timer state
   const [gameOver, setGameOver] = useState(false); // Tracks if the timer runs out
   const [timerStarted, setTimerStarted] = useState(false); // Tracks if the timer has started
+  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree40.png"); // Track the image
+
+  const updateImage = (imageTag) => {
+    if (imageTag === "copy") {
+      setImageSrc("/unit1filetrees/FileTree41.png");
+    } else if (imageTag === "remove") {
+      setImageSrc("/unit1filetrees/FileTree42.png");
+    } else if (imageTag === "down") {
+      setImageSrc("/unit1filetrees/FileTree43.png");
+    } else if (imageTag === "remove2") {
+      setImageSrc("/unit1filetrees/FileTree44.png");
+    } else {
+      setImageSrc("/unit1filetrees/FileTree40.png");
+    }
+  };
 
   // Refs for scrolling
   const questionRefs = {
@@ -119,6 +134,7 @@ function Page11() {
 
     if (questionKey === "question3") {
       if (userInput === "cp a.txt b.txt ./sample") {
+        updateImage("copy");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -136,6 +152,7 @@ function Page11() {
 
     if (questionKey === "question4") {
       if (userInput === "rm b.txt") {
+        updateImage("remove");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -170,6 +187,7 @@ function Page11() {
 
     if (questionKey === "question6") {
       if (userInput === "cd sample") {
+        updateImage("down");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({ ...responses, [questionKey]: "" });
       } else {
@@ -198,6 +216,7 @@ function Page11() {
 
     if (questionKey === "question8") {
       if (userInput === "mv c.txt /User/username") {
+        updateImage("remove2");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -276,6 +295,16 @@ function Page11() {
         }}
       >
         <p>[###########-] 11/12</p>
+      </div>
+
+      <div
+        style={{
+          position: "fixed",
+          top: "85px",
+          right: "20px",
+        }}
+      >
+        <img src={imageSrc} alt="Progress Icon" width="450" height="600" />
       </div>
 
       <div className="content">

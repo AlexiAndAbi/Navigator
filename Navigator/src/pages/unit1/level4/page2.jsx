@@ -103,7 +103,7 @@ function Page2() {
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",
@@ -111,6 +111,21 @@ function Page2() {
         }}
       >
         <p>[##---------] 2/11</p>
+      </div>
+
+      <div
+        style={{
+          position: "fixed",
+          top: "85px",
+          right: "20px",
+        }}
+      >
+        <img
+          src={"/unit1filetrees/FileTree31.png"}
+          alt="Progress Icon"
+          width="450"
+          height="600"
+        />
       </div>
 
       <div className="content">

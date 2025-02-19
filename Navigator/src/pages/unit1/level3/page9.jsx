@@ -5,17 +5,17 @@ import { useNavigate } from "react-router-dom";
 function Page9() {
   const navigate = useNavigate();
   const [currentDirectory, setCurrentDirectory] = useState("home"); // Track the directory
-  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree25.png"); // Track the image
+  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree45.png"); // Track the image
 
   const updateImage = (newDirectory) => {
     if (newDirectory === "down") {
-      setImageSrc("/unit1filetrees/FileTree26.png");
+      setImageSrc("/unit1filetrees/FileTree46.png");
     } else if (newDirectory === "copy") {
-      setImageSrc("/unit1filetrees/FileTree27.png");
-    } /*else if (newDirectory === "up") {
-      setImageSrc("/unit1filetrees/FileTree27.png");
-    } */else {
-      setImageSrc("/unit1filetrees/FileTree25.png");
+      setImageSrc("/unit1filetrees/FileTree47.png");
+    } else if (newDirectory === "up") {
+      setImageSrc("/unit1filetrees/FileTree48.png");
+    } else {
+      setImageSrc("/unit1filetrees/FileTree45.png");
     }
   };
 
@@ -166,6 +166,8 @@ function Page9() {
 
     if (questionKey === "question6") {
       if (userInput === "cd ..") {
+        setCurrentDirectory("up");
+        updateImage("up");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,

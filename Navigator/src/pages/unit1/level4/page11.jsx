@@ -32,7 +32,7 @@ function Page11() {
           color: "white",
         }}
       >
-        <p>[###########-] 11/11</p>
+        <p>[###########] 11/11</p>
       </div>
 
       <div className="content">
