@@ -65,7 +65,8 @@ function Page5() {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: "\t1\t Hello,\n\t2\t It is wonderful to have you here.\n\t3\t I am so proud of how far you have come.",
+          [questionKey]:
+            "\t1\t Hello,\n\t2\t It is wonderful to have you here.\n\t3\t I am so proud of how far you have come.",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -116,6 +117,15 @@ function Page5() {
           Concatenate!
           <br />
           The <span class="highlight4">cat</span> command also has the -n flag.
+          Flags are included after the command and before any additional
+          arguments.
+          <br />
+          <br /> ex:
+          <br /> cat &emsp;-n&emsp; filename.txt
+          <br />
+          ^-^ ^--^ ^----------^
+          <br />
+          cmd flag &emsp;&emsp;argument(s)
           <br />
           <br /> -n <br /> This flag shows the line number for each line of text
           in a file.
@@ -144,7 +154,9 @@ function Page5() {
           <div ref={questionRefs.question2}>
             {correctAnswers.question1 && (
               <>
-                <p>Display the contents of file.txt with line numbers showing.</p>
+                <p>
+                  Display the contents of file.txt with line numbers showing.
+                </p>
                 <div className="command-line">
                   <span className="directory-prompt">~ {">>"}</span>
                   <input

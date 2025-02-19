@@ -48,7 +48,7 @@ function Page8() {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: "sample newFolder screenshot.png",
+          [questionKey]: "newFolder sample screenshot.png",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });

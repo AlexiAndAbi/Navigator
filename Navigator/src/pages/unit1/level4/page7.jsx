@@ -154,8 +154,8 @@ function Page7() {
           The move command!
           <br />
           The <span className="highlight4">mv</span> command can be modified
-          with the -i and -v flags. Flags are included after the command and
-          before any additional arguments.
+          with the -i and -v flags. Remember that flags are included after the
+          command and before any additional arguments.
           <br />
           <br /> ex:
           <br /> mv &emsp;-i -v c.txt ./sample

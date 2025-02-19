@@ -105,7 +105,7 @@ function Page11() {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: "sample  a.txt b.txt",
+          [questionKey]: "a.txt b.txt sample",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
