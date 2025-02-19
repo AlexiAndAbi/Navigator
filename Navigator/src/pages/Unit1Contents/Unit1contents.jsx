@@ -24,7 +24,7 @@ function Unit1contents() {
         navigate("/Table-Of-Contents"); // Now this is called when the button is clicked
     };
     return (
-        <div className='gradient_background'>
+        <div className='gradient_background45'>
             {/* Discover and Explore Buttons */}
             <div className='header-row'>
                 <button className="discover-button" onClick={goToContents}>Discover</button> {/* Larger font for Discover */}

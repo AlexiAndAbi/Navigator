@@ -1,5 +1,5 @@
-.gradient_background {
-    background: linear-gradient(90deg, #6058D5, #7AD6D3);
+.gradient_background45 {
+    background: linear-gradient(270deg, #b1dfff, #3830cc);
     height: 100vh;
     width: 100vw;
     display: flex;

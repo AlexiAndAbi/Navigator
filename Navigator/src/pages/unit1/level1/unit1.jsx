@@ -14,7 +14,7 @@ function Unit1() {
   };
 
   return (
-    <div className="gradient_background">
+    <div className="gradient_background1">
       <button className="intro-button" onClick={handleNavigation2} style={{ border: "2px solid white"}}>
         Level 1
       </button>

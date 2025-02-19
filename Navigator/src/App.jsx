@@ -44,6 +44,7 @@ import Page8Level4 from "./pages/unit1/level4/page8";
 import Page9Level4 from "./pages/unit1/level4/page9";
 
 import Homepage from "./pages/Homepage/Homepage";
+import About from "./pages/Homepage/about.jsx";
 import TableContents from "./pages/TableContents/TableContents";
 import Testing from "./pages/Testing/Testing";
 import Prompts from "./components/Prompt/Prompt";
@@ -57,6 +58,7 @@ function App() {
         <Route path="/" element={<Homepage />} />{" "}
         {/* Set the Home component for the root path */}
         <Route path="/Table-Of-Contents" element={<TableContents />} />{" "}
+        <Route path="/about" element={<About />} />
         {/* Set the Home component for the root path */}
         {/*Level 1*/}
         <Route path="/Unit1-Level1" element={<Unit1 />} />

@@ -46,7 +46,7 @@ function Page4() {
   const allCorrect = Object.values(correctAnswers).every(Boolean); // Check if all questions are correct
 
   return (
-    <div className="gradient_background">
+    <div className="gradient_background1">
       <button
         className="navigate-button"
         onClick={handleNavigation}
