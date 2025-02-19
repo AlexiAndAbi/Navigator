@@ -42,6 +42,7 @@ import Page6Level4 from "./pages/unit1/level4/page6";
 import Page7Level4 from "./pages/unit1/level4/page7";
 import Page8Level4 from "./pages/unit1/level4/page8";
 import Page9Level4 from "./pages/unit1/level4/page9";
+import Page11Level4 from "./pages/unit1/level4/page11";
 
 import Homepage from "./pages/Homepage/Homepage";
 import About from "./pages/Homepage/about.jsx";
@@ -103,6 +104,7 @@ function App() {
         <Route path="/Unit1-Level4-page7" element={<Page7Level4 />} />
         <Route path="/Unit1-Level4-page8" element={<Page8Level4 />} />
         <Route path="/Unit1-Level4-page9" element={<Page9Level4 />} />
+        <Route path="/Unit1-Level4-page11" element={<Page11Level4 />} />
         {/*Extras*/}
         <Route path="/Testing" element={<Testing />} />
         <Route path="/Prompts" element={<Prompts />} />
