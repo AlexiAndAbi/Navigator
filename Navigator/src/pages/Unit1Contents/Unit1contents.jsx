@@ -21,14 +21,13 @@ function Unit1contents() {
         navigate("/Unit1-Level4"); // Now this is called when the button is clicked
     };
     const goToContents = () => {
-        navigate("/Table-Of-Contents"); // Now this is called when the button is clicked
+        navigate("/"); // Now this is called when the button is clicked
     };
     return (
         <div className='gradient_background45'>
             {/* Discover and Explore Buttons */}
             <div className='header-row'>
                 <button className="discover-button" onClick={goToContents}>Discover</button> {/* Larger font for Discover */}
-                <button className="explore-button">Explore {">>"}</button> {/* Right-aligned Explore */}
             </div>
 
             {/* Levels */}

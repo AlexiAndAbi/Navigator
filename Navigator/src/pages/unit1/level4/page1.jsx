@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react"; // Import useEffect here
 import "./unit1.css";
 import { useNavigate } from "react-router-dom";
 
@@ -12,6 +12,34 @@ function Page1() {
   const handleNavigation2 = () => {
     navigate("/Unit1-Level4-page2");
   };
+
+  // Preload images for the animations
+  useEffect(() => {
+    const preloadImages = (srcArray) => {
+      srcArray.forEach((src) => {
+        const img = new Image();
+        img.src = src;
+      });
+    };
+
+    const bubbleImages = [
+      "/images/bubble0.png",
+      "/images/bubble1.png",
+      "/images/bubble2.png",
+    ];
+
+    const fishImages = [
+      "/images/fish0.png",
+      "/images/fish1.png",
+      "/images/fish2.png",
+      "/images/fish3.png",
+      "/images/fish4.png",
+    ];
+
+    // Preload both sets of images
+    preloadImages(bubbleImages);
+    preloadImages(fishImages);
+  }, []);
 
   return (
     <div className="gradient_background4">
@@ -37,10 +65,9 @@ function Page1() {
 
       <div className="content">
         <p>
-          In this level we will add complexity to the Unix commands
-          we’ve learned so far. We will introduce options, also known as
-          flags, which allow you to interact with the filesystem in a more
-          useful way.
+          In this level we will add complexity to the Unix commands we’ve
+          learned so far. We will introduce options, also known as flags, which
+          allow you to interact with the filesystem in a more useful way.
         </p>
         <button
           className="navigate-button"

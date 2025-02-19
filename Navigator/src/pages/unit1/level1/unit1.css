@@ -112,6 +112,7 @@
   background-size: cover;
   background-image: url("/images/wave0.png"); /* First frame */
   animation: spriteAnimation 1s steps(1) infinite;
+  will-change: background-image;
 }
 
 .pixel-art2 {
@@ -124,6 +125,7 @@
   background-size: cover;
   background-image: url("/images/wave0.png"); /* First frame */
   animation: spriteAnimation 1s steps(1) infinite;
+  will-change: background-image;
 }
 
 /* Define keyframes to change the background image */

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./unit1.css";
 import { useNavigate } from "react-router-dom";
 
@@ -12,6 +12,34 @@ function Page1() {
   const handleNavigation2 = () => {
     navigate("/Unit1-Level3-page2");
   };
+
+  // Preload images for the animations
+  useEffect(() => {
+    const preloadImages = (srcArray) => {
+      srcArray.forEach((src) => {
+        const img = new Image();
+        img.src = src;
+      });
+    };
+
+    const bubbleImages = [
+      "/images/bubble0.png",
+      "/images/bubble1.png",
+      "/images/bubble2.png",
+    ];
+
+    const jellyImages = [
+      "/images/jelly0.png",
+      "/images/jelly1.png",
+      "/images/jelly2.png",
+      "/images/jelly3.png",
+      "/images/jelly4.png",
+    ];
+
+    // Preload both sets of images
+    preloadImages(bubbleImages);
+    preloadImages(jellyImages);
+  }, []);
 
   return (
     <div className="gradient_background3">

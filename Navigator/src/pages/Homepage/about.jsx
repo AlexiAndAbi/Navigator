@@ -16,14 +16,19 @@ const About = () => {
         <div className="about-card">
           <h3 className="name">Alexi</h3>
           <p className="blurb">
-            With a relentless optimism, Alexi strives to make the world a better
-            place—starting with helping students conquer Unix commands.
+            Alexi is on a mission to make the world a better place—one Unix
+            command at a time. Inspired by the tools she wished she had, Alexi
+            is passionate about helping students learn in a way that is
+            encouraging and fun.
           </p>
         </div>
         <div className="about-card">
           <h3 className="name">Abby</h3>
           <p className="blurb">
-            Abby is the coolest person ever! (And her bio is coming soon!)
+            Abby’s dream is to make computer science a place for everyone by
+            increasing accessibility and eliminating barriers—like lack of prior
+            experience—through fun and engaging games. Computer science is for
+            everyone!
           </p>
         </div>
       </div>

@@ -108,7 +108,7 @@
   align-items: center; /* Center items horizontally */
   gap: 30px; /* Space between cards */
   width: 80%;
-  max-width: 350px; /* Adjust width for better readability */
+  max-width: 400px; /* Adjust width for better readability */
 }
 
 .about-card {

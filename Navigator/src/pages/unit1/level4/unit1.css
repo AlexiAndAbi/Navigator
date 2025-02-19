@@ -134,6 +134,7 @@
   background-size: cover;
   background-image: url("/images/bubble0.png"); /* First frame */
   animation: bubbleAnimation 2s steps(1) infinite;
+  will-change: background-image;
 }
 
 /* Define keyframes to change the background image */

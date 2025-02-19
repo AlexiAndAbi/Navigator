@@ -1,5 +1,5 @@
 .gradient_background3 {
-    background: linear-gradient(90deg, #2359aa, #d289e6);
+    background: linear-gradient(90deg, #2c6ccd, #d289e6);
     min-height: 100vh; /* Ensure it covers at least the viewport height */
     width: 100vw; /* Full width of the viewport */
     height: auto; /* Allow it to expand with content */
@@ -112,6 +112,7 @@
     background-size: cover;
     background-image: url("/images/jelly0.png"); /* First frame */
     animation: jellyAnimation 2s steps(1) infinite;
+    will-change: background-image;
   }
   
   .pixel-art6 {
@@ -124,6 +125,7 @@
     background-size: cover;
     background-image: url("/images/bubble0.png"); /* First frame */
     animation: bubbleAnimation 2s steps(1) infinite;
+    will-change: background-image;
   }
   
   /* Define keyframes to change the background image */
