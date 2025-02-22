@@ -445,7 +445,10 @@ function Page10() {
         {/* Question 8 */}
         {correctAnswers.question7 && (
           <div ref={questionRefs.question8}>
-            <p>What flag prompts the user for confirmation before overwriting files?</p>
+            <p>
+              What flag prompts the user for confirmation before overwriting
+              files?
+            </p>
             <div className="command-line">
               <span className="directory-prompt">sample {"??"}</span>
               <input
@@ -465,7 +468,9 @@ function Page10() {
         {/* Question 9 */}
         {correctAnswers.question8 && (
           <div ref={questionRefs.question9}>
-            <p>What flag do you use to remove directories that are not empty?</p>
+            <p>
+              What flag do you use to remove directories that are not empty?
+            </p>
             <div className="command-line">
               <span className="directory-prompt">sample {"??"}</span>
               <input
