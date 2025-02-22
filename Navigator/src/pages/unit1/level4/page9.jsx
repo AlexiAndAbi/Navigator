@@ -92,7 +92,7 @@ function Page9() {
     }
 
     if (questionKey === "question2") {
-      if (userInput === "rm -r sub") {
+      if (userInput === "rm -r sub" || userInput === "rm -R sub") {
         updateImage("change");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
@@ -206,7 +206,7 @@ function Page9() {
           <br /> -r <br />
           The -r flag removes files recursively in a directory. This flag
           enables us to remove directories that are not empty because all of the
-          files inside them are removed as well.
+          files inside them are removed as well. (-R is equivalent.)
           <br />
           <br /> -i <br />
           The -i flag, standing for interactive, prompts the user before

@@ -144,7 +144,8 @@ function Page2() {
           <br />
           <br />
           -R <br /> The -R flag lists the files within the current directory and
-          all subdirectories as well.
+          all subdirectories as well. This <i>must</i> be a capital -R (-r reverses the
+          order of entries shown).
         </p>
 
         <>

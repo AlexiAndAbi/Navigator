@@ -222,7 +222,7 @@ function Page10() {
     }
 
     if (questionKey === "question9") {
-      if (userInput === "-r") {
+      if (userInput === "-r" || userInput === "-R") {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -265,7 +265,7 @@ function Page10() {
   }, [correctAnswers]);
 
   return (
-    <div className="gradient_background3">
+    <div className="gradient_background4">
       <button
         className="navigate-button"
         onClick={handleNavigation}
@@ -324,7 +324,7 @@ function Page10() {
                 What flag with the ls command shows files within directories?
               </p>
               <div className="command-line">
-                <span className="directory-prompt">~ {"??"}</span>
+                <span className="directory-prompt">{"??"}</span>
                 <input
                   type="text"
                   style={{ fontSize: "20px", color: "white" }}
@@ -346,7 +346,7 @@ function Page10() {
                 What character is the redirect symbol when concatenating files?
               </p>
               <div className="command-line">
-                <span className="directory-prompt">~ {"??"}</span>
+                <span className="directory-prompt">{"??"}</span>
                 <input
                   type="text"
                   style={{ fontSize: "20px", color: "white" }}
@@ -366,7 +366,7 @@ function Page10() {
             <div ref={questionRefs.question4}>
               <p>What flag with the cat command shows line numbers?</p>
               <div className="command-line">
-                <span className="directory-prompt">~ {"??"}</span>
+                <span className="directory-prompt">{"??"}</span>
                 <input
                   type="text"
                   style={{ fontSize: "20px", color: "white" }}
@@ -386,7 +386,7 @@ function Page10() {
             <div ref={questionRefs.question5}>
               <p>When using more, what key returns you to the command line?</p>
               <div className="command-line">
-                <span className="directory-prompt">~ {"??"}</span>
+                <span className="directory-prompt">{"??"}</span>
                 <input
                   type="text"
                   style={{ fontSize: "20px", color: "white" }}
@@ -406,7 +406,7 @@ function Page10() {
             <div ref={questionRefs.question6}>
               <p>What does the -i flag stand for?</p>
               <div className="command-line">
-                <span className="directory-prompt">~ {"??"}</span>
+                <span className="directory-prompt">{"??"}</span>
                 <input
                   type="text"
                   style={{ fontSize: "20px", color: "white" }}
@@ -427,7 +427,7 @@ function Page10() {
           <div ref={questionRefs.question7}>
             <p>What does the -v flag stand for?</p>
             <div className="command-line">
-              <span className="directory-prompt">sample {"??"}</span>
+              <span className="directory-prompt">{"??"}</span>
               <input
                 type="text"
                 style={{ fontSize: "20px", color: "white" }}
@@ -450,7 +450,7 @@ function Page10() {
               files?
             </p>
             <div className="command-line">
-              <span className="directory-prompt">sample {"??"}</span>
+              <span className="directory-prompt">{"??"}</span>
               <input
                 type="text"
                 style={{ fontSize: "20px", color: "white" }}
@@ -472,7 +472,7 @@ function Page10() {
               What flag do you use to remove directories that are not empty?
             </p>
             <div className="command-line">
-              <span className="directory-prompt">sample {"??"}</span>
+              <span className="directory-prompt">{"??"}</span>
               <input
                 type="text"
                 style={{ fontSize: "20px", color: "white" }}
