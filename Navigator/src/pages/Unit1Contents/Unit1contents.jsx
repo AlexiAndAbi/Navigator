@@ -33,7 +33,7 @@ function Unit1contents() {
             {/* Levels */}
             <div className='unit-row'>
                 <button style={{ border: '2px solid white' }} onClick={goToLevel1}>Level 1</button>
-                <h3>Filesystem Structure (cd, ls, clear)</h3>
+                <h3>Filesystem structure (cd, ls, clear)</h3>
             </div>
             <div className='unit-row'>
                 <button style={{ border: '2px solid #D2CAFF' }} onClick={goToLevel2}>Level 2</button>
