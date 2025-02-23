@@ -54,6 +54,7 @@ const Testing = () => {
   const timerRef = useRef(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [isQuestionMode, setIsQuestionMode] = useState(false);
+  const [quizMode, setQuizMode] = useState(false);
 
   const handleQuestionMode = () => {
     setIsQuestionMode(true);
@@ -62,12 +63,17 @@ const Testing = () => {
   };
 
   useEffect(() => {
-    timerRef.current = setInterval(() => {
-      setElapsedTime((prevTime) => prevTime + 1);
-    }, 1000);
+    if (quizMode) {
+      timerRef.current = setInterval(() => {
+        setElapsedTime((prevTime) => prevTime + 1);
+      }, 1000);
+    } else {
+      clearInterval(timerRef.current); // Stop timer when exiting quiz mode
+      setElapsedTime(0); // Reset time when quiz mode restarts
+    }
 
     return () => clearInterval(timerRef.current); // Cleanup on unmount
-  }, []);
+  }, [quizMode]); // Runs when quizMode changes
 
   const getCurrentDir = () => {
     const pathParts = currentPath
@@ -198,7 +204,16 @@ const Testing = () => {
     }
   };
 
-  const validCommands = ["ls", "cd", "mkdir", "touch", "clear", "cat", "quiz"];
+  const validCommands = [
+    "ls",
+    "cd",
+    "mkdir",
+    "touch",
+    "clear",
+    "cat",
+    "y",
+    "yes",
+  ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -256,6 +271,7 @@ const Testing = () => {
           setCurrentQuestionIndex((prev) => prev + 1);
         } else {
           // ✅ Last question answered → End quiz
+          setQuizMode(false);
           updateOutput(
             `${currentDirectory} >> ${userInput}\n${commandOutput}`,
             "🎉 Quiz completed! Well done!"
@@ -266,7 +282,7 @@ const Testing = () => {
         // 🟡 Valid command but incorrect → Run the command and give feedback
         updateOutput(`${currentDirectory} >> ${userInput}\n${commandOutput}`);
       } else {
-        // ❌ Invalid command → Just show incorrect message
+        // ❌ Invalid command
         updateOutput(`${currentDirectory} >> ${userInput}`);
       }
 
@@ -299,7 +315,14 @@ const Testing = () => {
           ? handleCat(args[0])
           : "usage: cat missing file_name ...";
         break;
-      case "quiz":
+      case "y":
+        setCommand(""); // Clear input field
+        setQuizMode(true);
+        handleQuestionMode();
+        return;
+      case "yes":
+        setCommand(""); // Clear input field
+        setQuizMode(true);
         handleQuestionMode();
         return;
       default:
@@ -376,8 +399,22 @@ const Testing = () => {
       >
         back
       </button>
-      <div className="shell-container">
-        <div className="timer">Elapsed Time: {elapsedTime}s</div>
+
+      <div className="shell-container2">
+        {/* Timer and game description */}
+        <div className="header">
+          <p className="game-description">
+            Welcome to the final challange of Navigator! Your goal is to use all
+            of the Unix commands you've learned and complete each task using the
+            correct command(s). If you enter a valid command but it's not the
+            correct one, it will still execute, but you must find the right
+            answer to move forward. Good luck!
+          </p>
+          <div className="timer">Elapsed Time: {elapsedTime}s</div>
+          <p className="game-description">Are you ready to start?</p>
+        </div>
+
+        {/* Command output */}
         <div className="output">
           {output.map((entry, index) => (
             <div key={index} className="command-output">
@@ -386,6 +423,8 @@ const Testing = () => {
             </div>
           ))}
         </div>
+
+        {/* Input field */}
         <form onSubmit={handleSubmit}>
           <span>
             {`${currentDirectory} >> `}
