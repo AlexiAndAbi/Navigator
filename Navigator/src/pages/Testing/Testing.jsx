@@ -34,6 +34,16 @@ const Testing = () => {
     },
   });
 
+  const [questions, setQuestions] = useState([
+    { question: "What command lists the files in a directory?", answer: "ls" },
+    { question: "How do you change to another directory?", answer: "cd" },
+    { question: "What command creates a new directory?", answer: "mkdir" },
+    {
+      question: "Which command displays the contents of a file?",
+      answer: "cat",
+    },
+  ]);
+
   const [currentPath, setCurrentPath] = useState("~");
   const [command, setCommand] = useState("");
   const [output, setOutput] = useState([]);
@@ -42,6 +52,14 @@ const Testing = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [elapsedTime, setElapsedTime] = useState(0);
   const timerRef = useRef(null);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [isQuestionMode, setIsQuestionMode] = useState(false);
+
+  const handleQuestionMode = () => {
+    setIsQuestionMode(true);
+    setCurrentQuestionIndex(0);
+    updateOutput("", `Question 1: ${questions[0].question}`);
+  };
 
   useEffect(() => {
     timerRef.current = setInterval(() => {
@@ -180,10 +198,81 @@ const Testing = () => {
     }
   };
 
+  const validCommands = ["ls", "cd", "mkdir", "touch", "clear", "cat", "quiz"];
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const userInput = command.trim();
     const [cmd, ...args] = command.split(" ");
     let result;
+
+    if (isQuestionMode) {
+      const currentQuestion = questions[currentQuestionIndex];
+
+      let commandOutput = "";
+      let isValidCommand = validCommands.includes(cmd);
+
+      if (isValidCommand) {
+        // Run the command first
+        switch (cmd) {
+          case "ls":
+            commandOutput = args.length ? handleLs(args[0]) : handleLs();
+            break;
+          case "cd":
+            commandOutput = args.length ? handleCd(args[0]) : "";
+            break;
+          case "mkdir":
+            commandOutput = args.length
+              ? handleMkdir(args[0])
+              : "usage: mkdir missing directory_name ...";
+            break;
+          case "touch":
+            commandOutput = args.length
+              ? handleTouch(args[0])
+              : "usage: touch missing file_name ...";
+            break;
+          case "clear":
+            handleClear();
+            return;
+          case "cat":
+            commandOutput = args.length
+              ? handleCat(args[0])
+              : "usage: cat missing file_name ...";
+            break;
+          default:
+            commandOutput = `command not found: ${cmd}`;
+        }
+      }
+
+      if (userInput.toLowerCase() === currentQuestion.answer) {
+        // ✅ Correct answer → Run the command & move to next question
+        if (currentQuestionIndex < questions.length - 1) {
+          updateOutput(
+            `${currentDirectory} >> ${userInput}\n${commandOutput}`,
+            `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+              questions[currentQuestionIndex + 1].question
+            }`
+          );
+          setCurrentQuestionIndex((prev) => prev + 1);
+        } else {
+          // ✅ Last question answered → End quiz
+          updateOutput(
+            `${currentDirectory} >> ${userInput}\n${commandOutput}`,
+            "🎉 Quiz completed! Well done!"
+          );
+          setIsQuestionMode(false);
+        }
+      } else if (isValidCommand) {
+        // 🟡 Valid command but incorrect → Run the command and give feedback
+        updateOutput(`${currentDirectory} >> ${userInput}\n${commandOutput}`);
+      } else {
+        // ❌ Invalid command → Just show incorrect message
+        updateOutput(`${currentDirectory} >> ${userInput}`);
+      }
+
+      setCommand(""); // Clear input field
+      return;
+    }
 
     switch (cmd) {
       case "ls":
@@ -210,6 +299,9 @@ const Testing = () => {
           ? handleCat(args[0])
           : "usage: cat missing file_name ...";
         break;
+      case "quiz":
+        handleQuestionMode();
+        return;
       default:
         result = `command not found: ${cmd}`;
     }
@@ -285,7 +377,7 @@ const Testing = () => {
         back
       </button>
       <div className="shell-container">
-      <div className="timer">Elapsed Time: {elapsedTime}s</div>
+        <div className="timer">Elapsed Time: {elapsedTime}s</div>
         <div className="output">
           {output.map((entry, index) => (
             <div key={index} className="command-output">
