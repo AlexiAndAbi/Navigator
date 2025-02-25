@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import "./Testing.css";
 
 const Testing = () => {
-  const [fileSystem] = useState({
+  const [fileSystem, setFileSystem] = useState({
     "~": {
       type: "directory",
       children: {
@@ -192,6 +192,151 @@ const Testing = () => {
     }
   };
 
+  const handleRm = (args) => {
+    if (args.length === 0) {
+      return "usage: rm [-r | -R] file_name ...";
+    }
+
+    // Check if the -r or -R flag is present
+    const isRecursive = args[0] === "-r" || args[0] === "-R";
+    if (isRecursive) {
+      args.shift(); // Remove the -r or -R flag from the arguments
+    }
+
+    const target = args[0];
+    let dir = getCurrentDir();
+
+    if (dir && dir.children[target]) {
+      const targetItem = dir.children[target];
+
+      if (targetItem.type === "file") {
+        // Remove the file directly
+        delete dir.children[target];
+        return ``;
+      } else if (targetItem.type === "directory") {
+        // If the -r or -R flag is used, recursively remove all children of the directory
+        if (isRecursive) {
+          const removeDirectoryContents = (dir) => {
+            for (let child in dir.children) {
+              const childItem = dir.children[child];
+              if (childItem.type === "directory") {
+                // Recursively remove contents of the directory
+                removeDirectoryContents(childItem);
+              }
+              delete dir.children[child]; // Remove the file or directory
+            }
+          };
+
+          removeDirectoryContents(targetItem);
+          delete dir.children[target]; // Finally, delete the directory itself
+          return ``;
+        } else {
+          // If not recursive, return an error message for non-empty directories
+          return `rm: cannot remove '${target}': Is a directory`;
+        }
+      }
+    } else {
+      return `rm: ${target}: No such file or directory`;
+    }
+  };
+
+  const debugFileTree = (dir = fileSystem["~"], indent = "") => {
+    let treeString = "";
+
+    // Check if the current directory has children (i.e., files or subdirectories)
+    if (dir.type === "directory") {
+      treeString += `${indent}${dir.type}: (\n`; // Start directory listing
+
+      // List all items in the current directory (files and subdirectories)
+      for (const [name, child] of Object.entries(dir.children)) {
+        treeString += `${indent}  ${name}\n`; // Print file/directory name
+      }
+
+      treeString += `${indent})`; // End of directory listing
+    } else if (dir.type === "file") {
+      treeString += `${indent}${dir.type}: (file) - ${dir.content.slice(
+        0,
+        50
+      )}...\n`; // Show first 50 chars of file content
+    }
+
+    return treeString;
+  };
+
+  const handlePwd = () => {
+    if (currentPath.startsWith("~")) {
+      return currentPath.replace("~", "/User/username");
+    }
+    return currentPath;
+  };
+
+  const handleCp = (args) => {
+    if (args.length < 2) {
+      return "usage: cp <source> <destination>";
+    }
+
+    let [source, destination] = args;
+
+    // Convert absolute paths to relative paths
+    if (source.startsWith("/User/username")) {
+      source = "~" + source.substring("/User/username".length);
+    }
+    if (destination.startsWith("/User/username")) {
+      destination = "~" + destination.substring("/User/username".length);
+    }
+
+    const sourceParts = source.split("/").filter(Boolean);
+    const destParts = destination.split("/").filter(Boolean);
+
+    let sourceDir = fileSystem["~"];
+    let destDir = fileSystem["~"];
+
+    // Navigate to the source directory
+    for (const part of sourceParts.slice(0, -1)) {
+      if (!sourceDir.children[part]) {
+        return `cp: ${source}: No such directory`;
+      }
+      sourceDir = sourceDir.children[part];
+    }
+
+    // Navigate to the destination directory
+    for (const part of destParts.slice(0, -1)) {
+      if (!destDir.children[part]) {
+        return `cp: ${destination}: No such directory`;
+      }
+      destDir = destDir.children[part];
+    }
+
+    const sourceFile = sourceParts[sourceParts.length - 1];
+    const destinationFile = destParts[destParts.length - 1];
+
+    if (!sourceDir.children[sourceFile]) {
+      return `cp: ${sourceFile}: No such file`;
+    }
+
+    const fileToCopy = sourceDir.children[sourceFile];
+
+    // If destination is a directory, copy the file into it
+    if (
+      destDir.children[destinationFile] &&
+      destDir.children[destinationFile].type === "directory"
+    ) {
+      destDir.children[destinationFile].children[sourceFile] = fileToCopy;
+      return `${sourceFile} copied to ${destinationFile}`;
+    }
+
+    // If destination is a file, overwrite it
+    if (
+      destDir.children[destinationFile] &&
+      destDir.children[destinationFile].type === "file"
+    ) {
+      destDir.children[destinationFile] = fileToCopy;
+      return `${destinationFile} overwritten`;
+    }
+
+    return `cp: ${destinationFile}: No such directory or file`;
+  };
+
   const handleCat = (fileName) => {
     const currentDir = getCurrentDir();
 
@@ -236,6 +381,15 @@ const Testing = () => {
             break;
           case "cd":
             commandOutput = args.length ? handleCd(args[0]) : "";
+            break;
+          case "cp":
+            result = handleCp(args); // Call the cp handler here
+            break;
+          case "pwd":
+            result = handlePwd();
+            break;
+          case "rm":
+            result = args.length ? handleRm(args) : "rm: missing operand";
             break;
           case "mkdir":
             commandOutput = args.length
@@ -298,6 +452,9 @@ const Testing = () => {
       case "cd":
         result = args.length ? handleCd(args[0]) : "";
         break;
+      case "cp":
+        result = handleCp(args); // Call the cp handler here
+        break;
       case "mkdir":
         result = args.length
           ? handleMkdir(args[0])
@@ -307,6 +464,12 @@ const Testing = () => {
         result = args.length
           ? handleTouch(args[0])
           : "usage: touch missing file_name ...";
+        break;
+      case "pwd":
+        result = handlePwd();
+        break;
+      case "rm":
+        result = args.length ? handleRm(args) : "rm: missing operand";
         break;
       case "clear":
         handleClear();

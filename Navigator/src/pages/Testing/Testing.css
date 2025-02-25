@@ -69,13 +69,13 @@ form {
 }
 
 input {
-  font-family: "Consolas", monospace; /* Change the font here */
+  font-family: "Consolas", monospace;
   font-weight: 200;
   background: none;
   border: none;
   color: white;
   outline: none;
-  width: auto; /* Change width to auto */
+  width: 60%; /* Adjust width to 60% of the parent container */
   min-width: 500px; /* Set a minimum width */
   font-size: 20px;
   padding-right: 1rem; /* Add padding for blinking cursor */
