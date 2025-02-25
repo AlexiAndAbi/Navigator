@@ -27,8 +27,7 @@ const Testing = () => {
         },
         "file2.txt": {
           type: "file",
-          content:
-            "Nowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoIcan'trelatetodesperationMygive-a-fucksareonvacationAndIgotthisoneboyandhewon'tstopcallin'Whentheyactthisway,IknowIgot'emToobadyourexdon'tdoitforyaWalkedinanddream-came-trueditforyaSoftskinandIperfumeditforya(Yes)IknowIMountainDewitforya(Yes)thatmorningcoffee,breweditforya(Yes)onetouchandIbrand-neweditforya(oh)Nowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoHolyshitIsitthatsweet?IguesssoI'mworkinglate,'causeI'masingerOh,helookssocutewrapped'roundmyfingerMytwistedhumormakehimlaughsooftenMyhoneybee,comeandgetthispollenToobadyourexdon'tdoitforyaWalkedinanddream-came-trueditforyaSoftskinandIperfumeditforya(Yes)IknowIMountainDewitforya(Yes)thatmorningcoffee,breweditforya(Yes)onetouchandIbrand-neweditforya(stupid)Nowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoThinkin''boutmeeverynight,ohIsitthatsweet?Iguessso(yes)Sayyoucan'tsleep,baby,IknowThat'sthatmeespresso(yes)Moveitup,down,left,right,ohSwitchituplikeNintendo(yes)Sayyoucan'tsleep,baby,IknowThat'sthatmeespressoIsitthatsweet?Iguessso,uhThat'sthatmeespressoNowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoIcan'trelatetodesperationMygive-a-fucksareonvacationAndIgotthisoneboyandhewon'tstopcallin'Whentheyactthisway,IknowIgot'emToobadyourexdon'tdoitforyaWalkedinanddream-came-trueditforyaSoftskinandIperfumeditforya(Yes)IknowIMountainDewitforya(Yes)thatmorningcoffee,breweditforya(Yes)onetouchandIbrand-neweditforya(oh)Nowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoHolyshitIsitthatsweet?IguesssoI'mworkinglate,'causeI'masingerOh,helookssocutewrapped'roundmyfingerMytwistedhumormakehimlaughsooftenMyhoneybee,comeandgetthispollenToobadyourexdon'tdoitforyaWalkedinanddream-came-trueditforyaSoftskinandIperfumeditforya(Yes)IknowIMountainDewitforya(Yes)thatmorningcoffee,breweditforya(Yes)onetouchandIbrand-neweditforya(stupid)Nowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoThinkin''boutmeeverynight,ohIsitthatsweet?Iguessso(yes)Sayyoucan'tsleep,baby,IknowThat'sthatmeespresso(yes)Moveitup,down,left,right,ohSwitchituplikeNintendo(yes)Sayyoucan'tsleep,baby,IknowThat'sthatmeespressoIsitthatsweet?Iguessso,uhThat'sthatmeespressoNowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoIcan'trelatetodesperationMygive-a-fucksareonvacationAndIgotthisoneboyandhewon'tstopcallin'Whentheyactthisway,IknowIgot'emToobadyourexdon'tdoitforyaWalkedinanddream-came-trueditforyaSoftskinandIperfumeditforya(Yes)IknowIMountainDewitforya(Yes)thatmorningcoffee,breweditforya(Yes)onetouchandIbrand-neweditforya(oh)Nowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoHolyshitIsitthatsweet?IguesssoI'mworkinglate,'causeI'masingerOh,helookssocutewrapped'roundmyfingerMytwistedhumormakehimlaughsooftenMyhoneybee,comeandgetthispollenToobadyourexdon'tdoitforyaWalkedinanddream-came-trueditforyaSoftskinandIperfumeditforya(Yes)IknowIMountainDewitforya(Yes)thatmorningcoffee,breweditforya(Yes)onetouchandIbrand-neweditforya(stupid)Nowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoThinkin''boutmeeverynight,ohIsitthatsweet?Iguessso(yes)Sayyoucan'tsleep,baby,IknowThat'sthatmeespresso(yes)Moveitup,down,left,right,ohSwitchituplikeNintendo(yes)Sayyoucan'tsleep,baby,IknowThat'sthatmeespressoIsitthatsweet?Iguessso,uhThat'sthatmeespresso",
+          content: " Insert 'Espresso' here!",
         },
       },
     },
@@ -240,6 +239,82 @@ const Testing = () => {
     }
   };
 
+  const handleCp = (sourcePath, destPath) => {
+    if (!sourcePath.startsWith("~") || !destPath.startsWith("~")) {
+      return "cp: only absolute paths are allowed";
+    }
+
+    const getItemAtPath = (path) => {
+      const parts = path.split("/").filter(Boolean);
+      let current = fileSystem["~"];
+      let parent = null;
+      let key = null;
+
+      for (const part of parts.slice(1)) {
+        if (!current.children[part]) return null;
+        parent = current;
+        key = part;
+        current = current.children[part];
+      }
+      return { parent, key, item: current };
+    };
+
+    // Get source file
+    const source = getItemAtPath(sourcePath);
+    if (!source || !source.item || source.item.type !== "file") {
+      return `cp: cannot copy '${sourcePath}': No such file or not a file`;
+    }
+
+    // Get destination
+    let dest = getItemAtPath(destPath);
+
+    if (dest && dest.item && dest.item.type === "directory") {
+      // If the destination exists and is a directory, copy file *inside* it
+      dest.item.children[source.key] = {
+        type: "file",
+        content: source.item.content,
+      };
+    } else {
+      // Otherwise, copy to the specified location (assume user wants to rename it)
+      const destParts = destPath.split("/");
+      const destFileName = destParts.pop(); // Extract the target file name
+      const destDirPath = destParts.join("/");
+      const destDir = getItemAtPath(destDirPath);
+
+      if (!destDir || !destDir.item || destDir.item.type !== "directory") {
+        return `cp: cannot create file '${destPath}': No such directory`;
+      }
+
+      destDir.item.children[destFileName] = {
+        type: "file",
+        content: source.item.content,
+      };
+    }
+
+    setFileSystem({ ...fileSystem }); // Update state
+    return "";
+  };
+
+  const resolvePath = (path) => {
+    if (path.startsWith("~")) return path; // Already absolute
+  
+    let basePath = currentPath; // Start from current directory
+    let parts = path.split("/").filter(Boolean);
+    let currentParts = basePath.split("/").filter(Boolean);
+  
+    for (const part of parts) {
+      if (part === ".") continue; // Stay in the current directory
+      if (part === "..") {
+        currentParts.pop(); // Move up one directory
+      } else {
+        currentParts.push(part); // Move into the directory/file
+      }
+    }
+  
+    return currentParts.join("/");
+  };
+  
+
   const debugFileTree = (dir = fileSystem["~"], indent = "") => {
     let treeString = "";
 
@@ -270,73 +345,6 @@ const Testing = () => {
     return currentPath;
   };
 
-  const handleCp = (args) => {
-    if (args.length < 2) {
-      return "usage: cp <source> <destination>";
-    }
-
-    let [source, destination] = args;
-
-    // Convert absolute paths to relative paths
-    if (source.startsWith("/User/username")) {
-      source = "~" + source.substring("/User/username".length);
-    }
-    if (destination.startsWith("/User/username")) {
-      destination = "~" + destination.substring("/User/username".length);
-    }
-
-    const sourceParts = source.split("/").filter(Boolean);
-    const destParts = destination.split("/").filter(Boolean);
-
-    let sourceDir = fileSystem["~"];
-    let destDir = fileSystem["~"];
-
-    // Navigate to the source directory
-    for (const part of sourceParts.slice(0, -1)) {
-      if (!sourceDir.children[part]) {
-        return `cp: ${source}: No such directory`;
-      }
-      sourceDir = sourceDir.children[part];
-    }
-
-    // Navigate to the destination directory
-    for (const part of destParts.slice(0, -1)) {
-      if (!destDir.children[part]) {
-        return `cp: ${destination}: No such directory`;
-      }
-      destDir = destDir.children[part];
-    }
-
-    const sourceFile = sourceParts[sourceParts.length - 1];
-    const destinationFile = destParts[destParts.length - 1];
-
-    if (!sourceDir.children[sourceFile]) {
-      return `cp: ${sourceFile}: No such file`;
-    }
-
-    const fileToCopy = sourceDir.children[sourceFile];
-
-    // If destination is a directory, copy the file into it
-    if (
-      destDir.children[destinationFile] &&
-      destDir.children[destinationFile].type === "directory"
-    ) {
-      destDir.children[destinationFile].children[sourceFile] = fileToCopy;
-      return `${sourceFile} copied to ${destinationFile}`;
-    }
-
-    // If destination is a file, overwrite it
-    if (
-      destDir.children[destinationFile] &&
-      destDir.children[destinationFile].type === "file"
-    ) {
-      destDir.children[destinationFile] = fileToCopy;
-      return `${destinationFile} overwritten`;
-    }
-
-    return `cp: ${destinationFile}: No such directory or file`;
-  };
-
   const handleCat = (fileName) => {
     const currentDir = getCurrentDir();
 
@@ -357,6 +365,9 @@ const Testing = () => {
     "touch",
     "clear",
     "cat",
+    "rm",
+    "cp",
+    "pwd",
     "y",
     "yes",
   ];
@@ -382,11 +393,17 @@ const Testing = () => {
           case "cd":
             commandOutput = args.length ? handleCd(args[0]) : "";
             break;
-          case "cp":
-            result = handleCp(args); // Call the cp handler here
-            break;
           case "pwd":
             result = handlePwd();
+            break;
+          case "cp":
+            if (args.length < 2) {
+              commandOutput = "cp: missing file operand";
+            } else {
+              const sourcePath = resolvePath(args[0]); // Convert to absolute path
+              const destPath = resolvePath(args[1]); // Convert to absolute path
+              commandOutput = handleCp(sourcePath, destPath);
+            }
             break;
           case "rm":
             result = args.length ? handleRm(args) : "rm: missing operand";
@@ -452,9 +469,6 @@ const Testing = () => {
       case "cd":
         result = args.length ? handleCd(args[0]) : "";
         break;
-      case "cp":
-        result = handleCp(args); // Call the cp handler here
-        break;
       case "mkdir":
         result = args.length
           ? handleMkdir(args[0])
@@ -464,6 +478,15 @@ const Testing = () => {
         result = args.length
           ? handleTouch(args[0])
           : "usage: touch missing file_name ...";
+        break;
+      case "cp":
+        if (args.length < 2) {
+          result = "cp: missing file operand";
+        } else {
+          const sourcePath = resolvePath(args[0]); // Convert to absolute path
+          const destPath = resolvePath(args[1]); // Convert to absolute path
+          result = handleCp(sourcePath, destPath);
+        }
         break;
       case "pwd":
         result = handlePwd();
