@@ -20,7 +20,7 @@
   color: white;
   padding: 10px; /* Adjust top, right, bottom padding */
   padding-left: 40px; /* Add more space on the left */
-  padding-top: 20px; /* Add more space on the left */
+  padding-top: 20px;
   height: 100%; /* Take the full height of the parent */
   width: 800px; /* Take the full width of the parent */
   overflow-y: auto; /* Allows scrolling if content overflows */

@@ -119,7 +119,7 @@ const Testing = () => {
     if (path === "~") {
       setCurrentPath("~");
       setSuggestions([]);
-      return;
+      return "";
     }
 
     if (path === "..") {
@@ -131,7 +131,7 @@ const Testing = () => {
         setCurrentPath("~");
       }
       setSuggestions([]);
-      return;
+      return "";
     }
 
     const currentDir = getCurrentDir();
@@ -139,6 +139,7 @@ const Testing = () => {
     if (target && target.type === "directory") {
       setCurrentPath(`${currentPath}/${path}`);
       setSuggestions([]); // Clear suggestions after a successful command
+      return "";
     } else if (target && target.type === "file") {
       return `cd: not a directory: ${path}`;
     } else {
