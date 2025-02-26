@@ -246,22 +246,27 @@ const Testing = () => {
   };
 
   const handleMv = (sourcePath, destPath) => {
+    console.log("Source:", sourcePath);
+    console.log("Destination:", destPath);
+
     const homePath = "~/User/username"; // Define home directory path
 
-    // Replace "/User/username" with "~" if the path starts with it
+    // Normalize paths: Replace "/User/username" with "~" if necessary
     if (sourcePath.startsWith(homePath)) {
-      sourcePath = "~" + sourcePath.slice(homePath.length); // Adjust the source path
+      sourcePath = "~" + sourcePath.slice(homePath.length);
     }
     if (destPath.startsWith(homePath)) {
-      destPath = "~" + destPath.slice(homePath.length); // Adjust the destination path
+      destPath = "~" + destPath.slice(homePath.length);
     }
 
-    // Ensure both source and destination paths are absolute (starting with '~')
+    console.log("Resolved Source:", sourcePath);
+    console.log("Resolved Destination:", destPath);
+
+    // Ensure paths are absolute
     if (!sourcePath.startsWith("~") || !destPath.startsWith("~")) {
       return "mv: only absolute paths are allowed";
     }
 
-    // Helper function to get item at path
     const getItemAtPath = (path) => {
       const parts = path.split("/").filter(Boolean);
       let current = fileSystem["~"];
@@ -277,33 +282,35 @@ const Testing = () => {
       return { parent, key, item: current };
     };
 
-    // Get source file
+    // Get source item
     const source = getItemAtPath(sourcePath);
-    if (!source || !source.item || source.item.type !== "file") {
-      return `mv: cannot move '${sourcePath}': No such file or not a file`;
+    if (!source || !source.item) {
+      return `mv: cannot move '${sourcePath}': No such file or directory`;
     }
 
     // Get destination
     let dest = getItemAtPath(destPath);
 
-    // If destination exists and is a directory, move the file into it
     if (dest && dest.item && dest.item.type === "directory") {
-      dest.item.children[source.key] = source.item; // Move the file inside the directory
-      delete source.parent.children[source.key]; // Remove the source file
+      // Destination is a directory, move the file inside it
+      dest.item.children[source.key] = source.item;
     } else {
-      // Otherwise, move to the specified location (assume user wants to rename it)
+      // Destination is a new file name or path
       const destParts = destPath.split("/");
-      const destFileName = destParts.pop(); // Extract the target file name
+      const destFileName = destParts.pop(); // Extract target file name
       const destDirPath = destParts.join("/");
       const destDir = getItemAtPath(destDirPath);
 
       if (!destDir || !destDir.item || destDir.item.type !== "directory") {
-        return `mv: cannot move '${sourcePath}': No such directory`;
+        return `mv: cannot move '${sourcePath}' to '${destPath}': No such directory`;
       }
 
-      destDir.item.children[destFileName] = source.item; // Move the file with the new name/path
-      delete source.parent.children[source.key]; // Remove the source file
+      // Move and rename
+      destDir.item.children[destFileName] = source.item;
     }
+
+    // Remove the source item from its original location
+    delete source.parent.children[source.key];
 
     setFileSystem({ ...fileSystem }); // Update state
     return "";
@@ -387,7 +394,7 @@ const Testing = () => {
     console.log("path!" + path);
 
     let basePath = currentPath; // Start from current directory
-    console.log("C Path: " + currentPath );
+    console.log("C Path: " + currentPath);
     let parts = path.split("/").filter(Boolean);
     let currentParts = basePath.split("/").filter(Boolean);
 
@@ -463,6 +470,7 @@ const Testing = () => {
     "cp",
     "pwd",
     "y",
+    "mv",
     "yes",
   ];
 
