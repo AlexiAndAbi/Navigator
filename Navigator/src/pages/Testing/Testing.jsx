@@ -34,12 +34,16 @@ const Testing = () => {
   });
 
   const [questions, setQuestions] = useState([
-    { question: "What command lists the files in a directory?", answer: "ls" },
-    { question: "How do you change to another directory?", answer: "cd" },
-    { question: "What command creates a new directory?", answer: "mkdir" },
+    { question: "Create a new directory", answer: "" },
+    { question: "Create three new files in the directory", answer: "" },
     {
-      question: "Which command displays the contents of a file?",
-      answer: "cat",
+      question:
+        "Move one of these files into its parent directory using an absolute path",
+      answer: "",
+    },
+    {
+      question: "Move to the home directory",
+      answer: "",
     },
   ]);
 
@@ -54,6 +58,8 @@ const Testing = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [isQuestionMode, setIsQuestionMode] = useState(false);
   const [quizMode, setQuizMode] = useState(false);
+  let createdDirectory = null;
+  const [fileCounter, setFileCounter] = useState(0); // Stores the number of created files
 
   const handleQuestionMode = () => {
     setIsQuestionMode(true);
@@ -239,7 +245,87 @@ const Testing = () => {
     }
   };
 
+  const handleMv = (sourcePath, destPath) => {
+    const homePath = "~/User/username"; // Define home directory path
+
+    // Replace "/User/username" with "~" if the path starts with it
+    if (sourcePath.startsWith(homePath)) {
+      sourcePath = "~" + sourcePath.slice(homePath.length); // Adjust the source path
+    }
+    if (destPath.startsWith(homePath)) {
+      destPath = "~" + destPath.slice(homePath.length); // Adjust the destination path
+    }
+
+    // Ensure both source and destination paths are absolute (starting with '~')
+    if (!sourcePath.startsWith("~") || !destPath.startsWith("~")) {
+      return "mv: only absolute paths are allowed";
+    }
+
+    // Helper function to get item at path
+    const getItemAtPath = (path) => {
+      const parts = path.split("/").filter(Boolean);
+      let current = fileSystem["~"];
+      let parent = null;
+      let key = null;
+
+      for (const part of parts.slice(1)) {
+        if (!current.children[part]) return null;
+        parent = current;
+        key = part;
+        current = current.children[part];
+      }
+      return { parent, key, item: current };
+    };
+
+    // Get source file
+    const source = getItemAtPath(sourcePath);
+    if (!source || !source.item || source.item.type !== "file") {
+      return `mv: cannot move '${sourcePath}': No such file or not a file`;
+    }
+
+    // Get destination
+    let dest = getItemAtPath(destPath);
+
+    // If destination exists and is a directory, move the file into it
+    if (dest && dest.item && dest.item.type === "directory") {
+      dest.item.children[source.key] = source.item; // Move the file inside the directory
+      delete source.parent.children[source.key]; // Remove the source file
+    } else {
+      // Otherwise, move to the specified location (assume user wants to rename it)
+      const destParts = destPath.split("/");
+      const destFileName = destParts.pop(); // Extract the target file name
+      const destDirPath = destParts.join("/");
+      const destDir = getItemAtPath(destDirPath);
+
+      if (!destDir || !destDir.item || destDir.item.type !== "directory") {
+        return `mv: cannot move '${sourcePath}': No such directory`;
+      }
+
+      destDir.item.children[destFileName] = source.item; // Move the file with the new name/path
+      delete source.parent.children[source.key]; // Remove the source file
+    }
+
+    setFileSystem({ ...fileSystem }); // Update state
+    return "";
+  };
+
   const handleCp = (sourcePath, destPath) => {
+    console.log(sourcePath);
+    console.log(destPath);
+    const homePath = "~/User/username"; // Define home directory path
+
+    // Replace "/User/username" with "~" if the path starts with it
+    if (sourcePath.startsWith(homePath)) {
+      sourcePath = "~" + sourcePath.slice(homePath.length); // Adjust the source path
+    }
+    if (destPath.startsWith(homePath)) {
+      destPath = "~" + destPath.slice(homePath.length); // Adjust the destination path
+    }
+
+    console.log(sourcePath);
+    console.log(destPath);
+
+    // Ensure both source and destination paths are absolute (starting with '~')
     if (!sourcePath.startsWith("~") || !destPath.startsWith("~")) {
       return "cp: only absolute paths are allowed";
     }
@@ -297,11 +383,14 @@ const Testing = () => {
 
   const resolvePath = (path) => {
     if (path.startsWith("~")) return path; // Already absolute
-  
+    if (path.startsWith("/User/username")) return "~/User/username"; // Already absolute
+    console.log("path!" + path);
+
     let basePath = currentPath; // Start from current directory
+    console.log("C Path: " + currentPath );
     let parts = path.split("/").filter(Boolean);
     let currentParts = basePath.split("/").filter(Boolean);
-  
+
     for (const part of parts) {
       if (part === ".") continue; // Stay in the current directory
       if (part === "..") {
@@ -309,11 +398,13 @@ const Testing = () => {
       } else {
         currentParts.push(part); // Move into the directory/file
       }
+      console.log("Part: " + part);
     }
-  
+
+    console.log("Im boutta " + currentParts.join("/"));
+
     return currentParts.join("/");
   };
-  
 
   const debugFileTree = (dir = fileSystem["~"], indent = "") => {
     let treeString = "";
@@ -341,6 +432,9 @@ const Testing = () => {
   const handlePwd = () => {
     if (currentPath.startsWith("~")) {
       return currentPath.replace("~", "/User/username");
+    }
+    if (currentPath.startsWith("/~")) {
+      return currentPath.replace("/~", "/User/username");
     }
     return currentPath;
   };
@@ -394,29 +488,101 @@ const Testing = () => {
             commandOutput = args.length ? handleCd(args[0]) : "";
             break;
           case "pwd":
-            result = handlePwd();
+            commandOutput = handlePwd();
             break;
           case "cp":
             if (args.length < 2) {
               commandOutput = "cp: missing file operand";
             } else {
               const sourcePath = resolvePath(args[0]); // Convert to absolute path
-              const destPath = resolvePath(args[1]); // Convert to absolute path
+              const destPath = resolvePath(args[1]); // THE PROBLEM IS HERE!!!!
               commandOutput = handleCp(sourcePath, destPath);
             }
             break;
+          case "mv":
+            if (args.length < 2) {
+              commandOutput = "mv: missing file operand";
+            } else {
+              const sourcePath = resolvePath(args[0]); // Convert to absolute path
+              const destPath = resolvePath(args[1]); // Convert to absolute path
+              commandOutput = handleMv(sourcePath, destPath);
+            }
+            break;
           case "rm":
-            result = args.length ? handleRm(args) : "rm: missing operand";
+            commandOutput = args.length
+              ? handleRm(args)
+              : "rm: missing operand";
             break;
           case "mkdir":
-            commandOutput = args.length
-              ? handleMkdir(args[0])
-              : "usage: mkdir missing directory_name ...";
+            if (args.length) {
+              commandOutput = handleMkdir(args[0]);
+              if (
+                currentQuestion.question === "Create a new directory" &&
+                !commandOutput
+              ) {
+                // ✅ Directory successfully created → Mark as correct and move to next question
+                if (currentQuestionIndex < questions.length - 1) {
+                  updateOutput(
+                    `${currentDirectory} >> ${userInput}\n${commandOutput}`,
+                    `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                      questions[currentQuestionIndex + 1].question
+                    }`
+                  );
+                  setCurrentQuestionIndex((prev) => prev + 1);
+                } else {
+                  // ✅ Last question answered → End quiz
+                  setQuizMode(false);
+                  updateOutput(
+                    `${currentDirectory} >> ${userInput}\n${commandOutput}`,
+                    "🎉 Quiz completed! Well done!"
+                  );
+                  setIsQuestionMode(false);
+                }
+                setCommand(""); // Clear input field
+                return;
+              }
+            } else {
+              commandOutput = "usage: mkdir missing directory_name ...";
+            }
             break;
           case "touch":
+            if (
+              currentDirectory !== "directory1" &&
+              currentDirectory !== "~" &&
+              currentDirectory !== "directory3"
+            ) {
+              setFileCounter((prevCount) => prevCount + 1);
+            }
             commandOutput = args.length
               ? handleTouch(args[0])
               : "usage: touch missing file_name ...";
+            if (
+              currentQuestion.question ===
+                "Create three new files in the directory" &&
+              !commandOutput &&
+              fileCounter === 2
+            ) {
+              // ✅ Directory successfully created → Mark as correct and move to next question
+              if (currentQuestionIndex < questions.length - 1) {
+                updateOutput(
+                  `${currentDirectory} >> ${userInput}\n${commandOutput}`,
+                  `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                    questions[currentQuestionIndex + 1].question
+                  }`
+                );
+                setCurrentQuestionIndex((prev) => prev + 1);
+              } else {
+                // ✅ Last question answered → End quiz
+                setQuizMode(false);
+                updateOutput(
+                  `${currentDirectory} >> ${userInput}\n${commandOutput}`,
+                  "🎉 Quiz completed! Well done!"
+                );
+                setIsQuestionMode(false);
+              }
+              setCommand(""); // Clear input field
+              return;
+            }
             break;
           case "clear":
             handleClear();
@@ -432,7 +598,7 @@ const Testing = () => {
       }
 
       if (userInput.toLowerCase() === currentQuestion.answer) {
-        // ✅ Correct answer → Run the command & move to next question
+        // ✅ Standard correct answer → Move to next question
         if (currentQuestionIndex < questions.length - 1) {
           updateOutput(
             `${currentDirectory} >> ${userInput}\n${commandOutput}`,
@@ -462,6 +628,7 @@ const Testing = () => {
       return;
     }
 
+    // Regular commands outside of question mode
     switch (cmd) {
       case "ls":
         result = args.length ? handleLs(args[0]) : handleLs();
@@ -473,6 +640,15 @@ const Testing = () => {
         result = args.length
           ? handleMkdir(args[0])
           : "usage: mkdir missing directory_name ...";
+        break;
+      case "mv":
+        if (args.length < 2) {
+          result = "mv: missing file operand";
+        } else {
+          const sourcePath = resolvePath(args[0]); // Convert to absolute path
+          const destPath = resolvePath(args[1]); // Convert to absolute path
+          result = handleMv(sourcePath, destPath);
+        }
         break;
       case "touch":
         result = args.length
