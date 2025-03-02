@@ -6,26 +6,29 @@ const Testing = () => {
     "~": {
       type: "directory",
       children: {
-        directory1: {
+        information: {
           type: "directory",
           children: {
-            "file3.txt": { type: "file", content: "Hello, Kitten!" },
-            "file4.txt": { type: "file", content: "Hello, Kitten!" },
-            directory3: {
+            "summer.txt": { type: "file", content: "Hello, Kitten!" },
+            "fall.txt": { type: "file", content: "Hello, Kitten!" },
+            Naviagtor: {
               type: "directory",
               children: {
-                "file5.txt": { type: "file", content: "Hello, Kitten!" },
-                "file6.txt": { type: "file", content: "Hello, Kitten!" },
+                "intro.txt": { type: "file", content: "Hello, Kitten!" },
+                "level1.txt": { type: "file", content: "Hello, Kitten!" },
+                "level2.txt": { type: "file", content: "Hello, Kitten!" },
+                "level3.txt": { type: "file", content: "Hello, Kitten!" },
+                "level4.txt": { type: "file", content: "Hello, Kitten!" },
               },
             },
           },
         },
-        "file1.txt": {
+        "hello.txt": {
           type: "file",
           content:
             "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then        ",
         },
-        "file2.txt": {
+        "goodbye.txt": {
           type: "file",
           content: " Insert 'Espresso' here!",
         },
@@ -35,7 +38,10 @@ const Testing = () => {
 
   const [questions, setQuestions] = useState([
     { question: "Create a new directory", answer: "" },
-    { question: "Create three new files in the directory", answer: "" },
+    {
+      question: "Create three empty files in the directory you just made",
+      answer: "",
+    },
     {
       question:
         "Move one of these files into its parent directory using an absolute path",
@@ -45,9 +51,26 @@ const Testing = () => {
       question: "Move to the home directory",
       answer: "",
     },
+    {
+      question: "Clear the terminal",
+      answer: "",
+    },
+    {
+      question: "Display the contents of any file with line numbers shown",
+      answer: "",
+    },
+    {
+      question:
+        "Move both of the text files into the directory you created earlier",
+      answer: "",
+    },
+    {
+      question: "Move the directory Navigator to the home directory?",
+      answer: "",
+    },
   ]);
 
-  const [currentPath, setCurrentPath] = useState("~");
+  const [currentPath, setCurrentPath] = useState("~/information");
   const [command, setCommand] = useState("");
   const [output, setOutput] = useState([]);
   const [commandHistory, setCommandHistory] = useState([]);
@@ -166,18 +189,22 @@ const Testing = () => {
     return "";
   };
 
-  const handleTouch = (fileName) => {
+  const handleTouch = (...fileNames) => {
     const currentDir = getCurrentDir();
-    if (currentDir.children[fileName]) {
-      return `touch: ${fileName}: Timestamp updated`;
-    }
+    let message = "";
 
-    currentDir.children[fileName] = {
-      type: "file",
-      content: "",
-    };
+    fileNames.forEach((fileName) => {
+      if (currentDir.children[fileName]) {
+        message += `touch: ${fileName}: Timestamp updated\n`;
+      } else {
+        currentDir.children[fileName] = {
+          type: "file",
+          content: "",
+        };
+      }
+    });
 
-    return "";
+    return message.trim();
   };
 
   const handleTab = () => {
@@ -474,6 +501,8 @@ const Testing = () => {
     "yes",
   ];
 
+  const [cdUpCount, setCdUpCount] = useState(0);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const userInput = command.trim();
@@ -493,7 +522,46 @@ const Testing = () => {
             commandOutput = args.length ? handleLs(args[0]) : handleLs();
             break;
           case "cd":
+            const targetPath = args.length
+              ? resolvePath(args[0])
+              : currentDirectory;
             commandOutput = args.length ? handleCd(args[0]) : "";
+            if (currentQuestion.question === "Move to the home directory") {
+              if (targetPath === "~") {
+                // ✅ Correct if they use `cd ~`
+                setCdUpCount(0); // Reset counter
+                if (currentQuestionIndex < questions.length - 1) {
+                  updateOutput(
+                    "",
+                    `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                      questions[currentQuestionIndex + 1].question
+                    }`
+                  );
+                  setCurrentQuestionIndex((prev) => prev + 1);
+                }
+                setCommand("");
+                return;
+              } else if (args[0] === "..") {
+                // Increment counter if they use `cd ..`
+                setCdUpCount((prev) => prev + 1);
+
+                // Check if they have moved up twice
+                if (cdUpCount + 1 >= 2) {
+                  setCdUpCount(0); // Reset counter
+                  if (currentQuestionIndex < questions.length - 1) {
+                    updateOutput(
+                      "",
+                      `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                        questions[currentQuestionIndex + 1].question
+                      }`
+                    );
+                    setCurrentQuestionIndex((prev) => prev + 1);
+                  }
+                  setCommand("");
+                  return;
+                }
+              }
+            }
             break;
           case "pwd":
             commandOutput = handlePwd();
@@ -514,6 +582,24 @@ const Testing = () => {
               const sourcePath = resolvePath(args[0]); // Convert to absolute path
               const destPath = resolvePath(args[1]); // Convert to absolute path
               commandOutput = handleMv(sourcePath, destPath);
+              if (
+                currentQuestion.question ===
+                  "Move one of these files into its parent directory using an absolute path" &&
+                !commandOutput
+              ) {
+                // ✅ Directory successfully created → Mark as correct and move to next question
+                if (currentQuestionIndex < questions.length - 1) {
+                  updateOutput(
+                    `${currentDirectory} >> ${userInput}\n${commandOutput}`,
+                    `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                      questions[currentQuestionIndex + 1].question
+                    }`
+                  );
+                  setCurrentQuestionIndex((prev) => prev + 1);
+                }
+                setCommand(""); // Clear input field
+                return;
+              }
             }
             break;
           case "rm":
@@ -559,16 +645,16 @@ const Testing = () => {
               currentDirectory !== "~" &&
               currentDirectory !== "directory3"
             ) {
-              setFileCounter((prevCount) => prevCount + 1);
+              setFileCounter((prevCount) => prevCount + args.length); // Increment by the number of files created
             }
             commandOutput = args.length
-              ? handleTouch(args[0])
+              ? handleTouch(...args) // Pass all filenames
               : "usage: touch missing file_name ...";
             if (
               currentQuestion.question ===
-                "Create three new files in the directory" &&
+                "Create three empty files in the directory you just made" &&
               !commandOutput &&
-              fileCounter === 2
+              fileCounter + args.length >= 3 // Ensure correct counting
             ) {
               // ✅ Directory successfully created → Mark as correct and move to next question
               if (currentQuestionIndex < questions.length - 1) {
@@ -594,6 +680,23 @@ const Testing = () => {
             break;
           case "clear":
             handleClear();
+            if (
+              currentQuestion.question === "Clear the terminal" &&
+              !commandOutput
+            ) {
+              // ✅ Directory successfully created → Mark as correct and move to next question
+              if (currentQuestionIndex < questions.length - 1) {
+                updateOutput(
+                  `${currentDirectory} >> ${userInput}\n${commandOutput}`,
+                  `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                    questions[currentQuestionIndex + 1].question
+                  }`
+                );
+                setCurrentQuestionIndex((prev) => prev + 1);
+              }
+              setCommand(""); // Clear input field
+              return;
+            }
             return;
           case "cat":
             commandOutput = args.length
@@ -604,7 +707,6 @@ const Testing = () => {
             commandOutput = `command not found: ${cmd}`;
         }
       }
-
       if (userInput.toLowerCase() === currentQuestion.answer) {
         // ✅ Standard correct answer → Move to next question
         if (currentQuestionIndex < questions.length - 1) {
@@ -631,7 +733,6 @@ const Testing = () => {
         // ❌ Invalid command
         updateOutput(`${currentDirectory} >> ${userInput}`);
       }
-
       setCommand(""); // Clear input field
       return;
     }
@@ -660,7 +761,7 @@ const Testing = () => {
         break;
       case "touch":
         result = args.length
-          ? handleTouch(args[0])
+          ? handleTouch(...args) // Pass all filenames instead of just the first one
           : "usage: touch missing file_name ...";
         break;
       case "cp":
@@ -717,39 +818,50 @@ const Testing = () => {
   };
 
   const handleKeyDown = (e) => {
+    const currentQuestion = questions[currentQuestionIndex];
     if (e.key === "Enter") {
       handleSubmit(e);
     } else if (e.key === "Tab") {
       e.preventDefault();
       handleTab();
     } else if (e.key === "ArrowUp") {
-      // Check if there's history to navigate
       if (commandHistory.length > 0) {
         if (historyIndex === -1) {
-          // Start at the last command in history if not already navigating
           setHistoryIndex(commandHistory.length - 1);
           setCommand(commandHistory[commandHistory.length - 1]);
         } else if (historyIndex > 0) {
-          // Move up in history if possible
           setHistoryIndex(historyIndex - 1);
           setCommand(commandHistory[historyIndex - 1]);
         }
       }
     } else if (e.key === "ArrowDown") {
       if (historyIndex >= 0 && historyIndex < commandHistory.length - 1) {
-        // Move down in history if not at the end
         setHistoryIndex(historyIndex + 1);
         setCommand(commandHistory[historyIndex + 1]);
       } else if (historyIndex === commandHistory.length - 1) {
-        // If at the last history command, clear the command box
         setHistoryIndex(-1);
         setCommand("");
       }
     } else if (e.ctrlKey && e.key === "l") {
       e.preventDefault();
       handleClear();
+  
+      // ✅ Add logic to validate the "Clear the terminal" question
+      if (currentQuestion.question === "Clear the terminal") {
+        if (currentQuestionIndex < questions.length - 1) {
+          updateOutput(
+            "", // Clear previous command output
+            `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+              questions[currentQuestionIndex + 1].question
+            }`
+          );
+          setCurrentQuestionIndex((prev) => prev + 1);
+        }
+        setCommand(""); // Clear input field
+      }
     }
   };
+  
 
   const currentDirectory = currentPath.split("/").filter(Boolean).pop() || "~";
 
