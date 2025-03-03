@@ -11,7 +11,7 @@ const Testing = () => {
           children: {
             "summer.txt": { type: "file", content: "Hello, Kitten!" },
             "fall.txt": { type: "file", content: "Hello, Kitten!" },
-            Naviagtor: {
+            Navigator: {
               type: "directory",
               children: {
                 "intro.txt": { type: "file", content: "Hello, Kitten!" },
@@ -26,11 +26,12 @@ const Testing = () => {
         "hello.txt": {
           type: "file",
           content:
-            "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then        ",
+            "I love saying hello because it has delivered the most wonderful people on planet earth\nto me. I'm outgoing, and extroverted, so it makes sense that a hello is natural. That no\nstranger scares me... because they are just a friend you haven't met yet. And yes, I'm\nrealistic, not everyone is that way. But every class I walk in to here, I try and say\nhello. To a few people. To those who smile. To those who I can tell are putting\ntheir heart into this... irreguarless of whether they are really in it or not.\nAnd to those out there just learning, hello! It is lovely to meet you. There is so\nmuch more to go... but you have done the hardest part... getting started.",
         },
         "goodbye.txt": {
           type: "file",
-          content: " Insert 'Espresso' here!",
+          content:
+            "When you've been in the major this long, it starts to feel more\nlike home. More so because you start to know people. You start to know\nfaces and names and such. And then you find your people.\nAnd they make all the coding so much better because they sit there with you.\nIn the dark, and in the daytime, and they are their to share in your memory leaks\nand also in your greatest successes. To those who have sat their with me...\nthis game is for you. You have made my time here so precious.\nAnd this isn't goodbye. I will think of you often, in the dark, and in the daytime,\nwhen the going gets tough, and when things are wonderful.",
         },
       },
     },
@@ -61,7 +62,7 @@ const Testing = () => {
     },
     {
       question:
-        "Move both of the text files into the directory you created earlier",
+        "Copy both of the text files in the home directory into the directory you created earlier",
       answer: "",
     },
     {
@@ -286,9 +287,6 @@ const Testing = () => {
       destPath = "~" + destPath.slice(homePath.length);
     }
 
-    console.log("Resolved Source:", sourcePath);
-    console.log("Resolved Destination:", destPath);
-
     // Ensure paths are absolute
     if (!sourcePath.startsWith("~") || !destPath.startsWith("~")) {
       return "mv: only absolute paths are allowed";
@@ -344,8 +342,8 @@ const Testing = () => {
   };
 
   const handleCp = (sourcePath, destPath) => {
-    console.log(sourcePath);
-    console.log(destPath);
+    console.log("Source Path: " + sourcePath);
+    console.log("Dest Path: " + destPath);
     const homePath = "~/User/username"; // Define home directory path
 
     // Replace "/User/username" with "~" if the path starts with it
@@ -355,9 +353,6 @@ const Testing = () => {
     if (destPath.startsWith(homePath)) {
       destPath = "~" + destPath.slice(homePath.length); // Adjust the destination path
     }
-
-    console.log(sourcePath);
-    console.log(destPath);
 
     // Ensure both source and destination paths are absolute (starting with '~')
     if (!sourcePath.startsWith("~") || !destPath.startsWith("~")) {
@@ -416,28 +411,43 @@ const Testing = () => {
   };
 
   const resolvePath = (path) => {
-    if (path.startsWith("~")) return path; // Already absolute
-    if (path.startsWith("/User/username")) return "~/User/username"; // Already absolute
-    console.log("path!" + path);
-
-    let basePath = currentPath; // Start from current directory
-    console.log("C Path: " + currentPath);
-    let parts = path.split("/").filter(Boolean);
-    let currentParts = basePath.split("/").filter(Boolean);
-
-    for (const part of parts) {
-      if (part === ".") continue; // Stay in the current directory
-      if (part === "..") {
-        currentParts.pop(); // Move up one directory
-      } else {
-        currentParts.push(part); // Move into the directory/file
-      }
-      console.log("Part: " + part);
+    console.log("Path: " + path);
+    // If the path is absolute starting with "/User/username", convert it to use "~"
+    const homePrefix = "/User/username";
+    if (path.startsWith(homePrefix)) {
+      return "~" + path.slice(homePrefix.length);
     }
 
-    console.log("Im boutta " + currentParts.join("/"));
+    // Otherwise, treat as a relative path.
+    // Remove the leading "~/" from currentPath if present, so that we don't duplicate "~"
+    let base = currentPath;
+    console.log("Current Path: " + currentPath);
+    if (base.startsWith("~")) {
+      base = base === "~" ? "" : base.slice(2); // Remove "~/" if it exists, or become empty if exactly "~"
+    }
 
-    return currentParts.join("/");
+    console.log("Base: " + base);
+    // Split the relative path into parts
+    let parts = path.split("/").filter(Boolean);
+    let baseParts = base.split("/").filter(Boolean);
+
+    // Process each part of the relative path:
+    for (let part of parts) {
+      if (part === ".") {
+        // Stay in the current directory
+        continue;
+      } else if (part === "..") {
+        // Move up one directory (if possible)
+        baseParts.pop();
+      } else {
+        // Move into the specified directory/file
+        baseParts.push(part);
+      }
+    }
+
+    // Rebuild the absolute path using "~"
+    console.log("About to Return: ");
+    return baseParts.length > 0 ? "~/" + baseParts.join("/") : "~";
   };
 
   const debugFileTree = (dir = fileSystem["~"], indent = "") => {
@@ -473,12 +483,33 @@ const Testing = () => {
     return currentPath;
   };
 
-  const handleCat = (fileName) => {
+  const handleCat = (args) => {
     const currentDir = getCurrentDir();
 
+    // Check if the `-n` option is present
+    const hasLineNumbers = args.includes("-n");
+
+    // Find the file argument (ignore `-n`)
+    const fileName = args.filter((arg) => arg !== "-n")[0];
+
+    if (!fileName) {
+      return "cat: missing file operand";
+    }
+
     const target = currentDir.children[fileName];
+
     if (target && target.type === "file") {
-      return target.content; // Return file content
+      const fileContent = target.content;
+
+      // If `-n` option is used, add line numbers
+      if (hasLineNumbers) {
+        return fileContent
+          .split("\n")
+          .map((line, index) => `${index + 1} ${line}`)
+          .join("\n");
+      }
+
+      return fileContent; // Return file content as is
     } else if (target && target.type === "directory") {
       return `cat: ${fileName}: Is a directory`;
     } else {
@@ -700,8 +731,27 @@ const Testing = () => {
             return;
           case "cat":
             commandOutput = args.length
-              ? handleCat(args[0])
-              : "usage: cat missing file_name ...";
+              ? handleCat(args)
+              : "usage: cat [-n] file_name";
+            console.log(args[0]);
+            if (
+              currentQuestion.question ===
+                "Display the contents of any file with line numbers shown" &&
+              args[0] === "-n"
+            ) {
+              // ✅ Directory successfully created → Mark as correct and move to next question
+              if (currentQuestionIndex < questions.length - 1) {
+                updateOutput(
+                  `${currentDirectory} >> ${userInput}\n${commandOutput}`,
+                  `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                    questions[currentQuestionIndex + 1].question
+                  }`
+                );
+                setCurrentQuestionIndex((prev) => prev + 1);
+              }
+              setCommand(""); // Clear input field
+              return;
+            }
             break;
           default:
             commandOutput = `command not found: ${cmd}`;
@@ -783,9 +833,7 @@ const Testing = () => {
         handleClear();
         return;
       case "cat":
-        result = args.length
-          ? handleCat(args[0])
-          : "usage: cat missing file_name ...";
+        result = args.length ? handleCat(args) : "usage: cat [-n] file_name";
         break;
       case "y":
         setCommand(""); // Clear input field
@@ -845,7 +893,7 @@ const Testing = () => {
     } else if (e.ctrlKey && e.key === "l") {
       e.preventDefault();
       handleClear();
-  
+
       // ✅ Add logic to validate the "Clear the terminal" question
       if (currentQuestion.question === "Clear the terminal") {
         if (currentQuestionIndex < questions.length - 1) {
@@ -861,7 +909,6 @@ const Testing = () => {
       }
     }
   };
-  
 
   const currentDirectory = currentPath.split("/").filter(Boolean).pop() || "~";
 
