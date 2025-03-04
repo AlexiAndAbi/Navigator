@@ -4,6 +4,16 @@ import { useNavigate } from "react-router-dom";
 
 function Page8() {
   const navigate = useNavigate();
+  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree36.png"); // Track the image
+
+  const updateImage = (imageTag) => {
+    if (imageTag === "change") {
+      setImageSrc("/unit1filetrees/FileTree37.png");
+    } else {
+      setImageSrc("/unit1filetrees/FileTree36.png");
+    }
+  };
+
   const [answers, setAnswers] = useState({
     question1: "",
     question2: "",
@@ -48,7 +58,7 @@ function Page8() {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: "sample newFolder screenshot.png",
+          [questionKey]: "newFolder sample screenshot.png",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -67,6 +77,7 @@ function Page8() {
         userInput === "cp -v -r sample /User/username/newFolder" ||
         userInput === "cp -r -v sample /User/username/newFolder"
       ) {
+        updateImage("change");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -107,7 +118,7 @@ function Page8() {
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",
@@ -115,6 +126,16 @@ function Page8() {
         }}
       >
         <p>[########---] 8/11</p>
+      </div>
+
+      <div
+        style={{
+          position: "fixed",
+          top: "85px",
+          right: "20px",
+        }}
+      >
+        <img src={imageSrc} alt="Progress Icon" width="450" height="600" />
       </div>
 
       <div className="content">

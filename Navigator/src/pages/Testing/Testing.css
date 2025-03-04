@@ -16,16 +16,34 @@
   margin-bottom: 5px; /* Adds space between each command and response */
 }
 
-.shell-container {
+.shell-container2 {
   color: white;
   padding: 10px; /* Adjust top, right, bottom padding */
   padding-left: 40px; /* Add more space on the left */
+  padding-top: 20px;
   height: 100%; /* Take the full height of the parent */
-  width: 100%; /* Take the full width of the parent */
+  width: 800px; /* Take the full width of the parent */
   overflow-y: auto; /* Allows scrolling if content overflows */
   font-family: "Consolas", monospace;
   border-radius: 8px;
   margin: 0; /* Remove margin to ensure full size */
+}
+
+.navigate-button {
+  font-size: 20px;
+  margin-left: 40px;
+  margin-top: 20px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: transparent; /* Transparent background */
+  color: white; /* White text */
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navigate-button:hover {
+  background-color: #7ad6d3; /* Fill with purple on hover */
+  color: white; /* Keep text white */
 }
 
 .output {
@@ -51,15 +69,15 @@ form {
 }
 
 input {
-  font-family: "Consolas", monospace; /* Change the font here */
+  font-family: "Consolas", monospace;
   font-weight: 200;
   background: none;
   border: none;
   color: white;
   outline: none;
-  width: auto; /* Change width to auto */
+  width: 60%; /* Adjust width to 60% of the parent container */
   min-width: 500px; /* Set a minimum width */
-  font-size: 1rem;
+  font-size: 20px;
   padding-right: 1rem; /* Add padding for blinking cursor */
   margin-left: 7px; /* Add margin for buffer space */
 }
@@ -69,4 +87,30 @@ input {
   margin: 0; /* Remove default margin */
   padding: 4px 0; /* Add some vertical spacing */
   color: #ffffff; /* Change the text color to white or your desired color */
+}
+
+.game-description {
+  text-align: left;
+  max-width: 800px;
+  font-size: 20px;
+  color: white;
+}
+
+.timer {
+  font-size: 16px;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  min-width: 150px; /* Prevents it from shrinking */
+  max-width: 165px; /* Prevents it from shrinking */
+  text-align: left;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  margin-bottom: 0px;
 }

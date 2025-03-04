@@ -4,6 +4,16 @@ import { useNavigate } from "react-router-dom";
 
 function Page7() {
   const navigate = useNavigate();
+  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree31.png"); // Track the image
+
+  const updateImage = (imageTag) => {
+    if (imageTag === "change") {
+      setImageSrc("/unit1filetrees/FileTree32.png");
+    } else {
+      setImageSrc("/unit1filetrees/FileTree31.png");
+    }
+  };
+
   const [isToggled, setIsToggled] = useState(false);
 
   const [answers, setAnswers] = useState({
@@ -101,6 +111,7 @@ function Page7() {
         overwriteResponse.toLowerCase() === "y" ||
         overwriteResponse.toLowerCase() === "yes"
       ) {
+        updateImage("change");
         responseText = "intro.mp3 -> ./newTrack/intro.mp3";
         setCorrectAnswers({ ...correctAnswers, question2: true });
       }
@@ -139,7 +150,7 @@ function Page7() {
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",
@@ -149,13 +160,23 @@ function Page7() {
         <p>[#######----] 7/11</p>
       </div>
 
+      <div
+        style={{
+          position: "fixed",
+          top: "85px",
+          right: "20px",
+        }}
+      >
+        <img src={imageSrc} alt="Progress Icon" width="450" height="600" />
+      </div>
+
       <div className="content">
         <p>
           The move command!
           <br />
           The <span className="highlight4">mv</span> command can be modified
-          with the -i and -v flags. Flags are included after the command and
-          before any additional arguments.
+          with the -i and -v flags. Remember that flags are included after the
+          command and before any additional arguments.
           <br />
           <br /> ex:
           <br /> mv &emsp;-i -v c.txt ./sample

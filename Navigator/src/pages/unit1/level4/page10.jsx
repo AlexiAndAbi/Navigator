@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./unit1.css";
 import { useNavigate } from "react-router-dom";
 
-function Page11() {
+function Page10() {
   const navigate = useNavigate();
   const [answers, setAnswers] = useState({
     question1: "",
@@ -41,21 +41,6 @@ function Page11() {
   const [timeLeft, setTimeLeft] = useState(60); // Timer state
   const [gameOver, setGameOver] = useState(false); // Tracks if the timer runs out
   const [timerStarted, setTimerStarted] = useState(false); // Tracks if the timer has started
-  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree40.png"); // Track the image
-
-  const updateImage = (imageTag) => {
-    if (imageTag === "copy") {
-      setImageSrc("/unit1filetrees/FileTree41.png");
-    } else if (imageTag === "remove") {
-      setImageSrc("/unit1filetrees/FileTree42.png");
-    } else if (imageTag === "down") {
-      setImageSrc("/unit1filetrees/FileTree43.png");
-    } else if (imageTag === "remove2") {
-      setImageSrc("/unit1filetrees/FileTree44.png");
-    } else {
-      setImageSrc("/unit1filetrees/FileTree40.png");
-    }
-  };
 
   // Refs for scrolling
   const questionRefs = {
@@ -71,11 +56,11 @@ function Page11() {
   };
 
   const handleNavigation = () => {
-    navigate("/Unit1-Level3-page10");
+    navigate("/Unit1-Level4-page9");
   };
 
   const handleNavigation2 = () => {
-    navigate("/Unit1-Level3-page12");
+    navigate("/Unit1-Level4-page11");
   };
 
   const handleInputChange = (e, questionKey) => {
@@ -116,11 +101,11 @@ function Page11() {
     }
 
     if (questionKey === "question2") {
-      if (userInput === "ls") {
+      if (userInput === "-R") {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: "a.txt b.txt sample",
+          [questionKey]: "",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -133,8 +118,7 @@ function Page11() {
     }
 
     if (questionKey === "question3") {
-      if (userInput === "cp a.txt b.txt ./sample") {
-        updateImage("copy");
+      if (userInput === ">") {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -151,8 +135,7 @@ function Page11() {
     }
 
     if (questionKey === "question4") {
-      if (userInput === "rm b.txt") {
-        updateImage("remove");
+      if (userInput === "-n") {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -169,11 +152,11 @@ function Page11() {
     }
 
     if (questionKey === "question5") {
-      if (userInput === "pwd") {
+      if (userInput === "q") {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: "/User/username",
+          [questionKey]: "",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -186,8 +169,11 @@ function Page11() {
     }
 
     if (questionKey === "question6") {
-      if (userInput === "cd sample") {
-        updateImage("down");
+      if (
+        userInput === "interactive" ||
+        userInput === "INTERACTIVE" ||
+        userInput === "Interactive"
+      ) {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({ ...responses, [questionKey]: "" });
       } else {
@@ -201,7 +187,11 @@ function Page11() {
     }
 
     if (questionKey === "question7") {
-      if (userInput === "ls") {
+      if (
+        userInput === "verbose" ||
+        userInput === "VERBOSE" ||
+        userInput === "Verbose"
+      ) {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({ ...responses, [questionKey]: "c.txt a.txt b.txt" });
       } else {
@@ -215,12 +205,11 @@ function Page11() {
     }
 
     if (questionKey === "question8") {
-      if (userInput === "mv c.txt /User/username") {
-        updateImage("remove2");
+      if (userInput === "-i") {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: '',
+          [questionKey]: "",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -233,11 +222,11 @@ function Page11() {
     }
 
     if (questionKey === "question9") {
-      if (userInput === "ls") {
+      if (userInput === "-r" || userInput === "-R") {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: "a.txt b.txt",
+          [questionKey]: "",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -276,7 +265,7 @@ function Page11() {
   }, [correctAnswers]);
 
   return (
-    <div className="gradient_background3">
+    <div className="gradient_background4">
       <button
         className="navigate-button"
         onClick={handleNavigation}
@@ -294,17 +283,7 @@ function Page11() {
           color: "white",
         }}
       >
-        <p>[###########-] 11/12</p>
-      </div>
-
-      <div
-        style={{
-          position: "fixed",
-          top: "85px",
-          right: "20px",
-        }}
-      >
-        <img src={imageSrc} alt="Progress Icon" width="450" height="600" />
+        <p>[##########-] 10/11</p>
       </div>
 
       <div className="content">
@@ -341,9 +320,11 @@ function Page11() {
           {/* Question 2 */}
           {correctAnswers.question1 && (
             <div ref={questionRefs.question2}>
-              <p>List the contents of the current directory.</p>
+              <p>
+                What flag with the ls command shows files within directories?
+              </p>
               <div className="command-line">
-                <span className="directory-prompt">~ {">>"}</span>
+                <span className="directory-prompt">{"??"}</span>
                 <input
                   type="text"
                   style={{ fontSize: "20px", color: "white" }}
@@ -362,11 +343,10 @@ function Page11() {
           {correctAnswers.question2 && (
             <div ref={questionRefs.question3}>
               <p>
-                Copy both files into the directory sample using relative
-                pathing.
+                What character is the redirect symbol when concatenating files?
               </p>
               <div className="command-line">
-                <span className="directory-prompt">~ {">>"}</span>
+                <span className="directory-prompt">{"??"}</span>
                 <input
                   type="text"
                   style={{ fontSize: "20px", color: "white" }}
@@ -384,9 +364,9 @@ function Page11() {
           {/* Question 4 */}
           {correctAnswers.question3 && (
             <div ref={questionRefs.question4}>
-              <p>Remove the file b.txt.</p>
+              <p>What flag with the cat command shows line numbers?</p>
               <div className="command-line">
-                <span className="directory-prompt">~ {">>"}</span>
+                <span className="directory-prompt">{"??"}</span>
                 <input
                   type="text"
                   style={{ fontSize: "20px", color: "white" }}
@@ -404,9 +384,9 @@ function Page11() {
           {/* Question 5 */}
           {correctAnswers.question4 && (
             <div ref={questionRefs.question5}>
-              <p>Display the current absolute path.</p>
+              <p>When using more, what key returns you to the command line?</p>
               <div className="command-line">
-                <span className="directory-prompt">~ {">>"}</span>
+                <span className="directory-prompt">{"??"}</span>
                 <input
                   type="text"
                   style={{ fontSize: "20px", color: "white" }}
@@ -424,9 +404,9 @@ function Page11() {
           {/* Question 6 */}
           {correctAnswers.question5 && (
             <div ref={questionRefs.question6}>
-              <p>Move into the subdirectory.</p>
+              <p>What does the -i flag stand for?</p>
               <div className="command-line">
-                <span className="directory-prompt">~ {">>"}</span>
+                <span className="directory-prompt">{"??"}</span>
                 <input
                   type="text"
                   style={{ fontSize: "20px", color: "white" }}
@@ -445,9 +425,9 @@ function Page11() {
         {/* Question 7 */}
         {correctAnswers.question6 && (
           <div ref={questionRefs.question7}>
-            <p>List the contents of the current directory.</p>
+            <p>What does the -v flag stand for?</p>
             <div className="command-line">
-              <span className="directory-prompt">sample {">>"}</span>
+              <span className="directory-prompt">{"??"}</span>
               <input
                 type="text"
                 style={{ fontSize: "20px", color: "white" }}
@@ -465,9 +445,12 @@ function Page11() {
         {/* Question 8 */}
         {correctAnswers.question7 && (
           <div ref={questionRefs.question8}>
-            <p>Move c.txt to its parent directory using absolute pathing.</p>
+            <p>
+              What flag prompts the user for confirmation before overwriting
+              files?
+            </p>
             <div className="command-line">
-              <span className="directory-prompt">sample {">>"}</span>
+              <span className="directory-prompt">{"??"}</span>
               <input
                 type="text"
                 style={{ fontSize: "20px", color: "white" }}
@@ -485,9 +468,11 @@ function Page11() {
         {/* Question 9 */}
         {correctAnswers.question8 && (
           <div ref={questionRefs.question9}>
-            <p>List the contents of the current directory.</p>
+            <p>
+              What flag do you use to remove directories that are not empty?
+            </p>
             <div className="command-line">
-              <span className="directory-prompt">sample {">>"}</span>
+              <span className="directory-prompt">{"??"}</span>
               <input
                 type="text"
                 style={{ fontSize: "20px", color: "white" }}
@@ -521,4 +506,4 @@ function Page11() {
   );
 }
 
-export default Page11;
+export default Page10;

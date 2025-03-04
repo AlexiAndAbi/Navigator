@@ -103,7 +103,7 @@ function Page3() {
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",
@@ -113,13 +113,29 @@ function Page3() {
         <p>[###--------] 3/11</p>
       </div>
 
+      <div
+        style={{
+          position: "fixed",
+          top: "85px",
+          right: "20px",
+        }}
+      >
+        <img
+          src={"/unit1filetrees/FileTree31.png"}
+          alt="Progress Icon"
+          width="450"
+          height="600"
+        />
+      </div>
+
       <div className="content">
         <p>
           List directory contents!
           <br />
           <br />
           -l <br /> This flag displays more information about each file in the
-          following format: -rw-r--r-- 1 username group 0 Jan 9 15:50 b.txt <br />
+          following format: -rw-r--r-- 1 username group 0 Jan 9 15:50 b.txt{" "}
+          <br />
           <br />
           The response includes the following information: <br />
           &emsp;&emsp;&emsp;&emsp;1. Permissions <br />

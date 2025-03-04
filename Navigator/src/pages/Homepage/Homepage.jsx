@@ -11,6 +11,10 @@ const Homepage = () => {
     navigate("/Unit1-Contents"); // Now this is called when the button is clicked
   };
 
+  const handleAboutClick = () => {
+    navigate("/about"); // Now this is called when the button is clicked
+  };
+
   return (
     <div className="gradient_backgroundHomepage">
       <div className="center-container">
@@ -23,7 +27,7 @@ const Homepage = () => {
 
       {/* Small text at the bottom */}
       <div className="footer">
-        <a href="/about" className="footer-link">
+        <a className="footer-link" onClick={handleAboutClick}>
           by alexi and abby
         </a>
       </div>

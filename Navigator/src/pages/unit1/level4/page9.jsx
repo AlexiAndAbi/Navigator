@@ -5,6 +5,17 @@ import { useNavigate } from "react-router-dom";
 function Page9() {
   const navigate = useNavigate();
   const [isToggled, setIsToggled] = useState(false);
+  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree38.png"); // Track the image
+
+  const updateImage = (imageTag) => {
+    if (imageTag === "change") {
+      setImageSrc("/unit1filetrees/FileTree35.png");
+    } else if (imageTag === "one") {
+      setImageSrc("/unit1filetrees/FileTree39.png");
+    } else {
+      setImageSrc("/unit1filetrees/FileTree38.png");
+    }
+  };
 
   const [answers, setAnswers] = useState({
     question1: "",
@@ -81,7 +92,8 @@ function Page9() {
     }
 
     if (questionKey === "question2") {
-      if (userInput === "rm -r sub") {
+      if (userInput === "rm -r sub" || userInput === "rm -R sub") {
+        updateImage("change");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -119,6 +131,7 @@ function Page9() {
         overwriteResponse.toLowerCase() === "y" ||
         overwriteResponse.toLowerCase() === "yes"
       ) {
+        updateImage("one");
         responseText = "";
         setCorrectAnswers({ ...correctAnswers, question3: true });
       }
@@ -163,7 +176,7 @@ function Page9() {
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",
@@ -171,6 +184,16 @@ function Page9() {
         }}
       >
         <p>[#########--] 9/11</p>
+      </div>
+
+      <div
+        style={{
+          position: "fixed",
+          top: "85px",
+          right: "20px",
+        }}
+      >
+        <img src={imageSrc} alt="Progress Icon" width="450" height="600" />
       </div>
 
       <div className="content">
@@ -183,7 +206,7 @@ function Page9() {
           <br /> -r <br />
           The -r flag removes files recursively in a directory. This flag
           enables us to remove directories that are not empty because all of the
-          files inside them are removed as well.
+          files inside them are removed as well. (-R is equivalent.)
           <br />
           <br /> -i <br />
           The -i flag, standing for interactive, prompts the user before

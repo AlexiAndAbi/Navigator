@@ -1,41 +1,108 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./Testing.css";
 
 const Testing = () => {
-  const [fileSystem] = useState({
+  const [fileSystem, setFileSystem] = useState({
     "~": {
       type: "directory",
       children: {
-        directory1: {
+        information: {
           type: "directory",
           children: {
-            "file3.txt": { type: "file", content: "Hello, Kitten!" },
-            "file4.txt": { type: "file", content: "Hello, Kitten!" },
-            directory3: {
+            "summer.txt": { type: "file", content: "Hello, Kitten!" },
+            "fall.txt": { type: "file", content: "Hello, Kitten!" },
+            Navigator: {
               type: "directory",
               children: {
-                "file5.txt": { type: "file", content: "Hello, Kitten!" },
-                "file6.txt": { type: "file", content: "Hello, Kitten!" },
+                "intro.txt": { type: "file", content: "Hello, Kitten!" },
+                "level1.txt": { type: "file", content: "Hello, Kitten!" },
+                "level2.txt": { type: "file", content: "Hello, Kitten!" },
+                "level3.txt": { type: "file", content: "Hello, Kitten!" },
+                "level4.txt": { type: "file", content: "Hello, Kitten!" },
               },
             },
           },
         },
-        "file1.txt": {
+        "hello.txt": {
           type: "file",
           content:
-            "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then        ",
+            "I love saying hello because it has delivered the most wonderful people on planet earth\nto me. I'm outgoing, and extroverted, so it makes sense that a hello is natural. That no\nstranger scares me... because they are just a friend you haven't met yet. And yes, I'm\nrealistic, not everyone is that way. But every class I walk in to here, I try and say\nhello. To a few people. To those who smile. To those who I can tell are putting\ntheir heart into this... irreguarless of whether they are really in it or not.\nAnd to those out there just learning, hello! It is lovely to meet you. There is so\nmuch more to go... but you have done the hardest part... getting started.",
         },
-        "file2.txt": { type: "file", content: "Nowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoIcan'trelatetodesperationMygive-a-fucksareonvacationAndIgotthisoneboyandhewon'tstopcallin'Whentheyactthisway,IknowIgot'emToobadyourexdon'tdoitforyaWalkedinanddream-came-trueditforyaSoftskinandIperfumeditforya(Yes)IknowIMountainDewitforya(Yes)thatmorningcoffee,breweditforya(Yes)onetouchandIbrand-neweditforya(oh)Nowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoHolyshitIsitthatsweet?IguesssoI'mworkinglate,'causeI'masingerOh,helookssocutewrapped'roundmyfingerMytwistedhumormakehimlaughsooftenMyhoneybee,comeandgetthispollenToobadyourexdon'tdoitforyaWalkedinanddream-came-trueditforyaSoftskinandIperfumeditforya(Yes)IknowIMountainDewitforya(Yes)thatmorningcoffee,breweditforya(Yes)onetouchandIbrand-neweditforya(stupid)Nowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoThinkin''boutmeeverynight,ohIsitthatsweet?Iguessso(yes)Sayyoucan'tsleep,baby,IknowThat'sthatmeespresso(yes)Moveitup,down,left,right,ohSwitchituplikeNintendo(yes)Sayyoucan'tsleep,baby,IknowThat'sthatmeespressoIsitthatsweet?Iguessso,uhThat'sthatmeespressoNowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoIcan'trelatetodesperationMygive-a-fucksareonvacationAndIgotthisoneboyandhewon'tstopcallin'Whentheyactthisway,IknowIgot'emToobadyourexdon'tdoitforyaWalkedinanddream-came-trueditforyaSoftskinandIperfumeditforya(Yes)IknowIMountainDewitforya(Yes)thatmorningcoffee,breweditforya(Yes)onetouchandIbrand-neweditforya(oh)Nowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoHolyshitIsitthatsweet?IguesssoI'mworkinglate,'causeI'masingerOh,helookssocutewrapped'roundmyfingerMytwistedhumormakehimlaughsooftenMyhoneybee,comeandgetthispollenToobadyourexdon'tdoitforyaWalkedinanddream-came-trueditforyaSoftskinandIperfumeditforya(Yes)IknowIMountainDewitforya(Yes)thatmorningcoffee,breweditforya(Yes)onetouchandIbrand-neweditforya(stupid)Nowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoThinkin''boutmeeverynight,ohIsitthatsweet?Iguessso(yes)Sayyoucan'tsleep,baby,IknowThat'sthatmeespresso(yes)Moveitup,down,left,right,ohSwitchituplikeNintendo(yes)Sayyoucan'tsleep,baby,IknowThat'sthatmeespressoIsitthatsweet?Iguessso,uhThat'sthatmeespressoNowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoIcan'trelatetodesperationMygive-a-fucksareonvacationAndIgotthisoneboyandhewon'tstopcallin'Whentheyactthisway,IknowIgot'emToobadyourexdon'tdoitforyaWalkedinanddream-came-trueditforyaSoftskinandIperfumeditforya(Yes)IknowIMountainDewitforya(Yes)thatmorningcoffee,breweditforya(Yes)onetouchandIbrand-neweditforya(oh)Nowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoHolyshitIsitthatsweet?IguesssoI'mworkinglate,'causeI'masingerOh,helookssocutewrapped'roundmyfingerMytwistedhumormakehimlaughsooftenMyhoneybee,comeandgetthispollenToobadyourexdon'tdoitforyaWalkedinanddream-came-trueditforyaSoftskinandIperfumeditforya(Yes)IknowIMountainDewitforya(Yes)thatmorningcoffee,breweditforya(Yes)onetouchandIbrand-neweditforya(stupid)Nowhe'sthinkin''boutmeeverynight,ohIsitthatsweet?IguesssoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoMoveitup,down,left,right,ohSwitchituplikeNintendoSayyoucan'tsleep,baby,IknowThat'sthatmeespressoThinkin''boutmeeverynight,ohIsitthatsweet?Iguessso(yes)Sayyoucan'tsleep,baby,IknowThat'sthatmeespresso(yes)Moveitup,down,left,right,ohSwitchituplikeNintendo(yes)Sayyoucan'tsleep,baby,IknowThat'sthatmeespressoIsitthatsweet?Iguessso,uhThat'sthatmeespresso" },
+        "goodbye.txt": {
+          type: "file",
+          content:
+            "When you've been in this major so long, it starts to feel more\nlike home. More so because you start to know people. You start to know\nfaces and names and such. And then you find your people.\nAnd they make all the coding so much better because they sit there with you.\nIn the dark, and in the daytime, and they are their to share in your memory leaks\nand also in your greatest successes. To those who have sat their with me...\nthis game is for you. You have made my time here so precious.\nAnd this isn't goodbye. I will think of you often, in the dark, and in the daytime,\nwhen the going gets tough, and when things are wonderful.",
+        },
       },
     },
   });
 
-  const [currentPath, setCurrentPath] = useState("~");
+  const [questions, setQuestions] = useState([
+    { question: "Create a new directory", answer: "" },
+    {
+      question: "Create three empty files in the directory you just made",
+      answer: "",
+    },
+    {
+      question:
+        "Move one of these files into its parent directory using an absolute path",
+      answer: "",
+    },
+    {
+      question: "Move to the home directory",
+      answer: "",
+    },
+    {
+      question: "Clear the terminal",
+      answer: "",
+    },
+    {
+      question: "Display the contents of any file with line numbers shown",
+      answer: "",
+    },
+    {
+      question:
+        "Copy both of the text files in the home directory into the directory you created earlier using a relative path",
+      answer: "",
+    },
+    {
+      question: "Move the directory Navigator to the home directory using an absolute path",
+      answer: "",
+    },
+  ]);
+
+  const [currentPath, setCurrentPath] = useState("~/information");
   const [command, setCommand] = useState("");
   const [output, setOutput] = useState([]);
   const [commandHistory, setCommandHistory] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [suggestions, setSuggestions] = useState([]);
+  const [elapsedTime, setElapsedTime] = useState(0);
+  const timerRef = useRef(null);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [isQuestionMode, setIsQuestionMode] = useState(false);
+  const [quizMode, setQuizMode] = useState(false);
+  let createdDirectory = null;
+  const [fileCounter, setFileCounter] = useState(0); // Stores the number of created files
+
+  const handleQuestionMode = () => {
+    setIsQuestionMode(true);
+    setCurrentQuestionIndex(0);
+    updateOutput("", `Question 1: ${questions[0].question}`);
+  };
+
+  useEffect(() => {
+    if (quizMode) {
+      timerRef.current = setInterval(() => {
+        setElapsedTime((prevTime) => prevTime + 1);
+      }, 1000);
+    } else {
+      clearInterval(timerRef.current); // Stop timer when exiting quiz mode
+      setElapsedTime(0); // Reset time when quiz mode restarts
+    }
+
+    return () => clearInterval(timerRef.current); // Cleanup on unmount
+  }, [quizMode]); // Runs when quizMode changes
 
   const getCurrentDir = () => {
     const pathParts = currentPath
@@ -81,7 +148,7 @@ const Testing = () => {
     if (path === "~") {
       setCurrentPath("~");
       setSuggestions([]);
-      return;
+      return "";
     }
 
     if (path === "..") {
@@ -93,7 +160,7 @@ const Testing = () => {
         setCurrentPath("~");
       }
       setSuggestions([]);
-      return;
+      return "";
     }
 
     const currentDir = getCurrentDir();
@@ -101,6 +168,7 @@ const Testing = () => {
     if (target && target.type === "directory") {
       setCurrentPath(`${currentPath}/${path}`);
       setSuggestions([]); // Clear suggestions after a successful command
+      return "";
     } else if (target && target.type === "file") {
       return `cd: not a directory: ${path}`;
     } else {
@@ -122,18 +190,22 @@ const Testing = () => {
     return "";
   };
 
-  const handleTouch = (fileName) => {
+  const handleTouch = (...fileNames) => {
     const currentDir = getCurrentDir();
-    if (currentDir.children[fileName]) {
-      return `touch: ${fileName}: Timestamp updated`;
-    }
+    let message = "";
 
-    currentDir.children[fileName] = {
-      type: "file",
-      content: "",
-    };
+    fileNames.forEach((fileName) => {
+      if (currentDir.children[fileName]) {
+        message += `touch: ${fileName}: Timestamp updated\n`;
+      } else {
+        currentDir.children[fileName] = {
+          type: "file",
+          content: "",
+        };
+      }
+    });
 
-    return "";
+    return message.trim();
   };
 
   const handleTab = () => {
@@ -153,12 +225,221 @@ const Testing = () => {
     }
   };
 
-  const handleCat = (fileName) => {
+  const handleRm = (args) => {
+    if (args.length === 0) {
+      return "usage: rm [-r | -R] file_name ...";
+    }
+
+    // Check if the -r or -R flag is present
+    const isRecursive = args[0] === "-r" || args[0] === "-R";
+    if (isRecursive) {
+      args.shift(); // Remove the -r or -R flag from the arguments
+    }
+
+    const target = args[0];
+    let dir = getCurrentDir();
+
+    if (dir && dir.children[target]) {
+      const targetItem = dir.children[target];
+
+      if (targetItem.type === "file") {
+        // Remove the file directly
+        delete dir.children[target];
+        return ``;
+      } else if (targetItem.type === "directory") {
+        // If the -r or -R flag is used, recursively remove all children of the directory
+        if (isRecursive) {
+          const removeDirectoryContents = (dir) => {
+            for (let child in dir.children) {
+              const childItem = dir.children[child];
+              if (childItem.type === "directory") {
+                // Recursively remove contents of the directory
+                removeDirectoryContents(childItem);
+              }
+              delete dir.children[child]; // Remove the file or directory
+            }
+          };
+
+          removeDirectoryContents(targetItem);
+          delete dir.children[target]; // Finally, delete the directory itself
+          return ``;
+        } else {
+          // If not recursive, return an error message for non-empty directories
+          return `rm: cannot remove '${target}': Is a directory`;
+        }
+      }
+    } else {
+      return `rm: ${target}: No such file or directory`;
+    }
+  };
+
+  const handleMv = (sourcePath, destPath, recursive = false) => {
+    // Normalize paths
+    sourcePath = resolvePath(sourcePath);
+    destPath = resolvePath(destPath);
+
+    // Get source item info
+    const sourceInfo = getItemAtPath(sourcePath);
+    if (!sourceInfo || !sourceInfo.item) {
+      return `mv: cannot move '${sourcePath}': No such file or directory`;
+    }
+    const sourceItem = sourceInfo.item;
+
+    // Get destination info
+    const destInfo = getItemAtPath(destPath);
+
+    if (recursive && sourceItem.type === "directory") {
+      if (!destInfo || destInfo.item.type !== "directory") {
+        return `mv: cannot move directory '${sourcePath}' to '${destPath}': Not a directory`;
+      }
+      // Move the entire directory structure
+      destInfo.item.children[sourceInfo.key] = sourceItem;
+    } else if (!recursive || sourceItem.type === "file") {
+      // If destination is a directory, move the file inside it
+      if (destInfo && destInfo.item.type === "directory") {
+        destInfo.item.children[sourceInfo.key] = sourceItem;
+      } else {
+        // Otherwise, treat destPath as a new name for the item
+        const destParts = destPath.split("/").filter(Boolean);
+        const newName = destParts.pop();
+        const destDirPath = "~/" + destParts.join("/");
+        const destDirInfo = getItemAtPath(destDirPath);
+        if (!destDirInfo || destDirInfo.item.type !== "directory") {
+          return `mv: cannot move '${sourcePath}' to '${destPath}': No such directory`;
+        }
+        destDirInfo.item.children[newName] = sourceItem;
+      }
+    } else {
+      return `mv: cannot move '${sourcePath}': Not a file`;
+    }
+
+    // Remove the source item from its original location
+    delete sourceInfo.parent.children[sourceInfo.key];
+
+    setFileSystem({ ...fileSystem });
+    return "";
+  };
+
+  const handleCp = (sourcePaths, destPath) => {
+    // Ensure sourcePaths is an array.
+    if (!Array.isArray(sourcePaths)) {
+      sourcePaths = [sourcePaths];
+    }
+
+    // Normalize destination path.
+    const normDestPath = resolvePath(destPath);
+    const destInfo = getItemAtPath(normDestPath);
+
+    // Check that destination exists and is a directory.
+    if (!destInfo || !destInfo.item || destInfo.item.type !== "directory") {
+      return `cp: cannot copy to '${normDestPath}': Not a directory or does not exist`;
+    }
+
+    // Process each source file.
+    for (const src of sourcePaths) {
+      const normSrc = resolvePath(src);
+      const srcInfo = getItemAtPath(normSrc);
+
+      if (!srcInfo || !srcInfo.item || srcInfo.item.type !== "file") {
+        return `cp: cannot copy '${src}': No such file or not a file`;
+      }
+
+      // Copy the file into the destination directory using its existing file name.
+      destInfo.item.children[srcInfo.key] = {
+        type: "file",
+        content: srcInfo.item.content,
+      };
+    }
+
+    // Update state.
+    setFileSystem({ ...fileSystem });
+    return "";
+  };
+
+  const resolvePath = (path) => {
+    const homePrefix = "/User/username";
+
+    // If already using "~", assume it's normalized.
+    if (path.startsWith("~")) return path;
+
+    // If an absolute path starting with "/User/username", convert to "~"
+    if (path.startsWith(homePrefix)) {
+      return "~" + path.slice(homePrefix.length);
+    }
+
+    // Otherwise, treat as a relative path.
+    // For relative paths, remove any leading "./"
+    if (path.startsWith("./")) {
+      path = path.slice(2);
+    }
+    // We'll use the currentPath as the base.
+    // currentPath is assumed to be in the form "~" or "~/<subdir>/..."
+    let base = currentPath;
+    if (base === "~") {
+      return "~/" + path;
+    } else {
+      return base + "/" + path;
+    }
+  };
+
+  // Helper: given an absolute path (starting with "~"), traverse the fileSystem.
+  const getItemAtPath = (path) => {
+    // Split the path into parts and remove the "~" if present.
+    let parts = path.split("/").filter(Boolean);
+    if (parts[0] === "~") {
+      parts = parts.slice(1);
+    }
+    let current = fileSystem["~"];
+    let parent = null;
+    let key = null;
+    for (let part of parts) {
+      if (!current.children || !current.children[part]) {
+        return null;
+      }
+      parent = current;
+      key = part;
+      current = current.children[part];
+    }
+    return { parent, key, item: current };
+  };
+
+  const handlePwd = () => {
+    if (currentPath.startsWith("~")) {
+      return currentPath.replace("~", "/User/username");
+    }
+    if (currentPath.startsWith("/~")) {
+      return currentPath.replace("/~", "/User/username");
+    }
+    return currentPath;
+  };
+
+  const handleCat = (args) => {
     const currentDir = getCurrentDir();
 
+    // Check if the `-n` option is present
+    const hasLineNumbers = args.includes("-n");
+
+    // Find the file argument (ignore `-n`)
+    const fileName = args.filter((arg) => arg !== "-n")[0];
+
+    if (!fileName) {
+      return "cat: missing file operand";
+    }
+
     const target = currentDir.children[fileName];
+
     if (target && target.type === "file") {
-      return target.content; // Return file content
+      const fileContent = target.content;
+
+      // If `-n` option is used, add line numbers
+      if (hasLineNumbers) {
+        return fileContent
+          .split("\n")
+          .map((line, index) => `${index + 1} ${line}`)
+          .join("\n");
+      }
+
+      return fileContent; // Return file content as is
     } else if (target && target.type === "directory") {
       return `cat: ${fileName}: Is a directory`;
     } else {
@@ -166,11 +447,357 @@ const Testing = () => {
     }
   };
 
+  const validCommands = [
+    "ls",
+    "cd",
+    "mkdir",
+    "touch",
+    "clear",
+    "cat",
+    "rm",
+    "cp",
+    "pwd",
+    "y",
+    "mv",
+    "yes",
+  ];
+
+  const [cdUpCount, setCdUpCount] = useState(0);
+  const [cpCount, setcpCount] = useState(0);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const userInput = command.trim();
     const [cmd, ...args] = command.split(" ");
     let result;
 
+    if (isQuestionMode) {
+      const currentQuestion = questions[currentQuestionIndex];
+
+      let commandOutput = "";
+      let isValidCommand = validCommands.includes(cmd);
+
+      if (isValidCommand) {
+        // Run the command first
+        switch (cmd) {
+          case "ls":
+            commandOutput = args.length ? handleLs(args[0]) : handleLs();
+            break;
+          case "cd":
+            const targetPath = args.length
+              ? resolvePath(args[0])
+              : currentDirectory;
+            commandOutput = args.length ? handleCd(args[0]) : "";
+            if (currentQuestion.question === "Move to the home directory") {
+              if (targetPath === "~") {
+                // ✅ Correct if they use `cd ~`
+                setCdUpCount(0); // Reset counter
+                if (currentQuestionIndex < questions.length - 1) {
+                  updateOutput(
+                    "",
+                    `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                      questions[currentQuestionIndex + 1].question
+                    }`
+                  );
+                  setCurrentQuestionIndex((prev) => prev + 1);
+                }
+                setCommand("");
+                return;
+              } else if (args[0] === "..") {
+                // Increment counter if they use `cd ..`
+                setCdUpCount((prev) => prev + 1);
+
+                // Check if they have moved up twice
+                if (cdUpCount + 1 >= 2) {
+                  setCdUpCount(0); // Reset counter
+                  if (currentQuestionIndex < questions.length - 1) {
+                    updateOutput(
+                      "",
+                      `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                        questions[currentQuestionIndex + 1].question
+                      }`
+                    );
+                    setCurrentQuestionIndex((prev) => prev + 1);
+                  }
+                  setCommand("");
+                  return;
+                }
+              }
+            }
+            break;
+          case "pwd":
+            commandOutput = handlePwd();
+            break;
+          case "cp":
+            if (args.length < 2) {
+              commandOutput = "cp: missing file operand";
+            } else {
+              const sourcePaths = args.slice(0, -1).map(resolvePath); // All args except last are source files
+              const destPath = resolvePath(args[args.length - 1]); // Last arg is destination
+              commandOutput = handleCp(sourcePaths, destPath);
+              if (
+                currentQuestion.question ===
+                "Copy both of the text files in the home directory into the directory you created earlier using a relative path"
+              ) {
+                if (sourcePaths.length === 2) {
+                  // ✅ Correct if they copy two files
+                  setcpCount(0); // Reset counter
+                  if (currentQuestionIndex < questions.length - 1) {
+                    updateOutput(
+                      "",
+                      `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                        questions[currentQuestionIndex + 1].question
+                      }`
+                    );
+                    setCurrentQuestionIndex((prev) => prev + 1);
+                  }
+                  setCommand("");
+                  return;
+                } else if (sourcePaths.length === 1) {
+                  // Increment counter if they copy one file
+                  setcpCount((prev) => prev + 1);
+
+                  // Check if they have moved up twice
+                  if (cpCount + 1 >= 2) {
+                    setcpCount(0); // Reset counter
+                    if (currentQuestionIndex < questions.length - 1) {
+                      updateOutput(
+                        "",
+                        `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                          questions[currentQuestionIndex + 1].question
+                        }`
+                      );
+                      setCurrentQuestionIndex((prev) => prev + 1);
+                    }
+                    setCommand("");
+                    return;
+                  }
+                }
+              }
+            }
+            break;
+
+          case "mv":
+            if (args.length < 2) {
+              commandOutput = "mv: missing file operand";
+            } else {
+              let recursive = false;
+              let sourceIndex = 0;
+
+              // Check if -r is the first argument
+              if (args[0] === "-r") {
+                recursive = true;
+                sourceIndex = 1;
+              }
+
+              if (args.length - sourceIndex < 2) {
+                commandOutput = "mv: missing file operand after '-r'";
+              } else {
+                const sourcePath = resolvePath(args[sourceIndex]); // Convert to absolute path
+                const destPath = resolvePath(args[sourceIndex + 1]); // Convert to absolute path
+                commandOutput = handleMv(sourcePath, destPath, recursive);
+              }
+              if (
+                currentQuestion.question ===
+                  "Move one of these files into its parent directory using an absolute path" &&
+                !commandOutput
+              ) {
+                // ✅ Directory successfully created → Mark as correct and move to next question
+                if (currentQuestionIndex < questions.length - 1) {
+                  updateOutput(
+                    `${currentDirectory} >> ${userInput}\n${commandOutput}`,
+                    `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                      questions[currentQuestionIndex + 1].question
+                    }`
+                  );
+                  setCurrentQuestionIndex((prev) => prev + 1);
+                }
+                setCommand(""); // Clear input field
+                return;
+              }
+              if (
+                currentQuestion.question ===
+                  "Move the directory Navigator to the home directory using an absolute path" &&
+                !commandOutput
+              ) {
+                // ✅ Directory successfully created → Mark as correct and move to next question
+                if (currentQuestionIndex < questions.length - 1) {
+                  updateOutput(
+                    `${currentDirectory} >> ${userInput}\n${commandOutput}`,
+                    `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                      questions[currentQuestionIndex + 1].question
+                    }`
+                  );
+                  setCurrentQuestionIndex((prev) => prev + 1);
+                } else {
+                  // ✅ Last question answered → End quiz
+                  setQuizMode(false);
+                  updateOutput(
+                    `${currentDirectory} >> ${userInput}\n${commandOutput}`,
+                    "🎉 Quiz completed! Well done!"
+                  );
+                  setIsQuestionMode(false);
+                }
+                setCommand(""); // Clear input field
+                return;
+              }
+            }
+            break;
+          case "rm":
+            commandOutput = args.length
+              ? handleRm(args)
+              : "rm: missing operand";
+            break;
+          case "mkdir":
+            if (args.length) {
+              commandOutput = handleMkdir(args[0]);
+              if (
+                currentQuestion.question === "Create a new directory" &&
+                !commandOutput
+              ) {
+                // ✅ Directory successfully created → Mark as correct and move to next question
+                if (currentQuestionIndex < questions.length - 1) {
+                  updateOutput(
+                    `${currentDirectory} >> ${userInput}\n${commandOutput}`,
+                    `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                      questions[currentQuestionIndex + 1].question
+                    }`
+                  );
+                  setCurrentQuestionIndex((prev) => prev + 1);
+                } else {
+                  // ✅ Last question answered → End quiz
+                  setQuizMode(false);
+                  updateOutput(
+                    `${currentDirectory} >> ${userInput}\n${commandOutput}`,
+                    "🎉 Quiz completed! Well done!"
+                  );
+                  setIsQuestionMode(false);
+                }
+                setCommand(""); // Clear input field
+                return;
+              }
+            } else {
+              commandOutput = "usage: mkdir missing directory_name ...";
+            }
+            break;
+          case "touch":
+            if (
+              currentDirectory !== "directory1" &&
+              currentDirectory !== "~" &&
+              currentDirectory !== "directory3"
+            ) {
+              setFileCounter((prevCount) => prevCount + args.length); // Increment by the number of files created
+            }
+            commandOutput = args.length
+              ? handleTouch(...args) // Pass all filenames
+              : "usage: touch missing file_name ...";
+            if (
+              currentQuestion.question ===
+                "Create three empty files in the directory you just made" &&
+              !commandOutput &&
+              fileCounter + args.length >= 3 // Ensure correct counting
+            ) {
+              // ✅ Directory successfully created → Mark as correct and move to next question
+              if (currentQuestionIndex < questions.length - 1) {
+                updateOutput(
+                  `${currentDirectory} >> ${userInput}\n${commandOutput}`,
+                  `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                    questions[currentQuestionIndex + 1].question
+                  }`
+                );
+                setCurrentQuestionIndex((prev) => prev + 1);
+              } else {
+                // ✅ Last question answered → End quiz
+                setQuizMode(false);
+                updateOutput(
+                  `${currentDirectory} >> ${userInput}\n${commandOutput}`,
+                  "🎉 Quiz completed! Well done!"
+                );
+                setIsQuestionMode(false);
+              }
+              setCommand(""); // Clear input field
+              return;
+            }
+            break;
+          case "clear":
+            handleClear();
+            if (
+              currentQuestion.question === "Clear the terminal" &&
+              !commandOutput
+            ) {
+              // ✅ Directory successfully created → Mark as correct and move to next question
+              if (currentQuestionIndex < questions.length - 1) {
+                updateOutput(
+                  `${currentDirectory} >> ${userInput}\n${commandOutput}`,
+                  `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                    questions[currentQuestionIndex + 1].question
+                  }`
+                );
+                setCurrentQuestionIndex((prev) => prev + 1);
+              }
+              setCommand(""); // Clear input field
+              return;
+            }
+            return;
+          case "cat":
+            commandOutput = args.length
+              ? handleCat(args)
+              : "usage: cat [-n] file_name";
+            console.log(args[0]);
+            if (
+              currentQuestion.question ===
+                "Display the contents of any file with line numbers shown" &&
+              args[0] === "-n"
+            ) {
+              // ✅ Directory successfully created → Mark as correct and move to next question
+              if (currentQuestionIndex < questions.length - 1) {
+                updateOutput(
+                  `${currentDirectory} >> ${userInput}\n${commandOutput}`,
+                  `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                    questions[currentQuestionIndex + 1].question
+                  }`
+                );
+                setCurrentQuestionIndex((prev) => prev + 1);
+              }
+              setCommand(""); // Clear input field
+              return;
+            }
+            break;
+          default:
+            commandOutput = `command not found: ${cmd}`;
+        }
+      }
+      if (userInput.toLowerCase() === currentQuestion.answer) {
+        // ✅ Standard correct answer → Move to next question
+        if (currentQuestionIndex < questions.length - 1) {
+          updateOutput(
+            `${currentDirectory} >> ${userInput}\n${commandOutput}`,
+            `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+              questions[currentQuestionIndex + 1].question
+            }`
+          );
+          setCurrentQuestionIndex((prev) => prev + 1);
+        } else {
+          // ✅ Last question answered → End quiz
+          setQuizMode(false);
+          updateOutput(
+            `${currentDirectory} >> ${userInput}\n${commandOutput}`,
+            "🎉 Quiz completed! Well done!"
+          );
+          setIsQuestionMode(false);
+        }
+      } else if (isValidCommand) {
+        // 🟡 Valid command but incorrect → Run the command and give feedback
+        updateOutput(`${currentDirectory} >> ${userInput}\n${commandOutput}`);
+      } else {
+        // ❌ Invalid command
+        updateOutput(`${currentDirectory} >> ${userInput}`);
+      }
+      setCommand(""); // Clear input field
+      return;
+    }
+
+    // Regular commands outside of question mode
     switch (cmd) {
       case "ls":
         result = args.length ? handleLs(args[0]) : handleLs();
@@ -183,19 +810,65 @@ const Testing = () => {
           ? handleMkdir(args[0])
           : "usage: mkdir missing directory_name ...";
         break;
+      case "mv":
+        if (args.length < 2) {
+          result = "mv: missing file operand";
+        } else {
+          let recursive = false;
+          let sourceIndex = 0;
+
+          // Check if -r is the first argument
+          if (args[0] === "-r") {
+            recursive = true;
+            sourceIndex = 1;
+          }
+
+          if (args.length - sourceIndex < 2) {
+            result = "mv: missing file operand after '-r'";
+          } else {
+            const sourcePath = resolvePath(args[sourceIndex]); // Convert to absolute path
+            const destPath = resolvePath(args[sourceIndex + 1]); // Convert to absolute path
+            result = handleMv(sourcePath, destPath, recursive);
+          }
+        }
+        break;
+
       case "touch":
         result = args.length
-          ? handleTouch(args[0])
+          ? handleTouch(...args) // Pass all filenames instead of just the first one
           : "usage: touch missing file_name ...";
+        break;
+      case "cp":
+        if (args.length < 2) {
+          result = "cp: missing file operand";
+        } else {
+          const sourcePath = resolvePath(args[0]); // Convert to absolute path
+          const destPath = resolvePath(args[1]); // Convert to absolute path
+          result = handleCp(sourcePath, destPath);
+        }
+        break;
+      case "pwd":
+        result = handlePwd();
+        break;
+      case "rm":
+        result = args.length ? handleRm(args) : "rm: missing operand";
         break;
       case "clear":
         handleClear();
         return;
       case "cat":
-        result = args.length
-          ? handleCat(args[0])
-          : "usage: cat missing file_name ...";
+        result = args.length ? handleCat(args) : "usage: cat [-n] file_name";
         break;
+      case "y":
+        setCommand(""); // Clear input field
+        setQuizMode(true);
+        handleQuestionMode();
+        return;
+      case "yes":
+        setCommand(""); // Clear input field
+        setQuizMode(true);
+        handleQuestionMode();
+        return;
       default:
         result = `command not found: ${cmd}`;
     }
@@ -217,45 +890,85 @@ const Testing = () => {
   };
 
   const handleKeyDown = (e) => {
+    const currentQuestion = questions[currentQuestionIndex];
     if (e.key === "Enter") {
       handleSubmit(e);
     } else if (e.key === "Tab") {
       e.preventDefault();
       handleTab();
     } else if (e.key === "ArrowUp") {
-      // Check if there's history to navigate
       if (commandHistory.length > 0) {
         if (historyIndex === -1) {
-          // Start at the last command in history if not already navigating
           setHistoryIndex(commandHistory.length - 1);
           setCommand(commandHistory[commandHistory.length - 1]);
         } else if (historyIndex > 0) {
-          // Move up in history if possible
           setHistoryIndex(historyIndex - 1);
           setCommand(commandHistory[historyIndex - 1]);
         }
       }
     } else if (e.key === "ArrowDown") {
       if (historyIndex >= 0 && historyIndex < commandHistory.length - 1) {
-        // Move down in history if not at the end
         setHistoryIndex(historyIndex + 1);
         setCommand(commandHistory[historyIndex + 1]);
       } else if (historyIndex === commandHistory.length - 1) {
-        // If at the last history command, clear the command box
         setHistoryIndex(-1);
         setCommand("");
       }
     } else if (e.ctrlKey && e.key === "l") {
       e.preventDefault();
       handleClear();
+
+      // ✅ Add logic to validate the "Clear the terminal" question
+      if (currentQuestion.question === "Clear the terminal") {
+        if (currentQuestionIndex < questions.length - 1) {
+          updateOutput(
+            "", // Clear previous command output
+            `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+              questions[currentQuestionIndex + 1].question
+            }`
+          );
+          setCurrentQuestionIndex((prev) => prev + 1);
+        }
+        setCommand(""); // Clear input field
+      }
     }
   };
 
   const currentDirectory = currentPath.split("/").filter(Boolean).pop() || "~";
 
+  const handleNavigation = () => {
+    navigate("/Unit1-Contents");
+  };
+
+  /*const handleNavigation2 = () => {
+    navigate("/Unit1-Level4-page4");
+  };*/
+
   return (
     <div className="gradient_background">
-      <div className="shell-container">
+      <button
+        className="navigate-button"
+        onClick={handleNavigation}
+        style={{ border: "2px solid white" }}
+      >
+        back
+      </button>
+
+      <div className="shell-container2">
+        {/* Timer and game description */}
+        <div className="header">
+          <p className="game-description">
+            Welcome to the final challange of Navigator! Your goal is to use all
+            of the Unix commands you've learned and complete each task using the
+            correct command(s). If you enter a valid command but it's not the
+            correct one, it will still execute, but you must find the right
+            answer to move forward. Good luck!
+          </p>
+          <div className="timer">Elapsed Time: {elapsedTime}s</div>
+          <p className="game-description">Are you ready to start?</p>
+        </div>
+
+        {/* Command output */}
         <div className="output">
           {output.map((entry, index) => (
             <div key={index} className="command-output">
@@ -264,6 +977,8 @@ const Testing = () => {
             </div>
           ))}
         </div>
+
+        {/* Input field */}
         <form onSubmit={handleSubmit}>
           <span>
             {`${currentDirectory} >> `}

@@ -4,6 +4,16 @@ import { useNavigate } from "react-router-dom";
 
 function Page4() {
   const navigate = useNavigate();
+  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree33.png"); // Track the image
+
+  const updateImage = (imageTag) => {
+    if (imageTag === "change") {
+      setImageSrc("/unit1filetrees/FileTree34.png");
+    } else {
+      setImageSrc("/unit1filetrees/FileTree33.png");
+    }
+  };
+
   const [answers, setAnswers] = useState({
     question1: "",
     question2: "",
@@ -65,6 +75,7 @@ function Page4() {
         userInput === "cat page0.txt page1.txt > start.txt" ||
         userInput === "cat page1.txt page0.txt > start.txt"
       ) {
+        updateImage("change");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
@@ -104,7 +115,7 @@ function Page4() {
 
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "10px",
           right: "20px",
           fontSize: "16px",
@@ -112,6 +123,16 @@ function Page4() {
         }}
       >
         <p>[####-------] 4/11</p>
+      </div>
+
+      <div
+        style={{
+          position: "fixed",
+          top: "85px",
+          right: "20px",
+        }}
+      >
+        <img src={imageSrc} alt="Progress Icon" width="450" height="600" />
       </div>
 
       <div className="content">
