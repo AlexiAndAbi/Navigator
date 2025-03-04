@@ -615,6 +615,32 @@ const Testing = () => {
                 setCommand(""); // Clear input field
                 return;
               }
+              if (
+                currentQuestion.question ===
+                  "Move the directory Navigator to the home directory using an absolute path" &&
+                !commandOutput
+              ) {
+                // ✅ Directory successfully created → Mark as correct and move to next question
+                if (currentQuestionIndex < questions.length - 1) {
+                  updateOutput(
+                    `${currentDirectory} >> ${userInput}\n${commandOutput}`,
+                    `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                      questions[currentQuestionIndex + 1].question
+                    }`
+                  );
+                  setCurrentQuestionIndex((prev) => prev + 1);
+                } else {
+                  // ✅ Last question answered → End quiz
+                  setQuizMode(false);
+                  updateOutput(
+                    `${currentDirectory} >> ${userInput}\n${commandOutput}`,
+                    "🎉 Quiz completed! Well done!"
+                  );
+                  setIsQuestionMode(false);
+                }
+                setCommand(""); // Clear input field
+                return;
+              }
             }
             break;
           case "rm":
