@@ -62,11 +62,11 @@ const Testing = () => {
     },
     {
       question:
-        "Copy both of the text files in the home directory into the directory you created earlier",
+        "Copy both of the text files in the home directory into the directory you created earlier using a relative path",
       answer: "",
     },
     {
-      question: "Move the directory Navigator to the home directory?",
+      question: "Move the directory Navigator to the home directory using an absolute path",
       answer: "",
     },
   ]);
@@ -273,7 +273,7 @@ const Testing = () => {
     }
   };
 
-  const handleMv = (sourcePath, destPath) => {
+  const handleMv = (sourcePath, destPath, recursive = false) => {
     // Normalize paths
     sourcePath = resolvePath(sourcePath);
     destPath = resolvePath(destPath);
@@ -287,71 +287,71 @@ const Testing = () => {
 
     // Get destination info
     const destInfo = getItemAtPath(destPath);
-    if (destInfo && destInfo.item && destInfo.item.type === "directory") {
-      // If destination is a directory, move the item inside it (using the same name)
-      destInfo.item.children[sourceInfo.key] = sourceItem;
-    } else {
-      // Otherwise, treat destPath as a new name for the item.
-      const destParts = destPath.split("/").filter(Boolean);
-      const newName = destParts.pop();
-      const destDirPath = "~/" + destParts.join("/");
-      const destDirInfo = getItemAtPath(destDirPath);
-      if (
-        !destDirInfo ||
-        !destDirInfo.item ||
-        destDirInfo.item.type !== "directory"
-      ) {
-        return `mv: cannot move '${sourcePath}' to '${destPath}': No such directory`;
+
+    if (recursive && sourceItem.type === "directory") {
+      if (!destInfo || destInfo.item.type !== "directory") {
+        return `mv: cannot move directory '${sourcePath}' to '${destPath}': Not a directory`;
       }
-      destDirInfo.item.children[newName] = sourceItem;
+      // Move the entire directory structure
+      destInfo.item.children[sourceInfo.key] = sourceItem;
+    } else if (!recursive || sourceItem.type === "file") {
+      // If destination is a directory, move the file inside it
+      if (destInfo && destInfo.item.type === "directory") {
+        destInfo.item.children[sourceInfo.key] = sourceItem;
+      } else {
+        // Otherwise, treat destPath as a new name for the item
+        const destParts = destPath.split("/").filter(Boolean);
+        const newName = destParts.pop();
+        const destDirPath = "~/" + destParts.join("/");
+        const destDirInfo = getItemAtPath(destDirPath);
+        if (!destDirInfo || destDirInfo.item.type !== "directory") {
+          return `mv: cannot move '${sourcePath}' to '${destPath}': No such directory`;
+        }
+        destDirInfo.item.children[newName] = sourceItem;
+      }
+    } else {
+      return `mv: cannot move '${sourcePath}': Not a file`;
     }
 
-    // Remove the source item from its parent's children.
+    // Remove the source item from its original location
     delete sourceInfo.parent.children[sourceInfo.key];
 
     setFileSystem({ ...fileSystem });
     return "";
   };
 
-  const handleCp = (sourcePath, destPath) => {
-    // Normalize both paths
-    sourcePath = resolvePath(sourcePath);
-    destPath = resolvePath(destPath);
-
-    // Get source file info
-    const sourceInfo = getItemAtPath(sourcePath);
-    if (!sourceInfo || !sourceInfo.item || sourceInfo.item.type !== "file") {
-      return `cp: cannot copy '${sourcePath}': No such file or not a file`;
+  const handleCp = (sourcePaths, destPath) => {
+    // Ensure sourcePaths is an array.
+    if (!Array.isArray(sourcePaths)) {
+      sourcePaths = [sourcePaths];
     }
-    const sourceFile = sourceInfo.item;
 
-    // Try to get destination info
-    const destInfo = getItemAtPath(destPath);
-    if (destInfo && destInfo.item && destInfo.item.type === "directory") {
-      // If destination is a directory, copy the file into it using the same file name.
-      destInfo.item.children[sourceInfo.key] = {
-        type: "file",
-        content: sourceFile.content,
-      };
-    } else {
-      // Otherwise, treat destPath as a file path with a new file name.
-      const destParts = destPath.split("/").filter(Boolean);
-      const newFileName = destParts.pop();
-      const destDirPath = "~/" + destParts.join("/");
-      const destDirInfo = getItemAtPath(destDirPath);
-      if (
-        !destDirInfo ||
-        !destDirInfo.item ||
-        destDirInfo.item.type !== "directory"
-      ) {
-        return `cp: cannot create file '${destPath}': No such directory`;
+    // Normalize destination path.
+    const normDestPath = resolvePath(destPath);
+    const destInfo = getItemAtPath(normDestPath);
+
+    // Check that destination exists and is a directory.
+    if (!destInfo || !destInfo.item || destInfo.item.type !== "directory") {
+      return `cp: cannot copy to '${normDestPath}': Not a directory or does not exist`;
+    }
+
+    // Process each source file.
+    for (const src of sourcePaths) {
+      const normSrc = resolvePath(src);
+      const srcInfo = getItemAtPath(normSrc);
+
+      if (!srcInfo || !srcInfo.item || srcInfo.item.type !== "file") {
+        return `cp: cannot copy '${src}': No such file or not a file`;
       }
-      destDirInfo.item.children[newFileName] = {
+
+      // Copy the file into the destination directory using its existing file name.
+      destInfo.item.children[srcInfo.key] = {
         type: "file",
-        content: sourceFile.content,
+        content: srcInfo.item.content,
       };
     }
 
+    // Update state.
     setFileSystem({ ...fileSystem });
     return "";
   };
@@ -401,29 +401,6 @@ const Testing = () => {
       current = current.children[part];
     }
     return { parent, key, item: current };
-  };
-
-  const debugFileTree = (dir = fileSystem["~"], indent = "") => {
-    let treeString = "";
-
-    // Check if the current directory has children (i.e., files or subdirectories)
-    if (dir.type === "directory") {
-      treeString += `${indent}${dir.type}: (\n`; // Start directory listing
-
-      // List all items in the current directory (files and subdirectories)
-      for (const [name, child] of Object.entries(dir.children)) {
-        treeString += `${indent}  ${name}\n`; // Print file/directory name
-      }
-
-      treeString += `${indent})`; // End of directory listing
-    } else if (dir.type === "file") {
-      treeString += `${indent}${dir.type}: (file) - ${dir.content.slice(
-        0,
-        50
-      )}...\n`; // Show first 50 chars of file content
-    }
-
-    return treeString;
   };
 
   const handlePwd = () => {
@@ -486,6 +463,7 @@ const Testing = () => {
   ];
 
   const [cdUpCount, setCdUpCount] = useState(0);
+  const [cpCount, setcpCount] = useState(0);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -554,18 +532,71 @@ const Testing = () => {
             if (args.length < 2) {
               commandOutput = "cp: missing file operand";
             } else {
-              const sourcePath = resolvePath(args[0]); // Convert to absolute path
-              const destPath = resolvePath(args[1]); // THE PROBLEM IS HERE!!!!
-              commandOutput = handleCp(sourcePath, destPath);
+              const sourcePaths = args.slice(0, -1).map(resolvePath); // All args except last are source files
+              const destPath = resolvePath(args[args.length - 1]); // Last arg is destination
+              commandOutput = handleCp(sourcePaths, destPath);
+              if (
+                currentQuestion.question ===
+                "Copy both of the text files in the home directory into the directory you created earlier using a relative path"
+              ) {
+                if (sourcePaths.length === 2) {
+                  // ✅ Correct if they copy two files
+                  setcpCount(0); // Reset counter
+                  if (currentQuestionIndex < questions.length - 1) {
+                    updateOutput(
+                      "",
+                      `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                        questions[currentQuestionIndex + 1].question
+                      }`
+                    );
+                    setCurrentQuestionIndex((prev) => prev + 1);
+                  }
+                  setCommand("");
+                  return;
+                } else if (sourcePaths.length === 1) {
+                  // Increment counter if they copy one file
+                  setcpCount((prev) => prev + 1);
+
+                  // Check if they have moved up twice
+                  if (cpCount + 1 >= 2) {
+                    setcpCount(0); // Reset counter
+                    if (currentQuestionIndex < questions.length - 1) {
+                      updateOutput(
+                        "",
+                        `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                          questions[currentQuestionIndex + 1].question
+                        }`
+                      );
+                      setCurrentQuestionIndex((prev) => prev + 1);
+                    }
+                    setCommand("");
+                    return;
+                  }
+                }
+              }
             }
             break;
+
           case "mv":
             if (args.length < 2) {
               commandOutput = "mv: missing file operand";
             } else {
-              const sourcePath = resolvePath(args[0]); // Convert to absolute path
-              const destPath = resolvePath(args[1]); // Convert to absolute path
-              commandOutput = handleMv(sourcePath, destPath);
+              let recursive = false;
+              let sourceIndex = 0;
+
+              // Check if -r is the first argument
+              if (args[0] === "-r") {
+                recursive = true;
+                sourceIndex = 1;
+              }
+
+              if (args.length - sourceIndex < 2) {
+                commandOutput = "mv: missing file operand after '-r'";
+              } else {
+                const sourcePath = resolvePath(args[sourceIndex]); // Convert to absolute path
+                const destPath = resolvePath(args[sourceIndex + 1]); // Convert to absolute path
+                commandOutput = handleMv(sourcePath, destPath, recursive);
+              }
               if (
                 currentQuestion.question ===
                   "Move one of these files into its parent directory using an absolute path" &&
@@ -757,11 +788,25 @@ const Testing = () => {
         if (args.length < 2) {
           result = "mv: missing file operand";
         } else {
-          const sourcePath = resolvePath(args[0]); // Convert to absolute path
-          const destPath = resolvePath(args[1]); // Convert to absolute path
-          result = handleMv(sourcePath, destPath);
+          let recursive = false;
+          let sourceIndex = 0;
+
+          // Check if -r is the first argument
+          if (args[0] === "-r") {
+            recursive = true;
+            sourceIndex = 1;
+          }
+
+          if (args.length - sourceIndex < 2) {
+            result = "mv: missing file operand after '-r'";
+          } else {
+            const sourcePath = resolvePath(args[sourceIndex]); // Convert to absolute path
+            const destPath = resolvePath(args[sourceIndex + 1]); // Convert to absolute path
+            result = handleMv(sourcePath, destPath, recursive);
+          }
         }
         break;
+
       case "touch":
         result = args.length
           ? handleTouch(...args) // Pass all filenames instead of just the first one
