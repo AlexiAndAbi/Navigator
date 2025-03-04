@@ -49,7 +49,7 @@ import TableContents from "./pages/TableContents/TableContents";
 import Testing from "./pages/Testing/Testing";
 import Prompts from "./components/Prompt/Prompt";
 import Unit1contents from "./pages/Unit1Contents/Unit1contents";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
