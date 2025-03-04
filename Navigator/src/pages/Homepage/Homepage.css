@@ -36,6 +36,7 @@
   bottom: 20px; /* Adjust for spacing */
   width: 100%;
   text-align: center;
+  cursor: pointer; /* Change cursor to pointer on hover */
 }
 
 .footer-link {
@@ -44,7 +45,7 @@
   font-size: 14px;
   text-decoration: none; /* No underline initially */
   opacity: 0.8;
-  transition: opacity 0.3s;
+  transition: opacity 0.5s;
 }
 
 .footer-link:hover {
