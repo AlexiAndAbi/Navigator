@@ -84,16 +84,15 @@
   transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
 }
 
-.back-button {
+.return-button {
   font-family: "LGC"; /* Use the same font */
   color: white; /* Text color */
   background-color: transparent; /* Transparent background */
   border: 2px solid white; /* White outline */
-  padding: 10px 20px; /* Add some padding */
   font-size: 20px; /* Font size for the button */
+  margin-top: 30px;
   cursor: pointer; /* Change cursor to pointer on hover */
   border-radius: 5px; /* Slightly rounded corners */
-  margin-top: 40px; /* Space above the button */
   transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
 }
 
@@ -131,13 +130,13 @@
 .name {
   font-family: "LGC";
   color: white;
-  font-size: 24px;
+  font-size: 30px;
   margin-bottom: 0px;
+  margin-top: 20px;
 }
 
 .blurb {
-  font-family: "LGC"f;
+  font-family: "LGC";
   color: white;
-  font-size: 16px;
-  font-weight: 100;
+  font-size: 18px;
 }

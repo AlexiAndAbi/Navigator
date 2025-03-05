@@ -195,7 +195,7 @@ function Page8() {
                     disabled={correctAnswers.question2}
                   />
                 </div>
-                <p className="fade-in">
+                <p className="fade-in unique-font">
                   <pre>{responses.question2}</pre>
                 </p>
               </>

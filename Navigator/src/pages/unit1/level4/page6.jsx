@@ -152,7 +152,7 @@ function Page6() {
             ref={inputRef}
           />
         </div>
-        <p className="fade-in">
+        <p className="fade-in unique-font">
           <pre>{isMoreActive ? displayText : response}</pre>
         </p>
 

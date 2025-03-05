@@ -32,7 +32,7 @@ const About = () => {
           </p>
         </div>
       </div>
-      <button className="back-button" onClick={handleBackClick}>
+      <button className="return-button" onClick={handleBackClick}>
         Back
       </button>
     </div>

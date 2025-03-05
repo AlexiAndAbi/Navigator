@@ -264,7 +264,7 @@ function Page9() {
                 disabled={correctAnswers.question3 || showPrompt}
               />
             </div>
-            <p className="fade-in">
+            <p className="fade-in unique-font">
               <pre>{responses.question3}</pre>
             </p>
             {showPrompt && (
