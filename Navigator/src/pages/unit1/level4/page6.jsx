@@ -86,7 +86,7 @@ function Page6() {
       ref={containerRef} // Attach the ref to the div
     >
       <button
-        className="navigate-button"
+        className="back-button"
         onClick={handleNavigation}
         style={{ border: "2px solid white" }}
       >
@@ -113,7 +113,7 @@ function Page6() {
         }}
       >
         <img
-          src={"/unit1filetrees/FileTree35.png"}
+          src={"/Navigator/unit1filetrees/FileTree35.png"}
           alt="Progress Icon"
           width="450"
           height="600"
@@ -152,7 +152,7 @@ function Page6() {
             ref={inputRef}
           />
         </div>
-        <p className="fade-in">
+        <p className="fade-in unique-font">
           <pre>{isMoreActive ? displayText : response}</pre>
         </p>
 

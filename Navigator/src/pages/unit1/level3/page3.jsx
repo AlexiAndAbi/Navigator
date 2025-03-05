@@ -59,7 +59,7 @@ function Page3() {
         }}
       >
         <img
-          src={"/unit1filetrees/FileTree15.png"}
+          src={"/Navigator/unit1filetrees/FileTree15.png"}
           alt="Progress Icon"
           width="450"
           height="600"
@@ -68,7 +68,7 @@ function Page3() {
 
       {/* Back Button */}
       <button
-        className="navigate-button"
+        className="back-button"
         onClick={handleNavigation}
         style={{ border: "2px solid white" }}
       >
@@ -119,12 +119,16 @@ function Page3() {
         {/* Show the Continue button if the answer is correct */}
         {showContinue && (
           <button
-            className="navigate-button fade-in"
-            onClick={handleNavigation2}
-            style={{ border: "2px solid white" }}
-          >
-            continue
-          </button>
+          className="navigate-button fade-in"
+          onClick={handleNavigation2}
+          style={{
+            border: "2px solid white",
+            marginTop: "20px",
+            marginBottom: "40px",
+          }}
+        >
+          continue
+        </button>
         )}
       </div>
     </div>

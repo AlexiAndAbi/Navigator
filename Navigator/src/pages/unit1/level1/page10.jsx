@@ -5,15 +5,15 @@ import { useNavigate } from "react-router-dom";
 function Page10() {
   const navigate = useNavigate();
   const [currentDirectory, setCurrentDirectory] = useState("home"); // Track the directory
-  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree1.png"); // Track the image
+  const [imageSrc, setImageSrc] = useState("/Navigator/unit1filetrees/FileTree1.png"); // Track the image
 
   const updateImage = (newDirectory) => {
     if (newDirectory === "directory1") {
-      setImageSrc("/unit1filetrees/FileTree2.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree2.png");
     } else if (newDirectory === "directory3") {
-      setImageSrc("/unit1filetrees/FileTree3.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree3.png");
     } else {
-      setImageSrc("/unit1filetrees/FileTree1.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree1.png");
     }
   };
   
@@ -305,7 +305,7 @@ function Page10() {
   return (
     <div className="gradient_background1">
       <button
-        className="navigate-button"
+        className="back-button"
         onClick={handleNavigation}
         style={{ border: "2px solid white" }}
       >
@@ -363,7 +363,7 @@ function Page10() {
                   disabled={correctAnswers.question1}
                 />
               </div>
-              <p className="fade-in">{responses.question1}</p>
+              <p className="fade-in unique-font">{responses.question1}</p>
             </div>
 
             {/* Question 2 */}
@@ -382,7 +382,7 @@ function Page10() {
                     disabled={correctAnswers.question2}
                   />
                 </div>
-                <p className="fade-in">{responses.question2}</p>
+                <p className="fade-in unique-font">{responses.question2}</p>
               </div>
             )}
 
@@ -402,7 +402,7 @@ function Page10() {
                     disabled={correctAnswers.question3}
                   />
                 </div>
-                <p className="fade-in">{responses.question3}</p>
+                <p className="fade-in unique-font">{responses.question3}</p>
               </div>
             )}
 
@@ -422,7 +422,7 @@ function Page10() {
                     disabled={correctAnswers.question4}
                   />
                 </div>
-                <p className="fade-in">{responses.question4}</p>
+                <p className="fade-in unique-font">{responses.question4}</p>
               </div>
             )}
 
@@ -442,7 +442,7 @@ function Page10() {
                     disabled={correctAnswers.question5}
                   />
                 </div>
-                <p className="fade-in">{responses.question5}</p>
+                <p className="fade-in unique-font">{responses.question5}</p>
               </div>
             )}
 
@@ -462,7 +462,7 @@ function Page10() {
                     disabled={correctAnswers.question6}
                   />
                 </div>
-                <p className="fade-in">{responses.question6}</p>
+                <p className="fade-in unique-font">{responses.question6}</p>
               </div>
             )}
           </>
@@ -484,7 +484,7 @@ function Page10() {
                 disabled={correctAnswers.question7}
               />
             </div>
-            <p className="fade-in">{responses.question7}</p>
+            <p className="fade-in unique-font">{responses.question7}</p>
           </div>
         )}
 
@@ -504,7 +504,7 @@ function Page10() {
                 disabled={correctAnswers.question8}
               />
             </div>
-            <p className="fade-in">{responses.question8}</p>
+            <p className="fade-in unique-font">{responses.question8}</p>
           </div>
         )}
 
@@ -524,7 +524,7 @@ function Page10() {
                 disabled={correctAnswers.question9}
               />
             </div>
-            <p className="fade-in">{responses.question9}</p>
+            <p className="fade-in unique-font">{responses.question9}</p>
           </div>
         )}
 

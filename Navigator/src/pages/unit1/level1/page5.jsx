@@ -43,7 +43,7 @@ function Page5() {
   return (
     <div className="gradient_background1">
       <button
-        className="navigate-button"
+        className="back-button"
         onClick={handleNavigation}
         style={{ border: "2px solid white" }}
       >

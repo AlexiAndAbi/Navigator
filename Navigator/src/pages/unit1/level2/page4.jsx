@@ -7,15 +7,15 @@ function Page4() {
 
   const [directoryName, setDirectoryName] = useState(""); // To store the created directory name
   const [currentDirectory, setCurrentDirectory] = useState("home"); // Track the directory
-  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree5.png"); // Track the image
+  const [imageSrc, setImageSrc] = useState("/Navigator/unit1filetrees/FileTree5.png"); // Track the image
 
   const updateImage = (newDirectory) => {
     if (newDirectory === "directoryAdded") {
-      setImageSrc("/unit1filetrees/FileTree6.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree6.png");
     } else if (newDirectory === "goDown") {
-      setImageSrc("/unit1filetrees/FileTree7.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree7.png");
     } else {
-      setImageSrc("/unit1filetrees/FileTree5.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree5.png");
     }
   };
 
@@ -151,7 +151,7 @@ function Page4() {
   return (
     <div className="gradient_background2">
       <button
-        className="navigate-button"
+        className="back-button"
         onClick={handleNavigation}
         style={{ border: "2px solid white" }}
       >

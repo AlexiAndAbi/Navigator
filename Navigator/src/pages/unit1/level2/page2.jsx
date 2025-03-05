@@ -16,7 +16,7 @@ function Page1() {
   return (
     <div className="gradient_background2">
       <button
-        className="navigate-button"
+        className="back-button"
         onClick={handleNavigation}
         style={{ border: "2px solid white" }}
       >
@@ -37,10 +37,10 @@ function Page1() {
 
       <div className="content">
         <p>
-          But first; a quick note on file types! These may be something you
-          are already familiar with as many file types are household names. You
-          will not need to know these in depth to learn unix commands but they
-          may provide valuable insight into the contents of a file.
+          But first; a quick note on file types! These may be something you are
+          already familiar with as many file types are household names. You will
+          not need to know these in depth to learn unix commands but they may
+          provide valuable insight into the contents of a file.
         </p>
         <p>
           An abbreviated list of file type extensions:
@@ -61,7 +61,11 @@ function Page1() {
         <button
           className="navigate-button"
           onClick={handleNavigation2}
-          style={{ border: "2px solid white" }}
+          style={{
+            border: "2px solid white",
+            marginTop: "20px",
+            marginBottom: "40px",
+          }}
         >
           continue
         </button>

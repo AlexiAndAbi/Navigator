@@ -41,19 +41,21 @@ function Page11() {
   const [timeLeft, setTimeLeft] = useState(60); // Timer state
   const [gameOver, setGameOver] = useState(false); // Tracks if the timer runs out
   const [timerStarted, setTimerStarted] = useState(false); // Tracks if the timer has started
-  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree40.png"); // Track the image
+  const [imageSrc, setImageSrc] = useState(
+    "/Navigator/unit1filetrees/FileTree40.png"
+  ); // Track the image
 
   const updateImage = (imageTag) => {
     if (imageTag === "copy") {
-      setImageSrc("/unit1filetrees/FileTree41.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree41.png");
     } else if (imageTag === "remove") {
-      setImageSrc("/unit1filetrees/FileTree42.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree42.png");
     } else if (imageTag === "down") {
-      setImageSrc("/unit1filetrees/FileTree43.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree43.png");
     } else if (imageTag === "remove2") {
-      setImageSrc("/unit1filetrees/FileTree44.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree44.png");
     } else {
-      setImageSrc("/unit1filetrees/FileTree40.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree40.png");
     }
   };
 
@@ -220,7 +222,7 @@ function Page11() {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: '',
+          [questionKey]: "",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -278,7 +280,7 @@ function Page11() {
   return (
     <div className="gradient_background3">
       <button
-        className="navigate-button"
+        className="back-button"
         onClick={handleNavigation}
         style={{ border: "2px solid white" }}
       >
@@ -335,7 +337,7 @@ function Page11() {
                 disabled={correctAnswers.question1}
               />
             </div>
-            <p className="fade-in">{responses.question1}</p>
+            <p className="fade-in unique-font">{responses.question1}</p>
           </div>
 
           {/* Question 2 */}
@@ -354,7 +356,7 @@ function Page11() {
                   disabled={correctAnswers.question2}
                 />
               </div>
-              <p className="fade-in">{responses.question2}</p>
+              <p className="fade-in unique-font">{responses.question2}</p>
             </div>
           )}
 
@@ -377,7 +379,7 @@ function Page11() {
                   disabled={correctAnswers.question3}
                 />
               </div>
-              <p className="fade-in">{responses.question3}</p>
+              <p className="fade-in unique-font">{responses.question3}</p>
             </div>
           )}
 
@@ -397,7 +399,7 @@ function Page11() {
                   disabled={correctAnswers.question4}
                 />
               </div>
-              <p className="fade-in">{responses.question4}</p>
+              <p className="fade-in unique-font">{responses.question4}</p>
             </div>
           )}
 
@@ -417,7 +419,7 @@ function Page11() {
                   disabled={correctAnswers.question5}
                 />
               </div>
-              <p className="fade-in">{responses.question5}</p>
+              <p className="fade-in unique-font">{responses.question5}</p>
             </div>
           )}
 
@@ -437,7 +439,7 @@ function Page11() {
                   disabled={correctAnswers.question6}
                 />
               </div>
-              <p className="fade-in">{responses.question6}</p>
+              <p className="fade-in unique-font">{responses.question6}</p>
             </div>
           )}
         </>
@@ -458,7 +460,7 @@ function Page11() {
                 disabled={correctAnswers.question7}
               />
             </div>
-            <p className="fade-in">{responses.question7}</p>
+            <p className="fade-in unique-font">{responses.question7}</p>
           </div>
         )}
 
@@ -478,7 +480,7 @@ function Page11() {
                 disabled={correctAnswers.question8}
               />
             </div>
-            <p className="fade-in">{responses.question8}</p>
+            <p className="fade-in unique-font">{responses.question8}</p>
           </div>
         )}
 
@@ -498,7 +500,7 @@ function Page11() {
                 disabled={correctAnswers.question9}
               />
             </div>
-            <p className="fade-in">{responses.question9}</p>
+            <p className="fade-in unique-font">{responses.question9}</p>
           </div>
         )}
 

@@ -57,7 +57,7 @@ function Page2() {
 
       {/* Back Button */}
       <button
-        className="navigate-button"
+        className="back-button"
         onClick={handleNavigation}
         style={{ border: "2px solid white" }}
       >
@@ -70,9 +70,13 @@ function Page2() {
           On every computer, there is an application that allows users to
           interact with the terminal. The terminal is important because it
           allows you to give your computer instructions on a foundational level.
-          On mac it looks like:
         </p>
-        <p>
+        <p
+          style={{
+            fontFamily: '"Consolas", monospace',
+            fontSize: "20px"
+          }}
+        >
           The start page of this application looks like:
           <br />
           &emsp;&emsp;&emsp;Last login: [date and time] on [location] <br />

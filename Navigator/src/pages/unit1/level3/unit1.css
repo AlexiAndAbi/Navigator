@@ -1,166 +1,197 @@
+@font-face {
+  font-family: "LGC";
+  src: url("/fonts/LGC.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.content p.unique-font {
+  font-family: "Consolas", monospace;
+  font-size: 20px;
+}
+
 .gradient_background3 {
-    background: linear-gradient(90deg, #2c6ccd, #d289e6);
-    min-height: 100vh; /* Ensure it covers at least the viewport height */
-    width: 100vw; /* Full width of the viewport */
-    height: auto; /* Allow it to expand with content */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    font-family: "OpenSans-Regular", monospace;
-    overflow: auto; /* Enable scrolling if the content exceeds the height */
-  }
-  
-  .intro-button {
-    font-size: 40px;
-    border: 2px solid white;
-    padding: 10px 20px;
-    border-radius: 10px;
-    background-color: transparent;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    margin-left: 20px;
-    margin-top: 20px;
-  }
-  
-  .intro-button:hover {
-    background-color: #7ad6d3; /* Fill with purple on hover */
-    color: white; /* Keep text white */
-  }
-  
-  .content {
-    margin-left: 40px;
-    width: 60vw; /* 65% of the viewport width */
-  }
-  
-  .content p {
-    font-size: 20px;
-    color: white;
-    text-align: left;
-  }
-  
-  .navigate-button {
-    font-size: 20px;
-    margin-left: 40px;
-    margin-top: 20px;
-    padding: 10px 20px;
-    border-radius: 10px;
-    background-color: transparent; /* Transparent background */
-    color: white; /* White text */
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .navigate-button:hover {
-    background-color: #7ad6d3; /* Fill with purple on hover */
-    color: white; /* Keep text white */
-  }
-  
-  .command-line {
-    display: flex;
-    align-items: center; /* Align text and input vertically */
-    font-family: "Consolas", monospace;
-    margin-left: 2rem; /* Indent the command line relative to the question */
-  }
-  
-  .directory-prompt {
-    font-family: "Consolas", monospace;
-    font-size: 20px;
-    color: #ffffff;
-    margin-right: 0.5rem; /* Space between prompt and input */
-  }
-  
-  .input-box {
-    font-size: 40px;
-    padding: 5px;
-    width: 70%;
-    border: none;
-    border-bottom: 2px solid white;
-    background-color: transparent;
-    color: white;
-    outline: none;
-  }
+  background: linear-gradient(90deg, #2c6ccd, #d289e6);
+  min-height: 100vh; /* Ensure it covers at least the viewport height */
+  width: 100vw; /* Full width of the viewport */
+  height: auto; /* Allow it to expand with content */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-family: "Consolas", monospace;
+  overflow: auto; /* Enable scrolling if the content exceeds the height */
+}
 
-  .highlight3 {
-    background-color: #cfe2f3; /* Light blue */
-    color: #1c4c94; /* Adjust text color for readability */
-    padding: 2px 5px;
-    border-radius: 3px;
-  }
-  
-  .fade-in {
+.intro-button {
+  font-size: 40px;
+  border: 2px solid white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-left: 40px;
+  margin-top: 20px;
+}
+
+.intro-button:hover {
+  background-color: #7ad6d3; /* Fill with purple on hover */
+  color: white; /* Keep text white */
+}
+
+.content {
+  margin-left: 40px;
+  width: 65vw; /* 65% of the viewport width */
+}
+
+.content p {
+  font-size: 25px;
+  color: white;
+  text-align: left;
+}
+
+.back-button {
+  font-family: "Consolas", monospace; /* Use the same font */
+  color: white; /* Text color */
+  background-color: transparent; /* Transparent background */
+  border: 2px solid white; /* White outline */
+  padding: 10px 20px; /* Add some padding */
+  margin-left: 40px;
+  margin-top: 20px;
+  font-size: 20px; /* Font size for the button */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  border-radius: 5px; /* Slightly rounded corners */
+  margin-top: 40px; /* Space above the button */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+}
+
+.navigate-button {
+  position: relative; /* Enables z-index to work */
+  top: 20px;
+  left: -100px;
+  bottom: 20px;
+  font-size: 22px;
+  z-index: 10;
+  margin-top: 20px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: transparent; /* Transparent background */
+  color: white; /* White text */
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navigate-button:hover {
+  background-color: #7ad6d3; /* Fill with purple on hover */
+  color: white; /* Keep text white */
+}
+
+.command-line {
+  display: flex;
+  align-items: center; /* Align text and input vertically */
+  font-family: "Consolas", monospace;
+  margin-left: 2rem; /* Indent the command line relative to the question */
+}
+
+.directory-prompt {
+  font-family: "Consolas", monospace;
+  font-size: 20px;
+  color: #ffffff;
+  margin-right: 0.5rem; /* Space between prompt and input */
+}
+
+.input-box {
+  font-size: 40px;
+  padding: 5px;
+  width: 70%;
+  border: none;
+  border-bottom: 2px solid white;
+  background-color: transparent;
+  color: white;
+  outline: none;
+}
+
+.highlight3 {
+  background-color: #cfe2f3; /* Light blue */
+  color: #1c4c94; /* Adjust text color for readability */
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+  from {
     opacity: 0;
-    animation: fadeIn 1s forwards;
   }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+  to {
+    opacity: 1;
   }
-  
-  .pixel-art5 {
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    z-index: 10;
-    width: 450px; /* Adjust to the size of your images */
-    height: 450px; /* Match the sprite dimensions */
-    background-size: cover;
-    background-image: url("/images/jelly0.png"); /* First frame */
-    animation: jellyAnimation 2s steps(1) infinite;
-    will-change: background-image;
-  }
-  
-  .pixel-art6 {
-    position: absolute;
-    bottom: 0px;
-    right: 325px;
-    z-index: 10;
-    width: 350px; /* Adjust to the size of your images */
-    height: 350px; /* Match the sprite dimensions */
-    background-size: cover;
-    background-image: url("/images/bubble0.png"); /* First frame */
-    animation: bubbleAnimation 2s steps(1) infinite;
-    will-change: background-image;
-  }
-  
-  /* Define keyframes to change the background image */
-  @keyframes bubbleAnimation {
-    0% {
-      background-image: url("/images/bubble0.png");
-    }
-    33% {
-      background-image: url("/images/bubble1.png");
-    }
-    66% {
-      background-image: url("/images/bubble2.png");
-    }
-    100% {
-      background-image: url("/images/bubble0.png");
-    }
-  }
+}
 
-  @keyframes jellyAnimation {
-    0% {
-      background-image: url("/images/jelly0.png");
-    }
-    20% {
-      background-image: url("/images/jelly1.png");
-    }
-    40% {
-      background-image: url("/images/jelly2.png");
-    }
-    60% {
-      background-image: url("/images/jelly3.png");
-    }
-    80% {
-      background-image: url("/images/jelly4.png");
-    }
-    100% {
-      background-image: url("/images/jelly0.png");
-    }
+.pixel-art5 {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  z-index: 5;
+  width: 450px; /* Adjust to the size of your images */
+  height: 450px; /* Match the sprite dimensions */
+  background-size: cover;
+  background-image: url("/images/jelly0.png"); /* First frame */
+  animation: jellyAnimation 2s steps(1) infinite;
+  will-change: background-image;
+}
+
+.pixel-art6 {
+  position: absolute;
+  bottom: 0px;
+  right: 325px;
+  z-index: 5;
+  width: 350px; /* Adjust to the size of your images */
+  height: 350px; /* Match the sprite dimensions */
+  background-size: cover;
+  background-image: url("/images/bubble0.png"); /* First frame */
+  animation: bubbleAnimation 2s steps(1) infinite;
+  will-change: background-image;
+}
+
+/* Define keyframes to change the background image */
+@keyframes bubbleAnimation {
+  0% {
+    background-image: url("/images/bubble0.png");
   }
+  33% {
+    background-image: url("/images/bubble1.png");
+  }
+  66% {
+    background-image: url("/images/bubble2.png");
+  }
+  100% {
+    background-image: url("/images/bubble0.png");
+  }
+}
+
+@keyframes jellyAnimation {
+  0% {
+    background-image: url("/images/jelly0.png");
+  }
+  20% {
+    background-image: url("/images/jelly1.png");
+  }
+  40% {
+    background-image: url("/images/jelly2.png");
+  }
+  60% {
+    background-image: url("/images/jelly3.png");
+  }
+  80% {
+    background-image: url("/images/jelly4.png");
+  }
+  100% {
+    background-image: url("/images/jelly0.png");
+  }
+}

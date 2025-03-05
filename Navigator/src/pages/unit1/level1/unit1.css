@@ -1,12 +1,24 @@
+@font-face {
+  font-family: "LGC";
+  src: url("/fonts/LGC.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.content p.unique-font {
+  font-family: "Consolas", monospace;
+  font-size: 20px;
+}
+
 .gradient_background1 {
-  background: linear-gradient(90deg, #6058D5, #7AD6D3);
+  background: linear-gradient(90deg, #6058d5, #7ad6d3);
   min-height: 100vh; /* Ensure it covers at least the viewport height */
   width: 100vw; /* Full width of the viewport */
   height: auto; /* Allow it to expand with content */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  font-family: "OpenSans-Regular", monospace;
+  font-family: "Consolas", monospace;
   overflow: auto; /* Enable scrolling if the content exceeds the height */
 }
 
@@ -19,8 +31,24 @@
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
-  margin-left: 20px;
+  margin-left: 40px;
   margin-top: 20px;
+  font-family: "LGC";
+}
+
+.back-button {
+  font-family: "Consolas", monospace; /* Use the same font */
+  color: white; /* Text color */
+  background-color: transparent; /* Transparent background */
+  border: 2px solid white; /* White outline */
+  padding: 10px 20px; /* Add some padding */
+  margin-left: 40px;
+  margin-top: 20px;
+  font-size: 20px; /* Font size for the button */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  border-radius: 5px; /* Slightly rounded corners */
+  margin-top: 40px; /* Space above the button */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
 }
 
 .intro-button:hover {
@@ -30,18 +58,23 @@
 
 .content {
   margin-left: 40px;
-  width: 60vw; /* 65% of the viewport width */
+  width: 65vw; /* 65% of the viewport width */
 }
 
 .content p {
-  font-size: 20px;
+  font-size: 25px;
   color: white;
   text-align: left;
+  font-family: "LGC";
 }
 
 .navigate-button {
-  font-size: 20px;
-  margin-left: 40px;
+  position: relative; /* Enables z-index to work */
+  top: 20px;
+  left: -100px;
+  margin-bottom: 20px;
+  font-size: 22px;
+  z-index: 10;
   margin-top: 20px;
   padding: 10px 20px;
   border-radius: 10px;
@@ -49,6 +82,11 @@
   color: white; /* White text */
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: "LGC";
+}
+
+.custom-font {
+  font-family: "Consolas", monospace; /* Replace with your desired font */
 }
 
 .navigate-button:hover {
@@ -106,7 +144,7 @@
   position: absolute;
   bottom: 0px;
   right: 0px;
-  z-index: 10;
+  z-index: 5;
   width: 450px; /* Adjust to the size of your images */
   height: 450px; /* Match the sprite dimensions */
   background-size: cover;
@@ -119,7 +157,7 @@
   position: absolute;
   bottom: 0px;
   right: 450px;
-  z-index: 10;
+  z-index: 5;
   width: 450px; /* Adjust to the size of your images */
   height: 450px; /* Match the sprite dimensions */
   background-size: cover;

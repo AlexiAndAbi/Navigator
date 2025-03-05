@@ -5,15 +5,15 @@ import { useNavigate } from "react-router-dom";
 function Page9() {
   const navigate = useNavigate();
   const [isToggled, setIsToggled] = useState(false);
-  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree38.png"); // Track the image
+  const [imageSrc, setImageSrc] = useState("/Navigator/unit1filetrees/FileTree38.png"); // Track the image
 
   const updateImage = (imageTag) => {
     if (imageTag === "change") {
-      setImageSrc("/unit1filetrees/FileTree35.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree35.png");
     } else if (imageTag === "one") {
-      setImageSrc("/unit1filetrees/FileTree39.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree39.png");
     } else {
-      setImageSrc("/unit1filetrees/FileTree38.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree38.png");
     }
   };
 
@@ -167,7 +167,7 @@ function Page9() {
   return (
     <div className="gradient_background4">
       <button
-        className="navigate-button"
+        className="back-button"
         onClick={handleNavigation}
         style={{ border: "2px solid white" }}
       >
@@ -227,7 +227,7 @@ function Page9() {
               disabled={correctAnswers.question1}
             />
           </div>
-          <p className="fade-in">{responses.question1}</p>
+          <p className="fade-in unique-font">{responses.question1}</p>
         </div>
 
         {correctAnswers.question1 && (
@@ -245,7 +245,7 @@ function Page9() {
                 disabled={correctAnswers.question2}
               />
             </div>
-            <p className="fade-in">{responses.question2}</p>
+            <p className="fade-in unique-font">{responses.question2}</p>
           </div>
         )}
 
@@ -264,7 +264,7 @@ function Page9() {
                 disabled={correctAnswers.question3 || showPrompt}
               />
             </div>
-            <p className="fade-in">
+            <p className="fade-in unique-font">
               <pre>{responses.question3}</pre>
             </p>
             {showPrompt && (

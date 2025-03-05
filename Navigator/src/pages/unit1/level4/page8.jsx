@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 
 function Page8() {
   const navigate = useNavigate();
-  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree36.png"); // Track the image
+  const [imageSrc, setImageSrc] = useState("/Navigator/unit1filetrees/FileTree36.png"); // Track the image
 
   const updateImage = (imageTag) => {
     if (imageTag === "change") {
-      setImageSrc("/unit1filetrees/FileTree37.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree37.png");
     } else {
-      setImageSrc("/unit1filetrees/FileTree36.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree36.png");
     }
   };
 
@@ -109,7 +109,7 @@ function Page8() {
   return (
     <div className="gradient_background4">
       <button
-        className="navigate-button"
+        className="back-button"
         onClick={handleNavigation}
         style={{ border: "2px solid white" }}
       >
@@ -172,7 +172,7 @@ function Page8() {
                 disabled={correctAnswers.question1}
               />
             </div>
-            <p className="fade-in">{responses.question1}</p>
+            <p className="fade-in unique-font">{responses.question1}</p>
           </div>
 
           {/* Question 2 */}
@@ -195,7 +195,7 @@ function Page8() {
                     disabled={correctAnswers.question2}
                   />
                 </div>
-                <p className="fade-in">
+                <p className="fade-in unique-font">
                   <pre>{responses.question2}</pre>
                 </p>
               </>

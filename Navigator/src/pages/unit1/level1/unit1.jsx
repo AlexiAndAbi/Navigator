@@ -52,9 +52,8 @@ function Unit1() {
           short mini-game.
         </p>
         <p>
-          At the end of each unit there will be a longer challenge game in which
-          points can be earned. A score of 80 points is recommended before
-          continuing to the next unit.
+          At the end of the unit there will be a longer challenge game in which
+          points can be earned. A score of 80 points is recommended.
         </p>
         <p>
           In Level 1 we will cover the basics. No computer skills or coding

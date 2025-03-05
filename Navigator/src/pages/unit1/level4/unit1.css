@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  font-family: "OpenSans-Regular", monospace;
+  font-family: "Consolas", monospace;
   overflow: auto; /* Enable scrolling if the content exceeds the height */
 }
 
@@ -19,8 +19,28 @@
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
-  margin-left: 20px;
+  margin-left: 40px;
   margin-top: 20px;
+}
+
+.back-button {
+  font-family: "Consolas", monospace; /* Use the same font */
+  color: white; /* Text color */
+  background-color: transparent; /* Transparent background */
+  border: 2px solid white; /* White outline */
+  padding: 10px 20px; /* Add some padding */
+  margin-left: 40px;
+  margin-top: 20px;
+  font-size: 20px; /* Font size for the button */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  border-radius: 5px; /* Slightly rounded corners */
+  margin-top: 40px; /* Space above the button */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+}
+
+.back-button:hover {
+  background-color: #7ad6d3; /* Fill with purple on hover */
+  color: white; /* Keep text white */
 }
 
 .intro-button:hover {
@@ -30,18 +50,27 @@
 
 .content {
   margin-left: 40px;
-  width: 60vw; /* 65% of the viewport width */
+  width: 65vw; /* 65% of the viewport width */
 }
 
 .content p {
-  font-size: 20px;
+  font-size: 22px;
   color: white;
   text-align: left;
 }
 
-.navigate-button {
+.content p.unique-font {
+  font-family: "Consolas", monospace;
   font-size: 20px;
-  margin-left: 40px;
+}
+
+.navigate-button {
+  position: relative; /* Enables z-index to work */
+  top: 20px;
+  left: -100px;
+  bottom: 20px;
+  font-size: 22px;
+  z-index: 10;
   margin-top: 20px;
   padding: 10px 20px;
   border-radius: 10px;
@@ -90,7 +119,6 @@
   text-align: left;
 }
 
-
 .highlight4 {
   background-color: #cfe2f3; /* Light blue */
   color: #045b67; /* Adjust text color for readability */
@@ -101,6 +129,7 @@
 .fade-in {
   opacity: 0;
   animation: fadeIn 1s forwards;
+  font-family: "Consolas", monospace;
 }
 
 @keyframes fadeIn {
@@ -116,7 +145,7 @@
   position: absolute;
   bottom: 0px;
   right: 20px;
-  z-index: 10;
+  z-index: 5;
   width: 350px; /* Adjust to the size of your images */
   height: 350px; /* Match the sprite dimensions */
   background-size: cover;
@@ -128,7 +157,7 @@
   position: absolute;
   bottom: 0px;
   right: 325px;
-  z-index: 10;
+  z-index: 5;
   width: 350px; /* Adjust to the size of your images */
   height: 350px; /* Match the sprite dimensions */
   background-size: cover;

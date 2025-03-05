@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./Testing.css";
+import { useNavigate } from "react-router-dom";
 
 const Testing = () => {
+  const navigate = useNavigate();
   const [fileSystem, setFileSystem] = useState({
     "~": {
       type: "directory",
@@ -66,7 +68,8 @@ const Testing = () => {
       answer: "",
     },
     {
-      question: "Move the directory Navigator to the home directory using an absolute path",
+      question:
+        "Move the directory Navigator to the home directory using an absolute path",
       answer: "",
     },
   ]);
@@ -947,7 +950,7 @@ const Testing = () => {
   return (
     <div className="gradient_background">
       <button
-        className="navigate-button"
+        className="back-button"
         onClick={handleNavigation}
         style={{ border: "2px solid white" }}
       >
@@ -961,8 +964,8 @@ const Testing = () => {
             Welcome to the final challange of Navigator! Your goal is to use all
             of the Unix commands you've learned and complete each task using the
             correct command(s). If you enter a valid command but it's not the
-            correct one, it will still execute, but you must find the right
-            answer to move forward. Good luck!
+            correct one, it will still execute, but you must complete what is
+            asked to move forward. Good luck!
           </p>
           <div className="timer">Elapsed Time: {elapsedTime}s</div>
           <p className="game-description">Are you ready to start?</p>

@@ -94,7 +94,7 @@ function Page2() {
   return (
     <div className="gradient_background4">
       <button
-        className="navigate-button"
+        className="back-button"
         onClick={handleNavigation}
         style={{ border: "2px solid white" }}
       >
@@ -121,7 +121,7 @@ function Page2() {
         }}
       >
         <img
-          src={"/unit1filetrees/FileTree31.png"}
+          src={"/Navigator/unit1filetrees/FileTree31.png"}
           alt="Progress Icon"
           width="450"
           height="600"
@@ -164,7 +164,7 @@ function Page2() {
                 disabled={correctAnswers.question1}
               />
             </div>
-            <p className="fade-in">{responses.question1}</p>
+            <p className="fade-in unique-font">{responses.question1}</p>
           </div>
 
           {/* Question 2 */}
@@ -187,7 +187,7 @@ function Page2() {
                     disabled={correctAnswers.question2}
                   />
                 </div>
-                <p className="fade-in">
+                <p className="fade-in unique-font">
                   <pre>{responses.question2}</pre>
                 </p>
               </>

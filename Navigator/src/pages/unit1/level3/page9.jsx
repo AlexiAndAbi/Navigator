@@ -5,17 +5,17 @@ import { useNavigate } from "react-router-dom";
 function Page9() {
   const navigate = useNavigate();
   const [currentDirectory, setCurrentDirectory] = useState("home"); // Track the directory
-  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree45.png"); // Track the image
+  const [imageSrc, setImageSrc] = useState("/Navigator/unit1filetrees/FileTree45.png"); // Track the image
 
   const updateImage = (newDirectory) => {
     if (newDirectory === "down") {
-      setImageSrc("/unit1filetrees/FileTree46.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree46.png");
     } else if (newDirectory === "copy") {
-      setImageSrc("/unit1filetrees/FileTree47.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree47.png");
     } else if (newDirectory === "up") {
-      setImageSrc("/unit1filetrees/FileTree48.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree48.png");
     } else {
-      setImageSrc("/unit1filetrees/FileTree45.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree45.png");
     }
   };
 
@@ -242,7 +242,7 @@ function Page9() {
   return (
     <div className="gradient_background3">
       <button
-        className="navigate-button"
+        className="back-button"
         onClick={handleNavigation}
         style={{ border: "2px solid white" }}
       >
@@ -290,7 +290,7 @@ function Page9() {
                 disabled={correctAnswers.question1}
               />
             </div>
-            <p className="fade-in">{responses.question1}</p>
+            <p className="fade-in unique-font">{responses.question1}</p>
           </div>
 
           {/* Question 2 */}
@@ -310,7 +310,7 @@ function Page9() {
                     disabled={correctAnswers.question2}
                   />
                 </div>
-                <p className="fade-in">{responses.question2}</p>
+                <p className="fade-in unique-font">{responses.question2}</p>
               </>
             )}
           </div>
@@ -332,7 +332,7 @@ function Page9() {
                     disabled={correctAnswers.question3}
                   />
                 </div>
-                <p className="fade-in">{responses.question3}</p>
+                <p className="fade-in unique-font">{responses.question3}</p>
               </>
             )}
           </div>
@@ -354,7 +354,7 @@ function Page9() {
                     disabled={correctAnswers.question4}
                   />
                 </div>
-                <p className="fade-in">{responses.question4}</p>
+                <p className="fade-in unique-font">{responses.question4}</p>
               </>
             )}
           </div>
@@ -378,7 +378,7 @@ function Page9() {
                     disabled={correctAnswers.question5}
                   />
                 </div>
-                <p className="fade-in">{responses.question5}</p>
+                <p className="fade-in unique-font">{responses.question5}</p>
               </>
             )}
           </div>
@@ -400,7 +400,7 @@ function Page9() {
                     disabled={correctAnswers.question6}
                   />
                 </div>
-                <p className="fade-in">{responses.question6}</p>
+                <p className="fade-in unique-font">{responses.question6}</p>
               </>
             )}
           </div>
@@ -422,7 +422,7 @@ function Page9() {
                     disabled={correctAnswers.question7}
                   />
                 </div>
-                <p className="fade-in">{responses.question7}</p>
+                <p className="fade-in unique-font">{responses.question7}</p>
               </>
             )}
           </div>
@@ -431,16 +431,16 @@ function Page9() {
         {/* Continue button */}
         {allCorrect && (
           <button
-            className="navigate-button fade-in"
-            onClick={handleNavigation2}
-            style={{
-              border: "2px solid white",
-              marginTop: "20px",
-              marginBottom: "40px",
-            }}
-          >
-            continue
-          </button>
+          className="navigate-button fade-in"
+          onClick={handleNavigation2}
+          style={{
+            border: "2px solid white",
+            marginTop: "20px",
+            marginBottom: "40px",
+          }}
+        >
+          continue
+        </button>
         )}
       </div>
     </div>

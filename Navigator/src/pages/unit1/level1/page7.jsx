@@ -77,7 +77,7 @@ function Page7() {
   return (
     <div className="gradient_background1">
       <button
-        className="navigate-button"
+        className="back-button"
         onClick={handleNavigation}
         style={{ border: "2px solid white" }}
       >
@@ -104,7 +104,7 @@ function Page7() {
         }}
       >
         <img
-          src="/unit1filetrees/FileTree1.png"
+          src="/Navigator/unit1filetrees/FileTree1.png"
           alt="Progress Icon"
           width="300"
           height="300"
@@ -136,7 +136,7 @@ function Page7() {
             disabled={correctAnswers.question1} // Disable if answered correctly
           />
         </div>
-        <p className="fade-in">{responses.question1}</p>
+        <p className="fade-in unique-font">{responses.question1}</p>
 
         <p>How many entries appeared?</p>
         <div className="command-line">
@@ -156,8 +156,7 @@ function Page7() {
             disabled={correctAnswers.question2} // Disable if answered correctly
           />
         </div>
-        <p className="fade-in">{responses.question2}</p>
-
+        <p className="fade-in unique-font">{responses.question2}</p>
         {allCorrect && (
           <button
             className="navigate-button fade-in"

@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'LGC';
+  src: url('/fonts/LGC.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .gradient_backgroundHomepage {
   background: linear-gradient(270deg, #b1dfff, #3830cc);
   height: 100vh;
@@ -14,9 +21,9 @@
 }
 
 .title {
-  font-family: "Consolas", monospace;
+  font-family: "LGC";
   color: white;
-  font-size: 70px; /* Made it much bigger */
+  font-size: 90px; /* Made it much bigger */
   text-align: center; /* Centered the text */
   font-weight: 100; /* Change to a proper weight */
   margin: 0; /* Remove top margin */
@@ -40,32 +47,32 @@
 }
 
 .footer-link {
-  font-family: "Consolas", monospace;
+  font-family: "LGC", sans-serif;
   color: #fff;
-  font-size: 14px;
+  font-size: 16px;
   text-decoration: none; /* No underline initially */
   opacity: 0.8;
   transition: opacity 0.5s;
 }
 
 .footer-link:hover {
-  font-family: "Consolas", monospace;
+  font-family: "LGC", sans-serif;
   color: #fff;
-  font-size: 14px;
+  font-size: 16px;
   text-decoration: underline; /* Add underline on hover */
   opacity: 1; /* Make it fully visible */
 }
 
 .description {
-  font-family: "Consolas", monospace;
+  font-family: "LGC";
   color: #fff;
-  font-size: 20px; /* Made it smaller */
+  font-size: 25px; /* Made it smaller */
   font-weight: 100; /* Change to a proper weight */
   margin: 0; /* Remove any default margin to get it closer */
 }
 
 .start-button {
-  font-family: "Consolas", monospace; /* Use the same font */
+  font-family: "LGC"; /* Use the same font */
   color: white; /* Text color */
   background-color: transparent; /* Transparent background */
   border: 2px solid white; /* White outline */
@@ -77,16 +84,15 @@
   transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
 }
 
-.back-button {
-  font-family: "Consolas", monospace; /* Use the same font */
+.return-button {
+  font-family: "LGC"; /* Use the same font */
   color: white; /* Text color */
   background-color: transparent; /* Transparent background */
   border: 2px solid white; /* White outline */
-  padding: 10px 20px; /* Add some padding */
   font-size: 20px; /* Font size for the button */
+  margin-top: 30px;
   cursor: pointer; /* Change cursor to pointer on hover */
   border-radius: 5px; /* Slightly rounded corners */
-  margin-top: 40px; /* Space above the button */
   transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
 }
 
@@ -96,7 +102,7 @@
 }
 
 .about-title {
-  font-family: "Consolas", monospace;
+  font-family: "LGC";
   color: white;
   font-size: 50px;
   margin-bottom: 20px;
@@ -122,15 +128,15 @@
 }
 
 .name {
-  font-family: "Consolas", monospace;
+  font-family: "LGC";
   color: white;
-  font-size: 24px;
+  font-size: 30px;
   margin-bottom: 0px;
+  margin-top: 20px;
 }
 
 .blurb {
-  font-family: "Consolas", monospace;
+  font-family: "LGC";
   color: white;
-  font-size: 16px;
-  font-weight: 100;
+  font-size: 18px;
 }
