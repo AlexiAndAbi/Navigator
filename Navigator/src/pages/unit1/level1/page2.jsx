@@ -57,7 +57,7 @@ function Page2() {
 
       {/* Back Button */}
       <button
-        className="navigate-button"
+        className="back-button"
         onClick={handleNavigation}
         style={{ border: "2px solid white" }}
       >

@@ -16,7 +16,7 @@ function Page11() {
   return (
     <div className="gradient_background1">
       <button
-        className="navigate-button"
+        className="back-button"
         onClick={handleNavigation}
         style={{ border: "2px solid white" }}
       >
@@ -47,7 +47,7 @@ function Page11() {
         </p>
         <p>You are now prepared to start level 2!</p>
         <button
-          className="navigate-button"
+          className="back-button"
           onClick={handleNavigation2}
           style={{ border: "2px solid white" }}
         >
