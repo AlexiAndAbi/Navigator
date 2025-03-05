@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  font-family: "OpenSans-Regular", monospace;
+  font-family: "Consolas", monospace;
   overflow: auto; /* Enable scrolling if the content exceeds the height */
 }
 

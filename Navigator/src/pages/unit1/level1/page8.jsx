@@ -5,7 +5,9 @@ import { useNavigate } from "react-router-dom";
 function Page8() {
   const navigate = useNavigate();
   const [currentDirectory, setCurrentDirectory] = useState("home"); // Track the directory
-  const [imageSrc, setImageSrc] = useState("/Navigator/unit1filetrees/FileTree1.png"); // Track the image
+  const [imageSrc, setImageSrc] = useState(
+    "/Navigator/unit1filetrees/FileTree1.png"
+  ); // Track the image
 
   const updateImage = (newDirectory) => {
     if (newDirectory === "directory1") {
@@ -228,13 +230,13 @@ function Page8() {
           , this command helps you move between directories. <br />
           <br />
           If you want to move into a directory within the current directory you
-          can type cd [directory name] <br />
+          can type: <br /> cd [directory name] &emsp;&emsp; (ex: cd directory1)
           <br />
           To move back to the directory outside of the current directory you can
-          type cd .. <br />
+          type: <br /> cd ..
           <br />
           To move back to the home directory from anywhere in the file system
-          you can type cd ~
+          you can type: <br /> cd ~
         </p>
 
         {/* Question 1 */}

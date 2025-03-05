@@ -18,6 +18,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  font-family: "Consolas", monospace;
   overflow: auto; /* Enable scrolling if the content exceeds the height */
 }
 

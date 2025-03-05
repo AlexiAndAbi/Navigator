@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  font-family: "OpenSans-Regular", monospace;
+  font-family: "Consolas", monospace;
   overflow: auto; /* Enable scrolling if the content exceeds the height */
 }
 
@@ -38,6 +38,11 @@
   transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
 }
 
+.back-button:hover {
+  background-color: #7ad6d3; /* Fill with purple on hover */
+  color: white; /* Keep text white */
+}
+
 .intro-button:hover {
   background-color: #7ad6d3; /* Fill with purple on hover */
   color: white; /* Keep text white */
@@ -49,7 +54,7 @@
 }
 
 .content p {
-  font-size: 25px;
+  font-size: 22px;
   color: white;
   text-align: left;
 }
