@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'LGC';
+  src: url('/fonts/LGC.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .gradient_background {
   background: linear-gradient(90deg, #3830cc, #b1dfff);
   height: 100vh; /* Full viewport height */
@@ -14,6 +21,21 @@
   min-width: 500px; /* Set a minimum width */
   max-width: 800px;
   margin-bottom: 5px; /* Adds space between each command and response */
+}
+
+.back-button {
+  font-family: "Consolas", monospace; /* Use the same font */
+  color: white; /* Text color */
+  background-color: transparent; /* Transparent background */
+  border: 2px solid white; /* White outline */
+  padding: 10px 20px; /* Add some padding */
+  margin-left: 40px;
+  margin-top: 20px;
+  font-size: 20px; /* Font size for the button */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  border-radius: 5px; /* Slightly rounded corners */
+  margin-top: 40px; /* Space above the button */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
 }
 
 .shell-container2 {
@@ -96,7 +118,8 @@ input {
 .game-description {
   text-align: left;
   max-width: 800px;
-  font-size: 20px;
+  font-size: 22px;
+  font-family: "LGC";
   color: white;
 }
 
