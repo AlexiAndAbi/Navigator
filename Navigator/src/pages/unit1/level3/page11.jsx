@@ -41,19 +41,19 @@ function Page11() {
   const [timeLeft, setTimeLeft] = useState(60); // Timer state
   const [gameOver, setGameOver] = useState(false); // Tracks if the timer runs out
   const [timerStarted, setTimerStarted] = useState(false); // Tracks if the timer has started
-  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree40.png"); // Track the image
+  const [imageSrc, setImageSrc] = useState("/Navigator/unit1filetrees/FileTree40.png"); // Track the image
 
   const updateImage = (imageTag) => {
     if (imageTag === "copy") {
-      setImageSrc("/unit1filetrees/FileTree41.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree41.png");
     } else if (imageTag === "remove") {
-      setImageSrc("/unit1filetrees/FileTree42.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree42.png");
     } else if (imageTag === "down") {
-      setImageSrc("/unit1filetrees/FileTree43.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree43.png");
     } else if (imageTag === "remove2") {
-      setImageSrc("/unit1filetrees/FileTree44.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree44.png");
     } else {
-      setImageSrc("/unit1filetrees/FileTree40.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree40.png");
     }
   };
 

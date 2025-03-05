@@ -5,15 +5,15 @@ import { useNavigate } from "react-router-dom";
 function Page9() {
   const navigate = useNavigate();
   const [isToggled, setIsToggled] = useState(false);
-  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree38.png"); // Track the image
+  const [imageSrc, setImageSrc] = useState("/Navigator/unit1filetrees/FileTree38.png"); // Track the image
 
   const updateImage = (imageTag) => {
     if (imageTag === "change") {
-      setImageSrc("/unit1filetrees/FileTree35.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree35.png");
     } else if (imageTag === "one") {
-      setImageSrc("/unit1filetrees/FileTree39.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree39.png");
     } else {
-      setImageSrc("/unit1filetrees/FileTree38.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree38.png");
     }
   };
 

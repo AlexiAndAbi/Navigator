@@ -75,7 +75,7 @@ function Page4() {
         }}
       >
         <img
-          src={"/unit1filetrees/FileTree16.png"}
+          src={"/Navigator/unit1filetrees/FileTree16.png"}
           alt="Progress Icon"
           width="450"
           height="600"

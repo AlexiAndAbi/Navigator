@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 
 function Page7() {
   const navigate = useNavigate();
-  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree31.png"); // Track the image
+  const [imageSrc, setImageSrc] = useState("/Navigator/unit1filetrees/FileTree31.png"); // Track the image
 
   const updateImage = (imageTag) => {
     if (imageTag === "change") {
-      setImageSrc("/unit1filetrees/FileTree32.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree32.png");
     } else {
-      setImageSrc("/unit1filetrees/FileTree31.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree31.png");
     }
   };
 

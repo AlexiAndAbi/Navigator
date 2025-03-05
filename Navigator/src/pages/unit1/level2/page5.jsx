@@ -7,13 +7,13 @@ function Page5() {
 
   const [fileName, setfileName] = useState(""); // To store the created file name
   const [currentDirectory, setCurrentDirectory] = useState("home"); // Track the directory
-  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree8.png"); // Track the image
+  const [imageSrc, setImageSrc] = useState("/Navigator/unit1filetrees/FileTree8.png"); // Track the image
 
   const updateImage = (newDirectory) => {
     if (newDirectory === "fileAdded") {
-      setImageSrc("/unit1filetrees/FileTree9.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree9.png");
     } else {
-      setImageSrc("/unit1filetrees/FileTree8.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree8.png");
     }
   };
 

@@ -170,7 +170,7 @@ function Page3() {
         }}
       >
         <img
-          src={"/unit1filetrees/FileTree4.png"}
+          src={"/Navigator/unit1filetrees/FileTree4.png"}
           alt="Progress Icon"
           width="450"
           height="600"

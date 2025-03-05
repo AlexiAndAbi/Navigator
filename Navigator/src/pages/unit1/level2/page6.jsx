@@ -41,19 +41,19 @@ function Page6() {
   const [timeLeft, setTimeLeft] = useState(60); // Timer state
   const [gameOver, setGameOver] = useState(false); // Tracks if the timer runs out
   const [timerStarted, setTimerStarted] = useState(false); // Tracks if the timer has started
-  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree10.png"); // Track the image
+  const [imageSrc, setImageSrc] = useState("/Navigator/unit1filetrees/FileTree10.png"); // Track the image
 
   const updateImage = (imageTag) => {
     if (imageTag === "directoryAdded") {
-      setImageSrc("/unit1filetrees/FileTree11.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree11.png");
     } else if (imageTag === "goDown") {
-      setImageSrc("/unit1filetrees/FileTree12.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree12.png");
     } else if (imageTag === "addFile") {
-      setImageSrc("/unit1filetrees/FileTree13.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree13.png");
     } else if (imageTag === "goUp") {
-      setImageSrc("/unit1filetrees/FileTree14.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree14.png");
     } else {
-      setImageSrc("/unit1filetrees/FileTree10.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree10.png");
     }
   };
 

@@ -5,15 +5,15 @@ import { useNavigate } from "react-router-dom";
 function Page8() {
   const navigate = useNavigate();
   const [currentDirectory, setCurrentDirectory] = useState("home"); // Track the directory
-  const [imageSrc, setImageSrc] = useState("/unit1filetrees/FileTree22.png"); // Track the image
+  const [imageSrc, setImageSrc] = useState("/Navigator/unit1filetrees/FileTree22.png"); // Track the image
 
   const updateImage = (newDirectory) => {
     if (newDirectory === "copy") {
-      setImageSrc("/unit1filetrees/FileTree23.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree23.png");
     } else if (newDirectory === "down") {
-      setImageSrc("/unit1filetrees/FileTree24.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree24.png");
     } else {
-      setImageSrc("/unit1filetrees/FileTree22.png");
+      setImageSrc("/Navigator/unit1filetrees/FileTree22.png");
     }
   };
 
