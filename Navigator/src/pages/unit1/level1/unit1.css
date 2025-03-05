@@ -5,6 +5,11 @@
   font-style: normal;
 }
 
+.content p.unique-font {
+  font-family: "Consolas", monospace;
+  font-size: 20px;
+}
+
 .gradient_background1 {
   background: linear-gradient(90deg, #6058d5, #7ad6d3);
   min-height: 100vh; /* Ensure it covers at least the viewport height */
@@ -52,7 +57,7 @@
 
 .content {
   margin-left: 40px;
-  width: 70vw; /* 65% of the viewport width */
+  width: 65vw; /* 65% of the viewport width */
 }
 
 .content p {
@@ -66,6 +71,7 @@
   position: relative; /* Enables z-index to work */
   top: 20px;
   left: -100px;
+  margin-bottom: 20px;
   font-size: 22px;
   z-index: 10;
   margin-top: 20px;

@@ -1,3 +1,15 @@
+@font-face {
+  font-family: "LGC";
+  src: url("/fonts/LGC.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.content p.unique-font {
+  font-family: "Consolas", monospace;
+  font-size: 20px;
+}
+
 .gradient_background3 {
   background: linear-gradient(90deg, #2c6ccd, #d289e6);
   min-height: 100vh; /* Ensure it covers at least the viewport height */
@@ -30,7 +42,7 @@
 
 .content {
   margin-left: 40px;
-  width: 70vw; /* 65% of the viewport width */
+  width: 65vw; /* 65% of the viewport width */
 }
 
 .content p {
@@ -58,6 +70,7 @@
   position: relative; /* Enables z-index to work */
   top: 20px;
   left: -100px;
+  bottom: 20px;
   font-size: 22px;
   z-index: 10;
   margin-top: 20px;
