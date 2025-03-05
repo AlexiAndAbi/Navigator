@@ -86,7 +86,7 @@ function Page6() {
       ref={containerRef} // Attach the ref to the div
     >
       <button
-        className="navigate-button"
+        className="back-button"
         onClick={handleNavigation}
         style={{ border: "2px solid white" }}
       >

@@ -68,7 +68,7 @@ function Page2() {
 
       {/* Back Button */}
       <button
-        className="navigate-button"
+        className="back-button"
         onClick={handleNavigation}
         style={{ border: "2px solid white" }}
       >
@@ -118,7 +118,11 @@ function Page2() {
           <button
             className="navigate-button fade-in"
             onClick={handleNavigation2}
-            style={{ border: "2px solid white" }}
+            style={{
+              border: "2px solid white",
+              marginTop: "20px",
+              marginBottom: "40px",
+            }}
           >
             continue
           </button>

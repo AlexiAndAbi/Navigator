@@ -242,7 +242,7 @@ function Page9() {
   return (
     <div className="gradient_background3">
       <button
-        className="navigate-button"
+        className="back-button"
         onClick={handleNavigation}
         style={{ border: "2px solid white" }}
       >
@@ -431,16 +431,16 @@ function Page9() {
         {/* Continue button */}
         {allCorrect && (
           <button
-            className="navigate-button fade-in"
-            onClick={handleNavigation2}
-            style={{
-              border: "2px solid white",
-              marginTop: "20px",
-              marginBottom: "40px",
-            }}
-          >
-            continue
-          </button>
+          className="navigate-button fade-in"
+          onClick={handleNavigation2}
+          style={{
+            border: "2px solid white",
+            marginTop: "20px",
+            marginBottom: "40px",
+          }}
+        >
+          continue
+        </button>
         )}
       </div>
     </div>

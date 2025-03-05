@@ -41,7 +41,9 @@ function Page11() {
   const [timeLeft, setTimeLeft] = useState(60); // Timer state
   const [gameOver, setGameOver] = useState(false); // Tracks if the timer runs out
   const [timerStarted, setTimerStarted] = useState(false); // Tracks if the timer has started
-  const [imageSrc, setImageSrc] = useState("/Navigator/unit1filetrees/FileTree40.png"); // Track the image
+  const [imageSrc, setImageSrc] = useState(
+    "/Navigator/unit1filetrees/FileTree40.png"
+  ); // Track the image
 
   const updateImage = (imageTag) => {
     if (imageTag === "copy") {
@@ -220,7 +222,7 @@ function Page11() {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: '',
+          [questionKey]: "",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -278,7 +280,7 @@ function Page11() {
   return (
     <div className="gradient_background3">
       <button
-        className="navigate-button"
+        className="back-button"
         onClick={handleNavigation}
         style={{ border: "2px solid white" }}
       >
