@@ -82,7 +82,7 @@ function Page3() {
           document, etc.)
           <br />
           &emsp;&emsp;2. Directories = also known as a folder, directories can
-          hold files, &emsp;&emsp;other directories, or a combination of both
+          hold files, other directories, or a &emsp;&emsp;combination of both
         </p>
         <p>What is a single piece of data called?</p>
         <div className="command-line">

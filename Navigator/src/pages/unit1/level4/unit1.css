@@ -30,17 +30,19 @@
 
 .content {
   margin-left: 40px;
-  width: 60vw; /* 65% of the viewport width */
+  width: 70vw; /* 65% of the viewport width */
 }
 
 .content p {
-  font-size: 20px;
+  font-size: 25px;
   color: white;
   text-align: left;
 }
 
 .navigate-button {
-  font-size: 20px;
+  position: relative; /* Enables z-index to work */
+  font-size: 22px;
+  z-index: 10;
   margin-left: 40px;
   margin-top: 20px;
   padding: 10px 20px;
@@ -90,7 +92,6 @@
   text-align: left;
 }
 
-
 .highlight4 {
   background-color: #cfe2f3; /* Light blue */
   color: #045b67; /* Adjust text color for readability */
@@ -116,7 +117,7 @@
   position: absolute;
   bottom: 0px;
   right: 20px;
-  z-index: 10;
+  z-index: 5;
   width: 350px; /* Adjust to the size of your images */
   height: 350px; /* Match the sprite dimensions */
   background-size: cover;
@@ -128,7 +129,7 @@
   position: absolute;
   bottom: 0px;
   right: 325px;
-  z-index: 10;
+  z-index: 5;
   width: 350px; /* Adjust to the size of your images */
   height: 350px; /* Match the sprite dimensions */
   background-size: cover;
