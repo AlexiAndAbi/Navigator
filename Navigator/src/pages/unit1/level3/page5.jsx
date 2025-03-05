@@ -209,7 +209,7 @@ function Page5() {
                 disabled={correctAnswers.question1}
               />
             </div>
-            <p className="fade-in">{responses.question1}</p>
+            <p className="fade-in unique-font">{responses.question1}</p>
           </div>
 
           {/* Question 2 */}
@@ -229,7 +229,7 @@ function Page5() {
                     disabled={correctAnswers.question2}
                   />
                 </div>
-                <p className="fade-in">{responses.question2}</p>
+                <p className="fade-in unique-font">{responses.question2}</p>
               </>
             )}
           </div>
@@ -251,7 +251,7 @@ function Page5() {
                     disabled={correctAnswers.question3}
                   />
                 </div>
-                <p className="fade-in">{responses.question3}</p>
+                <p className="fade-in unique-font">{responses.question3}</p>
               </>
             )}
           </div>
@@ -273,7 +273,7 @@ function Page5() {
                     disabled={correctAnswers.question4}
                   />
                 </div>
-                <p className="fade-in">{responses.question4}</p>
+                <p className="fade-in unique-font">{responses.question4}</p>
               </>
             )}
           </div>

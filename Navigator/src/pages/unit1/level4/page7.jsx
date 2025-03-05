@@ -210,7 +210,7 @@ function Page7() {
               disabled={correctAnswers.question1}
             />
           </div>
-          <p className="fade-in">{responses.question1}</p>
+          <p className="fade-in unique-font">{responses.question1}</p>
         </div>
 
         {correctAnswers.question1 && (

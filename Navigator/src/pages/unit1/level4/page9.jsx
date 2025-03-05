@@ -227,7 +227,7 @@ function Page9() {
               disabled={correctAnswers.question1}
             />
           </div>
-          <p className="fade-in">{responses.question1}</p>
+          <p className="fade-in unique-font">{responses.question1}</p>
         </div>
 
         {correctAnswers.question1 && (
@@ -245,7 +245,7 @@ function Page9() {
                 disabled={correctAnswers.question2}
               />
             </div>
-            <p className="fade-in">{responses.question2}</p>
+            <p className="fade-in unique-font">{responses.question2}</p>
           </div>
         )}
 
