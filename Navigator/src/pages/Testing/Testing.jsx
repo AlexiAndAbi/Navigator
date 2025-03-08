@@ -85,7 +85,10 @@ const Testing = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [isQuestionMode, setIsQuestionMode] = useState(false);
   const [quizMode, setQuizMode] = useState(false);
-  let createdDirectory = null;
+  const [createdDirectory, setCreatedDirectory] = useState(null);
+  const [f1, setF1] = useState(null);
+  const [f2, setF2] = useState(null);
+  const [f3, setF3] = useState(null);
   const [fileCounter, setFileCounter] = useState(0); // Stores the number of created files
 
   const handleQuestionMode = () => {
@@ -658,6 +661,7 @@ const Testing = () => {
                 currentQuestion.question === "Create a new directory" &&
                 !commandOutput
               ) {
+                setCreatedDirectory(args[0]); // Updates state
                 // ✅ Directory successfully created → Mark as correct and move to next question
                 if (currentQuestionIndex < questions.length - 1) {
                   updateOutput(
@@ -685,11 +689,17 @@ const Testing = () => {
             break;
           case "touch":
             if (
-              currentDirectory !== "directory1" &&
               currentDirectory !== "~" &&
-              currentDirectory !== "directory3"
+              currentDirectory !== "Navigator" &&
+              currentDirectory !== "information"
             ) {
-              setFileCounter((prevCount) => prevCount + args.length); // Increment by the number of files created
+              setFileCounter((prevCount) => prevCount + args.length); // Increment file counter
+              // Loop through args and assign them to f1, f2, or f3 if available
+              for (let i = 0; i < args.length; i++) {
+                if (!f1) setF1(args[i]);
+                else if (!f2) setF2(args[i]);
+                else if (!f3) setF3(args[i]);
+              }
             }
             commandOutput = args.length
               ? handleTouch(...args) // Pass all filenames
@@ -698,7 +708,9 @@ const Testing = () => {
               currentQuestion.question ===
                 "Create three empty files in the directory you just made" &&
               !commandOutput &&
-              fileCounter + args.length >= 3 // Ensure correct counting
+              fileCounter + args.length >= 3 && currentDirectory !== "~" &&
+              currentDirectory !== "Navigator" &&
+              currentDirectory !== "information"
             ) {
               // ✅ Directory successfully created → Mark as correct and move to next question
               if (currentQuestionIndex < questions.length - 1) {
