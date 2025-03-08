@@ -279,50 +279,67 @@ const Testing = () => {
     }
   };
 
-  const handleMv = (sourcePath, destPath, recursive = false) => {
-    // Normalize paths
-    sourcePath = resolvePath(sourcePath);
-    destPath = resolvePath(destPath);
+  const handleMv = (sourcePath, destPath) => {
+    const homePath = "~/User/username"; // Define home directory path
 
-    // Get source item info
-    const sourceInfo = getItemAtPath(sourcePath);
-    if (!sourceInfo || !sourceInfo.item) {
+    // Normalize the source and destination paths
+    if (sourcePath.startsWith(homePath)) {
+      sourcePath = "~" + sourcePath.slice(homePath.length);
+    }
+    if (destPath.startsWith(homePath)) {
+      destPath = "~" + destPath.slice(homePath.length);
+    }
+
+    // Ensure absolute paths
+    if (!sourcePath.startsWith("~") || !destPath.startsWith("~")) {
+      return "mv: only absolute paths are allowed";
+    }
+
+    const getItemAtPath = (path) => {
+      const parts = path.split("/").filter(Boolean);
+      let current = fileSystem["~"];
+      let parent = null;
+      let key = null;
+
+      for (const part of parts.slice(1)) {
+        if (!current.children[part]) return null;
+        parent = current;
+        key = part;
+        current = current.children[part];
+      }
+      return { parent, key, item: current };
+    };
+
+    // Get source file/directory
+    const source = getItemAtPath(sourcePath);
+    if (!source || !source.item) {
       return `mv: cannot move '${sourcePath}': No such file or directory`;
     }
-    const sourceItem = sourceInfo.item;
 
-    // Get destination info
-    const destInfo = getItemAtPath(destPath);
+    // Get destination
+    let dest = getItemAtPath(destPath);
 
-    if (recursive && sourceItem.type === "directory") {
-      if (!destInfo || destInfo.item.type !== "directory") {
-        return `mv: cannot move directory '${sourcePath}' to '${destPath}': Not a directory`;
-      }
-      // Move the entire directory structure
-      destInfo.item.children[sourceInfo.key] = sourceItem;
-    } else if (!recursive || sourceItem.type === "file") {
-      // If destination is a directory, move the file inside it
-      if (destInfo && destInfo.item.type === "directory") {
-        destInfo.item.children[sourceInfo.key] = sourceItem;
-      } else {
-        // Otherwise, treat destPath as a new name for the item
-        const destParts = destPath.split("/").filter(Boolean);
-        const newName = destParts.pop();
-        const destDirPath = "~/" + destParts.join("/");
-        const destDirInfo = getItemAtPath(destDirPath);
-        if (!destDirInfo || destDirInfo.item.type !== "directory") {
-          return `mv: cannot move '${sourcePath}' to '${destPath}': No such directory`;
-        }
-        destDirInfo.item.children[newName] = sourceItem;
-      }
+    if (dest && dest.item && dest.item.type === "directory") {
+      // If the destination is a directory, move inside it
+      dest.item.children[source.key] = source.item;
     } else {
-      return `mv: cannot move '${sourcePath}': Not a file`;
+      // Otherwise, move/rename file or directory
+      const destParts = destPath.split("/");
+      const destFileName = destParts.pop();
+      const destDirPath = destParts.join("/");
+      const destDir = getItemAtPath(destDirPath);
+
+      if (!destDir || !destDir.item || destDir.item.type !== "directory") {
+        return `mv: cannot move '${sourcePath}' to '${destPath}': No such directory`;
+      }
+
+      destDir.item.children[destFileName] = source.item;
     }
 
-    // Remove the source item from its original location
-    delete sourceInfo.parent.children[sourceInfo.key];
+    // Remove the original source after moving
+    delete source.parent.children[source.key];
 
-    setFileSystem({ ...fileSystem });
+    setFileSystem({ ...fileSystem }); // Update state
     return "";
   };
 
@@ -363,29 +380,45 @@ const Testing = () => {
   };
 
   const resolvePath = (path) => {
-    const homePrefix = "/User/username";
+    console.log("Path: " + path);
+    if (path.startsWith("~")) return path; // Already absolute
 
-    // If already using "~", assume it's normalized.
-    if (path.startsWith("~")) return path;
-
-    // If an absolute path starting with "/User/username", convert to "~"
-    if (path.startsWith(homePrefix)) {
-      return "~" + path.slice(homePrefix.length);
+    if (path.startsWith("/User/username")) {
+      let path2 = "";
+      path2 = "~" + path.slice("/User/username".length);
+      return path2;
     }
 
-    // Otherwise, treat as a relative path.
-    // For relative paths, remove any leading "./"
-    if (path.startsWith("./")) {
-      path = path.slice(2);
+    const homePath = "/User/username"; // Define home directory path
+    let basePath = currentPath.startsWith("~")
+      ? currentPath.replace("~", homePath)
+      : currentPath;
+
+    if (basePath.startsWith("/User/username")) {
+      basePath = "~" + basePath.slice("/User/username".length);
     }
-    // We'll use the currentPath as the base.
-    // currentPath is assumed to be in the form "~" or "~/<subdir>/..."
-    let base = currentPath;
-    if (base === "~") {
-      return "~/" + path;
-    } else {
-      return base + "/" + path;
+
+    console.log("base path part 1: " + basePath);
+
+    // Normalize the path to avoid multiple slashes or invalid path formation
+    let parts = path.split("/").filter(Boolean);
+    let currentParts = basePath.split("/").filter(Boolean);
+    console.log("BasePath: " + basePath);
+
+    for (const part of parts) {
+      if (part === ".") continue; // Stay in the current directory
+      if (part === "..") {
+        currentParts.pop(); // Move up one directory
+      } else {
+        currentParts.push(part); // Move into the directory/file
+      }
     }
+
+    let resolvedPath = `~/${currentParts.slice(1).join("/")}`; // Convert back to home-relative
+    console.log("resolved path: " + resolvedPath);
+    return resolvedPath.endsWith("/")
+      ? resolvedPath.slice(0, -1)
+      : resolvedPath; // Remove trailing slash
   };
 
   // Helper: given an absolute path (starting with "~"), traverse the fileSystem.
@@ -708,7 +741,8 @@ const Testing = () => {
               currentQuestion.question ===
                 "Create three empty files in the directory you just made" &&
               !commandOutput &&
-              fileCounter + args.length >= 3 && currentDirectory !== "~" &&
+              fileCounter + args.length >= 3 &&
+              currentDirectory !== "~" &&
               currentDirectory !== "Navigator" &&
               currentDirectory !== "information"
             ) {
