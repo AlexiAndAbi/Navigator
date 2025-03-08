@@ -1,39 +1,42 @@
-import React, { useEffect } from "react"; // Import useEffect here
+import React, { useState, useRef, useEffect } from "react";
 import "./Testing.css";
 import { useNavigate } from "react-router-dom";
 
 function CongratulationsPage() {
   const navigate = useNavigate();
+  const [score, setScore] = useState(null);
+  const [time, setTime] = useState(null);
+
+  useEffect(() => {
+    // Retrieve the score and time from localStorage
+    const savedScore = localStorage.getItem("score");
+    const savedTime = localStorage.getItem("time");
+
+    if (savedScore && savedTime) {
+      setScore(savedScore);
+      setTime(savedTime);
+    }
+  }, []);
 
   const handleNavigation = () => {
+    localStorage.removeItem("score");
+    localStorage.removeItem("time");
     navigate("/Play");
   };
 
   const handleNavigation2 = () => {
+    localStorage.removeItem("score");
+    localStorage.removeItem("time");
     navigate("/Unit1-Contents");
   };
 
-  // Preload images for the animations
-  useEffect(() => {
-    const preloadImages = (srcArray) => {
-      srcArray.forEach((src) => {
-        const img = new Image();
-        img.src = src;
-      });
-    };
-
-    const kelpImages = [
-      "/images/kelp0.png",
-      "/images/kelp1.png",
-      "/images/kelp2.png",
-    ];
-    // Preload both sets of images
-    preloadImages(kelpImages);
-  }, []);
-
   return (
     <div className="gradient_background">
-      <button className="back-button" onClick={handleNavigation} style={{ border: "2px solid white" }}>
+      <button
+        className="back-button"
+        onClick={handleNavigation}
+        style={{ border: "2px solid white" }}
+      >
         back
       </button>
 
@@ -50,16 +53,18 @@ function CongratulationsPage() {
       </div>
 
       <div className="content">
-        <p>
-          In this level we will begin to interact more with the file system
-          structure. We will introduce the following three commands that help us
-          create and view files and directories:
-        </p>
-        <p>
-          cat
-          <br /> mkdir
-          <br /> touch
-        </p>
+        {score && time ? (
+          <div>
+            <p>
+              Congratulations! You've completed Navigator.<br /><br /> You earned a score of{" "}
+              {score} and completed the final mini-game in a time of {time}{" "}
+              seconds! <br /><br />I hope you enjoyed this resource to help you learn unix
+              commands. You can do this... and you belong here.
+            </p>
+          </div>
+        ) : (
+          <p>No score available</p>
+        )}
         <button
           className="navigate-button"
           onClick={handleNavigation2}
@@ -73,38 +78,3 @@ function CongratulationsPage() {
 }
 
 export default CongratulationsPage;
-
-
-
-/*import React, { useEffect, useState } from 'react';
-
-const CongratulationsPage = () => {
-  const [score, setScore] = useState(null);
-  const [time, setTime] = useState(null);
-
-  useEffect(() => {
-    // Retrieve the score and time from localStorage
-    const savedScore = localStorage.getItem('score');
-    const savedTime = localStorage.getItem('time');
-
-    if (savedScore && savedTime) {
-      setScore(savedScore);
-      setTime(savedTime);
-    }
-  }, []);
-
-  return (
-    <div>
-      {score && time ? (
-        <div>
-          <h1>Congratulations!</h1>
-          <p>You completed the game with a score of {score} and a time of {time} seconds!</p>
-        </div>
-      ) : (
-        <p>No score available</p>
-      )}
-    </div>
-  );
-};
-
-export default CongratulationsPage;*/
