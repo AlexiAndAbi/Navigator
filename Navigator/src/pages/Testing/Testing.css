@@ -24,7 +24,7 @@
 }
 
 .back-button {
-  font-family: "Consolas", monospace; /* Use the same font */
+  font-family: "LGC"; /* Use the same font */
   color: white; /* Text color */
   background-color: transparent; /* Transparent background */
   border: 2px solid white; /* White outline */
@@ -140,4 +140,24 @@ input {
   flex-direction: column;
   align-items: left;
   margin-bottom: 0px;
+}
+
+.intro-button {
+  font-size: 30px;
+  border: 2px solid white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-left: 40px;
+  margin-top: 20px;
+  font-family: "LGC";
+}
+
+.intro-button:hover {
+  border: 2px solid white;
+  background-color: #7ad6d3; /* Fill with purple on hover */
+  color: white; /* Keep text white */
 }

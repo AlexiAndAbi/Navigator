@@ -90,6 +90,7 @@ const Testing = () => {
   const [f2, setF2] = useState(null);
   const [f3, setF3] = useState(null);
   const [fileCounter, setFileCounter] = useState(0); // Stores the number of created files
+  const [gameOver, setGameOver] = useState(false); // State to track game completion
 
   const handleQuestionMode = () => {
     setIsQuestionMode(true);
@@ -98,17 +99,25 @@ const Testing = () => {
   };
 
   useEffect(() => {
-    if (quizMode) {
+    // Start the timer when quizMode is true
+    if (quizMode && !gameOver) {
       timerRef.current = setInterval(() => {
         setElapsedTime((prevTime) => prevTime + 1);
       }, 1000);
     } else {
-      clearInterval(timerRef.current); // Stop timer when exiting quiz mode
-      setElapsedTime(0); // Reset time when quiz mode restarts
+      // Stop the timer when the game ends or when exiting quiz mode
+      clearInterval(timerRef.current);
+
+      if (gameOver) {
+        console.log("Game Over. Timer stopped.");
+      }
+
+      setElapsedTime(0); // Reset time when quiz mode restarts or game is over
     }
 
-    return () => clearInterval(timerRef.current); // Cleanup on unmount
-  }, [quizMode]); // Runs when quizMode changes
+    // Cleanup on unmount
+    return () => clearInterval(timerRef.current);
+  }, [quizMode, gameOver]); // Dependency array includes both quizMode and gameOver
 
   const getCurrentDir = () => {
     const pathParts = currentPath
@@ -675,6 +684,7 @@ const Testing = () => {
                     `${currentDirectory} >> ${userInput}\n${commandOutput}`,
                     "🎉 Quiz completed! Well done!"
                   );
+                  handleGameOver();
                   setIsQuestionMode(false);
                 }
                 setCommand(""); // Clear input field
@@ -704,14 +714,6 @@ const Testing = () => {
                     }`
                   );
                   setCurrentQuestionIndex((prev) => prev + 1);
-                } else {
-                  // ✅ Last question answered → End quiz
-                  setQuizMode(false);
-                  updateOutput(
-                    `${currentDirectory} >> ${userInput}\n${commandOutput}`,
-                    "🎉 Quiz completed! Well done!"
-                  );
-                  setIsQuestionMode(false);
                 }
                 setCommand(""); // Clear input field
                 return;
@@ -755,14 +757,6 @@ const Testing = () => {
                   }`
                 );
                 setCurrentQuestionIndex((prev) => prev + 1);
-              } else {
-                // ✅ Last question answered → End quiz
-                setQuizMode(false);
-                updateOutput(
-                  `${currentDirectory} >> ${userInput}\n${commandOutput}`,
-                  "🎉 Quiz completed! Well done!"
-                );
-                setIsQuestionMode(false);
               }
               setCommand(""); // Clear input field
               return;
@@ -826,14 +820,6 @@ const Testing = () => {
             }`
           );
           setCurrentQuestionIndex((prev) => prev + 1);
-        } else {
-          // ✅ Last question answered → End quiz
-          setQuizMode(false);
-          updateOutput(
-            `${currentDirectory} >> ${userInput}\n${commandOutput}`,
-            "🎉 Quiz completed! Well done!"
-          );
-          setIsQuestionMode(false);
         }
       } else if (isValidCommand) {
         // 🟡 Valid command but incorrect → Run the command and give feedback
@@ -989,9 +975,31 @@ const Testing = () => {
     navigate("/Unit1-Contents");
   };
 
-  /*const handleNavigation2 = () => {
-    navigate("/Unit1-Level4-page4");
-  };*/
+  const handleContinueClick = () => {
+    navigate("/Yay");
+  };
+
+  const fadeInContinueButton = () => {
+    const continueButton = document.getElementById("continueButton");
+
+    // Make the button visible first, if it was hidden
+    continueButton.style.display = "inline-block";
+
+    // Start the fade-in effect after a slight delay
+    setTimeout(() => {
+      continueButton.classList.add("visible"); // Trigger the fade-in effect
+    }, 1000); // Delay before fading in (adjust the timing as needed)
+  };
+
+  const handleGameOver = () => {
+    const score = 100; // Replace with the actual score
+    const time = 120; // Replace with the actual time in seconds
+
+    localStorage.setItem("score", score);
+    localStorage.setItem("time", time);
+    setGameOver(true); // Set gameOver to true when the game finishes
+    fadeInContinueButton();
+  };
 
   return (
     <div className="gradient_background">
@@ -1048,6 +1056,19 @@ const Testing = () => {
           )}
         </form>
       </div>
+      <button
+        id="continueButton"
+        className="intro-button"
+        style={{
+          display: "none", // Initially hidden
+          position: "fixed", // Fix the position relative to the viewport
+          bottom: "40px", // 100px from the bottom
+          right: "40px",
+        }}
+        onClick={handleContinueClick} // Add a handler if needed
+      >
+        Continue
+      </button>
     </div>
   );
 };

@@ -49,6 +49,7 @@ import Homepage from "./pages/Homepage/Homepage";
 import About from "./pages/Homepage/about.jsx";
 import TableContents from "./pages/TableContents/TableContents";
 import Testing from "./pages/Testing/Testing";
+import CongratulationsPage from "./pages/Testing/yay.jsx";
 import Prompts from "./components/Prompt/Prompt";
 import Unit1contents from "./pages/Unit1Contents/Unit1contents";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
@@ -108,7 +109,8 @@ function App() {
         <Route path="/Unit1-Level4-page10" element={<Page10Level4 />} />
         <Route path="/Unit1-Level4-page11" element={<Page11Level4 />} />
         {/*Extras*/}
-        <Route path="/Testing" element={<Testing />} />
+        <Route path="/Play" element={<Testing />} />
+        <Route path="/Yay" element={<CongratulationsPage />} />
         <Route path="/Prompts" element={<Prompts />} />
         <Route path="/Unit1-Contents" element={<Unit1contents />} />
       </Routes>

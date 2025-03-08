@@ -24,7 +24,7 @@ function Unit1contents() {
         navigate("/"); // Now this is called when the button is clicked
     };
     const goToGame = () => {
-        navigate("/Testing"); // Now this is called when the button is clicked
+        navigate("/Play"); // Now this is called when the button is clicked
     };
 
     return (
