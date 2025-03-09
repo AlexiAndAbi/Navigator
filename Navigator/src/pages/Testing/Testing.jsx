@@ -112,14 +112,11 @@ const Testing = () => {
     } else {
       // Stop the timer when the game ends or when exiting quiz mode
       clearInterval(timerRef.current);
-
       if (gameOver) {
         console.log("Game Over. Timer stopped.");
       }
-
       setElapsedTime(0); // Reset time when quiz mode restarts or game is over
     }
-
     // Cleanup on unmount
     return () => clearInterval(timerRef.current);
   }, [quizMode, gameOver]); // Dependency array includes both quizMode and gameOver
@@ -593,7 +590,10 @@ const Testing = () => {
                 currentQuestion.question ===
                 "Copy both of the text files in the home directory into the directory you created earlier using a relative path"
               ) {
-                if (sourcePaths.length === 2 && args[args.length - 1] == `./information/${createdDirectory}`) {
+                if (
+                  sourcePaths.length === 2 &&
+                  args[args.length - 1] == `./information/${createdDirectory}`
+                ) {
                   // ✅ Correct if they copy two files
                   setcpCount(0); // Reset counter
                   if (currentQuestionIndex < questions.length - 1) {
@@ -608,7 +608,10 @@ const Testing = () => {
                   }
                   setCommand("");
                   return;
-                } else if (sourcePaths.length === 1 && args[args.length - 1] == `./information/${createdDirectory}`) {
+                } else if (
+                  sourcePaths.length === 1 &&
+                  args[args.length - 1] == `./information/${createdDirectory}`
+                ) {
                   // Increment counter if they copy one file
                   setcpCount((prev) => prev + 1);
 
@@ -618,9 +621,9 @@ const Testing = () => {
                     if (currentQuestionIndex < questions.length - 1) {
                       updateOutput(
                         "",
-                        `+100pts (cp ___ ___ ... +150pts)\n\nQuestion ${currentQuestionIndex + 2}: ${
-                          questions[currentQuestionIndex + 1].question
-                        }`
+                        `+100pts (cp ___ ___ ... +150pts)\n\nQuestion ${
+                          currentQuestionIndex + 2
+                        }: ${questions[currentQuestionIndex + 1].question}`
                       );
                       setCurrentQuestionIndex((prev) => prev + 1);
                     }
@@ -676,7 +679,8 @@ const Testing = () => {
               if (
                 currentQuestion.question ===
                   "Move the directory Navigator to the home directory using an absolute path" &&
-                !commandOutput && args[2] == "/User/username" && recursive == true
+                !commandOutput &&
+                args[2] == "/User/username"
               ) {
                 // ✅ Directory successfully created → Mark as correct and move to next question
                 if (currentQuestionIndex < questions.length - 1) {
@@ -801,9 +805,9 @@ const Testing = () => {
               if (currentQuestionIndex < questions.length - 1) {
                 updateOutput(
                   `${currentDirectory} >> ${userInput}\n${commandOutput}`,
-                  `+10pts (ctrl + l +20pts)\n\nQuestion ${currentQuestionIndex + 2}: ${
-                    questions[currentQuestionIndex + 1].question
-                  }`
+                  `+10pts (ctrl + l +20pts)\n\nQuestion ${
+                    currentQuestionIndex + 2
+                  }: ${questions[currentQuestionIndex + 1].question}`
                 );
                 updateScore(10);
                 setCurrentQuestionIndex((prev) => prev + 1);
@@ -830,9 +834,9 @@ const Testing = () => {
                     questions[currentQuestionIndex + 1].question
                   }`
                 );
+                updateScore(20);
                 setCurrentQuestionIndex((prev) => prev + 1);
               }
-              updateScore(20);
               setCommand(""); // Clear input field
               return;
             }
