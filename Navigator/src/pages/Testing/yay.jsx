@@ -40,25 +40,15 @@ function CongratulationsPage() {
         back
       </button>
 
-      <div
-        style={{
-          position: "fixed",
-          top: "10px",
-          right: "20px",
-          fontSize: "16px",
-          color: "white",
-        }}
-      >
-        <p>[#------] 1/7</p>
-      </div>
-
       <div className="content">
         {score && time ? (
           <div>
             <p>
-              Congratulations! You've completed Navigator.<br /><br /> You earned a score of{" "}
-              {score} and completed the final mini-game in a time of {time}{" "}
-              seconds! <br /><br />I hope you enjoyed this resource to help you learn unix
+              Congratulations! You've completed Navigator.
+              <br />
+              <br /> You earned a score of {score} and completed the final
+              mini-game in a time of {time} seconds! <br />
+              <br />I hope you enjoyed this resource to help you learn unix
               commands. You can do this... and you belong here.
             </p>
           </div>

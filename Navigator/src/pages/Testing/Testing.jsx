@@ -676,10 +676,10 @@ const Testing = () => {
               if (
                 currentQuestion.question ===
                   "Move the directory Navigator to the home directory using an absolute path" &&
-                !commandOutput
+                !commandOutput && args[2] == "/User/username" && recursive == true
               ) {
                 // ✅ Directory successfully created → Mark as correct and move to next question
-                if (currentQuestionIndex < questions.length - 1 && args[2] == "/User/username" && recursive == true) {
+                if (currentQuestionIndex < questions.length - 1) {
                   updateOutput(
                     `${currentDirectory} >> ${userInput}\n${commandOutput}`,
                     `+200pts\n\nQuestion ${currentQuestionIndex + 2}: ${
@@ -693,8 +693,9 @@ const Testing = () => {
                   setQuizMode(false);
                   updateOutput(
                     `${currentDirectory} >> ${userInput}\n${commandOutput}`,
-                    "🎉 Quiz completed! Well done!"
+                    "+200pts Quiz completed! Well done!"
                   );
+                  updateScore(200);
                   handleGameOver();
                   setIsQuestionMode(false);
                 }
@@ -1087,9 +1088,9 @@ const Testing = () => {
       </div>
       <button
         id="continueButton"
-        className="intro-button"
+        className="continue-button"
         style={{
-          display: "none", // Initially hidden
+          //display: "none", // Initially hidden
           position: "fixed", // Fix the position relative to the viewport
           bottom: "40px", // 100px from the bottom
           right: "40px",
