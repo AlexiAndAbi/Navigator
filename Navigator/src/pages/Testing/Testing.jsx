@@ -1090,7 +1090,7 @@ const Testing = () => {
         id="continueButton"
         className="continue-button"
         style={{
-          //display: "none", // Initially hidden
+          display: "none", // Initially hidden
           position: "fixed", // Fix the position relative to the viewport
           bottom: "40px", // 100px from the bottom
           right: "40px",
