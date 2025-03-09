@@ -1,7 +1,14 @@
 @font-face {
-  font-family: 'LGC';
-  src: url('/fonts/LGC.ttf') format('truetype');
+  font-family: "LGC";
+  src: url("/fonts/LGC.ttf") format("truetype");
   font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "LGC";
+  src: url("/fonts/LGCB.ttf") format("truetype");
+  font-weight: bold;
   font-style: normal;
 }
 
@@ -123,18 +130,6 @@ input {
   color: white;
 }
 
-.timer {
-  font-size: 16px;
-  font-weight: bold;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: white;
-  min-width: 150px; /* Prevents it from shrinking */
-  max-width: 165px; /* Prevents it from shrinking */
-  text-align: left;
-}
-
 .header {
   display: flex;
   flex-direction: column;
@@ -158,6 +153,50 @@ input {
 
 .intro-button:hover {
   border: 2px solid white;
-  background-color: #7ad6d3; /* Fill with purple on hover */
+  background-color: #7ad6d3;
   color: white; /* Keep text white */
+}
+
+.content-art {
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  z-index: 10;
+  width: 400px;
+  height: 400px;
+  background-size: cover;
+  background-image: url("/images/CompassAgain-1.png");
+}
+
+.score-display {
+  font-family: "LGC";
+  font-weight: bold;
+  position: absolute;
+  font-weight: bold;
+  top: 40px;
+  right: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 8px 25px;
+  border-radius: 5px; /* Rounded edges */
+  background: rgba(56, 48, 204, 0.4);
+  color: white;
+  font-weight: bold;
+}
+
+.timer {
+  font-family: "LGC";
+  font-weight: bold;
+  position: absolute;
+  top: 95px;
+  right: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  background: rgba(56, 48, 204, 0.3);
+  padding: 8px 25px;
+  border-radius: 5px;
+  color: white;
+  min-width: 160px;
+  max-width: 195px;
+  text-align: left;
 }

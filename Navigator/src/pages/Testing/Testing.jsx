@@ -91,6 +91,11 @@ const Testing = () => {
   const [f3, setF3] = useState(null);
   const [fileCounter, setFileCounter] = useState(0); // Stores the number of created files
   const [gameOver, setGameOver] = useState(false); // State to track game completion
+  const [score, setScore] = useState(0);
+
+  const updateScore = (points) => {
+    setScore((prevScore) => prevScore + points);
+  };
 
   const handleQuestionMode = () => {
     setIsQuestionMode(true);
@@ -537,16 +542,17 @@ const Testing = () => {
               : currentDirectory;
             commandOutput = args.length ? handleCd(args[0]) : "";
             if (currentQuestion.question === "Move to the home directory") {
-              if (targetPath === "~") {
+              if (args[0] === "~") {
                 // ✅ Correct if they use `cd ~`
                 setCdUpCount(0); // Reset counter
                 if (currentQuestionIndex < questions.length - 1) {
                   updateOutput(
                     "",
-                    `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                    `+20pts\n\nQuestion ${currentQuestionIndex + 2}: ${
                       questions[currentQuestionIndex + 1].question
                     }`
                   );
+                  updateScore(20);
                   setCurrentQuestionIndex((prev) => prev + 1);
                 }
                 setCommand("");
@@ -554,17 +560,17 @@ const Testing = () => {
               } else if (args[0] === "..") {
                 // Increment counter if they use `cd ..`
                 setCdUpCount((prev) => prev + 1);
-
                 // Check if they have moved up twice
                 if (cdUpCount + 1 >= 2) {
                   setCdUpCount(0); // Reset counter
                   if (currentQuestionIndex < questions.length - 1) {
                     updateOutput(
                       "",
-                      `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
-                        questions[currentQuestionIndex + 1].question
-                      }`
+                      `+10pts (cd ~ +20pts)\n\nQuestion ${
+                        currentQuestionIndex + 2
+                      }: ${questions[currentQuestionIndex + 1].question}`
                     );
+                    updateScore(10);
                     setCurrentQuestionIndex((prev) => prev + 1);
                   }
                   setCommand("");
@@ -587,21 +593,22 @@ const Testing = () => {
                 currentQuestion.question ===
                 "Copy both of the text files in the home directory into the directory you created earlier using a relative path"
               ) {
-                if (sourcePaths.length === 2) {
+                if (sourcePaths.length === 2 && args[args.length - 1] == `./information/${createdDirectory}`) {
                   // ✅ Correct if they copy two files
                   setcpCount(0); // Reset counter
                   if (currentQuestionIndex < questions.length - 1) {
                     updateOutput(
                       "",
-                      `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                      `+150pts \n\nQuestion ${currentQuestionIndex + 2}: ${
                         questions[currentQuestionIndex + 1].question
                       }`
                     );
+                    updateScore(150);
                     setCurrentQuestionIndex((prev) => prev + 1);
                   }
                   setCommand("");
                   return;
-                } else if (sourcePaths.length === 1) {
+                } else if (sourcePaths.length === 1 && args[args.length - 1] == `./information/${createdDirectory}`) {
                   // Increment counter if they copy one file
                   setcpCount((prev) => prev + 1);
 
@@ -611,12 +618,13 @@ const Testing = () => {
                     if (currentQuestionIndex < questions.length - 1) {
                       updateOutput(
                         "",
-                        `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                        `+100pts (cp ___ ___ ... +150pts)\n\nQuestion ${currentQuestionIndex + 2}: ${
                           questions[currentQuestionIndex + 1].question
                         }`
                       );
                       setCurrentQuestionIndex((prev) => prev + 1);
                     }
+                    updateScore(100);
                     setCommand("");
                     return;
                   }
@@ -648,16 +656,18 @@ const Testing = () => {
               if (
                 currentQuestion.question ===
                   "Move one of these files into its parent directory using an absolute path" &&
-                !commandOutput
+                !commandOutput &&
+                args[1] == "/User/username/information"
               ) {
                 // ✅ Directory successfully created → Mark as correct and move to next question
                 if (currentQuestionIndex < questions.length - 1) {
                   updateOutput(
                     `${currentDirectory} >> ${userInput}\n${commandOutput}`,
-                    `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                    `+100pts \n\nQuestion ${currentQuestionIndex + 2}: ${
                       questions[currentQuestionIndex + 1].question
                     }`
                   );
+                  updateScore(100);
                   setCurrentQuestionIndex((prev) => prev + 1);
                 }
                 setCommand(""); // Clear input field
@@ -669,13 +679,14 @@ const Testing = () => {
                 !commandOutput
               ) {
                 // ✅ Directory successfully created → Mark as correct and move to next question
-                if (currentQuestionIndex < questions.length - 1) {
+                if (currentQuestionIndex < questions.length - 1 && args[2] == "/User/username" && recursive == true) {
                   updateOutput(
                     `${currentDirectory} >> ${userInput}\n${commandOutput}`,
-                    `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                    `+200pts\n\nQuestion ${currentQuestionIndex + 2}: ${
                       questions[currentQuestionIndex + 1].question
                     }`
                   );
+                  updateScore(200);
                   setCurrentQuestionIndex((prev) => prev + 1);
                 } else {
                   // ✅ Last question answered → End quiz
@@ -709,10 +720,11 @@ const Testing = () => {
                 if (currentQuestionIndex < questions.length - 1) {
                   updateOutput(
                     `${currentDirectory} >> ${userInput}\n${commandOutput}`,
-                    `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                    `+50pts \n\nQuestion ${currentQuestionIndex + 2}: ${
                       questions[currentQuestionIndex + 1].question
                     }`
                   );
+                  updateScore(50);
                   setCurrentQuestionIndex((prev) => prev + 1);
                 }
                 setCommand(""); // Clear input field
@@ -749,13 +761,29 @@ const Testing = () => {
               currentDirectory !== "information"
             ) {
               // ✅ Directory successfully created → Mark as correct and move to next question
-              if (currentQuestionIndex < questions.length - 1) {
+              if (
+                currentQuestionIndex < questions.length - 1 &&
+                fileCounter == 0
+              ) {
                 updateOutput(
                   `${currentDirectory} >> ${userInput}\n${commandOutput}`,
-                  `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                  `+50pts\n\nQuestion ${currentQuestionIndex + 2}: ${
                     questions[currentQuestionIndex + 1].question
                   }`
                 );
+                updateScore(50);
+                setCurrentQuestionIndex((prev) => prev + 1);
+              } else if (
+                currentQuestionIndex < questions.length - 1 &&
+                fileCounter != 0
+              ) {
+                updateOutput(
+                  `${currentDirectory} >> ${userInput}\n${commandOutput}`,
+                  `+35pts (touch ___ ___ ___ +50pts)\n\nQuestion ${
+                    currentQuestionIndex + 2
+                  }: ${questions[currentQuestionIndex + 1].question}`
+                );
+                updateScore(35);
                 setCurrentQuestionIndex((prev) => prev + 1);
               }
               setCommand(""); // Clear input field
@@ -772,10 +800,11 @@ const Testing = () => {
               if (currentQuestionIndex < questions.length - 1) {
                 updateOutput(
                   `${currentDirectory} >> ${userInput}\n${commandOutput}`,
-                  `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                  `+10pts (ctrl + l +20pts)\n\nQuestion ${currentQuestionIndex + 2}: ${
                     questions[currentQuestionIndex + 1].question
                   }`
                 );
+                updateScore(10);
                 setCurrentQuestionIndex((prev) => prev + 1);
               }
               setCommand(""); // Clear input field
@@ -796,12 +825,13 @@ const Testing = () => {
               if (currentQuestionIndex < questions.length - 1) {
                 updateOutput(
                   `${currentDirectory} >> ${userInput}\n${commandOutput}`,
-                  `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+                  `+20pts \n\nQuestion ${currentQuestionIndex + 2}: ${
                     questions[currentQuestionIndex + 1].question
                   }`
                 );
                 setCurrentQuestionIndex((prev) => prev + 1);
               }
+              updateScore(20);
               setCommand(""); // Clear input field
               return;
             }
@@ -958,12 +988,13 @@ const Testing = () => {
         if (currentQuestionIndex < questions.length - 1) {
           updateOutput(
             "", // Clear previous command output
-            `✅ Correct!\n\nQuestion ${currentQuestionIndex + 2}: ${
+            `+20pts \n\nQuestion ${currentQuestionIndex + 2}: ${
               questions[currentQuestionIndex + 1].question
             }`
           );
           setCurrentQuestionIndex((prev) => prev + 1);
         }
+        updateScore(20);
         setCommand(""); // Clear input field
       }
     }
@@ -992,11 +1023,8 @@ const Testing = () => {
   };
 
   const handleGameOver = () => {
-    const score = 100; // Replace with the actual score
-    const time = 120; // Replace with the actual time in seconds
-
     localStorage.setItem("score", score);
-    localStorage.setItem("time", time);
+    localStorage.setItem("time", elapsedTime);
     setGameOver(true); // Set gameOver to true when the game finishes
     fadeInContinueButton();
   };
@@ -1019,11 +1047,12 @@ const Testing = () => {
             of the Unix commands you've learned and complete each task using the
             correct command(s). If you enter a valid command but it's not the
             correct one, it will still execute, but you must complete what is
-            asked to move forward. Good luck!
+            asked to move forward. Good luck! <br />
+            <br /> Are you ready to start?
           </p>
-          <div className="timer">Elapsed Time: {elapsedTime}s</div>
-          <p className="game-description">Are you ready to start?</p>
         </div>
+        <div className="score-display">Score: {score}</div>
+        <div className="timer">Elapsed Time: {elapsedTime}s</div>
 
         {/* Command output */}
         <div className="output">

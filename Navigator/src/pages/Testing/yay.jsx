@@ -72,6 +72,7 @@ function CongratulationsPage() {
         >
           Sail On!
         </button>
+        <div className="content-art"></div>
       </div>
     </div>
   );
