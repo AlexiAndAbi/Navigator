@@ -15,7 +15,7 @@ html {
 }
 
 .gradient_background1 {
-  background: linear-gradient(90deg, #6058d5, #7ad6d3);
+  background: linear-gradient(90deg, #4b43be, #7ad6d3);
   min-height: 100vh; /* Ensure it covers at least the viewport height */
   width: 100vw; /* Full width of the viewport */
   height: auto; /* Allow it to expand with content */

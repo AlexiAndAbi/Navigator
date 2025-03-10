@@ -115,7 +115,7 @@ function Page7() {
           color: "white",
         }}
       >
-        <p>[#######----] 7/11</p>
+        <p>[#######-----] 7/12</p>
       </div>
 
       <div
@@ -136,11 +136,31 @@ function Page7() {
       <div className="content">
         <p>
           List Directory Contents! <br />
-          Abbreviated <span className="highlight">ls</span>, this command displays
-          the contents of the current directory you are in. This command
-          displays files as well as directories.
+          Abbreviated <span className="highlight">ls</span>, this command
+          displays the contents of the current directory you are in. This
+          command displays files as well as directories.
+          <br />
+          <br />
+          <span className="highlight">ls</span> is an example of a command.
+          Commands can be entered on the command line to produce a specific
+          output. For example, when you type:
+          <br />{" "}
+          <p
+            style={{
+              fontFamily: '"Consolas", monospace',
+              fontSize: "20px",
+            }}
+          >
+            ~ {">>"} ls
+          </p>{" "}
+          the command line will display the contents of the current directory.
+          The name of the current directory will always be displayed to the left
+          of the command prompt ({">>"}). For example, in the first question
+          below, you are in the home directory (indicated by the ~).
         </p>
-        <p>Input the command that displays the contents of the current directory</p>
+        <p>
+          Input the command that displays the contents of the current directory
+        </p>
         <div className="command-line">
           <span className="directory-prompt">~ {">>"}</span>
           <input

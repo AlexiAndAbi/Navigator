@@ -9,6 +9,7 @@ import Page6 from "./pages/unit1/level1/page6";
 import Page7 from "./pages/unit1/level1/page7";
 import Page8 from "./pages/unit1/level1/page8";
 import Page9 from "./pages/unit1/level1/page9";
+import Review1 from "./pages/unit1/level1/review1";
 import Page10 from "./pages/unit1/level1/page10";
 import Page11 from "./pages/unit1/level1/page11";
 {/*Level 2*/}
@@ -73,6 +74,7 @@ function App() {
         <Route path="/Unit1-Level1-Page7" element={<Page7 />} />
         <Route path="/Unit1-Level1-Page8" element={<Page8 />} />
         <Route path="/Unit1-Level1-Page9" element={<Page9 />} />
+        <Route path="/Unit1-Level1-review" element={<Review1 />} />
         <Route path="/Unit1-Level1-Page10" element={<Page10 />} />
         <Route path="/Unit1-Level1-Page11" element={<Page11 />} />
         {/*Level 2*/}

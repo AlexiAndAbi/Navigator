@@ -139,7 +139,7 @@ function Page8() {
     } else if (questionKey === "question3") {
       if (userInput === "ls") {
         isCorrect = true;
-        responseMessage = "file3.txt  file4.txt  directory3";
+        responseMessage = "file3.txt  file4.txt  directory2";
       } else {
         responseMessage = `command not found: ${userInput}`;
       }
@@ -184,7 +184,7 @@ function Page8() {
           color: "white",
         }}
       >
-        <p>[########---] 8/11</p>
+        <p>[########----] 8/12</p>
       </div>
       <div style={{ position: "fixed", top: "85px", right: "125px" }}>
         <img src={imageSrc} alt="Progress Icon" width="300" height="300" />
@@ -198,15 +198,26 @@ function Page8() {
           <br />
           If you want to move into a directory within the current directory you
           can type:
-          <br /> cd [directory name] (ex: cd directory1)
+          <br />{" "}
+          <span style={{ fontFamily: "Consolas", fontSize: "18px" }}>
+            cd [directory name]&emsp;&emsp;&emsp;&emsp;(ex: cd directory1)
+          </span>
           <br />
           To move back to the directory outside of the current directory you can
           type:
-          <br /> cd ..
+          <br />{" "}
+          <span style={{ fontFamily: "Consolas", fontSize: "18px" }}>
+            cd ..
+          </span>
           <br />
           To move back to the home directory from anywhere in the file system
           you can type:
-          <br /> cd ~
+          <br />{" "}
+          <span style={{ fontFamily: "Consolas", fontSize: "18px" }}>cd ~</span>
+          <br /> <br /> Note: These learning pages are a tightly controlled
+          environment. The commands that are accepted are those that are
+          expected to answer the question. But fear not, there will be many
+          oportunities to explore a more realistic command line later!
         </p>
 
         {/* Question 1 */}

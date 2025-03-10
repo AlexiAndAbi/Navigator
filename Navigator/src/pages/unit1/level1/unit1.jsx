@@ -27,7 +27,7 @@ function Unit1() {
       "/images/wave1.png",
       "/images/wave2.png",
       "/images/wave3.png",
-      "/images/wave4.png"
+      "/images/wave4.png",
     ];
 
     preloadImages(images);
@@ -35,11 +35,23 @@ function Unit1() {
 
   return (
     <div className="gradient_background1">
-      <button className="intro-button" onClick={handleNavigation2} style={{ border: "2px solid white"}}>
+      <button
+        className="intro-button"
+        onClick={handleNavigation2}
+        style={{ border: "2px solid white" }}
+      >
         Level 1
       </button>
-      <div style={{ position: "fixed", top: "10px", right: "20px", fontSize: "16px", color: "white" }}>
-        <p>[#----------]  1/11</p>
+      <div
+        style={{
+          position: "fixed",
+          top: "10px",
+          right: "20px",
+          fontSize: "16px",
+          color: "white",
+        }}
+      >
+        <p>[#-----------] 1/12</p>
       </div>
       <div className="content">
         <p>
@@ -48,7 +60,7 @@ function Unit1() {
         </p>
         <p>
           Each level will be comprised of several learning pages. These will
-          include many learn by doing examples. Each level concludes with a
+          include many learn-by-doing examples. Each level concludes with a
           short mini-game.
         </p>
         <p>

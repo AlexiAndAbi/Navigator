@@ -55,7 +55,7 @@ function Page2() {
           color: "white",
         }}
       >
-        <p>[##---------] 2/11</p>
+        <p>[##----------] 2/12</p>
       </div>
 
       <button
@@ -71,6 +71,9 @@ function Page2() {
           On every computer, there is an application that allows users to
           interact with the terminal. The terminal is important because it
           allows you to give your computer instructions on a foundational level.
+          <br />
+          <br />
+          The start page of this application looks like:
         </p>
         <p
           style={{
@@ -78,20 +81,17 @@ function Page2() {
             fontSize: "20px",
           }}
         >
-          The start page of this application looks like:
-          <br />
           &emsp;&emsp;&emsp;Last login: [date and time] on [location] <br />
-          &emsp;&emsp;&emsp;[username]@[device name] ~ %
+          &emsp;&emsp;&emsp;<span className="highlight">[username]@[device name] ~ %</span>
         </p>
         <p>
-          The second line is known as the command line. This is where you can
-          enter instructions. Navigator will use the symbols {">>"} (instead of
-          %) to indicate the command line. For general questions the symbols ??
-          will be used.
+          The highlighted line is known as the command line. This is where you can
+          enter instructions. Navigator will use the symbols {">>"} to indicate
+          the command line. For general questions the symbols ?? will be used.
         </p>
         <p>
           Are you ready to start learning about the command line? (type y or n
-          below)
+          below and then hit enter)
         </p>
         <div className="command-line">
           <span className="directory-prompt">??</span>

@@ -12,7 +12,7 @@ function Page10() {
   const updateImage = (newDirectory) => {
     if (newDirectory === "directory1") {
       setImageSrc("/Navigator/unit1filetrees/FileTree2.png");
-    } else if (newDirectory === "directory3") {
+    } else if (newDirectory === "directory2") {
       setImageSrc("/Navigator/unit1filetrees/FileTree3.png");
     } else {
       setImageSrc("/Navigator/unit1filetrees/FileTree1.png");
@@ -281,7 +281,7 @@ function Page10() {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: "file3.txt  file4.txt  directory3",
+          [questionKey]: "file3.txt  file4.txt  directory2",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -315,7 +315,7 @@ function Page10() {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: "file3.txt  file4.txt  directory3",
+          [questionKey]: "file3.txt  file4.txt  directory2",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -324,9 +324,9 @@ function Page10() {
       return;
     }
     if (questionKey === "question8") {
-      if (userInput === "cd directory3") {
-        setCurrentDirectory("directory3");
-        updateImage("directory3");
+      if (userInput === "cd directory2") {
+        setCurrentDirectory("directory2");
+        updateImage("directory2");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({ ...responses, [questionKey]: "" });
       } else {
@@ -356,7 +356,7 @@ function Page10() {
   };
 
   const handleNavigation = () => {
-    navigate("/Unit1-Level1-page9");
+    navigate("/Unit1-Level1-review");
   };
 
   const handleNavigation2 = () => {
@@ -381,7 +381,7 @@ function Page10() {
           color: "white",
         }}
       >
-        <p>[##########-] 10/11</p>
+        <p>[###########-] 11/12</p>
       </div>
       <div style={{ position: "fixed", top: "85px", right: "125px" }}>
         <img src={imageSrc} alt="Progress Icon" width="300" height="300" />
@@ -571,7 +571,7 @@ function Page10() {
           <div ref={questionRefs.question9}>
             <p>Return to the parent directory.</p>
             <div className="command-line">
-              <span className="directory-prompt">directory3 {">>"}</span>
+              <span className="directory-prompt">directory2 {">>"}</span>
               <input
                 type="text"
                 style={{ fontSize: "20px", color: "white" }}

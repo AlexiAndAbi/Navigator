@@ -77,7 +77,7 @@ function Page3() {
           color: "white",
         }}
       >
-        <p>[###--------] 3/11</p>
+        <p>[###---------] 3/12</p>
       </div>
 
       <div className="content">
@@ -94,7 +94,7 @@ function Page3() {
           &emsp;&emsp;1. Files = a single entity (like a photo, video, text
           document, etc.)
           <br />
-          &emsp;&emsp;2. Directories = also known as a folder, directories can
+          &emsp;&emsp;2. Directories = also known as a folder, a directory can
           hold files, other directories, or a combination of both
         </p>
         <p>What is a single piece of data called?</p>

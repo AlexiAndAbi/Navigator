@@ -97,7 +97,7 @@ function Page9() {
   };
 
   const handleNavigation2 = () => {
-    navigate("/Unit1-Level1-page10");
+    navigate("/Unit1-Level1-review");
   };
 
   const handleInputChange = (e, questionKey) => {
@@ -148,7 +148,7 @@ function Page9() {
     if (questionKey === "question3") {
       if (userInput === "ls") {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
-        setResponses({ ...responses, [questionKey]: "file3.txt  file4.txt  directory3" });
+        setResponses({ ...responses, [questionKey]: "file3.txt  file4.txt  directory2" });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
         setResponses({ ...responses, [questionKey]: `command not found: ${userInput}` });
@@ -174,7 +174,7 @@ function Page9() {
         back
       </button>
       <div style={{ position: "fixed", top: "10px", right: "20px", fontSize: "16px", color: "white" }}>
-        <p>[#########--] 9/11</p>
+        <p>[#########---] 9/12</p>
       </div>
       <div style={{ position: "fixed", top: "85px", right: "125px" }}>
         <img src={imageSrc} alt="Progress Icon" width="300" height="300" />
@@ -183,7 +183,7 @@ function Page9() {
         <p>
           Clear the Terminal! <br />
           Typing <span className="highlight">clear</span> removes the contents displayed on the terminal.
-          You can also type control + l to clear the terminal. (In the future, control will be abbreviated ctrl.)
+          You can also type <span className="highlight">ctrl + l</span> to clear the terminal. (cntrl = control)
         </p>
         {/* Hide questions 1-3 if terminal is cleared */}
         {!terminalCleared && (
