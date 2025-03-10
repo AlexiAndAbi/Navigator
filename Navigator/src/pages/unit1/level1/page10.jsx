@@ -209,6 +209,7 @@ function Page10() {
       timer = setTimeout(() => setTimeLeft((prev) => prev - 1), 1000);
     } else if (timeLeft === 0) {
       setGameOver(true);
+      fadeInButtons();
     }
     return () => clearTimeout(timer);
   }, [timeLeft, timerStarted, allCorrect]);
@@ -363,6 +364,29 @@ function Page10() {
     navigate("/Unit1-Level1-page11");
   };
 
+  const reviewClick = () => {
+    navigate("/Unit1-Level1-review");
+  };
+
+  const restartClick = () => {
+    window.location.reload();
+  };
+
+  const fadeInButtons = () => {
+    const reviewButton = document.getElementById("reviewButton");
+    const restartButton = document.getElementById("restartButton");
+
+    // Make the button visible first, if it was hidden
+    reviewButton.style.display = "inline-block";
+    restartButton.style.display = "inline-block";
+
+    // Start the fade-in effect after a slight delay
+    setTimeout(() => {
+      reviewButton.classList.add("visible"); // Trigger the fade-in effect
+      restartButton.classList.add("visible");
+    }, 1000); // Delay before fading in (adjust the timing as needed)
+  };
+
   return (
     <div className="gradient_background1">
       <button
@@ -388,11 +412,11 @@ function Page10() {
       </div>
       <div className="content">
         <p>
-          You have 60 seconds to complete the following minigame! <br />
+          You have 60 seconds to complete the following minigame! There are nine questions in total. <br />
         </p>
         <p>Time remaining: {timeLeft}s</p>
         {gameOver && (
-          <p className="fade-in" style={{ color: "red" }}>
+          <p className="fade-in">
             Time's up! Try again.
           </p>
         )}
@@ -400,7 +424,7 @@ function Page10() {
           <>
             {/* Question 1 */}
             <div ref={questionRefs.question1}>
-              <p>Ready to start?</p>
+              <p>1. Ready to start?</p>
               <div className="command-line">
                 <span className="directory-prompt">??</span>
                 <input
@@ -420,7 +444,7 @@ function Page10() {
             {/* Question 2 */}
             {correctAnswers.question1 && (
               <div ref={questionRefs.question2}>
-                <p>Display the contents of the current directory.</p>
+                <p>2. Display the contents of the current directory.</p>
                 <div className="command-line">
                   <span className="directory-prompt">~ {">>"}</span>
                   <input
@@ -441,7 +465,7 @@ function Page10() {
             {/* Question 3 */}
             {correctAnswers.question1 && correctAnswers.question2 && (
               <div ref={questionRefs.question3}>
-                <p>Move into the subdirectory.</p>
+                <p>3. Move into the subdirectory.</p>
                 <div className="command-line">
                   <span className="directory-prompt">~ {">>"}</span>
                   <input
@@ -462,7 +486,7 @@ function Page10() {
             {/* Question 4 */}
             {correctAnswers.question2 && correctAnswers.question3 && (
               <div ref={questionRefs.question4}>
-                <p>Display the contents of the current directory.</p>
+                <p>4. Display the contents of the current directory.</p>
                 <div className="command-line">
                   <span className="directory-prompt">directory1 {">>"}</span>
                   <input
@@ -483,7 +507,7 @@ function Page10() {
             {/* Question 5 */}
             {correctAnswers.question4 && (
               <div ref={questionRefs.question5}>
-                <p>How many files are in this directory?</p>
+                <p>5. How many files are in this directory?</p>
                 <div className="command-line">
                   <span className="directory-prompt">??</span>
                   <input
@@ -504,7 +528,7 @@ function Page10() {
             {/* Question 6 */}
             {correctAnswers.question5 && (
               <div ref={questionRefs.question6}>
-                <p>Clear the terminal.</p>
+                <p>6. Clear the terminal.</p>
                 <div className="command-line">
                   <span className="directory-prompt">directory1 {">>"}</span>
                   <input
@@ -527,7 +551,7 @@ function Page10() {
         {/* Question 7 */}
         {terminalCleared && (
           <div ref={questionRefs.question7}>
-            <p>Display the contents of the current directory.</p>
+            <p>7. Display the contents of the current directory.</p>
             <div className="command-line">
               <span className="directory-prompt">directory1 {">>"}</span>
               <input
@@ -548,7 +572,7 @@ function Page10() {
         {/* Question 8 */}
         {terminalCleared && correctAnswers.question7 && (
           <div ref={questionRefs.question8}>
-            <p>Move into the subdirectory.</p>
+            <p>8. Move into the subdirectory.</p>
             <div className="command-line">
               <span className="directory-prompt">directory1 {">>"}</span>
               <input
@@ -569,7 +593,7 @@ function Page10() {
         {/* Question 9 */}
         {terminalCleared && correctAnswers.question8 && (
           <div ref={questionRefs.question9}>
-            <p>Return to the parent directory.</p>
+            <p>9. Return to the parent directory.</p>
             <div className="command-line">
               <span className="directory-prompt">directory2 {">>"}</span>
               <input
@@ -603,6 +627,32 @@ function Page10() {
           </button>
         )}
       </div>
+      <button
+        id="reviewButton"
+        className="review-button"
+        style={{
+          display: "none", // Initially hidden
+          position: "fixed", // Fix the position relative to the viewport
+          bottom: "100px", // 100px from the bottom
+          right: "40px",
+        }}
+        onClick={reviewClick} // Add a handler if needed
+      >
+        Review
+      </button>
+      <button
+        id="restartButton"
+        className="restart-button"
+        style={{
+          display: "none", // Initially hidden
+          position: "fixed", // Fix the position relative to the viewport
+          bottom: "40px", // 100px from the bottom
+          right: "40px",
+        }}
+        onClick={restartClick} // Add a handler if needed
+      >
+        Restart
+      </button>
     </div>
   );
 }

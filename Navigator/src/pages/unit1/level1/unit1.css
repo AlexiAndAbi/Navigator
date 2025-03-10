@@ -192,3 +192,45 @@ html {
     background-image: url("/images/wave0.png");
   }
 }
+
+.review-button {
+  font-family: "LGC";
+  font-weight: bold;
+  position: absolute;
+  font-weight: bold;
+  font-size: 25px;
+  font-weight: bold;
+  padding: 10px 25px;
+  border-radius: 5px; /* Rounded edges */
+  background: rgba(56, 48, 204, 0.2);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.review-button:hover {
+  background-color: rgba(56, 48, 204, 0.6);;
+  color: white; /* Keep text white */
+}
+
+.restart-button {
+  font-family: "LGC";
+  font-weight: bold;
+  position: absolute;
+  font-weight: bold;
+  font-size: 25px;
+  font-weight: bold;
+  padding: 10px 25px;
+  border-radius: 5px; /* Rounded edges */
+  background: rgba(56, 48, 204, 0.3);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.restart-button:hover {
+  background-color: rgba(56, 48, 204, 0.7);;
+  color: white; /* Keep text white */
+}
