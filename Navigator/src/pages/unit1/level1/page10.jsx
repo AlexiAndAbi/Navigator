@@ -412,12 +412,13 @@ function Page10() {
       </div>
       <div className="content">
         <p>
-          You have 60 seconds to complete the following minigame! There are nine questions in total. <br />
+          You have 60 seconds to complete the following minigame! There are nine
+          questions in total. <br />
         </p>
         <p>Time remaining: {timeLeft}s</p>
         {gameOver && (
           <p className="fade-in">
-            Time's up! Try again.
+            Time's up! But, you've got this... try again.
           </p>
         )}
         {!terminalCleared && (

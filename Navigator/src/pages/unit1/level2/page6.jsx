@@ -41,7 +41,9 @@ function Page6() {
   const [timeLeft, setTimeLeft] = useState(60); // Timer state
   const [gameOver, setGameOver] = useState(false); // Tracks if the timer runs out
   const [timerStarted, setTimerStarted] = useState(false); // Tracks if the timer has started
-  const [imageSrc, setImageSrc] = useState("/Navigator/unit1filetrees/FileTree10.png"); // Track the image
+  const [imageSrc, setImageSrc] = useState(
+    "/Navigator/unit1filetrees/FileTree10.png"
+  ); // Track the image
 
   const updateImage = (imageTag) => {
     if (imageTag === "directoryAdded") {
@@ -70,15 +72,170 @@ function Page6() {
     question9: useRef(null),
   };
 
+  // Refs for input elements
+  const inputRef1 = useRef(null);
+  const inputRef2 = useRef(null);
+  const inputRef3 = useRef(null);
+  const inputRef4 = useRef(null);
+  const inputRef5 = useRef(null);
+  const inputRef6 = useRef(null);
+  const inputRef7 = useRef(null);
+  const inputRef8 = useRef(null);
+  const inputRef9 = useRef(null);
+
+  // Ref for continue button
+  const continueButtonRef = useRef(null);
+
+  // Initially focus the first input
+  useEffect(() => {
+    if (inputRef1.current) {
+      inputRef1.current.focus();
+    }
+  }, []);
+
+  // Dedicated useEffects for scrolling & focusing the next input:
+  useEffect(() => {
+    if (correctAnswers.question1 && inputRef2.current) {
+      setTimeout(() => {
+        inputRef2.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef2.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question1]);
+
+  useEffect(() => {
+    if (correctAnswers.question2 && inputRef3.current) {
+      setTimeout(() => {
+        inputRef3.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef3.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question2]);
+
+  useEffect(() => {
+    if (correctAnswers.question3 && inputRef4.current) {
+      setTimeout(() => {
+        inputRef4.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef4.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question3]);
+
+  useEffect(() => {
+    if (correctAnswers.question4 && inputRef5.current) {
+      setTimeout(() => {
+        inputRef5.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef5.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question4]);
+
+  useEffect(() => {
+    if (correctAnswers.question5 && inputRef6.current) {
+      setTimeout(() => {
+        inputRef6.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef6.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question5]);
+
+  useEffect(() => {
+    if (correctAnswers.question6 && inputRef7.current) {
+      setTimeout(() => {
+        inputRef7.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef7.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question6]);
+
+  useEffect(() => {
+    if (correctAnswers.question7 && inputRef8.current) {
+      setTimeout(() => {
+        inputRef8.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef8.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question7]);
+
+  useEffect(() => {
+    if (correctAnswers.question8 && inputRef9.current) {
+      setTimeout(() => {
+        inputRef9.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef9.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question8]);
+
+  // When all answers are correct, scroll to and focus the continue button.
+  const allCorrect = Object.values(correctAnswers).every(Boolean);
+  useEffect(() => {
+    if (allCorrect && continueButtonRef.current) {
+      setTimeout(() => {
+        continueButtonRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        continueButtonRef.current.focus();
+      }, 150);
+    }
+  }, [allCorrect]);
+
   const [directoryName, setDirectoryName] = useState(""); // To store the created directory name
   const [fileName, setfileName] = useState(""); // To store the created file name
 
   const handleNavigation = () => {
-    navigate("/Unit1-Level2-page5");
+    navigate("/Unit1-Level2-review");
   };
 
   const handleNavigation2 = () => {
     navigate("/Unit1-Level2-page7");
+  };
+
+  const reviewClick = () => {
+    navigate("/Unit1-Level2-review");
+  };
+
+  const restartClick = () => {
+    window.location.reload();
+  };
+
+  const fadeInButtons = () => {
+    const reviewButton = document.getElementById("reviewButton");
+    const restartButton = document.getElementById("restartButton");
+
+    // Make the button visible first, if it was hidden
+    reviewButton.style.display = "inline-block";
+    restartButton.style.display = "inline-block";
+
+    // Start the fade-in effect after a slight delay
+    setTimeout(() => {
+      reviewButton.classList.add("visible"); // Trigger the fade-in effect
+      restartButton.classList.add("visible");
+    }, 1000); // Delay before fading in (adjust the timing as needed)
   };
 
   const handleInputChange = (e, questionKey) => {
@@ -94,7 +251,7 @@ function Page6() {
   const checkAnswer = (questionKey) => {
     if (gameOver) return; // Disable input if the timer has run out
 
-    const userInput = answers[questionKey].toLowerCase().trim();
+    const userInput = answers[questionKey].trim();
 
     if (questionKey === "question1") {
       if (userInput === "y" || userInput === "yes") {
@@ -209,7 +366,7 @@ function Page6() {
     }
 
     if (questionKey === "question7") {
-      const mkdirRegex = /^touch\s+(\w+\.txt)$/; // Matches 'touch <file-name>'
+      const mkdirRegex = /^touch\s+(\w+\.\w+)$/; // Matches 'touch <file-name>.<extension>'
       const match = mkdirRegex.exec(userInput);
 
       if (match) {
@@ -267,8 +424,6 @@ function Page6() {
     }
   };
 
-  const allCorrect = Object.values(correctAnswers).every(Boolean);
-
   // Timer logic
   useEffect(() => {
     let timer;
@@ -276,6 +431,7 @@ function Page6() {
       timer = setTimeout(() => setTimeLeft((prev) => prev - 1), 1000);
     } else if (timeLeft === 0) {
       setGameOver(true);
+      fadeInButtons();
     }
     return () => clearTimeout(timer);
   }, [timeLeft, timerStarted, allCorrect]);
@@ -311,7 +467,7 @@ function Page6() {
           color: "white",
         }}
       >
-        <p>[######-] 6/7</p>
+        <p>[#######-] 7/8</p>
       </div>
 
       <div
@@ -326,20 +482,21 @@ function Page6() {
 
       <div className="content">
         <p>
-          You have 60 seconds to complete the following minigame! <br />
+          You have 60 seconds to complete the following minigame! There are nine
+          questions in total. <br />
         </p>
         {/* Display Timer */}
         <p>Time remaining: {timeLeft}s</p>
         {gameOver && (
-          <p className="fade-in" style={{ color: "red" }}>
-            Time's up! Try again.
+          <p className="fade-in">
+            Time's up! But, you've got this... try again.
           </p>
         )}
 
         <>
           {/* Question 1 */}
           <div ref={questionRefs.question1}>
-            <p>Ready to start?</p>
+            <p>1. Ready to start?</p>
             <div className="command-line">
               <span className="directory-prompt">??</span>
               <input
@@ -350,6 +507,7 @@ function Page6() {
                 onChange={(e) => handleInputChange(e, "question1")}
                 onKeyDown={(e) => handleKeyPress(e, "question1")}
                 disabled={correctAnswers.question1}
+                ref={inputRef1}
               />
             </div>
             <p className="fade-in unique-font">{responses.question1}</p>
@@ -358,7 +516,7 @@ function Page6() {
           {/* Question 2 */}
           {correctAnswers.question1 && (
             <div ref={questionRefs.question2}>
-              <p>List the contents of the current directory.</p>
+              <p>2. List the contents of the current directory.</p>
               <div className="command-line">
                 <span className="directory-prompt">~ {">>"}</span>
                 <input
@@ -369,6 +527,7 @@ function Page6() {
                   onChange={(e) => handleInputChange(e, "question2")}
                   onKeyDown={(e) => handleKeyPress(e, "question2")}
                   disabled={correctAnswers.question2}
+                  ref={inputRef2}
                 />
               </div>
               <p className="fade-in unique-font">{responses.question2}</p>
@@ -378,7 +537,7 @@ function Page6() {
           {/* Question 3 */}
           {correctAnswers.question2 && (
             <div ref={questionRefs.question3}>
-              <p>Display the contents of the file.</p>
+              <p>3. Display the contents of the file.</p>
               <div className="command-line">
                 <span className="directory-prompt">~ {">>"}</span>
                 <input
@@ -389,6 +548,7 @@ function Page6() {
                   onChange={(e) => handleInputChange(e, "question3")}
                   onKeyDown={(e) => handleKeyPress(e, "question3")}
                   disabled={correctAnswers.question3}
+                  ref={inputRef3}
                 />
               </div>
               <p className="fade-in unique-font">{responses.question3}</p>
@@ -398,7 +558,7 @@ function Page6() {
           {/* Question 4 */}
           {correctAnswers.question3 && (
             <div ref={questionRefs.question4}>
-              <p>Create a new directory.</p>
+              <p>4. Create a new directory.</p>
               <div className="command-line">
                 <span className="directory-prompt">~ {">>"}</span>
                 <input
@@ -409,6 +569,7 @@ function Page6() {
                   onChange={(e) => handleInputChange(e, "question4")}
                   onKeyDown={(e) => handleKeyPress(e, "question4")}
                   disabled={correctAnswers.question4}
+                  ref={inputRef4}
                 />
               </div>
               <p className="fade-in unique-font">{responses.question4}</p>
@@ -418,7 +579,7 @@ function Page6() {
           {/* Question 5 */}
           {correctAnswers.question4 && (
             <div ref={questionRefs.question5}>
-              <p>List the contents of the current directory.</p>
+              <p>5. List the contents of the current directory.</p>
               <div className="command-line">
                 <span className="directory-prompt">~ {">>"}</span>
                 <input
@@ -429,6 +590,7 @@ function Page6() {
                   onChange={(e) => handleInputChange(e, "question5")}
                   onKeyDown={(e) => handleKeyPress(e, "question5")}
                   disabled={correctAnswers.question5}
+                  ref={inputRef5}
                 />
               </div>
               <p className="fade-in unique-font">{responses.question5}</p>
@@ -438,7 +600,7 @@ function Page6() {
           {/* Question 6 */}
           {correctAnswers.question5 && (
             <div ref={questionRefs.question6}>
-              <p>Move into the directory you just created.</p>
+              <p>6. Move into the directory you just created.</p>
               <div className="command-line">
                 <span className="directory-prompt">~ {">>"}</span>
                 <input
@@ -449,6 +611,7 @@ function Page6() {
                   onChange={(e) => handleInputChange(e, "question6")}
                   onKeyDown={(e) => handleKeyPress(e, "question6")}
                   disabled={correctAnswers.question6}
+                  ref={inputRef6}
                 />
               </div>
               <p className="fade-in unique-font">{responses.question6}</p>
@@ -459,7 +622,7 @@ function Page6() {
         {/* Question 7 */}
         {correctAnswers.question6 && (
           <div ref={questionRefs.question7}>
-            <p>Create a file.</p>
+            <p>7. Create a file.</p>
             <div className="command-line">
               <span className="directory-prompt">
                 {directoryName || ""} {">>"}
@@ -472,6 +635,7 @@ function Page6() {
                 onChange={(e) => handleInputChange(e, "question7")}
                 onKeyDown={(e) => handleKeyPress(e, "question7")}
                 disabled={correctAnswers.question7}
+                ref={inputRef7}
               />
             </div>
             <p className="fade-in unique-font">{responses.question7}</p>
@@ -481,7 +645,7 @@ function Page6() {
         {/* Question 8 */}
         {correctAnswers.question7 && (
           <div ref={questionRefs.question8}>
-            <p>List the contents of the current directory.</p>
+            <p>8. List the contents of the current directory.</p>
             <div className="command-line">
               <span className="directory-prompt">
                 {directoryName || ""} {">>"}
@@ -494,6 +658,7 @@ function Page6() {
                 onChange={(e) => handleInputChange(e, "question8")}
                 onKeyDown={(e) => handleKeyPress(e, "question8")}
                 disabled={correctAnswers.question8}
+                ref={inputRef8}
               />
             </div>
             <p className="fade-in unique-font">{responses.question8}</p>
@@ -503,7 +668,7 @@ function Page6() {
         {/* Question 9 */}
         {correctAnswers.question8 && (
           <div ref={questionRefs.question9}>
-            <p>Move to the home directory.</p>
+            <p>9. Move to the home directory.</p>
             <div className="command-line">
               <span className="directory-prompt">
                 {directoryName || ""} {">>"}
@@ -516,6 +681,7 @@ function Page6() {
                 onChange={(e) => handleInputChange(e, "question9")}
                 onKeyDown={(e) => handleKeyPress(e, "question9")}
                 disabled={correctAnswers.question9}
+                ref={inputRef9}
               />
             </div>
             <p className="fade-in unique-font">{responses.question9}</p>
@@ -525,6 +691,7 @@ function Page6() {
         {/* Continue button */}
         {allCorrect && (
           <button
+            ref={continueButtonRef}
             className="navigate-button fade-in"
             onClick={handleNavigation2}
             style={{
@@ -537,6 +704,32 @@ function Page6() {
           </button>
         )}
       </div>
+      <button
+        id="reviewButton"
+        className="review-button"
+        style={{
+          display: "none", // Initially hidden
+          position: "fixed", // Fix the position relative to the viewport
+          bottom: "100px", // 100px from the bottom
+          right: "40px",
+        }}
+        onClick={reviewClick} // Add a handler if needed
+      >
+        Review
+      </button>
+      <button
+        id="restartButton"
+        className="restart-button"
+        style={{
+          display: "none", // Initially hidden
+          position: "fixed", // Fix the position relative to the viewport
+          bottom: "40px", // 100px from the bottom
+          right: "40px",
+        }}
+        onClick={restartClick} // Add a handler if needed
+      >
+        Restart
+      </button>
     </div>
   );
 }

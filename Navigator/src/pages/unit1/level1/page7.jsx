@@ -157,6 +157,7 @@ function Page7() {
           The name of the current directory will always be displayed to the left
           of the command prompt ({">>"}). For example, in the first question
           below, you are in the home directory (indicated by the ~).
+          <br /> <b>Note:</b> All commands are <b>case sensitive!</b>
         </p>
         <p>
           Input the command that displays the contents of the current directory

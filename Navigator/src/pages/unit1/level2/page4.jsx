@@ -113,7 +113,7 @@ function Page4() {
   };
 
   const checkAnswer = (questionKey) => {
-    const userInput = answers[questionKey].toLowerCase().trim();
+    const userInput = answers[questionKey].trim();
 
     if (questionKey === "question1") {
       // Expecting: mkdir <directoryName>
@@ -141,7 +141,7 @@ function Page4() {
         setCorrectAnswers((prev) => ({ ...prev, [questionKey]: true }));
         setResponses((prev) => ({
           ...prev,
-          [questionKey]: `a.txt abi5 ${directoryName}`,
+          [questionKey]: `earth.jpg milkyWay ${directoryName}`,
         }));
       } else {
         setAnswers((prev) => ({ ...prev, [questionKey]: "" }));
@@ -220,7 +220,7 @@ function Page4() {
           color: "white",
         }}
       >
-        <p>[####---] 4/7</p>
+        <p>[####----] 4/8</p>
       </div>
       <div style={{ position: "fixed", top: "85px", right: "20px" }}>
         <img src={imageSrc} alt="Progress Icon" width="450" height="600" />
@@ -233,8 +233,13 @@ function Page4() {
           successful, however, you can type a quick ls to ensure the directory
           has been created.
           <br />
-          To make a new directory you can type: <br /> mkdir [directory name]
-          &emsp;&emsp;&emsp;&emsp; (ex: mkdir RoadtripPhotos) <br />
+          To make a new directory you can type:
+          <br />
+          <span style={{ fontFamily: "Consolas", fontSize: "18px" }}>
+            mkdir [directory name] &emsp;&emsp;&emsp;&emsp; (ex: mkdir
+            spacePhotos)
+          </span>{" "}
+          <br />
         </p>
         {/* Question 1 */}
         <div ref={questionRefs.question1}>
@@ -262,7 +267,7 @@ function Page4() {
         <div ref={questionRefs.question2}>
           {correctAnswers.question1 && (
             <>
-              <p>List the contents of the current directory.</p>
+              <p>Display the contents of the current directory.</p>
               <div className="command-line">
                 <span className="directory-prompt">~ {">>"}</span>
                 <input
@@ -276,7 +281,7 @@ function Page4() {
                   ref={inputRef2}
                 />
               </div>
-              <p className="fade-in">{responses.question2}</p>
+              <p className="fade-in unique-font">{responses.question2}</p>
             </>
           )}
         </div>
@@ -285,7 +290,7 @@ function Page4() {
         <div ref={questionRefs.question3}>
           {correctAnswers.question2 && (
             <>
-              <p>Move into the new directory.</p>
+              <p>Move into the new directory you just created.</p>
               <div className="command-line">
                 <span className="directory-prompt">~ {">>"}</span>
                 <input
@@ -308,7 +313,7 @@ function Page4() {
         <div ref={questionRefs.question4}>
           {correctAnswers.question3 && (
             <>
-              <p>List the contents of the current directory.</p>
+              <p>Display the contents of the current directory.</p>
               <div className="command-line">
                 <span className="directory-prompt">
                   {directoryName || ""} {">>"}

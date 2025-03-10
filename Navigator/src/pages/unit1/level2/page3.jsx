@@ -47,7 +47,10 @@ function Page3() {
   useEffect(() => {
     if (correctAnswers.question1 && inputRef2.current) {
       setTimeout(() => {
-        inputRef2.current.scrollIntoView({ behavior: "smooth", block: "center" });
+        inputRef2.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
         inputRef2.current.focus();
       }, 150);
     }
@@ -57,7 +60,10 @@ function Page3() {
   useEffect(() => {
     if (correctAnswers.question2 && inputRef3.current) {
       setTimeout(() => {
-        inputRef3.current.scrollIntoView({ behavior: "smooth", block: "center" });
+        inputRef3.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
         inputRef3.current.focus();
       }, 150);
     }
@@ -68,7 +74,10 @@ function Page3() {
   useEffect(() => {
     if (allCorrect && continueButtonRef.current) {
       setTimeout(() => {
-        continueButtonRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+        continueButtonRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
         continueButtonRef.current.focus();
       }, 150);
     }
@@ -101,7 +110,7 @@ function Page3() {
   };
 
   const checkAnswer = (questionKey) => {
-    const userInput = answers[questionKey].toLowerCase().trim();
+    const userInput = answers[questionKey].trim();
     if (questionKey === "question1") {
       if (userInput === "ls") {
         setCorrectAnswers((prev) => ({ ...prev, [questionKey]: true }));
@@ -163,20 +172,44 @@ function Page3() {
 
   return (
     <div className="gradient_background2">
-      <button className="back-button" onClick={handleNavigation} style={{ border: "2px solid white" }}>
+      <button
+        className="back-button"
+        onClick={handleNavigation}
+        style={{ border: "2px solid white" }}
+      >
         back
       </button>
-      <div style={{ position: "fixed", top: "10px", right: "20px", fontSize: "16px", color: "white" }}>
-        <p>[###----] 3/7</p>
+      <div
+        style={{
+          position: "fixed",
+          top: "10px",
+          right: "20px",
+          fontSize: "16px",
+          color: "white",
+        }}
+      >
+        <p>[###-----] 3/8</p>
       </div>
       <div style={{ position: "fixed", top: "85px", right: "20px" }}>
-        <img src={"/Navigator/unit1filetrees/FileTree4.png"} alt="Progress Icon" width="450" height="600" />
+        <img
+          src={"/Navigator/unit1filetrees/FileTree4.png"}
+          alt="Progress Icon"
+          width="450"
+          height="600"
+        />
       </div>
       <div className="content">
         <p>
-          Concatenate and Print Files! <br /> Abbreviated <span className="highlight2">cat</span>, this command displays the contents of a file. The content within the file will be displayed in its entirety right below the command line.
+          Concatenate and Print Files! <br /> Abbreviated{" "}
+          <span className="highlight2">cat</span>, this command displays the
+          contents of a file. The content within the file will be displayed in
+          its entirety right below the command line.
           <br />
-          If you want to move into a directory within the current directory you can type: <br /> cat [file name] &emsp;&emsp;&emsp;&emsp; (ex: cat file1.txt) <br />
+          If you want to display the contents of a file, you can type: <br />
+          <span style={{ fontFamily: "Consolas", fontSize: "18px" }}>
+            cat [file name] &emsp;&emsp;&emsp;&emsp; (ex: cat file1.txt)
+          </span>{" "}
+          <br />
         </p>
 
         {/* Hide questions 1-3 if the terminal is cleared */}
@@ -184,7 +217,7 @@ function Page3() {
           <>
             {/* Question 1 */}
             <div ref={questionRefs.question1}>
-              <p>List the contents of the current directory.</p>
+              <p>Display the contents of the current directory.</p>
               <div className="command-line">
                 <span className="directory-prompt">~ {">>"}</span>
                 <input

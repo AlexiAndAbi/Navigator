@@ -7,7 +7,9 @@ function Page5() {
 
   const [fileName, setfileName] = useState(""); // To store the created file name
   const [currentDirectory, setCurrentDirectory] = useState("home"); // Track the directory
-  const [imageSrc, setImageSrc] = useState("/Navigator/unit1filetrees/FileTree8.png"); // Track the image
+  const [imageSrc, setImageSrc] = useState(
+    "/Navigator/unit1filetrees/FileTree8.png"
+  ); // Track the image
 
   const updateImage = (newDirectory) => {
     if (newDirectory === "fileAdded") {
@@ -35,28 +37,69 @@ function Page5() {
     question3: false,
   }); // Track correctness of each question
 
+  // Container refs for each question (if you wish to scroll to the container)
   const questionRefs = {
     question1: useRef(null),
     question2: useRef(null),
     question3: useRef(null),
   };
 
+  // Input refs for auto‑focus
+  const inputRef1 = useRef(null);
+  const inputRef2 = useRef(null);
+  const inputRef3 = useRef(null);
+  const continueButtonRef = useRef(null);
+
+  // Initially focus the first input
+  useEffect(() => {
+    if (inputRef1.current) {
+      inputRef1.current.focus();
+    }
+  }, []);
+
+  // When question1 is answered correctly, scroll to & focus question2
+  useEffect(() => {
+    if (correctAnswers.question1 && inputRef2.current) {
+      setTimeout(() => {
+        inputRef2.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef2.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question1]);
+
+  // When question2 is answered correctly, scroll to & focus question3
+  useEffect(() => {
+    if (correctAnswers.question2 && inputRef3.current) {
+      setTimeout(() => {
+        inputRef3.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef3.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question2]);
+
   const handleInputChange = (e, questionKey) => {
-    setAnswers({ ...answers, [questionKey]: e.target.value }); // Update the state for the specific question
+    setAnswers({ ...answers, [questionKey]: e.target.value });
   };
 
-  const handleKeyPress = (e, questionKey, acceptableAnswers) => {
+  const handleKeyPress = (e, questionKey) => {
     if (e.key === "Enter" || e.key === "Tab") {
-      checkAnswer(questionKey, acceptableAnswers);
+      e.preventDefault();
+      checkAnswer(questionKey);
     }
   };
 
   const checkAnswer = (questionKey) => {
-    const userInput = answers[questionKey].toLowerCase().trim();
+    const userInput = answers[questionKey].trim();
 
     // Example of manual matching for question1
     if (questionKey === "question1") {
-      const mkdirRegex = /^touch\s+(\w+\.txt)$/; // Matches 'touch <file-name>.txt'
+      const mkdirRegex = /^touch\s+(\w+\.\w+)$/; // Matches 'touch <file-name>.<extension>'
       const match = mkdirRegex.exec(userInput);
 
       if (match) {
@@ -120,10 +163,21 @@ function Page5() {
   };
 
   const handleNavigation2 = () => {
-    navigate("/Unit1-Level2-page6");
+    navigate("/Unit1-Level2-review");
   };
 
-  const allCorrect = Object.values(correctAnswers).every(Boolean); // Check if all questions are correct
+  const allCorrect = Object.values(correctAnswers).every(Boolean);
+  useEffect(() => {
+    if (allCorrect && continueButtonRef.current) {
+      setTimeout(() => {
+        continueButtonRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        continueButtonRef.current.focus();
+      }, 150);
+    }
+  }, [allCorrect]);
 
   return (
     <div className="gradient_background2">
@@ -169,8 +223,8 @@ function Page5() {
         </p>
         <div ref={questionRefs.question1}>
           <p>
-            Create a new file with a name of your choosing (hint: use the .txt
-            file extension).
+            Create a new file with a name of your choosing (hint: use a file
+            extension).
           </p>
           <div className="command-line">
             <span className="directory-prompt">~ {">>"}</span>
@@ -182,6 +236,7 @@ function Page5() {
               onChange={(e) => handleInputChange(e, "question1")}
               onKeyDown={(e) => handleKeyPress(e, "question1")}
               disabled={correctAnswers.question1}
+              ref={inputRef1}
             />
           </div>
           <p className="fade-in unique-font">{responses.question1}</p>
@@ -191,7 +246,7 @@ function Page5() {
         <div ref={questionRefs.question2}>
           {correctAnswers.question1 && (
             <>
-              <p>List the contents of the current directory.</p>
+              <p>Display the contents of the current directory.</p>
               <div className="command-line">
                 <span className="directory-prompt">~ {">>"}</span>
                 <input
@@ -202,6 +257,7 @@ function Page5() {
                   onChange={(e) => handleInputChange(e, "question2")}
                   onKeyDown={(e) => handleKeyPress(e, "question2")}
                   disabled={correctAnswers.question2}
+                  ref={inputRef2}
                 />
               </div>
               <p className="fade-in unique-font">{responses.question2}</p>
@@ -224,6 +280,7 @@ function Page5() {
                   onChange={(e) => handleInputChange(e, "question3")}
                   onKeyDown={(e) => handleKeyPress(e, "question3")}
                   disabled={correctAnswers.question3}
+                  ref={inputRef3}
                 />
               </div>
               <p className="fade-in unique-font">{responses.question3}</p>
@@ -233,6 +290,7 @@ function Page5() {
 
         {allCorrect && (
           <button
+            ref={continueButtonRef}
             className="navigate-button fade-in"
             onClick={handleNavigation2}
             style={{
