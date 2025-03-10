@@ -140,7 +140,7 @@ function Page7() {
           the contents of the current directory you are in. This command
           displays files as well as directories.
         </p>
-        <p>List the contents of the current directory</p>
+        <p>Input the command that displays the contents of the current directory</p>
         <div className="command-line">
           <span className="directory-prompt">~ {">>"}</span>
           <input

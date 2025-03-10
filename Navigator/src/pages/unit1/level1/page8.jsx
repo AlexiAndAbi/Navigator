@@ -211,7 +211,7 @@ function Page8() {
 
         {/* Question 1 */}
         <div>
-          <p>List the contents of the current directory.</p>
+          <p>Display the contents of the current directory.</p>
           <div className="command-line">
             <span className="directory-prompt">~ {">>"}</span>
             <input
@@ -256,7 +256,7 @@ function Page8() {
         {/* Question 3 */}
         {correctAnswers.question2 && (
           <div>
-            <p>List the contents of the current directory.</p>
+            <p>Display the contents of the current directory.</p>
             <div className="command-line">
               <span className="directory-prompt">directory1 {">>"}</span>
               <input

@@ -190,7 +190,7 @@ function Page9() {
           <>
             {/* Question 1 */}
             <div>
-              <p>List the contents of the current directory.</p>
+              <p>Display the contents of the current directory.</p>
               <div className="command-line">
                 <span className="directory-prompt">~ {">>"}</span>
                 <input
@@ -232,7 +232,7 @@ function Page9() {
             <div>
               {correctAnswers.question2 && (
                 <>
-                  <p>List the contents of the current directory.</p>
+                  <p>Display the contents of the current directory.</p>
                   <div className="command-line">
                     <span className="directory-prompt">directory1 {">>"}</span>
                     <input
