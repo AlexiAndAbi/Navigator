@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./unit1.css";
 import { useNavigate } from "react-router-dom";
 
@@ -6,6 +6,12 @@ function Page5() {
   const navigate = useNavigate();
   const [userInput, setUserInput] = useState(""); // State to store user input
   const [showContinue, setShowContinue] = useState(false); // State to manage the visibility of the Continue button
+
+  const inputRef = useRef(null); // Ref for the input element
+
+  useEffect(() => {
+    inputRef.current.focus(); // Focus the input when the component mounts
+  }, []);
 
   const acceptableAnswers = ["4", "four"]; // Array of acceptable answers
 
@@ -23,7 +29,7 @@ function Page5() {
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter" || e.key === "Tab") {
-      checkAnswer(); // Check answer when Enter is pressed
+      checkAnswer(); // Check answer when Enter or Tab is pressed
     }
   };
 
@@ -37,6 +43,7 @@ function Page5() {
       setShowContinue(true); // Show the Continue button
     } else {
       setUserInput(""); // Clear the input field
+      inputRef.current.focus(); // Keep focus on the input
     }
   };
 
@@ -88,9 +95,9 @@ function Page5() {
             value={userInput}
             onChange={handleInputChange}
             onKeyDown={handleKeyPress} // Listen for Enter key
+            ref={inputRef} // Attach ref to the input
           />
         </div>
-        {/* Feedback displayed below */}
         {/* Show the Continue button if the answer is correct */}
         {showContinue && (
           <button

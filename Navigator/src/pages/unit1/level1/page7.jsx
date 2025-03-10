@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./unit1.css";
 import { useNavigate } from "react-router-dom";
 
@@ -14,20 +14,28 @@ function Page7() {
   const acceptableAnswersQ1 = ["ls"]; // Acceptable answers for Question 1
   const acceptableAnswersQ2 = ["3", "three"]; // Acceptable answers for Question 2
 
+  // Create refs for both input elements
+  const inputRef1 = useRef(null);
+  const inputRef2 = useRef(null);
+
+  useEffect(() => {
+    inputRef1.current.focus(); // Focus the first input when the component mounts
+  }, []);
+
   const handleInputChange = (e, questionKey) => {
-    setAnswers({ ...answers, [questionKey]: e.target.value }); // Update the state for the specific question
+    setAnswers({ ...answers, [questionKey]: e.target.value });
   };
 
-  const handleKeyPress = (e, questionKey, acceptableAnswers) => {
+  const handleKeyPress = (e, questionKey, acceptableAnswers, nextInputRef) => {
     if (e.key === "Enter" || e.key === "Tab") {
-      checkAnswer(questionKey, acceptableAnswers);
+      checkAnswer(questionKey, acceptableAnswers, nextInputRef);
     }
   };
 
-  const checkAnswer = (questionKey) => {
+  const checkAnswer = (questionKey, acceptableAnswers, nextInputRef) => {
     const userInput = answers[questionKey].toLowerCase().trim();
 
-    // Example of manual matching for question1
+    // Custom answer checking logic for question1
     if (questionKey === "question1") {
       if (userInput === "ls" || userInput === "list" || userInput === "ls -l") {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
@@ -42,10 +50,9 @@ function Page7() {
           [questionKey]: `command not found: ${userInput}`,
         });
       }
-      return;
     }
 
-    // Example of manual matching for question2
+    // Custom answer checking logic for question2
     if (questionKey === "question2") {
       if (userInput === "3" || userInput === "three") {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
@@ -60,7 +67,22 @@ function Page7() {
           [questionKey]: "",
         });
       }
-      return;
+    }
+
+    // If the answer is correct, focus the next input and scroll into view
+    if (acceptableAnswers.some((answer) => userInput === answer)) {
+      setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
+
+      // Move focus to the next input if it exists
+      if (nextInputRef && nextInputRef.current) {
+        nextInputRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        nextInputRef.current.focus();
+      }
+    } else {
+      setAnswers({ ...answers, [questionKey]: "" });
     }
   };
 
@@ -114,7 +136,7 @@ function Page7() {
       <div className="content">
         <p>
           List Directory Contents! <br />
-          Abbreviated <span class="highlight">ls</span>, this command displays
+          Abbreviated <span className="highlight">ls</span>, this command displays
           the contents of the current directory you are in. This command
           displays files as well as directories.
         </p>
@@ -131,9 +153,10 @@ function Page7() {
             value={answers.question1}
             onChange={(e) => handleInputChange(e, "question1")}
             onKeyDown={(e) =>
-              handleKeyPress(e, "question1", acceptableAnswersQ1)
+              handleKeyPress(e, "question1", acceptableAnswersQ1, inputRef2)
             }
-            disabled={correctAnswers.question1} // Disable if answered correctly
+            disabled={correctAnswers.question1}
+            ref={inputRef1} // Attach ref for the first input
           />
         </div>
         <p className="fade-in unique-font">{responses.question1}</p>
@@ -151,9 +174,10 @@ function Page7() {
             value={answers.question2}
             onChange={(e) => handleInputChange(e, "question2")}
             onKeyDown={(e) =>
-              handleKeyPress(e, "question2", acceptableAnswersQ2)
+              handleKeyPress(e, "question2", acceptableAnswersQ2, null)
             }
-            disabled={correctAnswers.question2} // Disable if answered correctly
+            disabled={correctAnswers.question2}
+            ref={inputRef2} // Attach ref for the second input
           />
         </div>
         <p className="fade-in unique-font">{responses.question2}</p>

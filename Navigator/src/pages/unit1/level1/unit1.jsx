@@ -53,7 +53,7 @@ function Unit1() {
         </p>
         <p>
           At the end of the unit there will be a longer challenge game in which
-          points can be earned. A score of 80 points is recommended.
+          points can be earned. A score of 590 points is recommended.
         </p>
         <p>
           In Level 1 we will cover the basics. No computer skills or coding

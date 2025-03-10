@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./unit1.css";
 import { useNavigate } from "react-router-dom";
 
@@ -8,7 +8,7 @@ function Page6() {
     question1: "",
     question2: "",
     question3: "",
-    quesion4: "",
+    question4: "",
   }); // State for both questions
   const [correctAnswers, setCorrectAnswers] = useState({
     question1: false,
@@ -22,25 +22,39 @@ function Page6() {
   const acceptableAnswersQ3 = ["6", "six"]; // Acceptable answers for Question 3
   const acceptableAnswersQ4 = ["y", "yes"]; // Acceptable answers for Question 4
 
+  const inputRef1 = useRef(null);
+  const inputRef2 = useRef(null);
+  const inputRef3 = useRef(null);
+  const inputRef4 = useRef(null);
+
+  useEffect(() => {
+    inputRef1.current.focus(); // Focus the first input when the component mounts
+  }, []);
+
   const handleInputChange = (e, questionKey) => {
-    setAnswers({ ...answers, [questionKey]: e.target.value }); // Update the state for the specific question
+    setAnswers({ ...answers, [questionKey]: e.target.value });
   };
 
-  const handleKeyPress = (e, questionKey, acceptableAnswers) => {
+  const handleKeyPress = (e, questionKey, acceptableAnswers, nextInputRef) => {
     if (e.key === "Enter" || e.key === "Tab") {
-      checkAnswer(questionKey, acceptableAnswers);
+      checkAnswer(questionKey, acceptableAnswers, nextInputRef);
     }
   };
 
-  const checkAnswer = (questionKey, acceptableAnswers) => {
+  const checkAnswer = (questionKey, acceptableAnswers, nextInputRef) => {
     if (
       acceptableAnswers.some(
         (answer) => answers[questionKey].toLowerCase().trim() === answer
       )
     ) {
-      setCorrectAnswers({ ...correctAnswers, [questionKey]: true }); // Mark the question as correct
+      setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
+
+      // Move focus to the next input if it exists
+      if (nextInputRef && nextInputRef.current) {
+        nextInputRef.current.focus();
+      }
     } else {
-      setAnswers({ ...answers, [questionKey]: "" }); // Clear the input field for incorrect answers
+      setAnswers({ ...answers, [questionKey]: "" });
     }
   };
 
@@ -122,9 +136,10 @@ function Page6() {
             value={answers.question1}
             onChange={(e) => handleInputChange(e, "question1")}
             onKeyDown={(e) =>
-              handleKeyPress(e, "question1", acceptableAnswersQ1)
+              handleKeyPress(e, "question1", acceptableAnswersQ1, inputRef2)
             }
             disabled={correctAnswers.question1} // Disable if answered correctly
+            ref={inputRef1} // Attach ref for the first input
           />
         </div>
         <p>How many files are in the home directory?</p>
@@ -140,9 +155,10 @@ function Page6() {
             value={answers.question2}
             onChange={(e) => handleInputChange(e, "question2")}
             onKeyDown={(e) =>
-              handleKeyPress(e, "question2", acceptableAnswersQ2)
+              handleKeyPress(e, "question2", acceptableAnswersQ2, inputRef3)
             }
             disabled={correctAnswers.question2} // Disable if answered correctly
+            ref={inputRef2} // Attach ref for the first input
           />
         </div>
         <p>How many total files are there in this filesystem?</p>
@@ -158,9 +174,10 @@ function Page6() {
             value={answers.question3}
             onChange={(e) => handleInputChange(e, "question3")}
             onKeyDown={(e) =>
-              handleKeyPress(e, "question3", acceptableAnswersQ3)
+              handleKeyPress(e, "question3", acceptableAnswersQ3, inputRef4)
             }
             disabled={correctAnswers.question3} // Disable if answered correctly
+            ref={inputRef3} // Attach ref for the first input
           />
         </div>
         <p>Are you ready to learn your first command?</p>
@@ -176,9 +193,10 @@ function Page6() {
             value={answers.question4}
             onChange={(e) => handleInputChange(e, "question4")}
             onKeyDown={(e) =>
-              handleKeyPress(e, "question4", acceptableAnswersQ4)
+              handleKeyPress(e, "question4", acceptableAnswersQ4, null)
             }
             disabled={correctAnswers.question4} // Disable if answered correctly
+            ref={inputRef4} // Attach ref for the first input
           />
         </div>
 

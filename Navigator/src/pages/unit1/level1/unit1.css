@@ -5,6 +5,10 @@
   font-style: normal;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .content p.unique-font {
   font-family: "Consolas", monospace;
   font-size: 20px;
@@ -124,6 +128,7 @@
   color: #1f2f98; /* Adjust text color for readability */
   padding: 2px 5px;
   border-radius: 3px;
+  font-family: "Consolas", monospace;
 }
 
 .fade-in {

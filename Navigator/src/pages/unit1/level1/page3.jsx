@@ -1,37 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./unit1.css";
 import { useNavigate } from "react-router-dom";
 
 function Page3() {
   const navigate = useNavigate();
-  const [answers, setAnswers] = useState({ question1: "", question2: "" }); // State for both questions
+  const [answers, setAnswers] = useState({ question1: "", question2: "" });
   const [correctAnswers, setCorrectAnswers] = useState({
     question1: false,
     question2: false,
-  }); // Track correctness of each question
+  });
 
-  const acceptableAnswersQ1 = ["file"]; // Acceptable answers for Question 1
-  const acceptableAnswersQ2 = ["directory", "folder"]; // Acceptable answers for Question 2
+  // Create refs for both input elements
+  const inputRef1 = useRef(null);
+  const inputRef2 = useRef(null);
+
+  useEffect(() => {
+    inputRef1.current.focus(); // Focus the first input element when the component mounts
+  }, []);
+
+  const acceptableAnswersQ1 = ["file"];
+  const acceptableAnswersQ2 = ["directory", "folder"];
 
   const handleInputChange = (e, questionKey) => {
-    setAnswers({ ...answers, [questionKey]: e.target.value }); // Update the state for the specific question
+    setAnswers({ ...answers, [questionKey]: e.target.value });
   };
 
-  const handleKeyPress = (e, questionKey, acceptableAnswers) => {
+  const handleKeyPress = (e, questionKey, acceptableAnswers, nextInputRef) => {
     if (e.key === "Enter" || e.key === "Tab") {
-      checkAnswer(questionKey, acceptableAnswers);
+      checkAnswer(questionKey, acceptableAnswers, nextInputRef);
     }
   };
 
-  const checkAnswer = (questionKey, acceptableAnswers) => {
+  const checkAnswer = (questionKey, acceptableAnswers, nextInputRef) => {
     if (
       acceptableAnswers.some(
         (answer) => answers[questionKey].toLowerCase().trim() === answer
       )
     ) {
-      setCorrectAnswers({ ...correctAnswers, [questionKey]: true }); // Mark the question as correct
+      setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
+
+      // Move focus to the next input if available
+      if (nextInputRef && nextInputRef.current) {
+        nextInputRef.current.focus();
+      }
     } else {
-      setAnswers({ ...answers, [questionKey]: "" }); // Clear the input field for incorrect answers
+      setAnswers({ ...answers, [questionKey]: "" });
     }
   };
 
@@ -43,7 +56,7 @@ function Page3() {
     navigate("/Unit1-Level1-page4");
   };
 
-  const allCorrect = Object.values(correctAnswers).every(Boolean); // Check if all questions are correct
+  const allCorrect = Object.values(correctAnswers).every(Boolean);
 
   return (
     <div className="gradient_background1">
@@ -82,7 +95,7 @@ function Page3() {
           document, etc.)
           <br />
           &emsp;&emsp;2. Directories = also known as a folder, directories can
-          hold files, other directories, or a &emsp;&emsp;combination of both
+          hold files, other directories, or a combination of both
         </p>
         <p>What is a single piece of data called?</p>
         <div className="command-line">
@@ -97,9 +110,10 @@ function Page3() {
             value={answers.question1}
             onChange={(e) => handleInputChange(e, "question1")}
             onKeyDown={(e) =>
-              handleKeyPress(e, "question1", acceptableAnswersQ1)
+              handleKeyPress(e, "question1", acceptableAnswersQ1, inputRef2)
             }
-            disabled={correctAnswers.question1} // Disable if answered correctly
+            disabled={correctAnswers.question1}
+            ref={inputRef1} // Attach ref for the first input
           />
         </div>
 
@@ -116,13 +130,13 @@ function Page3() {
             value={answers.question2}
             onChange={(e) => handleInputChange(e, "question2")}
             onKeyDown={(e) =>
-              handleKeyPress(e, "question2", acceptableAnswersQ2)
+              handleKeyPress(e, "question2", acceptableAnswersQ2, null)
             }
-            disabled={correctAnswers.question2} // Disable if answered correctly
+            disabled={correctAnswers.question2}
+            ref={inputRef2} // Attach ref for the second input
           />
         </div>
 
-        {/* Show the Continue button if all answers are correct */}
         {allCorrect && (
           <button
             className="navigate-button fade-in"

@@ -117,6 +117,7 @@
   color: #1c4c94; /* Adjust text color for readability */
   padding: 2px 5px;
   border-radius: 3px;
+  font-family: "Consolas", monospace;
 }
 
 .fade-in {
