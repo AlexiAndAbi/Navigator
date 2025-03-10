@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./unit1.css";
 import { useNavigate } from "react-router-dom";
 
@@ -8,6 +8,11 @@ function Page2() {
   const [showContinue, setShowContinue] = useState(false); // State to manage the visibility of the Continue button
 
   const acceptableAnswers = ["Postman"]; // Array of acceptable answers
+  const inputRef = useRef(null); // Ref for the input element
+
+  useEffect(() => {
+    inputRef.current.focus(); // Focus the input when the component mounts
+  }, []);
 
   const handleInputChange = (e) => {
     setUserInput(e.target.value); // Update state with user's input
@@ -79,8 +84,9 @@ function Page2() {
       <div className="content">
         <p>
           Before we can move, copy, or remove files we need to understand more
-          specifically each file is located. We call where a file is as the
-          “path” to that file. Paths can be (1) relative or (2) absolute. <br />
+          specifically where each file is located. We call where a file is as
+          the “path” to that file. Paths can be (1) relative or (2) absolute.{" "}
+          <br />
         </p>
         <p>
           (1) Relative Path = the location of a file in relation to where the
@@ -94,8 +100,10 @@ function Page2() {
         </p>
         <p>
           Take this example directory:
-          <br /> Postman {">>"} ls <br />
-          README.txt content instructions
+          <span style={{ fontFamily: "Consolas", fontSize: "18px" }}>
+            <br /> Postman {">>"} ls <br />
+            README.txt content instructions
+          </span>
         </p>
         <p>What directory are you currently viewing the file system from?</p>
         <div className="command-line">
@@ -110,6 +118,7 @@ function Page2() {
             value={userInput}
             onChange={handleInputChange}
             onKeyDown={handleKeyPress} // Listen for Enter key
+            ref={inputRef} // Attach ref to the input
           />
         </div>
         {/* Feedback displayed below */}
