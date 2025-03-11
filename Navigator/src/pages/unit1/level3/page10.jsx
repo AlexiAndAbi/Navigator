@@ -332,7 +332,7 @@ function Page10() {
           <>
             {/* Question 1 */}
             <div ref={questionRefs.question1}>
-              <p>List the contents of the current directory.</p>
+              <p>Display the contents of the current directory.</p>
               <div className="command-line">
                 <span className="directory-prompt">~ {">>"}</span>
                 <input
@@ -399,7 +399,7 @@ function Page10() {
             <div ref={questionRefs.question4}>
               {correctAnswers.question3 && (
                 <>
-                  <p>List the contents of the current directory.</p>
+                  <p>Display the contents of the current directory.</p>
                   <div className="command-line">
                     <span className="directory-prompt">~ {">>"}</span>
                     <input

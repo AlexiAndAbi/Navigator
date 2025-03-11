@@ -516,7 +516,7 @@ function Page6() {
           {/* Question 2 */}
           {correctAnswers.question1 && (
             <div ref={questionRefs.question2}>
-              <p>2. List the contents of the current directory.</p>
+              <p>2. Display the contents of the current directory.</p>
               <div className="command-line">
                 <span className="directory-prompt">~ {">>"}</span>
                 <input
@@ -579,7 +579,7 @@ function Page6() {
           {/* Question 5 */}
           {correctAnswers.question4 && (
             <div ref={questionRefs.question5}>
-              <p>5. List the contents of the current directory.</p>
+              <p>5. Display the contents of the current directory.</p>
               <div className="command-line">
                 <span className="directory-prompt">~ {">>"}</span>
                 <input
@@ -645,7 +645,7 @@ function Page6() {
         {/* Question 8 */}
         {correctAnswers.question7 && (
           <div ref={questionRefs.question8}>
-            <p>8. List the contents of the current directory.</p>
+            <p>8. Display the contents of the current directory.</p>
             <div className="command-line">
               <span className="directory-prompt">
                 {directoryName || ""} {">>"}
