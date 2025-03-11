@@ -38,6 +38,138 @@ function Page10() {
     question9: false,
   });
 
+  // Refs for input elements
+  const inputRef1 = useRef(null);
+  const inputRef2 = useRef(null);
+  const inputRef3 = useRef(null);
+  const inputRef4 = useRef(null);
+  const inputRef5 = useRef(null);
+  const inputRef6 = useRef(null);
+  const inputRef7 = useRef(null);
+  const inputRef8 = useRef(null);
+  const inputRef9 = useRef(null);
+
+  // Ref for continue button
+  const continueButtonRef = useRef(null);
+
+  // Initially focus the first input
+  useEffect(() => {
+    if (inputRef1.current) {
+      inputRef1.current.focus();
+    }
+  }, []);
+
+  // Dedicated useEffects for scrolling & focusing the next input:
+  useEffect(() => {
+    if (correctAnswers.question1 && inputRef2.current) {
+      setTimeout(() => {
+        inputRef2.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef2.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question1]);
+
+  useEffect(() => {
+    if (correctAnswers.question2 && inputRef3.current) {
+      setTimeout(() => {
+        inputRef3.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef3.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question2]);
+
+  useEffect(() => {
+    if (correctAnswers.question3 && inputRef4.current) {
+      setTimeout(() => {
+        inputRef4.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef4.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question3]);
+
+  useEffect(() => {
+    if (correctAnswers.question4 && inputRef5.current) {
+      setTimeout(() => {
+        inputRef5.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef5.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question4]);
+
+  useEffect(() => {
+    if (correctAnswers.question5 && inputRef6.current) {
+      setTimeout(() => {
+        inputRef6.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef6.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question5]);
+
+  useEffect(() => {
+    if (correctAnswers.question6 && inputRef7.current) {
+      setTimeout(() => {
+        inputRef7.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef7.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question6]);
+
+  useEffect(() => {
+    if (correctAnswers.question7 && inputRef8.current) {
+      setTimeout(() => {
+        inputRef8.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef8.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question7]);
+
+  useEffect(() => {
+    if (correctAnswers.question8 && inputRef9.current) {
+      setTimeout(() => {
+        inputRef9.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef9.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question8]);
+
+  // When all answers are correct, scroll to and focus the continue button.
+  const allCorrect = Object.values(correctAnswers).every(Boolean);
+  useEffect(() => {
+    if (allCorrect && continueButtonRef.current) {
+      setTimeout(() => {
+        continueButtonRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        continueButtonRef.current.focus();
+      }, 150);
+    }
+  }, [allCorrect]);
+
   const [timeLeft, setTimeLeft] = useState(60); // Timer state
   const [gameOver, setGameOver] = useState(false); // Tracks if the timer runs out
   const [timerStarted, setTimerStarted] = useState(false); // Tracks if the timer has started
@@ -56,11 +188,19 @@ function Page10() {
   };
 
   const handleNavigation = () => {
-    navigate("/Unit1-Level4-page9");
+    navigate("/Unit1-Level4-review");
   };
 
   const handleNavigation2 = () => {
     navigate("/Unit1-Level4-page11");
+  };
+
+  const reviewClick = () => {
+    navigate("/Unit1-Level4-review");
+  };
+
+  const restartClick = () => {
+    window.location.reload();
   };
 
   const handleInputChange = (e, questionKey) => {
@@ -239,8 +379,6 @@ function Page10() {
     }
   };
 
-  const allCorrect = Object.values(correctAnswers).every(Boolean);
-
   // Timer logic
   useEffect(() => {
     let timer;
@@ -248,6 +386,7 @@ function Page10() {
       timer = setTimeout(() => setTimeLeft((prev) => prev - 1), 1000);
     } else if (timeLeft === 0) {
       setGameOver(true);
+      fadeInButtons();
     }
     return () => clearTimeout(timer);
   }, [timeLeft, timerStarted, allCorrect]);
@@ -263,6 +402,21 @@ function Page10() {
       }
     });
   }, [correctAnswers]);
+
+  const fadeInButtons = () => {
+    const reviewButton = document.getElementById("reviewButton");
+    const restartButton = document.getElementById("restartButton");
+
+    // Make the button visible first, if it was hidden
+    reviewButton.style.display = "inline-block";
+    restartButton.style.display = "inline-block";
+
+    // Start the fade-in effect after a slight delay
+    setTimeout(() => {
+      reviewButton.classList.add("visible"); // Trigger the fade-in effect
+      restartButton.classList.add("visible");
+    }, 1000); // Delay before fading in (adjust the timing as needed)
+  };
 
   return (
     <div className="gradient_background4">
@@ -283,25 +437,26 @@ function Page10() {
           color: "white",
         }}
       >
-        <p>[##########-] 10/11</p>
+        <p>[###########-] 11/12</p>
       </div>
 
       <div className="content">
         <p>
-          You have 60 seconds to complete the following minigame! <br />
+          You have 60 seconds to complete the following minigame! There are nine
+          questions in total. <br />
         </p>
         {/* Display Timer */}
         <p>Time remaining: {timeLeft}s</p>
         {gameOver && (
-          <p className="fade-in" style={{ color: "red" }}>
-            Time's up! Try again.
+          <p className="fade-in">
+            Time's up! But, you've got this... try again.
           </p>
         )}
 
         <>
           {/* Question 1 */}
           <div ref={questionRefs.question1}>
-            <p>Ready to start?</p>
+            <p>1. Ready to start?</p>
             <div className="command-line">
               <span className="directory-prompt">??</span>
               <input
@@ -312,6 +467,7 @@ function Page10() {
                 onChange={(e) => handleInputChange(e, "question1")}
                 onKeyDown={(e) => handleKeyPress(e, "question1")}
                 disabled={correctAnswers.question1}
+                ref={inputRef1}
               />
             </div>
             <p className="fade-in unique-font">{responses.question1}</p>
@@ -321,7 +477,7 @@ function Page10() {
           {correctAnswers.question1 && (
             <div ref={questionRefs.question2}>
               <p>
-                What flag with the ls command shows files within directories?
+                2. What flag with the ls command shows files within directories?
               </p>
               <div className="command-line">
                 <span className="directory-prompt">{"??"}</span>
@@ -333,6 +489,7 @@ function Page10() {
                   onChange={(e) => handleInputChange(e, "question2")}
                   onKeyDown={(e) => handleKeyPress(e, "question2")}
                   disabled={correctAnswers.question2}
+                  ref={inputRef2}
                 />
               </div>
               <p className="fade-in unique-font">{responses.question2}</p>
@@ -343,7 +500,7 @@ function Page10() {
           {correctAnswers.question2 && (
             <div ref={questionRefs.question3}>
               <p>
-                What character is the redirect symbol when concatenating files?
+                3. What character is the redirect symbol when concatenating files?
               </p>
               <div className="command-line">
                 <span className="directory-prompt">{"??"}</span>
@@ -355,6 +512,7 @@ function Page10() {
                   onChange={(e) => handleInputChange(e, "question3")}
                   onKeyDown={(e) => handleKeyPress(e, "question3")}
                   disabled={correctAnswers.question3}
+                  ref={inputRef3}
                 />
               </div>
               <p className="fade-in unique-font">{responses.question3}</p>
@@ -364,7 +522,7 @@ function Page10() {
           {/* Question 4 */}
           {correctAnswers.question3 && (
             <div ref={questionRefs.question4}>
-              <p>What flag with the cat command shows line numbers?</p>
+              <p>4. What flag with the cat command shows line numbers?</p>
               <div className="command-line">
                 <span className="directory-prompt">{"??"}</span>
                 <input
@@ -375,6 +533,7 @@ function Page10() {
                   onChange={(e) => handleInputChange(e, "question4")}
                   onKeyDown={(e) => handleKeyPress(e, "question4")}
                   disabled={correctAnswers.question4}
+                  ref={inputRef4}
                 />
               </div>
               <p className="fade-in unique-font">{responses.question4}</p>
@@ -384,7 +543,7 @@ function Page10() {
           {/* Question 5 */}
           {correctAnswers.question4 && (
             <div ref={questionRefs.question5}>
-              <p>When using more, what key returns you to the command line?</p>
+              <p>5. When using more, what key returns you to the command line?</p>
               <div className="command-line">
                 <span className="directory-prompt">{"??"}</span>
                 <input
@@ -395,6 +554,7 @@ function Page10() {
                   onChange={(e) => handleInputChange(e, "question5")}
                   onKeyDown={(e) => handleKeyPress(e, "question5")}
                   disabled={correctAnswers.question5}
+                  ref={inputRef5}
                 />
               </div>
               <p className="fade-in unique-font">{responses.question5}</p>
@@ -404,7 +564,7 @@ function Page10() {
           {/* Question 6 */}
           {correctAnswers.question5 && (
             <div ref={questionRefs.question6}>
-              <p>What does the -i flag stand for?</p>
+              <p>6. What does the -i flag stand for?</p>
               <div className="command-line">
                 <span className="directory-prompt">{"??"}</span>
                 <input
@@ -415,6 +575,7 @@ function Page10() {
                   onChange={(e) => handleInputChange(e, "question6")}
                   onKeyDown={(e) => handleKeyPress(e, "question6")}
                   disabled={correctAnswers.question6}
+                  ref={inputRef6}
                 />
               </div>
               <p className="fade-in unique-font">{responses.question6}</p>
@@ -425,7 +586,7 @@ function Page10() {
         {/* Question 7 */}
         {correctAnswers.question6 && (
           <div ref={questionRefs.question7}>
-            <p>What does the -v flag stand for?</p>
+            <p>7. What does the -v flag stand for?</p>
             <div className="command-line">
               <span className="directory-prompt">{"??"}</span>
               <input
@@ -436,6 +597,7 @@ function Page10() {
                 onChange={(e) => handleInputChange(e, "question7")}
                 onKeyDown={(e) => handleKeyPress(e, "question7")}
                 disabled={correctAnswers.question7}
+                ref={inputRef7}
               />
             </div>
             <p className="fade-in unique-font">{responses.question7}</p>
@@ -446,7 +608,7 @@ function Page10() {
         {correctAnswers.question7 && (
           <div ref={questionRefs.question8}>
             <p>
-              What flag prompts the user for confirmation before overwriting
+              8. What flag prompts the user for confirmation before overwriting
               files?
             </p>
             <div className="command-line">
@@ -459,6 +621,7 @@ function Page10() {
                 onChange={(e) => handleInputChange(e, "question8")}
                 onKeyDown={(e) => handleKeyPress(e, "question8")}
                 disabled={correctAnswers.question8}
+                ref={inputRef8}
               />
             </div>
             <p className="fade-in unique-font">{responses.question8}</p>
@@ -469,7 +632,7 @@ function Page10() {
         {correctAnswers.question8 && (
           <div ref={questionRefs.question9}>
             <p>
-              What flag do you use to remove directories that are not empty?
+              9. What flag do you use to remove directories that are not empty?
             </p>
             <div className="command-line">
               <span className="directory-prompt">{"??"}</span>
@@ -481,6 +644,7 @@ function Page10() {
                 onChange={(e) => handleInputChange(e, "question9")}
                 onKeyDown={(e) => handleKeyPress(e, "question9")}
                 disabled={correctAnswers.question9}
+                ref={inputRef9}
               />
             </div>
             <p className="fade-in unique-font">{responses.question9}</p>
@@ -502,6 +666,32 @@ function Page10() {
           </button>
         )}
       </div>
+      <button
+        id="reviewButton"
+        className="review-button"
+        style={{
+          display: "none", // Initially hidden
+          position: "fixed", // Fix the position relative to the viewport
+          bottom: "100px", // 100px from the bottom
+          right: "40px",
+        }}
+        onClick={reviewClick} // Add a handler if needed
+      >
+        Review
+      </button>
+      <button
+        id="restartButton"
+        className="restart-button"
+        style={{
+          display: "none", // Initially hidden
+          position: "fixed", // Fix the position relative to the viewport
+          bottom: "40px", // 100px from the bottom
+          right: "40px",
+        }}
+        onClick={restartClick} // Add a handler if needed
+      >
+        Restart
+      </button>
     </div>
   );
 }

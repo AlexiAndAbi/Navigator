@@ -110,7 +110,7 @@ function Page2() {
           color: "white",
         }}
       >
-        <p>[##---------] 2/11</p>
+        <p>[##----------] 2/12</p>
       </div>
 
       <div
@@ -133,25 +133,31 @@ function Page2() {
           List directory contents! <br /> The <span class="highlight4">ls</span>{" "}
           command can be modified with the -a, -R, and -l flags. Flags are
           included after the command and are separated from each other by a
-          space. (ex: ls -a -l)
+          space. The "-" (dash) before each character is required. More than one
+          flag can be used with a single command (ex:{" "}
+          <span style={{ fontFamily: "Consolas", fontSize: "18px" }}>
+            ls -a -l
+          </span>
+          ).
           <br />
           <br />
-          -a <br /> This flag displays all files in the current directory
-          including ones that may be hidden. When you type ls -a it includes
-          itself (.) and parent directory (..) because there is a reference to
-          either stored in every directory, they are just normally hidden. Tip:
-          think of -a like “a” for all!
+          <span class="highlight4">-a</span> <br /> This flag displays all files
+          in the current directory including hidden files. When you type ls -a
+          it includes itself (.) and its parent directory (..) in the output
+          because there is a reference to both stored in every directory.
+          <b> Tip:</b> think of -a like “a” for all!
           <br />
           <br />
-          -R <br /> The -R flag lists the files within the current directory and
-          all subdirectories as well. This <i>must</i> be a capital -R (-r reverses the
-          order of entries shown).
+          <span class="highlight2">-R</span> <br /> The -R flag lists the files
+          within the current directory and all subdirectories as well. This{" "}
+          <i>must</i> be a capital -R (-r reverses the order of entries shown).{" "}
+          <b> Tip:</b> think of -R like “R” for recursive!
         </p>
 
         <>
           {/* Question 1 */}
           <div ref={questionRefs.question1}>
-            <p>List directory contents.</p>
+            <p>Display current directory contents.</p>
             <div className="command-line">
               <span className="directory-prompt">~ {">>"}</span>
               <input
@@ -172,7 +178,7 @@ function Page2() {
             {correctAnswers.question1 && (
               <>
                 <p>
-                  List directory and subdirectory contents including hidden
+                  Display curent directory and subdirectory contents including hidden
                   files.
                 </p>
                 <div className="command-line">

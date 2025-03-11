@@ -4,7 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 function Page4() {
   const navigate = useNavigate();
-  const [imageSrc, setImageSrc] = useState("/Navigator/unit1filetrees/FileTree33.png"); // Track the image
+  const [imageSrc, setImageSrc] = useState(
+    "/Navigator/unit1filetrees/FileTree33.png"
+  ); // Track the image
 
   const updateImage = (imageTag) => {
     if (imageTag === "change") {
@@ -122,7 +124,7 @@ function Page4() {
           color: "white",
         }}
       >
-        <p>[####-------] 4/11</p>
+        <p>[####--------] 4/12</p>
       </div>
 
       <div
@@ -140,20 +142,25 @@ function Page4() {
           Concatenate!
           <br />
           As the name suggests, <span class="highlight4">cat</span> can do more
-          than just print files. You can concatenate files using this command
-          too. <br />
+          than just print files. You can also concatenate files using this
+          command. <br />
           <br /> To concatenate the contents of file2 onto the end of file1,
-          type: <br /> cat file1 file2 {">"} file3 <br />
+          type:
+          <span style={{ fontFamily: "Consolas", fontSize: "18px" }}>
+            <br /> cat file1 file2 {">"} file3{" "}
+          </span>
+          <br />
           <br />
           This command makes use of the redirect symbol "{">"}". In this case,
           the concatinated contents is placed into a file called file3. If file3
-          does not already exist, it is created.
+          does not already exist, it is created. If it does exist, the contents
+          is overwritten.
         </p>
 
         <>
           {/* Question 1 */}
           <div ref={questionRefs.question1}>
-            <p>List directory contents.</p>
+            <p>Display directory contents.</p>
             <div className="command-line">
               <span className="directory-prompt">~ {">>"}</span>
               <input

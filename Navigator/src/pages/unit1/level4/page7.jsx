@@ -4,7 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 function Page7() {
   const navigate = useNavigate();
-  const [imageSrc, setImageSrc] = useState("/Navigator/unit1filetrees/FileTree31.png"); // Track the image
+  const [imageSrc, setImageSrc] = useState(
+    "/Navigator/unit1filetrees/FileTree31.png"
+  ); // Track the image
 
   const updateImage = (imageTag) => {
     if (imageTag === "change") {
@@ -157,7 +159,7 @@ function Page7() {
           color: "white",
         }}
       >
-        <p>[#######----] 7/11</p>
+        <p>[#######-----] 7/12</p>
       </div>
 
       <div
@@ -176,28 +178,24 @@ function Page7() {
           <br />
           The <span className="highlight4">mv</span> command can be modified
           with the -i and -v flags. Remember that flags are included after the
-          command and before any additional arguments.
+          command and before any additional arguments. ex:{" "}
+          <span style={{ fontFamily: "Consolas", fontSize: "18px" }}>
+            mv -v -i outro.mp3 ./lyrics
+          </span>
           <br />
-          <br /> ex:
-          <br /> mv &emsp;-i -v c.txt ./sample
-          <br />
-          ^-^ ^---^ ^------------^
-          <br />
-          cmd flags &emsp;&emsp;argument(s)
-          <br />
-          <br /> -i
-          <br /> The -i flag, standing for interactive, prompts the user before
-          overwriting files. This can be helpful if you are moving files to
-          directories where you are unsure of the contents. The user can type
+          <br /> <span className="highlight4">-i</span>
+          <br /> The -i flag, standing for <b>interactive</b>, prompts the user
+          before overwriting files. This can be helpful if you are moving files
+          to directories where you are unsure of the contents. The user can type
           "y" to overwrite the file and "n" to not overwrite the file.
           <br />
-          <br /> -v
-          <br /> The -v flag, standing for verbose, will show in greater detail
-          what was moved and where it was moved to.
+          <br /> <span className="highlight4">-v</span>
+          <br /> The -v flag, standing for <b>verbose</b>, will show in greater
+          detail what was moved and where it was moved to.
         </p>
 
         <div ref={questionRefs.question1}>
-          <p>List directory contents.</p>
+          <p>Display directory contents.</p>
           <div className="command-line">
             <span className="directory-prompt">~ {">>"}</span>
             <input
@@ -216,8 +214,8 @@ function Page7() {
         {correctAnswers.question1 && (
           <div ref={questionRefs.question2}>
             <p>
-              Move intro.mp3 into newTrack using the interactive and verbose
-              option.
+              Using the interactive and verbose options, move intro.mp3 into
+              newTrack using a relative path.
             </p>
             <div className="command-line">
               <span className="directory-prompt">~ {">>"}</span>
@@ -236,7 +234,9 @@ function Page7() {
             </p>
             {showPrompt && (
               <p className="inline-p">
-                overwrite ./newTrack/intro.mp3? (y/n [n])
+                <span style={{ fontFamily: "Consolas", fontSize: "20px" }}>
+                  overwrite ./newTrack/intro.mp3? (y/n)
+                </span>
                 <input
                   ref={questionRefs.overwrite}
                   type="text"
