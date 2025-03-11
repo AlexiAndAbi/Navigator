@@ -76,7 +76,7 @@ function Page4() {
           color: "white",
         }}
       >
-        <p>[####--------] 4/12</p>
+        <p>[####---------] 4/13</p>
       </div>
 
       <div
@@ -101,16 +101,19 @@ function Page4() {
         </p>
         <p>
           Take this example directory:
-          <br /> sample {">>"} ls <br />
-          a.txt b.txt newFolder
+          <span style={{ fontFamily: "Consolas", fontSize: "18px" }}>
+            <br /> sample {">>"} ls <br />
+            a.txt b.txt newFolder
+          </span>
           <br />
         </p>
         <p>
           The absolute path for this directory might look something like:
           /User/username/sample
           <br />
-          An absolute path will always start with a "/" character, which
-          represents the root directory.
+          An absolute path will always start with a "/" character which
+          represents the root directory. The absolute path of the home directory
+          is usually /User/username.
         </p>
         <p>What symbol represents the root directory?</p>
         <div className="command-line">

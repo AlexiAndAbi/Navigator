@@ -60,7 +60,7 @@ function Page1() {
           color: "white",
         }}
       >
-        <p>[#-----------] 1/12</p>
+        <p>[#------------] 1/13</p>
       </div>
 
       <div className="content">
@@ -74,6 +74,7 @@ function Page1() {
           <br /> mv
           <br /> cp
           <br /> rm
+          <br /> rmdir
         </p>
         <button
           className="navigate-button"
