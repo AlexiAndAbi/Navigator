@@ -19,6 +19,16 @@ function Page6() {
     "(End of file)",
   ];
 
+    // Refs for input elements
+  const inputRef1 = useRef(null);
+
+  // Initially focus the first input
+  useEffect(() => {
+    if (inputRef1.current) {
+      inputRef1.current.focus();
+    }
+  }, []);
+
   const handleNavigation = () => {
     navigate("/Unit1-Level4-page5");
   };
@@ -137,7 +147,7 @@ function Page6() {
             onChange={handleInputChange}
             onKeyDown={handleKeyPress}
             disabled={isMoreActive}
-            ref={inputRef}
+            ref={inputRef1}
           />
         </div>
         <p className="fade-in unique-font">

@@ -39,6 +39,44 @@ function Page7() {
     overwrite: useRef(null),
   };
 
+  // Refs for input elements
+  const inputRef1 = useRef(null);
+  const inputRef2 = useRef(null);
+
+  // Initially focus the first input
+  useEffect(() => {
+    if (inputRef1.current) {
+      inputRef1.current.focus();
+    }
+  }, []);
+
+  // When question1 is answered correctly, scroll & focus question2
+  useEffect(() => {
+    if (correctAnswers.question1 && inputRef2.current) {
+      setTimeout(() => {
+        inputRef2.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef2.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question1]);
+
+  // When all answers are correct, scroll & focus the continue button
+  const allCorrect = Object.values(correctAnswers).every(Boolean);
+  useEffect(() => {
+    if (allCorrect && continueButtonRef.current) {
+      setTimeout(() => {
+        continueButtonRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        continueButtonRef.current.focus();
+      }, 150);
+    }
+  }, [allCorrect]);
+
   const continueButtonRef = useRef(null);
 
   useEffect(() => {
@@ -119,7 +157,7 @@ function Page7() {
       }
       setResponses({
         ...responses,
-        question2: `overwrite ./newTrack/intro.mp3? (y/n [n]) ${overwriteResponse}\n${responseText}`,
+        question2: `overwrite ./newTrack/intro.mp3? (y/n) ${overwriteResponse}\n${responseText}`,
       });
       setIsToggled((prev) => {
         return !prev;
@@ -128,8 +166,6 @@ function Page7() {
       setOverwriteResponse("");
     }
   };
-
-  const allCorrect = Object.values(correctAnswers).every(Boolean);
 
   useEffect(() => {
     if (correctAnswers.question1 && questionRefs.question2.current) {
@@ -206,6 +242,7 @@ function Page7() {
               onChange={(e) => handleInputChange(e, "question1")}
               onKeyDown={(e) => handleKeyPress(e, "question1")}
               disabled={correctAnswers.question1}
+              ref={inputRef1}
             />
           </div>
           <p className="fade-in unique-font">{responses.question1}</p>
@@ -227,6 +264,7 @@ function Page7() {
                 onChange={(e) => handleInputChange(e, "question2")}
                 onKeyDown={(e) => handleKeyPress(e, "question2")}
                 disabled={correctAnswers.question2 || showPrompt}
+                ref={inputRef2}
               />
             </div>
             <p className="fade-in unique-font">
@@ -234,9 +272,17 @@ function Page7() {
             </p>
             {showPrompt && (
               <p className="inline-p">
-                <span style={{ fontFamily: "Consolas", fontSize: "20px" }}>
+                <span
+                  style={{
+                    fontFamily: "Consolas",
+                    fontSize: "20px",
+                    display: "inline-block",
+                    width: "425px",
+                  }}
+                >
                   overwrite ./newTrack/intro.mp3? (y/n)
                 </span>
+
                 <input
                   ref={questionRefs.overwrite}
                   type="text"
