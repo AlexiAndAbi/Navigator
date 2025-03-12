@@ -9,6 +9,7 @@ import Page6 from "./pages/unit1/level1/page6";
 import Page7 from "./pages/unit1/level1/page7";
 import Page8 from "./pages/unit1/level1/page8";
 import Page9 from "./pages/unit1/level1/page9";
+import Review1 from "./pages/unit1/level1/review1";
 import Page10 from "./pages/unit1/level1/page10";
 import Page11 from "./pages/unit1/level1/page11";
 {/*Level 2*/}
@@ -18,6 +19,7 @@ import Page3Level2 from "./pages/unit1/level2/page3";
 import Page4Level2 from "./pages/unit1/level2/page4";
 import Page5Level2 from "./pages/unit1/level2/page5";
 import Page6Level2 from "./pages/unit1/level2/page6";
+import Review2 from "./pages/unit1/level2/review2";
 import Page7Level2 from "./pages/unit1/level2/page7";
 {/*Level 3*/}
 import Page1Level3 from "./pages/unit1/level3/page1";
@@ -31,6 +33,7 @@ import Page8Level3 from "./pages/unit1/level3/page8";
 import Page9Level3 from "./pages/unit1/level3/page9";
 import Page10Level3 from "./pages/unit1/level3/page10";
 import Page11Level3 from "./pages/unit1/level3/page11";
+import Review3 from "./pages/unit1/level3/review3";
 import Page12Level3 from "./pages/unit1/level3/page12";
 {/*Level 4*/}
 import Page1Level4 from "./pages/unit1/level4/page1";
@@ -42,6 +45,7 @@ import Page6Level4 from "./pages/unit1/level4/page6";
 import Page7Level4 from "./pages/unit1/level4/page7";
 import Page8Level4 from "./pages/unit1/level4/page8";
 import Page9Level4 from "./pages/unit1/level4/page9";
+import Review4 from "./pages/unit1/level4/review4";
 import Page10Level4 from "./pages/unit1/level4/page10";
 import Page11Level4 from "./pages/unit1/level4/page11";
 
@@ -73,6 +77,7 @@ function App() {
         <Route path="/Unit1-Level1-Page7" element={<Page7 />} />
         <Route path="/Unit1-Level1-Page8" element={<Page8 />} />
         <Route path="/Unit1-Level1-Page9" element={<Page9 />} />
+        <Route path="/Unit1-Level1-review" element={<Review1 />} />
         <Route path="/Unit1-Level1-Page10" element={<Page10 />} />
         <Route path="/Unit1-Level1-Page11" element={<Page11 />} />
         {/*Level 2*/}
@@ -82,6 +87,7 @@ function App() {
         <Route path="/Unit1-Level2-page4" element={<Page4Level2 />} />
         <Route path="/Unit1-Level2-page5" element={<Page5Level2 />} />
         <Route path="/Unit1-Level2-page6" element={<Page6Level2 />} />
+        <Route path="/Unit1-Level2-review" element={<Review2 />} />
         <Route path="/Unit1-Level2-page7" element={<Page7Level2 />} />
         {/*Level 3*/}
         <Route path="/Unit1-Level3" element={<Page1Level3 />} />
@@ -95,6 +101,7 @@ function App() {
         <Route path="/Unit1-Level3-page9" element={<Page9Level3 />} />
         <Route path="/Unit1-Level3-page10" element={<Page10Level3 />} />
         <Route path="/Unit1-Level3-page11" element={<Page11Level3 />} />
+        <Route path="/Unit1-Level3-review" element={<Review3 />} />
         <Route path="/Unit1-Level3-page12" element={<Page12Level3 />} />
         {/*Level 4*/}
         <Route path="/Unit1-Level4" element={<Page1Level4 />} />
@@ -106,6 +113,7 @@ function App() {
         <Route path="/Unit1-Level4-page7" element={<Page7Level4 />} />
         <Route path="/Unit1-Level4-page8" element={<Page8Level4 />} />
         <Route path="/Unit1-Level4-page9" element={<Page9Level4 />} />
+        <Route path="/Unit1-Level4-review" element={<Review4 />} />
         <Route path="/Unit1-Level4-page10" element={<Page10Level4 />} />
         <Route path="/Unit1-Level4-page11" element={<Page11Level4 />} />
         {/*Extras*/}

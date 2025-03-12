@@ -22,6 +22,47 @@ function Page3() {
     question2: useRef(null),
   };
 
+  // Refs for input elements
+  const inputRef1 = useRef(null);
+  const inputRef2 = useRef(null);
+
+  // Ref for continue button
+  const continueButtonRef = useRef(null);
+
+  // Initially focus the first input
+  useEffect(() => {
+    if (inputRef1.current) {
+      inputRef1.current.focus();
+    }
+  }, []);
+
+  // When question1 is answered correctly, scroll & focus question2
+  useEffect(() => {
+    if (correctAnswers.question1 && inputRef2.current) {
+      setTimeout(() => {
+        inputRef2.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef2.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question1]);
+
+  // When all answers are correct, scroll & focus the continue button
+  const allCorrect = Object.values(correctAnswers).every(Boolean);
+  useEffect(() => {
+    if (allCorrect && continueButtonRef.current) {
+      setTimeout(() => {
+        continueButtonRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        continueButtonRef.current.focus();
+      }, 150);
+    }
+  }, [allCorrect]);
+
   const handleNavigation = () => {
     navigate("/Unit1-Level4-page2");
   };
@@ -80,8 +121,6 @@ function Page3() {
     }
   };
 
-  const allCorrect = Object.values(correctAnswers).every(Boolean);
-
   useEffect(() => {
     if (correctAnswers.question1 && questionRefs.question2.current) {
       questionRefs.question2.current.scrollIntoView({
@@ -110,7 +149,7 @@ function Page3() {
           color: "white",
         }}
       >
-        <p>[###--------] 3/11</p>
+        <p>[###---------] 3/12</p>
       </div>
 
       <div
@@ -130,11 +169,14 @@ function Page3() {
 
       <div className="content">
         <p>
-          List directory contents!
+          Display directory contents!
           <br />
           <br />
-          -l <br /> This flag displays more information about each file in the
-          following format: -rw-r--r-- 1 username group 0 Jan 9 15:50 b.txt{" "}
+          <span class="highlight2">-l</span> <br /> This flag displays more
+          information about each file in the following format: <br />
+          <span style={{ fontFamily: "Consolas", fontSize: "18px" }}>
+            -rw-r--r-- 1 username group 14 Jan 9 15:50 b.txt
+          </span>
           <br />
           <br />
           The response includes the following information: <br />
@@ -146,14 +188,18 @@ function Page3() {
           &emsp;&emsp;&emsp;&emsp;6. Last modification date and time <br />
           &emsp;&emsp;&emsp;&emsp;7. File name <br />
           <br />
-          You don’t have to worry about a lot of these categories for now, just
-          know that this is a quick way to get more information about a file.
+          You don’t have to worry about these categories for now, just know that
+          this is a quick way to get more information about a file. <b>
+            {" "}
+            Tip:
+          </b>{" "}
+          think of -l like “l” for long!
         </p>
 
         <>
           {/* Question 1 */}
           <div ref={questionRefs.question1}>
-            <p>List directory contents.</p>
+            <p>Display current directory contents.</p>
             <div className="command-line">
               <span className="directory-prompt">~ {">>"}</span>
               <input
@@ -164,6 +210,7 @@ function Page3() {
                 onChange={(e) => handleInputChange(e, "question1")}
                 onKeyDown={(e) => handleKeyPress(e, "question1")}
                 disabled={correctAnswers.question1}
+                ref={inputRef1}
               />
             </div>
             <p className="fade-in unique-font">{responses.question1}</p>
@@ -174,8 +221,8 @@ function Page3() {
             {correctAnswers.question1 && (
               <>
                 <p>
-                  List directory contents (including hidden files) using the -l
-                  flag.
+                  Display current directory contents (including hidden files)
+                  using the -l flag.
                 </p>
                 <div className="command-line">
                   <span className="directory-prompt">~ {">>"}</span>
@@ -187,6 +234,7 @@ function Page3() {
                     onChange={(e) => handleInputChange(e, "question2")}
                     onKeyDown={(e) => handleKeyPress(e, "question2")}
                     disabled={correctAnswers.question2}
+                    ref={inputRef2}
                   />
                 </div>
                 <p className="fade-in unique-font">
@@ -200,6 +248,7 @@ function Page3() {
         {/* Continue button */}
         {allCorrect && (
           <button
+            ref={continueButtonRef}
             className="navigate-button fade-in"
             onClick={handleNavigation2}
             style={{

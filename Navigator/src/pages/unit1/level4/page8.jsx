@@ -4,7 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 function Page8() {
   const navigate = useNavigate();
-  const [imageSrc, setImageSrc] = useState("/Navigator/unit1filetrees/FileTree36.png"); // Track the image
+  const [imageSrc, setImageSrc] = useState(
+    "/Navigator/unit1filetrees/FileTree36.png"
+  ); // Track the image
 
   const updateImage = (imageTag) => {
     if (imageTag === "change") {
@@ -31,6 +33,47 @@ function Page8() {
     question1: useRef(null),
     question2: useRef(null),
   };
+
+  // Refs for input elements
+  const inputRef1 = useRef(null);
+  const inputRef2 = useRef(null);
+
+  // Ref for continue button
+  const continueButtonRef = useRef(null);
+
+  // Initially focus the first input
+  useEffect(() => {
+    if (inputRef1.current) {
+      inputRef1.current.focus();
+    }
+  }, []);
+
+  // When question1 is answered correctly, scroll & focus question2
+  useEffect(() => {
+    if (correctAnswers.question1 && inputRef2.current) {
+      setTimeout(() => {
+        inputRef2.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef2.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question1]);
+
+  // When all answers are correct, scroll & focus the continue button
+  const allCorrect = Object.values(correctAnswers).every(Boolean);
+  useEffect(() => {
+    if (allCorrect && continueButtonRef.current) {
+      setTimeout(() => {
+        continueButtonRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        continueButtonRef.current.focus();
+      }, 150);
+    }
+  }, [allCorrect]);
 
   const handleNavigation = () => {
     navigate("/Unit1-Level7");
@@ -95,8 +138,6 @@ function Page8() {
     }
   };
 
-  const allCorrect = Object.values(correctAnswers).every(Boolean);
-
   useEffect(() => {
     if (correctAnswers.question1 && questionRefs.question2.current) {
       questionRefs.question2.current.scrollIntoView({
@@ -125,7 +166,7 @@ function Page8() {
           color: "white",
         }}
       >
-        <p>[########---] 8/11</p>
+        <p>[########----] 8/12</p>
       </div>
 
       <div
@@ -144,22 +185,24 @@ function Page8() {
           be modified with the -r, -i, and -v flags.
           <br />
           <br />
-          -r <br /> If you are copying directories, use the -r flag to
-          recursively copy all of the files within the directory as well.
+          <span className="highlight4">-r</span> <br /> If you are copying
+          directories, use the -r flag to recursively copy all of the files
+          within the directory as well.
           <br />
           <br />
-          -i <br /> The -i flag, standing for interactive, prompts the user
-          before overwriting files.
+          <span className="highlight4">-i</span> <br /> The -i flag, standing
+          for <b>interactive</b>, prompts the user before overwriting files.
           <br />
           <br />
-          -v <br /> The -v flag, standing for verbose, will show in greater
-          detail what has been copied and where it was copied to.
+          <span className="highlight4">-v</span> <br /> The -v flag, standing
+          for <b>verbose</b>, will show in greater detail what has been copied
+          and where it was copied to.
         </p>
 
         <>
           {/* Question 1 */}
           <div ref={questionRefs.question1}>
-            <p>List directory contents.</p>
+            <p>Display directory contents.</p>
             <div className="command-line">
               <span className="directory-prompt">~ {">>"}</span>
               <input
@@ -170,6 +213,7 @@ function Page8() {
                 onChange={(e) => handleInputChange(e, "question1")}
                 onKeyDown={(e) => handleKeyPress(e, "question1")}
                 disabled={correctAnswers.question1}
+                ref={inputRef1}
               />
             </div>
             <p className="fade-in unique-font">{responses.question1}</p>
@@ -180,8 +224,8 @@ function Page8() {
             {correctAnswers.question1 && (
               <>
                 <p>
-                  Copy the directory sample into newFolder using the recursive
-                  and verbose option.
+                  Using the recursive and verbose option, copy the directory
+                  sample into newFolder using a relative path.
                 </p>
                 <div className="command-line">
                   <span className="directory-prompt">~ {">>"}</span>
@@ -193,6 +237,7 @@ function Page8() {
                     onChange={(e) => handleInputChange(e, "question2")}
                     onKeyDown={(e) => handleKeyPress(e, "question2")}
                     disabled={correctAnswers.question2}
+                    ref={inputRef2}
                   />
                 </div>
                 <p className="fade-in unique-font">
@@ -206,6 +251,7 @@ function Page8() {
         {/* Continue button */}
         {allCorrect && (
           <button
+            ref={continueButtonRef}
             className="navigate-button fade-in"
             onClick={handleNavigation2}
             style={{

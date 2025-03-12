@@ -38,7 +38,139 @@ function Page11() {
     question9: false,
   });
 
-  const [timeLeft, setTimeLeft] = useState(60); // Timer state
+  // Refs for input elements
+  const inputRef1 = useRef(null);
+  const inputRef2 = useRef(null);
+  const inputRef3 = useRef(null);
+  const inputRef4 = useRef(null);
+  const inputRef5 = useRef(null);
+  const inputRef6 = useRef(null);
+  const inputRef7 = useRef(null);
+  const inputRef8 = useRef(null);
+  const inputRef9 = useRef(null);
+
+  // Ref for continue button
+  const continueButtonRef = useRef(null);
+
+  // Initially focus the first input
+  useEffect(() => {
+    if (inputRef1.current) {
+      inputRef1.current.focus();
+    }
+  }, []);
+
+  // Dedicated useEffects for scrolling & focusing the next input:
+  useEffect(() => {
+    if (correctAnswers.question1 && inputRef2.current) {
+      setTimeout(() => {
+        inputRef2.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef2.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question1]);
+
+  useEffect(() => {
+    if (correctAnswers.question2 && inputRef3.current) {
+      setTimeout(() => {
+        inputRef3.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef3.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question2]);
+
+  useEffect(() => {
+    if (correctAnswers.question3 && inputRef4.current) {
+      setTimeout(() => {
+        inputRef4.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef4.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question3]);
+
+  useEffect(() => {
+    if (correctAnswers.question4 && inputRef5.current) {
+      setTimeout(() => {
+        inputRef5.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef5.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question4]);
+
+  useEffect(() => {
+    if (correctAnswers.question5 && inputRef6.current) {
+      setTimeout(() => {
+        inputRef6.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef6.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question5]);
+
+  useEffect(() => {
+    if (correctAnswers.question6 && inputRef7.current) {
+      setTimeout(() => {
+        inputRef7.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef7.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question6]);
+
+  useEffect(() => {
+    if (correctAnswers.question7 && inputRef8.current) {
+      setTimeout(() => {
+        inputRef8.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef8.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question7]);
+
+  useEffect(() => {
+    if (correctAnswers.question8 && inputRef9.current) {
+      setTimeout(() => {
+        inputRef9.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef9.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question8]);
+
+  // When all answers are correct, scroll to and focus the continue button.
+  const allCorrect = Object.values(correctAnswers).every(Boolean);
+  useEffect(() => {
+    if (allCorrect && continueButtonRef.current) {
+      setTimeout(() => {
+        continueButtonRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        continueButtonRef.current.focus();
+      }, 150);
+    }
+  }, [allCorrect]);
+
+  const [timeLeft, setTimeLeft] = useState(90); // Timer state
   const [gameOver, setGameOver] = useState(false); // Tracks if the timer runs out
   const [timerStarted, setTimerStarted] = useState(false); // Tracks if the timer has started
   const [imageSrc, setImageSrc] = useState(
@@ -73,11 +205,19 @@ function Page11() {
   };
 
   const handleNavigation = () => {
-    navigate("/Unit1-Level3-page10");
+    navigate("/Unit1-Level3-review");
   };
 
   const handleNavigation2 = () => {
     navigate("/Unit1-Level3-page12");
+  };
+
+  const reviewClick = () => {
+    navigate("/Unit1-Level3-review");
+  };
+
+  const restartClick = () => {
+    window.location.reload();
   };
 
   const handleInputChange = (e, questionKey) => {
@@ -88,6 +228,21 @@ function Page11() {
     if (e.key === "Enter" || e.key === "Tab") {
       checkAnswer(questionKey);
     }
+  };
+
+  const fadeInButtons = () => {
+    const reviewButton = document.getElementById("reviewButton");
+    const restartButton = document.getElementById("restartButton");
+
+    // Make the button visible first, if it was hidden
+    reviewButton.style.display = "inline-block";
+    restartButton.style.display = "inline-block";
+
+    // Start the fade-in effect after a slight delay
+    setTimeout(() => {
+      reviewButton.classList.add("visible"); // Trigger the fade-in effect
+      restartButton.classList.add("visible");
+    }, 1000); // Delay before fading in (adjust the timing as needed)
   };
 
   const checkAnswer = (questionKey) => {
@@ -252,8 +407,6 @@ function Page11() {
     }
   };
 
-  const allCorrect = Object.values(correctAnswers).every(Boolean);
-
   // Timer logic
   useEffect(() => {
     let timer;
@@ -261,6 +414,7 @@ function Page11() {
       timer = setTimeout(() => setTimeLeft((prev) => prev - 1), 1000);
     } else if (timeLeft === 0) {
       setGameOver(true);
+      fadeInButtons();
     }
     return () => clearTimeout(timer);
   }, [timeLeft, timerStarted, allCorrect]);
@@ -296,7 +450,7 @@ function Page11() {
           color: "white",
         }}
       >
-        <p>[###########-] 11/12</p>
+        <p>[############-] 12/13</p>
       </div>
 
       <div
@@ -311,13 +465,15 @@ function Page11() {
 
       <div className="content">
         <p>
-          You have 60 seconds to complete the following minigame! <br />
+          You have 90 seconds to complete the following minigame! There are nine
+          questions in total.
+          <br />
         </p>
         {/* Display Timer */}
         <p>Time remaining: {timeLeft}s</p>
         {gameOver && (
-          <p className="fade-in" style={{ color: "red" }}>
-            Time's up! Try again.
+          <p className="fade-in">
+            Time's up! But, you've got this... try again.
           </p>
         )}
 
@@ -335,6 +491,7 @@ function Page11() {
                 onChange={(e) => handleInputChange(e, "question1")}
                 onKeyDown={(e) => handleKeyPress(e, "question1")}
                 disabled={correctAnswers.question1}
+                ref={inputRef1}
               />
             </div>
             <p className="fade-in unique-font">{responses.question1}</p>
@@ -343,7 +500,7 @@ function Page11() {
           {/* Question 2 */}
           {correctAnswers.question1 && (
             <div ref={questionRefs.question2}>
-              <p>List the contents of the current directory.</p>
+              <p>Display the contents of the current directory.</p>
               <div className="command-line">
                 <span className="directory-prompt">~ {">>"}</span>
                 <input
@@ -354,6 +511,7 @@ function Page11() {
                   onChange={(e) => handleInputChange(e, "question2")}
                   onKeyDown={(e) => handleKeyPress(e, "question2")}
                   disabled={correctAnswers.question2}
+                  ref={inputRef2}
                 />
               </div>
               <p className="fade-in unique-font">{responses.question2}</p>
@@ -377,6 +535,7 @@ function Page11() {
                   onChange={(e) => handleInputChange(e, "question3")}
                   onKeyDown={(e) => handleKeyPress(e, "question3")}
                   disabled={correctAnswers.question3}
+                  ref={inputRef3}
                 />
               </div>
               <p className="fade-in unique-font">{responses.question3}</p>
@@ -397,6 +556,7 @@ function Page11() {
                   onChange={(e) => handleInputChange(e, "question4")}
                   onKeyDown={(e) => handleKeyPress(e, "question4")}
                   disabled={correctAnswers.question4}
+                  ref={inputRef4}
                 />
               </div>
               <p className="fade-in unique-font">{responses.question4}</p>
@@ -417,6 +577,7 @@ function Page11() {
                   onChange={(e) => handleInputChange(e, "question5")}
                   onKeyDown={(e) => handleKeyPress(e, "question5")}
                   disabled={correctAnswers.question5}
+                  ref={inputRef5}
                 />
               </div>
               <p className="fade-in unique-font">{responses.question5}</p>
@@ -437,6 +598,7 @@ function Page11() {
                   onChange={(e) => handleInputChange(e, "question6")}
                   onKeyDown={(e) => handleKeyPress(e, "question6")}
                   disabled={correctAnswers.question6}
+                  ref={inputRef6}
                 />
               </div>
               <p className="fade-in unique-font">{responses.question6}</p>
@@ -447,7 +609,7 @@ function Page11() {
         {/* Question 7 */}
         {correctAnswers.question6 && (
           <div ref={questionRefs.question7}>
-            <p>List the contents of the current directory.</p>
+            <p>Display the contents of the current directory.</p>
             <div className="command-line">
               <span className="directory-prompt">sample {">>"}</span>
               <input
@@ -458,6 +620,7 @@ function Page11() {
                 onChange={(e) => handleInputChange(e, "question7")}
                 onKeyDown={(e) => handleKeyPress(e, "question7")}
                 disabled={correctAnswers.question7}
+                ref={inputRef7}
               />
             </div>
             <p className="fade-in unique-font">{responses.question7}</p>
@@ -478,6 +641,7 @@ function Page11() {
                 onChange={(e) => handleInputChange(e, "question8")}
                 onKeyDown={(e) => handleKeyPress(e, "question8")}
                 disabled={correctAnswers.question8}
+                ref={inputRef8}
               />
             </div>
             <p className="fade-in unique-font">{responses.question8}</p>
@@ -487,7 +651,7 @@ function Page11() {
         {/* Question 9 */}
         {correctAnswers.question8 && (
           <div ref={questionRefs.question9}>
-            <p>List the contents of the current directory.</p>
+            <p>Display the contents of the current directory.</p>
             <div className="command-line">
               <span className="directory-prompt">sample {">>"}</span>
               <input
@@ -498,6 +662,7 @@ function Page11() {
                 onChange={(e) => handleInputChange(e, "question9")}
                 onKeyDown={(e) => handleKeyPress(e, "question9")}
                 disabled={correctAnswers.question9}
+                ref={inputRef9}
               />
             </div>
             <p className="fade-in unique-font">{responses.question9}</p>
@@ -519,6 +684,32 @@ function Page11() {
           </button>
         )}
       </div>
+      <button
+        id="reviewButton"
+        className="review-button"
+        style={{
+          display: "none", // Initially hidden
+          position: "fixed", // Fix the position relative to the viewport
+          bottom: "100px", // 100px from the bottom
+          right: "40px",
+        }}
+        onClick={reviewClick} // Add a handler if needed
+      >
+        Review
+      </button>
+      <button
+        id="restartButton"
+        className="restart-button"
+        style={{
+          display: "none", // Initially hidden
+          position: "fixed", // Fix the position relative to the viewport
+          bottom: "40px", // 100px from the bottom
+          right: "40px",
+        }}
+        onClick={restartClick} // Add a handler if needed
+      >
+        Restart
+      </button>
     </div>
   );
 }

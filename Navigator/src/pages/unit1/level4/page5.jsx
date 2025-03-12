@@ -22,6 +22,47 @@ function Page5() {
     question2: useRef(null),
   };
 
+  // Refs for input elements
+  const inputRef1 = useRef(null);
+  const inputRef2 = useRef(null);
+
+  // Ref for continue button
+  const continueButtonRef = useRef(null);
+
+  // Initially focus the first input
+  useEffect(() => {
+    if (inputRef1.current) {
+      inputRef1.current.focus();
+    }
+  }, []);
+
+  // When question1 is answered correctly, scroll & focus question2
+  useEffect(() => {
+    if (correctAnswers.question1 && inputRef2.current) {
+      setTimeout(() => {
+        inputRef2.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef2.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question1]);
+
+  // When all answers are correct, scroll & focus the continue button
+  const allCorrect = Object.values(correctAnswers).every(Boolean);
+  useEffect(() => {
+    if (allCorrect && continueButtonRef.current) {
+      setTimeout(() => {
+        continueButtonRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        continueButtonRef.current.focus();
+      }, 150);
+    }
+  }, [allCorrect]);
+
   const handleNavigation = () => {
     navigate("/Unit1-Level4-page4");
   };
@@ -79,8 +120,6 @@ function Page5() {
     }
   };
 
-  const allCorrect = Object.values(correctAnswers).every(Boolean);
-
   useEffect(() => {
     if (correctAnswers.question1 && questionRefs.question2.current) {
       questionRefs.question2.current.scrollIntoView({
@@ -109,7 +148,7 @@ function Page5() {
           color: "white",
         }}
       >
-        <p>[#####------] 5/11</p>
+        <p>[#####-------] 5/12</p>
       </div>
 
       <div
@@ -131,25 +170,25 @@ function Page5() {
         <p>
           Concatenate!
           <br />
-          The <span class="highlight4">cat</span> command also has the -n flag.
+          The <span className="highlight4">cat</span> command also has the -n
+          flag. <b>Tip:</b> think of -n like “n” for numbers!
+          <br />
+          <br /> <span className="highlight4">-n</span> <br /> This flag shows
+          the line number for each line of text in a file. <br />
+          <br />
           Flags are included after the command and before any additional
-          arguments.
+          arguments. <br />
+          ex:{" "}
+          <span style={{ fontFamily: "Consolas", fontSize: "18px" }}>
+            cat -n filename.txt
+          </span>
           <br />
-          <br /> ex:
-          <br /> cat &emsp;-n&emsp; filename.txt
-          <br />
-          ^-^ ^--^ ^----------^
-          <br />
-          cmd flag &emsp;&emsp;argument(s)
-          <br />
-          <br /> -n <br /> This flag shows the line number for each line of text
-          in a file.
         </p>
 
         <>
           {/* Question 1 */}
           <div ref={questionRefs.question1}>
-            <p>List directory contents.</p>
+            <p>Display directory contents.</p>
             <div className="command-line">
               <span className="directory-prompt">~ {">>"}</span>
               <input
@@ -160,6 +199,7 @@ function Page5() {
                 onChange={(e) => handleInputChange(e, "question1")}
                 onKeyDown={(e) => handleKeyPress(e, "question1")}
                 disabled={correctAnswers.question1}
+                ref={inputRef1}
               />
             </div>
             <p className="fade-in unique-font">{responses.question1}</p>
@@ -182,6 +222,7 @@ function Page5() {
                     onChange={(e) => handleInputChange(e, "question2")}
                     onKeyDown={(e) => handleKeyPress(e, "question2")}
                     disabled={correctAnswers.question2}
+                    ref={inputRef2}
                   />
                 </div>
                 <p className="fade-in unique-font">
@@ -195,6 +236,7 @@ function Page5() {
         {/* Continue button */}
         {allCorrect && (
           <button
+            ref={continueButtonRef}
             className="navigate-button fade-in"
             onClick={handleNavigation2}
             style={{

@@ -16,7 +16,7 @@ function Page12() {
   return (
     <div className="gradient_background3">
       <button
-        className="navigate-button"
+        className="back-button"
         onClick={handleNavigation}
         style={{ border: "2px solid white" }}
       >
@@ -32,7 +32,7 @@ function Page12() {
           color: "white",
         }}
       >
-        <p>[############] 12/12</p>
+        <p>[#############] 13/13</p>
       </div>
 
       <div className="content">
@@ -45,6 +45,7 @@ function Page12() {
           <br /> mv
           <br /> cp
           <br /> rm
+          <br /> rmdir
         </p>
         <p>You are now prepared to start level 4!</p>
         <button

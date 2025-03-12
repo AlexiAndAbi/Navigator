@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 function Page8() {
   const navigate = useNavigate();
-  const [currentDirectory, setCurrentDirectory] = useState("home"); // Track the directory
+  const [currentDirectory, setCurrentDirectory] = useState("home");
   const [imageSrc, setImageSrc] = useState(
     "/Navigator/unit1filetrees/FileTree1.png"
-  ); // Track the image
+  );
 
   const updateImage = (newDirectory) => {
     if (newDirectory === "directory1") {
@@ -39,169 +39,142 @@ function Page8() {
     question5: false,
   });
 
-  // Refs for scrolling
-  const questionRefs = {
-    question1: useRef(null),
-    question2: useRef(null),
-    question3: useRef(null),
-    question4: useRef(null),
-    question5: useRef(null),
-  };
+  // Refs for input elements
+  const inputRef1 = useRef(null);
+  const inputRef2 = useRef(null);
+  const inputRef3 = useRef(null);
+  const inputRef4 = useRef(null);
+  const inputRef5 = useRef(null);
 
-  const handleNavigation = () => {
-    navigate("/Unit1-Level1-page7");
-  };
+  // Ref for continue button
+  const continueButtonRef = useRef(null);
 
-  const handleNavigation2 = () => {
-    navigate("/Unit1-Level1-page9");
-  };
+  // Acceptable answers arrays
+  const acceptableAnswersQ1 = ["ls"];
+  const acceptableAnswersQ2 = ["cd directory1"];
+  const acceptableAnswersQ3 = ["ls"];
+  const acceptableAnswersQ4 = ["cd ..", "cd ~"];
+  const acceptableAnswersQ5 = ["y", "yes"];
+
+  useEffect(() => {
+    if (inputRef1.current) {
+      inputRef1.current.focus();
+    }
+  }, []);
+
+  // When question 1 is answered correctly, scroll & focus question 2
+  useEffect(() => {
+    if (correctAnswers.question1 && inputRef2.current) {
+      inputRef2.current.scrollIntoView({ block: "center" });
+      inputRef2.current.focus();
+    }
+  }, [correctAnswers.question1]);
+
+  // When question 2 is answered correctly, scroll & focus question 3
+  useEffect(() => {
+    if (correctAnswers.question2 && inputRef3.current) {
+      inputRef3.current.scrollIntoView({ block: "center" });
+      inputRef3.current.focus();
+    }
+  }, [correctAnswers.question2]);
+
+  // When question 3 is answered correctly, scroll & focus question 4
+  useEffect(() => {
+    if (correctAnswers.question3 && inputRef4.current) {
+      inputRef4.current.scrollIntoView({ block: "center" });
+      inputRef4.current.focus();
+    }
+  }, [correctAnswers.question3]);
+
+  // When question 4 is answered correctly, scroll & focus question 5
+  useEffect(() => {
+    if (correctAnswers.question4 && inputRef5.current) {
+      inputRef5.current.scrollIntoView({ block: "center" });
+      inputRef5.current.focus();
+    }
+  }, [correctAnswers.question4]);
+
+  // When all questions are answered, scroll to & focus the continue button
+  const allCorrect = Object.values(correctAnswers).every(Boolean);
+  useEffect(() => {
+    if (allCorrect && continueButtonRef.current) {
+      continueButtonRef.current.scrollIntoView({ block: "center" });
+      continueButtonRef.current.focus();
+    }
+  }, [allCorrect]);
 
   const handleInputChange = (e, questionKey) => {
     setAnswers({ ...answers, [questionKey]: e.target.value });
   };
 
-  const handleKeyPress = (e, questionKey) => {
+  const handleKeyPress = (e, questionKey, acceptableAnswers) => {
     if (e.key === "Enter" || e.key === "Tab") {
-      checkAnswer(questionKey);
+      e.preventDefault();
+      checkAnswer(questionKey, acceptableAnswers);
     }
   };
 
-  const checkAnswer = (questionKey) => {
+  // checkAnswer now only updates state; scrolling is handled by useEffect hooks
+  const checkAnswer = (questionKey, acceptableAnswers) => {
     const userInput = answers[questionKey].toLowerCase().trim();
+    let isCorrect = false;
+    let responseMessage = "";
 
     if (questionKey === "question1") {
       if (userInput === "ls") {
-        setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
-        setResponses({
-          ...responses,
-          [questionKey]: "directory1  file1.txt  file2.txt",
-        });
+        isCorrect = true;
+        responseMessage = "directory1  file1.txt  file2.txt";
       } else {
-        setAnswers({ ...answers, [questionKey]: "" });
-        setResponses({
-          ...responses,
-          [questionKey]: `command not found: ${userInput}`,
-        });
+        responseMessage = `command not found: ${userInput}`;
       }
-      return;
-    }
-
-    if (questionKey === "question2") {
+    } else if (questionKey === "question2") {
       if (userInput === "cd directory1") {
+        isCorrect = true;
         setCurrentDirectory("directory1");
         updateImage("directory1");
-        setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
-        setResponses({
-          ...responses,
-          [questionKey]: "",
-        });
+        responseMessage = "";
       } else if (userInput === "cd [directory1]") {
-        setAnswers({ ...answers, [questionKey]: "" });
-        setResponses({
-          ...responses,
-          [questionKey]: "Remove the brackets and you will be correct!",
-        });
-      } else {
-        setAnswers({ ...answers, [questionKey]: "" });
-        setResponses({
-          ...responses,
-          [questionKey]: "",
-        });
+        responseMessage = "Remove the brackets and you will be correct!";
       }
-      return;
-    }
-
-    if (questionKey === "question3") {
+    } else if (questionKey === "question3") {
       if (userInput === "ls") {
-        setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
-        setResponses({
-          ...responses,
-          [questionKey]: "file3.txt  file4.txt  directory3",
-        });
+        isCorrect = true;
+        responseMessage = "file3.txt  file4.txt  directory2";
       } else {
-        setAnswers({ ...answers, [questionKey]: "" });
-        setResponses({
-          ...responses,
-          [questionKey]: `command not found: ${userInput}`,
-        });
+        responseMessage = `command not found: ${userInput}`;
       }
-      return;
-    }
-
-    if (questionKey === "question4") {
+    } else if (questionKey === "question4") {
       if (userInput === "cd .." || userInput === "cd ~") {
+        isCorrect = true;
         setCurrentDirectory("home");
         updateImage("home");
-        setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
-        setResponses({
-          ...responses,
-          [questionKey]: "",
-        });
-      } else {
-        setAnswers({ ...answers, [questionKey]: "" });
-        setResponses({
-          ...responses,
-          [questionKey]: "",
-        });
+        responseMessage = "";
       }
-      return;
+    } else if (questionKey === "question5") {
+      if (userInput === "y" || userInput === "yes") {
+        isCorrect = true;
+        responseMessage = "";
+      }
     }
 
-    if (questionKey === "question5") {
-      if (userInput === "y" || userInput === "yes") {
-        setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
-        setResponses({
-          ...responses,
-          [questionKey]: "",
-        });
-      } else {
-        setAnswers({ ...answers, [questionKey]: "" });
-        setResponses({
-          ...responses,
-          [questionKey]: "",
-        });
-      }
-      return;
+    if (isCorrect) {
+      setCorrectAnswers((prev) => ({ ...prev, [questionKey]: true }));
+      setResponses((prev) => ({ ...prev, [questionKey]: responseMessage }));
+    } else {
+      setAnswers((prev) => ({ ...prev, [questionKey]: "" }));
+      setResponses((prev) => ({ ...prev, [questionKey]: responseMessage }));
     }
   };
-
-  const allCorrect = Object.values(correctAnswers).every(Boolean);
-
-  // Scroll to the next question when it's visible
-  useEffect(() => {
-    if (correctAnswers.question1 && questionRefs.question2.current) {
-      questionRefs.question2.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    } else if (correctAnswers.question2 && questionRefs.question3.current) {
-      questionRefs.question3.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    } else if (correctAnswers.question3 && questionRefs.question4.current) {
-      questionRefs.question4.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    } else if (correctAnswers.question4 && questionRefs.question5.current) {
-      questionRefs.question5.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  }, [correctAnswers]);
 
   return (
     <div className="gradient_background1">
       <button
         className="back-button"
-        onClick={handleNavigation}
+        onClick={() => navigate("/Unit1-Level1-page7")}
         style={{ border: "2px solid white" }}
       >
         back
       </button>
-
       <div
         style={{
           position: "fixed",
@@ -211,37 +184,45 @@ function Page8() {
           color: "white",
         }}
       >
-        <p>[########---] 8/11</p>
+        <p>[########----] 8/12</p>
       </div>
-
-      <div
-        style={{
-          position: "fixed",
-          top: "85px",
-          right: "125px",
-        }}
-      >
+      <div style={{ position: "fixed", top: "85px", right: "125px" }}>
         <img src={imageSrc} alt="Progress Icon" width="300" height="300" />
       </div>
-
       <div className="content">
         <p>
-          Change Directory! <br /> Abbreviated <span class="highlight">cd</span>
-          , this command helps you move between directories. <br />
+          Change Directory! <br />
+          Abbreviated <span className="highlight">cd</span>, this command helps
+          you move between directories.
+          <br />
           <br />
           If you want to move into a directory within the current directory you
-          can type: <br /> cd [directory name] &emsp;&emsp; (ex: cd directory1)
+          can type:
+          <br />{" "}
+          <span style={{ fontFamily: "Consolas", fontSize: "18px" }}>
+            cd [directory name]&emsp;&emsp;&emsp;&emsp;(ex: cd directory1)
+          </span>
           <br />
           To move back to the directory outside of the current directory you can
-          type: <br /> cd ..
+          type:
+          <br />{" "}
+          <span style={{ fontFamily: "Consolas", fontSize: "18px" }}>
+            cd ..
+          </span>
           <br />
           To move back to the home directory from anywhere in the file system
-          you can type: <br /> cd ~
+          you can type:
+          <br />{" "}
+          <span style={{ fontFamily: "Consolas", fontSize: "18px" }}>cd ~</span>
+          <br /> <br /> Note: These learning pages are a tightly controlled
+          environment. The commands that are accepted are those that are
+          expected to answer the question. But fear not, there will be many
+          oportunities to explore a more realistic command line later!
         </p>
 
         {/* Question 1 */}
-        <div ref={questionRefs.question1}>
-          <p>List the contents of the current directory.</p>
+        <div>
+          <p>Display the contents of the current directory.</p>
           <div className="command-line">
             <span className="directory-prompt">~ {">>"}</span>
             <input
@@ -250,106 +231,114 @@ function Page8() {
               className="input-box"
               value={answers.question1}
               onChange={(e) => handleInputChange(e, "question1")}
-              onKeyDown={(e) => handleKeyPress(e, "question1")}
+              onKeyDown={(e) =>
+                handleKeyPress(e, "question1", acceptableAnswersQ1)
+              }
               disabled={correctAnswers.question1}
+              ref={inputRef1}
             />
           </div>
           <p className="fade-in unique-font">{responses.question1}</p>
         </div>
 
         {/* Question 2 */}
-        <div ref={questionRefs.question2}>
-          {correctAnswers.question1 && (
-            <>
-              <p>Move into the subdirectory.</p>
-              <div className="command-line">
-                <span className="directory-prompt">~ {">>"}</span>
-                <input
-                  type="text"
-                  style={{ fontSize: "20px", color: "white" }}
-                  className="input-box"
-                  value={answers.question2}
-                  onChange={(e) => handleInputChange(e, "question2")}
-                  onKeyDown={(e) => handleKeyPress(e, "question2")}
-                  disabled={correctAnswers.question2}
-                />
-              </div>
-              <p className="fade-in unique-font">{responses.question2}</p>
-            </>
-          )}
-        </div>
+        {correctAnswers.question1 && (
+          <div>
+            <p>Move into the subdirectory.</p>
+            <div className="command-line">
+              <span className="directory-prompt">~ {">>"}</span>
+              <input
+                type="text"
+                style={{ fontSize: "20px", color: "white" }}
+                className="input-box"
+                value={answers.question2}
+                onChange={(e) => handleInputChange(e, "question2")}
+                onKeyDown={(e) =>
+                  handleKeyPress(e, "question2", acceptableAnswersQ2)
+                }
+                disabled={correctAnswers.question2}
+                ref={inputRef2}
+              />
+            </div>
+            <p className="fade-in unique-font">{responses.question2}</p>
+          </div>
+        )}
 
         {/* Question 3 */}
-        <div ref={questionRefs.question3}>
-          {correctAnswers.question2 && (
-            <>
-              <p>List the contents of the current directory.</p>
-              <div className="command-line">
-                <span className="directory-prompt">directory1 {">>"}</span>
-                <input
-                  type="text"
-                  style={{ fontSize: "20px", color: "white" }}
-                  className="input-box"
-                  value={answers.question3}
-                  onChange={(e) => handleInputChange(e, "question3")}
-                  onKeyDown={(e) => handleKeyPress(e, "question3")}
-                  disabled={correctAnswers.question3}
-                />
-              </div>
-              <p className="fade-in unique-font">{responses.question3}</p>
-            </>
-          )}
-        </div>
+        {correctAnswers.question2 && (
+          <div>
+            <p>Display the contents of the current directory.</p>
+            <div className="command-line">
+              <span className="directory-prompt">directory1 {">>"}</span>
+              <input
+                type="text"
+                style={{ fontSize: "20px", color: "white" }}
+                className="input-box"
+                value={answers.question3}
+                onChange={(e) => handleInputChange(e, "question3")}
+                onKeyDown={(e) =>
+                  handleKeyPress(e, "question3", acceptableAnswersQ3)
+                }
+                disabled={correctAnswers.question3}
+                ref={inputRef3}
+              />
+            </div>
+            <p className="fade-in unique-font">{responses.question3}</p>
+          </div>
+        )}
 
         {/* Question 4 */}
-        <div ref={questionRefs.question4}>
-          {correctAnswers.question3 && (
-            <>
-              <p>Return to the home directory.</p>
-              <div className="command-line">
-                <span className="directory-prompt">directory1 {">>"}</span>
-                <input
-                  type="text"
-                  style={{ fontSize: "20px", color: "white" }}
-                  className="input-box"
-                  value={answers.question4}
-                  onChange={(e) => handleInputChange(e, "question4")}
-                  onKeyDown={(e) => handleKeyPress(e, "question4")}
-                  disabled={correctAnswers.question4}
-                />
-              </div>
-              <p className="fade-in unique-font">{responses.question4}</p>
-            </>
-          )}
-        </div>
+        {correctAnswers.question3 && (
+          <div>
+            <p>Return to the home directory.</p>
+            <div className="command-line">
+              <span className="directory-prompt">directory1 {">>"}</span>
+              <input
+                type="text"
+                style={{ fontSize: "20px", color: "white" }}
+                className="input-box"
+                value={answers.question4}
+                onChange={(e) => handleInputChange(e, "question4")}
+                onKeyDown={(e) =>
+                  handleKeyPress(e, "question4", acceptableAnswersQ4)
+                }
+                disabled={correctAnswers.question4}
+                ref={inputRef4}
+              />
+            </div>
+            <p className="fade-in unique-font">{responses.question4}</p>
+          </div>
+        )}
 
         {/* Question 5 */}
-        <div ref={questionRefs.question5}>
-          {correctAnswers.question4 && (
-            <>
-              <p>Are you ready to learn the last command of this level?</p>
-              <div className="command-line">
-                <span className="directory-prompt">??</span>
-                <input
-                  type="text"
-                  style={{ fontSize: "20px", color: "white" }}
-                  className="input-box"
-                  value={answers.question5}
-                  onChange={(e) => handleInputChange(e, "question5")}
-                  onKeyDown={(e) => handleKeyPress(e, "question5")}
-                  disabled={correctAnswers.question5}
-                />
-              </div>
-              <p className="fade-in unique-font">{responses.question5}</p>
-            </>
-          )}
-        </div>
+        {correctAnswers.question4 && (
+          <div>
+            <p>Are you ready to learn the last command of this level?</p>
+            <div className="command-line">
+              <span className="directory-prompt">??</span>
+              <input
+                type="text"
+                style={{ fontSize: "20px", color: "white" }}
+                className="input-box"
+                value={answers.question5}
+                onChange={(e) => handleInputChange(e, "question5")}
+                onKeyDown={(e) =>
+                  handleKeyPress(e, "question5", acceptableAnswersQ5)
+                }
+                disabled={correctAnswers.question5}
+                ref={inputRef5}
+              />
+            </div>
+            <p className="fade-in unique-font">{responses.question5}</p>
+          </div>
+        )}
 
         {/* Continue button */}
         {allCorrect && (
           <button
+            ref={continueButtonRef}
             className="navigate-button fade-in"
-            onClick={handleNavigation2}
+            onClick={() => navigate("/Unit1-Level1-page9")}
             style={{
               border: "2px solid white",
               marginTop: "20px",

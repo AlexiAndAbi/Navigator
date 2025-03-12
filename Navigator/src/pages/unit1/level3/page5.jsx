@@ -5,7 +5,9 @@ import { useNavigate } from "react-router-dom";
 function Page5() {
   const navigate = useNavigate();
   const [currentDirectory, setCurrentDirectory] = useState("home"); // Track the directory
-  const [imageSrc, setImageSrc] = useState("/Navigator/unit1filetrees/FileTree16.png"); // Track the image
+  const [imageSrc, setImageSrc] = useState(
+    "/Navigator/unit1filetrees/FileTree16.png"
+  ); // Track the image
 
   const updateImage = (newDirectory) => {
     if (newDirectory === "moveDown") {
@@ -40,6 +42,75 @@ function Page5() {
     question3: useRef(null),
     question4: useRef(null),
   };
+
+  // Refs for input elements
+  const inputRef1 = useRef(null);
+  const inputRef2 = useRef(null);
+  const inputRef3 = useRef(null);
+  const inputRef4 = useRef(null);
+
+  // Ref for continue button
+  const continueButtonRef = useRef(null);
+
+  // Initially focus the first input
+  useEffect(() => {
+    if (inputRef1.current) {
+      inputRef1.current.focus();
+    }
+  }, []);
+
+  // When question1 is answered correctly, scroll & focus question2
+  useEffect(() => {
+    if (correctAnswers.question1 && inputRef2.current) {
+      setTimeout(() => {
+        inputRef2.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef2.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question1]);
+
+  // When question2 is answered correctly, scroll & focus question3
+  useEffect(() => {
+    if (correctAnswers.question2 && inputRef3.current) {
+      setTimeout(() => {
+        inputRef3.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef3.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question2]);
+
+  // When question3 is answered correctly, scroll & focus question4
+  useEffect(() => {
+    if (correctAnswers.question3 && inputRef4.current) {
+      setTimeout(() => {
+        inputRef4.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef4.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question3]);
+
+  // When all answers are correct, scroll & focus the continue button
+  const allCorrect = Object.values(correctAnswers).every(Boolean);
+  useEffect(() => {
+    if (allCorrect && continueButtonRef.current) {
+      setTimeout(() => {
+        continueButtonRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        continueButtonRef.current.focus();
+      }, 150);
+    }
+  }, [allCorrect]);
 
   const handleNavigation = () => {
     navigate("/Unit1-Level3-page4");
@@ -130,8 +201,6 @@ function Page5() {
     }
   };
 
-  const allCorrect = Object.values(correctAnswers).every(Boolean);
-
   useEffect(() => {
     if (correctAnswers.question1 && questionRefs.question2.current) {
       questionRefs.question2.current.scrollIntoView({
@@ -170,7 +239,7 @@ function Page5() {
           color: "white",
         }}
       >
-        <p>[#####-------] 5/12</p>
+        <p>[#####--------] 5/13</p>
       </div>
 
       <div
@@ -185,12 +254,13 @@ function Page5() {
 
       <div className="content">
         <p>
-          Return working directory name! <br /> Abbreviated <span class="highlight3">pwd</span>, this command
-          displays the absolute path to the current directory the user is
-          viewing.
+          Return working directory name! <br /> Abbreviated{" "}
+          <span class="highlight3">pwd</span>, this command displays the
+          absolute path to the current directory the user is viewing.
           <br />
           <br />
-          To show the absolute path you can type: <br /> pwd <br />
+          To show the absolute path you can type: <br />
+          <span style={{ fontFamily: "Consolas", fontSize: "18px" }}>pwd</span>
         </p>
 
         <>
@@ -207,6 +277,7 @@ function Page5() {
                 onChange={(e) => handleInputChange(e, "question1")}
                 onKeyDown={(e) => handleKeyPress(e, "question1")}
                 disabled={correctAnswers.question1}
+                ref={inputRef1}
               />
             </div>
             <p className="fade-in unique-font">{responses.question1}</p>
@@ -227,6 +298,7 @@ function Page5() {
                     onChange={(e) => handleInputChange(e, "question2")}
                     onKeyDown={(e) => handleKeyPress(e, "question2")}
                     disabled={correctAnswers.question2}
+                    ref={inputRef2}
                   />
                 </div>
                 <p className="fade-in unique-font">{responses.question2}</p>
@@ -249,6 +321,7 @@ function Page5() {
                     onChange={(e) => handleInputChange(e, "question3")}
                     onKeyDown={(e) => handleKeyPress(e, "question3")}
                     disabled={correctAnswers.question3}
+                    ref={inputRef3}
                   />
                 </div>
                 <p className="fade-in unique-font">{responses.question3}</p>
@@ -271,6 +344,7 @@ function Page5() {
                     onChange={(e) => handleInputChange(e, "question4")}
                     onKeyDown={(e) => handleKeyPress(e, "question4")}
                     disabled={correctAnswers.question4}
+                    ref={inputRef4}
                   />
                 </div>
                 <p className="fade-in unique-font">{responses.question4}</p>
@@ -282,16 +356,17 @@ function Page5() {
         {/* Continue button */}
         {allCorrect && (
           <button
-          className="navigate-button fade-in"
-          onClick={handleNavigation2}
-          style={{
-            border: "2px solid white",
-            marginTop: "20px",
-            marginBottom: "40px",
-          }}
-        >
-          continue
-        </button>
+            ref={continueButtonRef}
+            className="navigate-button fade-in"
+            onClick={handleNavigation2}
+            style={{
+              border: "2px solid white",
+              marginTop: "20px",
+              marginBottom: "40px",
+            }}
+          >
+            continue
+          </button>
         )}
       </div>
     </div>

@@ -6,7 +6,7 @@ function Page11() {
   const navigate = useNavigate();
 
   const handleNavigation = () => {
-    navigate("/Unit1-Level1-page9");
+    navigate("/Unit1-Level1-page10");
   };
 
   const handleNavigation2 = () => {
@@ -32,7 +32,7 @@ function Page11() {
           color: "white",
         }}
       >
-        <p>[###########] 11/11</p>
+        <p>[############] 12/12</p>
       </div>
 
       <div className="content">
@@ -43,7 +43,7 @@ function Page11() {
         <p>
           ls
           <br /> cd (cd .. and cd ~)
-          <br /> clear
+          <br /> clear (ctrl + l)
         </p>
         <p>You are now prepared to start level 2!</p>
         <button

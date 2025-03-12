@@ -5,7 +5,9 @@ import { useNavigate } from "react-router-dom";
 function Page9() {
   const navigate = useNavigate();
   const [isToggled, setIsToggled] = useState(false);
-  const [imageSrc, setImageSrc] = useState("/Navigator/unit1filetrees/FileTree38.png"); // Track the image
+  const [imageSrc, setImageSrc] = useState(
+    "/Navigator/unit1filetrees/FileTree38.png"
+  ); // Track the image
 
   const updateImage = (imageTag) => {
     if (imageTag === "change") {
@@ -43,6 +45,45 @@ function Page9() {
   };
 
   const continueButtonRef = useRef(null);
+  // Refs for input elements
+  const inputRef1 = useRef(null);
+  const inputRef2 = useRef(null);
+  const inputRef3 = useRef(null);
+
+  // Ref for continue button
+
+  // Initially focus the first input
+  useEffect(() => {
+    if (inputRef1.current) {
+      inputRef1.current.focus();
+    }
+  }, []);
+
+  // When question1 is answered correctly, scroll & focus question2
+  useEffect(() => {
+    if (correctAnswers.question1 && inputRef2.current) {
+      setTimeout(() => {
+        inputRef2.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef2.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question1]);
+
+  // When question2 is answered correctly, scroll & focus question3
+  useEffect(() => {
+    if (correctAnswers.question2 && inputRef3.current) {
+      setTimeout(() => {
+        inputRef3.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef3.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question2]);
 
   useEffect(() => {
     if (isToggled && continueButtonRef.current) {
@@ -58,7 +99,7 @@ function Page9() {
   };
 
   const handleNavigation2 = () => {
-    navigate("/Unit1-Level4-page10");
+    navigate("/Unit1-Level4-review");
   };
 
   const handleInputChange = (e, questionKey) => {
@@ -79,7 +120,7 @@ function Page9() {
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
           ...responses,
-          [questionKey]: "sub two.txt",
+          [questionKey]: "newDirectory file.txt",
         });
       } else {
         setAnswers({ ...answers, [questionKey]: "" });
@@ -92,7 +133,10 @@ function Page9() {
     }
 
     if (questionKey === "question2") {
-      if (userInput === "rm -r sub" || userInput === "rm -R sub") {
+      if (
+        userInput === "rm -r newDirectory" ||
+        userInput === "rm -R newDirectory"
+      ) {
         updateImage("change");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
         setResponses({
@@ -110,7 +154,7 @@ function Page9() {
     }
 
     if (questionKey === "question3") {
-      if (userInput === "rm -i two.txt") {
+      if (userInput === "rm -i file.txt") {
         setShowPrompt(true);
         setTimeout(() => questionRefs.overwrite.current?.focus(), 100);
       } else {
@@ -137,7 +181,7 @@ function Page9() {
       }
       setResponses({
         ...responses,
-        question3: `remove two.txt? ${overwriteResponse}\n${responseText}`,
+        question3: `remove file.txt? ${overwriteResponse}\n${responseText}`,
       });
       setIsToggled((prev) => {
         return !prev;
@@ -146,8 +190,6 @@ function Page9() {
       setOverwriteResponse("");
     }
   };
-
-  const allCorrect = Object.values(correctAnswers).every(Boolean);
 
   useEffect(() => {
     if (correctAnswers.question1 && questionRefs.question2.current) {
@@ -183,7 +225,7 @@ function Page9() {
           color: "white",
         }}
       >
-        <p>[#########--] 9/11</p>
+        <p>[#########---] 9/12</p>
       </div>
 
       <div
@@ -203,18 +245,18 @@ function Page9() {
           The <span className="highlight4">rm</span> command can be modified
           with the -r and -i flags.
           <br />
-          <br /> -r <br />
+          <br /> <span className="highlight4">-r</span> <br />
           The -r flag removes files recursively in a directory. This flag
           enables us to remove directories that are not empty because all of the
           files inside them are removed as well. (-R is equivalent.)
           <br />
-          <br /> -i <br />
-          The -i flag, standing for interactive, prompts the user before
+          <br /> <span className="highlight4">-i</span> <br />
+          The -i flag, standing for <b>interactive</b>, prompts the user before
           removing files.
         </p>
 
         <div ref={questionRefs.question1}>
-          <p>List directory contents.</p>
+          <p>Display directory contents.</p>
           <div className="command-line">
             <span className="directory-prompt">~ {">>"}</span>
             <input
@@ -225,6 +267,7 @@ function Page9() {
               onChange={(e) => handleInputChange(e, "question1")}
               onKeyDown={(e) => handleKeyPress(e, "question1")}
               disabled={correctAnswers.question1}
+              ref={inputRef1}
             />
           </div>
           <p className="fade-in unique-font">{responses.question1}</p>
@@ -243,6 +286,7 @@ function Page9() {
                 onChange={(e) => handleInputChange(e, "question2")}
                 onKeyDown={(e) => handleKeyPress(e, "question2")}
                 disabled={correctAnswers.question2}
+                ref={inputRef2}
               />
             </div>
             <p className="fade-in unique-font">{responses.question2}</p>
@@ -262,6 +306,7 @@ function Page9() {
                 onChange={(e) => handleInputChange(e, "question3")}
                 onKeyDown={(e) => handleKeyPress(e, "question3")}
                 disabled={correctAnswers.question3 || showPrompt}
+                ref={inputRef3}
               />
             </div>
             <p className="fade-in unique-font">
@@ -269,7 +314,9 @@ function Page9() {
             </p>
             {showPrompt && (
               <p className="inline-p">
-                remove two.txt
+                <span style={{ fontFamily: "Consolas", fontSize: "20px" }}>
+                  remove file.txt? (y/n)
+                </span>
                 <input
                   ref={questionRefs.overwrite}
                   type="text"

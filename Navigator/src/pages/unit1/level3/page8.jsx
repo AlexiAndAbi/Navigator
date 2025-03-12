@@ -5,7 +5,9 @@ import { useNavigate } from "react-router-dom";
 function Page8() {
   const navigate = useNavigate();
   const [currentDirectory, setCurrentDirectory] = useState("home"); // Track the directory
-  const [imageSrc, setImageSrc] = useState("/Navigator/unit1filetrees/FileTree22.png"); // Track the image
+  const [imageSrc, setImageSrc] = useState(
+    "/Navigator/unit1filetrees/FileTree22.png"
+  ); // Track the image
 
   const updateImage = (newDirectory) => {
     if (newDirectory === "copy") {
@@ -47,6 +49,89 @@ function Page8() {
     question5: useRef(null),
   };
 
+  // Refs for input elements
+  const inputRef1 = useRef(null);
+  const inputRef2 = useRef(null);
+  const inputRef3 = useRef(null);
+  const inputRef4 = useRef(null);
+  const inputRef5 = useRef(null);
+
+  // Ref for continue button
+  const continueButtonRef = useRef(null);
+
+  // Initially focus the first input
+  useEffect(() => {
+    if (inputRef1.current) {
+      inputRef1.current.focus();
+    }
+  }, []);
+
+  // When question1 is answered correctly, scroll & focus question2
+  useEffect(() => {
+    if (correctAnswers.question1 && inputRef2.current) {
+      setTimeout(() => {
+        inputRef2.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef2.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question1]);
+
+  // When question2 is answered correctly, scroll & focus question3
+  useEffect(() => {
+    if (correctAnswers.question2 && inputRef3.current) {
+      setTimeout(() => {
+        inputRef3.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef3.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question2]);
+
+  // When question3 is answered correctly, scroll & focus question4
+  useEffect(() => {
+    if (correctAnswers.question3 && inputRef4.current) {
+      setTimeout(() => {
+        inputRef4.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef4.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question3]);
+
+  // When question4 is answered correctly, scroll & focus question5
+  useEffect(() => {
+    if (correctAnswers.question4 && inputRef5.current) {
+      setTimeout(() => {
+        inputRef5.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        inputRef5.current.focus();
+      }, 150);
+    }
+  }, [correctAnswers.question4]);
+
+  // When all answers are correct, scroll & focus the continue button
+  const allCorrect = Object.values(correctAnswers).every(Boolean);
+  useEffect(() => {
+    if (allCorrect && continueButtonRef.current) {
+      setTimeout(() => {
+        continueButtonRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        continueButtonRef.current.focus();
+      }, 150);
+    }
+  }, [allCorrect]);
+
   const handleNavigation = () => {
     navigate("/Unit1-Level3-page7");
   };
@@ -86,7 +171,10 @@ function Page8() {
     }
 
     if (questionKey === "question2") {
-      if (userInput === "cp a.txt b.txt ./sample" || userInput === "cp b.txt a.txt ./sample") {
+      if (
+        userInput === "cp a.txt b.txt ./sample" ||
+        userInput === "cp b.txt a.txt ./sample"
+      ) {
         setCurrentDirectory("copy");
         updateImage("copy");
         setCorrectAnswers({ ...correctAnswers, [questionKey]: true });
@@ -155,8 +243,6 @@ function Page8() {
     }
   };
 
-  const allCorrect = Object.values(correctAnswers).every(Boolean);
-
   useEffect(() => {
     if (correctAnswers.question1 && questionRefs.question2.current) {
       questionRefs.question2.current.scrollIntoView({
@@ -200,7 +286,7 @@ function Page8() {
           color: "white",
         }}
       >
-        <p>[########----] 8/12</p>
+        <p>[########-----] 8/13</p>
       </div>
 
       <div
@@ -215,28 +301,35 @@ function Page8() {
 
       <div className="content">
         <p>
-          Copy files! <br /> Abbreviated <span class="highlight3">cp</span>, this command copies files within
-          and between directories.
+          Copy files! <br /> Abbreviated <span class="highlight3">cp</span>,
+          this command copies files within and between directories.
           <br />
           <br />
           To copy a file within the current directory and give it a new name,
           type:
-          <br /> cp [file] [new file name] &emsp;&emsp;&emsp;&emsp; (ex: cp
-          a.txt b.txt)
+          <span style={{ fontFamily: "Consolas", fontSize: "18px" }}>
+            <br /> cp [file] [new file name] &emsp;&emsp;&emsp;&emsp; (ex: cp
+            a.txt b.txt)
+          </span>
           <br />
           <br />
           To copy a file to a different directory type:
-          <br /> cp [file] [destination] &emsp;&emsp;&emsp;&emsp; (ex: cp
-          a.txt /User/username/sample/group1)
+          <span style={{ fontFamily: "Consolas", fontSize: "18px" }}>
+            <br /> cp [file] [destination] &emsp;&emsp;&emsp;&emsp; (ex: cp
+            a.txt /User/username/sample/group1)
+          </span>
           <br />
           <br />
           To copy multiple files to a different directory type:
-          <br /> cp [file0] [file1] [destination] &emsp;&emsp;&emsp;&emsp; (ex: cp
-          a.txt b.txt ./group1)
+          <span style={{ fontFamily: "Consolas", fontSize: "18px" }}>
+            <br /> cp [file0] [file1] [destination] &emsp;&emsp;&emsp;&emsp;
+            (ex: cp a.txt b.txt ./group1)
+          </span>
           <br />
         </p>
         <p>
-        For the destination, you can use either the relative or fixed path of that directory. 
+          For the destination, you can use either the relative or absolute path
+          of that directory.
         </p>
 
         <>
@@ -253,6 +346,7 @@ function Page8() {
                 onChange={(e) => handleInputChange(e, "question1")}
                 onKeyDown={(e) => handleKeyPress(e, "question1")}
                 disabled={correctAnswers.question1}
+                ref={inputRef1}
               />
             </div>
             <p className="fade-in unique-font">{responses.question1}</p>
@@ -276,6 +370,7 @@ function Page8() {
                     onChange={(e) => handleInputChange(e, "question2")}
                     onKeyDown={(e) => handleKeyPress(e, "question2")}
                     disabled={correctAnswers.question2}
+                    ref={inputRef2}
                   />
                 </div>
                 <p className="fade-in unique-font">{responses.question2}</p>
@@ -298,6 +393,7 @@ function Page8() {
                     onChange={(e) => handleInputChange(e, "question3")}
                     onKeyDown={(e) => handleKeyPress(e, "question3")}
                     disabled={correctAnswers.question3}
+                    ref={inputRef3}
                   />
                 </div>
                 <p className="fade-in unique-font">{responses.question3}</p>
@@ -320,6 +416,7 @@ function Page8() {
                     onChange={(e) => handleInputChange(e, "question4")}
                     onKeyDown={(e) => handleKeyPress(e, "question4")}
                     disabled={correctAnswers.question4}
+                    ref={inputRef4}
                   />
                 </div>
                 <p className="fade-in unique-font">{responses.question4}</p>
@@ -342,6 +439,7 @@ function Page8() {
                     onChange={(e) => handleInputChange(e, "question5")}
                     onKeyDown={(e) => handleKeyPress(e, "question5")}
                     disabled={correctAnswers.question5}
+                    ref={inputRef5}
                   />
                 </div>
                 <p className="fade-in unique-font">{responses.question5}</p>
@@ -353,16 +451,17 @@ function Page8() {
         {/* Continue button */}
         {allCorrect && (
           <button
-          className="navigate-button fade-in"
-          onClick={handleNavigation2}
-          style={{
-            border: "2px solid white",
-            marginTop: "20px",
-            marginBottom: "40px",
-          }}
-        >
-          continue
-        </button>
+            ref={continueButtonRef}
+            className="navigate-button fade-in"
+            onClick={handleNavigation2}
+            style={{
+              border: "2px solid white",
+              marginTop: "20px",
+              marginBottom: "40px",
+            }}
+          >
+            continue
+          </button>
         )}
       </div>
     </div>
