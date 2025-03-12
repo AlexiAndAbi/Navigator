@@ -39,10 +39,12 @@ const Testing = () => {
     },
   });
 
+  const [createdDirectory, setCreatedDirectory] = useState(null);
+
   const [questions, setQuestions] = useState([
     { question: "Create a new directory", answer: "" },
     {
-      question: "Create three empty files in the directory you just made",
+      question: "In the directory you just created, make three empty files",
       answer: "",
     },
     {
@@ -85,10 +87,6 @@ const Testing = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [isQuestionMode, setIsQuestionMode] = useState(false);
   const [quizMode, setQuizMode] = useState(false);
-  const [createdDirectory, setCreatedDirectory] = useState(null);
-  const [f1, setF1] = useState(null);
-  const [f2, setF2] = useState(null);
-  const [f3, setF3] = useState(null);
   const [fileCounter, setFileCounter] = useState(0); // Stores the number of created files
   const [gameOver, setGameOver] = useState(false); // State to track game completion
   const [score, setScore] = useState(0);
@@ -96,6 +94,10 @@ const Testing = () => {
   const updateScore = (points) => {
     setScore((prevScore) => prevScore + points);
   };
+
+  useEffect(() => {
+    console.log("Score updated:", score);
+  }, [score]);
 
   const handleQuestionMode = () => {
     setIsQuestionMode(true);
@@ -518,7 +520,7 @@ const Testing = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const userInput = command.trim();
-    const [cmd, ...args] = command.split(" ");
+    const [cmd, ...args] = userInput.split(" "); // Split by one or more spaces
     let result;
 
     if (isQuestionMode) {
@@ -526,6 +528,15 @@ const Testing = () => {
 
       let commandOutput = "";
       let isValidCommand = validCommands.includes(cmd);
+
+      // Check if command is not recognized
+      if (!validCommands.includes(cmd)) {
+        updateOutput(
+          `${currentDirectory} >> ${userInput}\ncommand not found: ${cmd}`
+        );
+        setCommand("");
+        return;
+      }
 
       if (isValidCommand) {
         // Run the command first
@@ -621,7 +632,7 @@ const Testing = () => {
                     if (currentQuestionIndex < questions.length - 1) {
                       updateOutput(
                         "",
-                        `+100pts (cp ___ ___ ... +150pts)\n\nQuestion ${
+                        `+100pts (copy two files at once, +150pts)\n\nQuestion ${
                           currentQuestionIndex + 2
                         }: ${questions[currentQuestionIndex + 1].question}`
                       );
@@ -680,7 +691,7 @@ const Testing = () => {
                 currentQuestion.question ===
                   "Move the directory Navigator to the home directory using an absolute path" &&
                 !commandOutput &&
-                args[2] == "/User/username"
+                (args[1] === "/User/username" || args[2] === "/User/username")
               ) {
                 // ✅ Directory successfully created → Mark as correct and move to next question
                 if (currentQuestionIndex < questions.length - 1) {
@@ -746,19 +757,13 @@ const Testing = () => {
               currentDirectory !== "information"
             ) {
               setFileCounter((prevCount) => prevCount + args.length); // Increment file counter
-              // Loop through args and assign them to f1, f2, or f3 if available
-              for (let i = 0; i < args.length; i++) {
-                if (!f1) setF1(args[i]);
-                else if (!f2) setF2(args[i]);
-                else if (!f3) setF3(args[i]);
-              }
             }
             commandOutput = args.length
               ? handleTouch(...args) // Pass all filenames
               : "usage: touch missing file_name ...";
             if (
               currentQuestion.question ===
-                "Create three empty files in the directory you just made" &&
+                "In the directory you just created, make three empty files" &&
               !commandOutput &&
               fileCounter + args.length >= 3 &&
               currentDirectory !== "~" &&
@@ -784,7 +789,7 @@ const Testing = () => {
               ) {
                 updateOutput(
                   `${currentDirectory} >> ${userInput}\n${commandOutput}`,
-                  `+35pts (touch ___ ___ ___ +50pts)\n\nQuestion ${
+                  `+35pts (create three files at once, +50pts)\n\nQuestion ${
                     currentQuestionIndex + 2
                   }: ${questions[currentQuestionIndex + 1].question}`
                 );
@@ -824,7 +829,8 @@ const Testing = () => {
             if (
               currentQuestion.question ===
                 "Display the contents of any file with line numbers shown" &&
-              args[0] === "-n"
+              args[0] === "-n" &&
+              args[1] !== "information"
             ) {
               // ✅ Directory successfully created → Mark as correct and move to next question
               if (currentQuestionIndex < questions.length - 1) {
@@ -1028,7 +1034,7 @@ const Testing = () => {
   };
 
   const handleGameOver = () => {
-    localStorage.setItem("score", score);
+    localStorage.setItem("score", score + 200);
     localStorage.setItem("time", elapsedTime);
     setGameOver(true); // Set gameOver to true when the game finishes
     fadeInContinueButton();
