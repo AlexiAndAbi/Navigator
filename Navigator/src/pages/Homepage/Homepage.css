@@ -46,6 +46,19 @@
   cursor: pointer; /* Change cursor to pointer on hover */
 }
 
+.footer2 {
+  position: absolute;
+  bottom: 20px; /* Adjust for spacing */
+  width: 100%;
+  text-align: center;
+  font-family: "LGC", sans-serif;
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none; /* No underline initially */
+  opacity: 0.8;
+  transition: opacity 0.5s;
+}
+
 .footer-link {
   font-family: "LGC", sans-serif;
   color: #fff;
@@ -90,7 +103,7 @@
   background-color: transparent; /* Transparent background */
   border: 2px solid white; /* White outline */
   font-size: 20px; /* Font size for the button */
-  margin-top: 30px;
+  margin-top: 20px;
   cursor: pointer; /* Change cursor to pointer on hover */
   border-radius: 5px; /* Slightly rounded corners */
   transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
@@ -105,8 +118,8 @@
   font-family: "LGC";
   color: white;
   font-size: 50px;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
 
 .about-container {
@@ -131,7 +144,7 @@
   font-family: "LGC";
   color: white;
   font-size: 30px;
-  margin-bottom: 0px;
+  margin-bottom: -10px;
   margin-top: 20px;
 }
 
