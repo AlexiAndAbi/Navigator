@@ -1054,7 +1054,7 @@ const Testing = () => {
         {/* Timer and game description */}
         <div className="header">
           <p className="game-description">
-            Welcome to the final challange of Navigator! Your goal is to use all
+            Welcome to the final challenge of Navigator! Your goal is to use all
             of the Unix commands you've learned and complete each task using the
             correct command(s). If you enter a valid command but it's not the
             correct one, it will still execute, but you must complete what is
