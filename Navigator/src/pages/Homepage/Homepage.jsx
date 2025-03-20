@@ -19,7 +19,7 @@ const Homepage = () => {
     <div className="gradient_backgroundHomepage">
       <div className="center-container">
         <h2 className="title">Navigator</h2>
-        <h4 className="description">Learn the Command Line</h4>
+        <h4 className="description">Learn the Unix Command Line</h4>
         <button className="start-button" onClick={handleStartClick}>
           Start
         </button>
