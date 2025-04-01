@@ -3,4 +3,4 @@
 - 💞️ We are excited to help students learn about how to use Unix commands. 
 - 📫 You can email us at alexiandabi@gmail.com
 - 😄 Pronouns: We both use she/her pronous. (Lets go women in computer science!)
-- 💻 Link: Navigator is live on [alexiandabi.github.io/Navigator/](alexiandabi.github.io/Navigator/)
+- 💻 Link: Navigator is live on [alexiandabi.github.io/Navigator/](https://alexiandabi.github.io/Navigator/)
