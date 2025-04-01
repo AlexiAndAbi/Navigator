@@ -221,3 +221,24 @@ input {
   max-width: 195px;
   text-align: left;
 }
+
+.restart-button-play {
+  font-family: "LGC";
+  font-weight: bold;
+  position: absolute;
+  top: 150px;
+  right: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  background: rgba(56, 48, 204, 0.3);
+  padding: 8px 25px;
+  border-radius: 5px;
+  color: white;
+  min-width: 160px;
+  max-width: 195px;
+}
+
+.restart-button-play:hover {
+  background-color: rgba(56, 48, 204, 0.4);
+  color: white; /* Keep text white */
+}

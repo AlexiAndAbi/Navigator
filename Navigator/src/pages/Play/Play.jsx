@@ -1048,6 +1048,10 @@ const Testing = () => {
     navigate("/Yay");
   };
 
+  const handleRestartClick = () => {
+    window.location.reload();
+  };
+
   const fadeInContinueButton = () => {
     const continueButton = document.getElementById("continueButton");
 
@@ -1091,6 +1095,12 @@ const Testing = () => {
         </div>
         <div className="score-display">Score: {score}</div>
         <div className="timer">Elapsed Time: {elapsedTime}s</div>
+        <button
+        className="restart-button-play"
+        onClick={handleRestartClick} // Add a handler if needed
+      >
+        Restart
+      </button>
 
         {/* Command output */}
         <div className="output">
