@@ -11,16 +11,43 @@ const Testing = () => {
         information: {
           type: "directory",
           children: {
-            "summer.txt": { type: "file", content: "Hello, Kitten!" },
-            "fall.txt": { type: "file", content: "Hello, Kitten!" },
+            "summer.txt": {
+              type: "file",
+              content:
+                "Summer makes me think of Lake Padden. Of swimming in the water, collecting rocks to make\ncairns, applying sunscreen, and of being with family. Summers of peanut butter and jelly\nsandwiches with a bit of sand on them and lake water that gets up your nose and in your\nhair. Laughing with cousins, my mom, and my grandparents. This project is dedicated to\nall of them as well. My family. They are the supporters of many wonderful summers in my\npast... and of many more to come.",
+            },
+            "fall.txt": {
+              type: "file",
+              content:
+                "Fall makes me think of marching band... and being with Abby. Holding hands and hugging.\nWorking side by side, laptops opened, donuts and coffee in hand. Late nights, early\nmornings. Times when we are tired and times when we are wide awake. Fall is everything\nfun and wonderful. Fall reminds me of how incredible it feels to work hard. To really\nlove something... and to really love someone. Fall is always dedicated to my best friend\nAbby. For without whom, I wouldn’t be here. This project is most significantly dedicated\nto her. She is my greatest inspiration and greatest supporter. And I wish beyond\nanything that you, dear reader, have a friend like Abby. She has changed my life.",
+            },
             Navigator: {
               type: "directory",
               children: {
-                "intro.txt": { type: "file", content: "Hello, Kitten!" },
-                "level1.txt": { type: "file", content: "Hello, Kitten!" },
-                "level2.txt": { type: "file", content: "Hello, Kitten!" },
-                "level3.txt": { type: "file", content: "Hello, Kitten!" },
-                "level4.txt": { type: "file", content: "Hello, Kitten!" },
+                "intro.txt": {
+                  type: "file",
+                  content:
+                    "Hello, it’s nice to meet you. My name is Navigator. I hope you enjoy the content\nI’ve prepared. I’ve loved making it, shaping it, and picturing it (for the past forever\nit seems). I’m excited to meet you.",
+                },
+                "level1.txt": {
+                  type: "file",
+                  content:
+                    "“Just get started... it only gets easier from there.” -my mom (probably at some point)",
+                },
+                "level2.txt": {
+                  type: "file",
+                  content:
+                    "“Oh bartender... I would like two root beers please” - Nick Kroll (as featured in Oh,\nHello)",
+                },
+                "level3.txt": {
+                  type: "file",
+                  content:
+                    "“Did you know that bees (as in the super tiny, awesome, striped pollinators) have been\nscientifically shown to be able to count as high as three?” -Alexi",
+                },
+                "level4.txt": {
+                  type: "file",
+                  content: "“Be where your feet are.” -Abby",
+                },
               },
             },
           },
@@ -28,12 +55,12 @@ const Testing = () => {
         "hello.txt": {
           type: "file",
           content:
-            "I love saying hello because it has delivered the most wonderful people on planet earth\nto me. I'm outgoing, and extroverted, so it makes sense that a hello is natural. That no\nstranger scares me... because they are just a friend you haven't met yet. And yes, I'm\nrealistic, not everyone is that way. But every class I walk in to here, I try and say\nhello. To a few people. To those who smile. To those who I can tell are putting\ntheir heart into this... irreguarless of whether they are really in it or not.\nAnd to those out there just learning, hello! It is lovely to meet you. There is so\nmuch more to go... but you have done the hardest part... getting started.",
+            "I love saying hello because it has delivered the most wonderful people on planet earth\nto me. And every class I walk into here, I try to say hello. To a few people. To those\nwho smile. To those who I can tell are putting their heart into this. And to those who I\ncan tell are just getting by. And to those out there just learning, hello! It is lovely\nto meet you. There is so much more to go... but you have done the hardest part...\ngetting started.",
         },
         "goodbye.txt": {
           type: "file",
           content:
-            "When you've been in this major so long, it starts to feel more\nlike home. More so because you start to know people. You start to know\nfaces and names and such. And then you find your people.\nAnd they make all the coding so much better because they sit there with you.\nIn the dark, and in the daytime, and they are their to share in your memory leaks\nand also in your greatest successes. To those who have sat their with me...\nthis game is for you. You have made my time here so precious.\nAnd this isn't goodbye. I will think of you often, in the dark, and in the daytime,\nwhen the going gets tough, and when things are wonderful.",
+            "When you've been in this major so long, it starts to feel more like home. More so\nbecause you start to know people. You start to know faces and names and such. And then\nyou find your people. They make all the coding so much better because they sit there\nwith you... in the dark, and in the daytime. They are there to share in your largest\nmemory leaks and in your greatest successes. To those who have sat there with me...\nthis game is for you. You have made my time here so precious. And this isn't goodbye. I\nwill think of you often, in the dark, and in the daytime, when the going gets tough,\nand when things are wonderful.",
         },
       },
     },
